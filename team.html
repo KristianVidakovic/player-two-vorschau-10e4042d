@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
+     Suchmaschinen fern und muss beim echten Livegang weg. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Das Team, Player Two</title>
+<meta name="description" content="Zwei Menschen aus dem Thurgau und ein Team digitaler Mitarbeitender. Wer was macht, und wer gerade arbeitet.">
+<meta name="theme-color" content="#F2F4F7">
+<link rel="icon" href="assets/marke.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F7;--canvas-2:#E8ECF2;--tief:#0B1220;--tief-voll:#050A14;--nacht:#082056;
+  --akzent:#1E6CFF;--cyan:#00C6FF;--grau:#5B6779;
+  --linie:rgba(11,18,32,.12);--linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;--body:'Source Sans 3',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);--ease-soft:cubic-bezier(.33,1,.68,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:clamp(16px,1.05vw,18px);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.06;letter-spacing:-.022em;margin:0}
+p{margin:0}a{color:inherit}img{max-width:100%;display:block}
+
+.umgebung{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(58vw 48vh at 14% 6%,rgba(30,108,255,.07),transparent 64%),
+             radial-gradient(50vw 42vh at 86% 74%,rgba(0,198,255,.06),transparent 68%);
+  animation:atmen 84s var(--ease-soft) infinite alternate -20s}
+@keyframes atmen{from{transform:translate3d(-1.2%,-1%,0) scale(1.02)}to{transform:translate3d(1.4%,1.6%,0) scale(1.07)}}
+.skip{position:absolute;left:-9999px;top:0;background:var(--tief);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:0}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:28px;
+  padding:14px max(4vw,24px);background:rgba(242,244,247,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--linie)}
+.marke{display:flex;align-items:center;gap:11px;text-decoration:none}
+.marke img{width:34px;height:34px;object-fit:contain}
+.marke span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{text-decoration:none;font-size:15px;opacity:.72;padding:4px 0;position:relative;transition:opacity .3s var(--ease)}
+.nav-links a:hover,.nav-links a[aria-current]{opacity:1}
+.nav-links a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--akzent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);
+  font-weight:600;font-size:16px;text-decoration:none;padding:13px 24px;border-radius:10px;
+  border:1px solid transparent;cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease)}
+.btn-voll{background:var(--akzent);color:#fff;box-shadow:0 6px 20px rgba(30,108,255,.28)}
+.btn-voll:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(30,108,255,.36)}
+.btn-linie{border-color:var(--linie-stark);background:rgba(255,255,255,.5)}
+.btn-linie:hover{transform:translateY(-2px);border-color:var(--tief);background:#fff}
+.btn-hell{background:#fff;color:var(--tief)}
+.btn-hell:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(5,10,20,.3)}
+:focus-visible{outline:3px solid var(--akzent);outline-offset:3px;border-radius:4px}
+@media (pointer:coarse){.btn{min-height:44px}}
+
+main{position:relative;z-index:2}
+.wrap{width:var(--seite);margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--akzent);display:block;margin-bottom:16px}
+
+/* Kopf */
+.kopf{padding:calc(78px + 7vw) 0 44px}
+.kopf h1{font-size:clamp(36px,5.4vw,68px);max-width:17ch}
+.kopf .lede{margin-top:24px;font-size:clamp(17px,1.35vw,21px);color:#26313F;max-width:60ch}
+
+/* Die zwei Menschen */
+.menschen{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin:44px 0 0}
+.mensch{background:#fff;border:1px solid var(--linie);border-radius:22px;
+  padding:38px 34px 34px;text-align:center;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease)}
+.mensch:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(11,18,32,.11);
+  border-color:rgba(30,108,255,.35)}
+
+/* Das Bild trägt die Karte: gross, rund, mit einem Ring in Signalblau. */
+.mensch .kreis{width:184px;height:184px;border-radius:50%;margin:0 auto 22px;overflow:hidden;
+  background:var(--canvas-2);position:relative;
+  box-shadow:0 0 0 4px #fff, 0 0 0 6px rgba(30,108,255,.55), 0 16px 38px rgba(11,18,32,.16)}
+.mensch .kreis img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s var(--ease)}
+.mensch:hover .kreis img{transform:scale(1.05)}
+.mensch .kreis svg{width:100%;height:100%}
+
+.mensch h2{font-size:29px;letter-spacing:-.01em}
+.mensch .rolle{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--akzent);margin:9px 0 16px}
+.mensch p{font-size:16px;color:#3A4553;line-height:1.62;text-align:left}
+.mensch p + p{margin-top:12px}
+
+/* Abschlüsse und Können, als ruhige Liste unter dem Text. */
+.mensch .belege{margin-top:22px;padding-top:20px;border-top:1px solid var(--linie);text-align:left}
+.mensch .belege h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau);font-weight:500;margin-bottom:11px}
+.mensch .belege ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.mensch .belege li{font-size:15px;color:#3A4553;padding-left:19px;position:relative;line-height:1.5}
+.mensch .belege li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;
+  border-radius:50%;background:var(--akzent);opacity:.55}
+.mensch .belege li b{color:var(--tinte);font-weight:600}
+.mensch .belege + .belege{margin-top:16px;padding-top:16px}
+
+.mensch .offen{margin-top:22px;padding:14px 16px;border-radius:12px;
+  background:var(--canvas-2);border:1px dashed var(--linie);
+  font-size:14.5px;color:var(--grau);text-align:left}
+
+@media (max-width:860px){
+  .menschen{grid-template-columns:1fr}
+  .mensch{padding:30px 24px 28px}
+  .mensch .kreis{width:150px;height:150px}
+}
+
+/* Live-Leiste */
+.leiste{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:40px;
+  background:#fff;border:1px solid var(--linie);border-radius:14px;padding:16px 20px}
+.zaehler{display:flex;align-items:center;gap:9px;font-size:15.5px}
+.zaehler b{font-family:var(--mono);font-weight:500;font-size:17px}
+.punkt{width:9px;height:9px;border-radius:50%;display:block;flex:0 0 auto}
+.punkt.arbeitet{background:#12A150;position:relative}
+.punkt.arbeitet::after{content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1px solid #12A150;opacity:.5;animation:puls 3s var(--ease-soft) infinite}
+@keyframes puls{0%{transform:scale(.6);opacity:.6}70%{transform:scale(1.6);opacity:0}100%{opacity:0}}
+.punkt.bereit{background:var(--akzent)}
+.punkt.ausbildung{background:transparent;border:1.5px solid var(--grau)}
+.leiste .stand{margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--grau)}
+
+.erklaer{margin-top:18px;font-size:15.5px;color:var(--grau);border-left:2px solid var(--linie-stark);
+  padding-left:16px;max-width:76ch}
+
+/* Sprungmarken */
+.sprung{display:flex;flex-wrap:wrap;gap:7px;margin:36px 0 0}
+.sprung a{font-family:var(--mono);font-size:13px;letter-spacing:.05em;text-decoration:none;
+  padding:9px 15px;border-radius:99px;border:1px solid var(--linie-stark);background:#fff;color:#26313F;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.sprung a:hover{background:var(--akzent);border-color:var(--akzent);color:#fff}
+
+/* Abteilungen */
+.abteilung{padding:56px 0 0;scroll-margin-top:88px}
+.abteilung h2{font-size:clamp(24px,2.6vw,34px)}
+.abteilung .satz{margin-top:10px;color:#3A4553;max-width:58ch}
+.leute{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;margin-top:30px}
+.person{text-align:center;padding:8px 6px 4px;border-radius:16px;transition:background .4s var(--ease)}
+.person:hover{background:rgba(255,255,255,.7)}
+.avatar{position:relative;width:104px;height:104px;margin:0 auto 14px}
+.avatar .rund{width:100%;height:100%;border-radius:50%;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--linie);box-shadow:0 8px 22px rgba(11,18,32,.07)}
+.avatar .buchstabe{font-family:var(--display);font-weight:700;font-size:36px;color:#fff;opacity:.92}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar .status{position:absolute;right:6px;bottom:6px;width:20px;height:20px;border-radius:50%;
+  background:var(--canvas);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(11,18,32,.16)}
+.person .n{font-family:var(--display);font-weight:600;font-size:18px}
+.person .r{font-size:14px;font-weight:600;color:var(--akzent);
+  line-height:1.35;margin:5px 0 9px}
+.person .a{font-size:14.8px;color:#3A4553;line-height:1.5}
+.person .c{margin-top:9px;font-size:13px;color:var(--grau);font-style:italic}
+
+/* Werkstatt-Ausblick */
+.werkstatt{margin-top:80px;background:var(--tief-voll);color:#EBF8FF;border-radius:24px;
+  padding:clamp(38px,5vw,62px);position:relative;overflow:hidden}
+.werkstatt::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 70% at 18% 0%,rgba(30,108,255,.3),transparent 62%)}
+.werkstatt>*{position:relative}
+.werkstatt h2{font-size:clamp(26px,3.2vw,42px);color:#fff;max-width:20ch}
+.werkstatt p{margin-top:18px;color:rgba(235,248,255,.78);max-width:56ch;font-size:17px}
+.werkstatt .kicker{color:var(--cyan)}
+.werkstatt .knopfreihe{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.bald{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(235,248,255,.55)}
+
+footer{background:var(--tief-voll);color:rgba(235,248,255,.66);padding:64px 0 40px;margin-top:90px}
+footer a{color:rgba(235,248,255,.66);text-decoration:none}
+footer a:hover{color:#fff}
+.fuss-raster{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.fuss-links{display:flex;gap:26px;flex-wrap:wrap;font-size:15px}
+.fuss-marke{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.fuss-marke img{width:30px;height:30px;object-fit:contain}
+.fuss-marke span{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.16em;
+  text-transform:uppercase;color:#EBF8FF}
+.fuss-klein{margin-top:34px;padding-top:22px;border-top:1px solid rgba(235,248,255,.12);
+  font-size:13.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.auf{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.auf.in{opacity:1;transform:none}
+
+@media (max-width:1024px){.menschen{grid-template-columns:1fr}.nav-links{display:none}}
+@media (max-width:720px){
+  .leute{grid-template-columns:repeat(2,1fr);gap:18px}
+  .avatar{width:86px;height:86px}
+  .mensch{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .auf{opacity:1!important;transform:none!important}
+}
+
+    /* ---- Tippziele auf Touchgeräten ----
+       Textlinks in Navigation und Fusszeile sind rund 24 Bildpunkte hoch.
+       Auf dem Telefon trifft man die kaum. 44 ist die übliche Untergrenze;
+       wir erreichen sie über Polsterung, damit sich am Aussehen auf dem
+       Rechner nichts ändert. */
+    @media (pointer:coarse){
+      .nav-links a, .fuss-links a, .fuss-klein a, footer a, nav a{
+        display:inline-flex; align-items:center; min-height:44px;
+      }
+      .fuss-links{gap:8px 26px}
+    }
+
+    /* ---- Abteilungen zum Aufklappen, nur auf schmalen Schirmen ----
+       59 Karten untereinander sind auf dem Telefon 14000 Bildpunkte. Deshalb
+       sieht man dort zuerst nur die Abteilungen und tippt eine auf. */
+    @media (max-width:720px){
+      .abteilung{padding-top:0;border-top:1px solid rgba(8,32,86,.12)}
+      .abteilung h2{
+        display:flex; align-items:center; justify-content:space-between; gap:14px;
+        margin:0; padding:20px 2px; cursor:pointer; min-height:44px;
+        font-size:19px; user-select:none;
+      }
+      .abteilung h2::after{
+        content:''; flex:0 0 auto; width:10px; height:10px; margin-right:4px;
+        border-right:2px solid #1E6CFF; border-bottom:2px solid #1E6CFF;
+        transform:rotate(45deg) translate(-2px,-2px);
+        transition:transform .25s var(--ease);
+      }
+      .abteilung .wieviele{
+        font-family:var(--mono); font-size:12px; letter-spacing:.08em;
+        color:#5B6779; font-weight:400; margin-left:auto;
+      }
+      .abteilung.zu h2::after{ transform:rotate(-45deg) translate(0,2px) }
+      .abteilung.zu .satz, .abteilung.zu .leute{ display:none }
+      .abteilung .satz{margin-top:0;padding-bottom:4px}
+      .abteilung .leute{margin-top:16px;padding-bottom:26px}
+    }
+</style>
+</head>
+<body>
+<div class="umgebung" aria-hidden="true"></div>
+<a class="skip" href="#main">Direkt zum Inhalt</a>
+
+<nav class="nav">
+  <a class="marke" href="index.html" aria-label="Player Two, Startseite">
+    <img src="assets/marke.png" srcset="assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
+    <span>Player Two</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#stufen">Angebot</a>
+    <a href="loesungen.html">Fertige Lösungen</a>
+    <a href="index.html#ablauf">Ablauf</a>
+    <a href="index.html#herkunft">Über uns</a>
+    <a href="team.html" aria-current="page">Team</a>
+    <a href="index.html#kontakt">Kontakt</a>
+  </div>
+  <a class="btn btn-voll" href="index.html#kontakt" style="margin-left:22px">Anfrage stellen</a>
+</nav>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <header class="kopf">
+      <span class="kicker">Das Team</span>
+      <h1>Zwei Menschen und <span id="anzahl">59</span> digitale Mitarbeitende.</h1>
+      <p class="lede">Die digitalen Kolleginnen und Kollegen übernehmen Routine und Technik, damit wir bei Ihnen vor Ort sein, zuhören und entscheiden können. Jede und jeder hat einen Namen, eine Aufgabe und klare Grenzen. Keine von ihnen gibt sich als Mensch aus.</p>
+    </header>
+
+    <section class="menschen" aria-label="Die Gründer">
+      <article class="mensch gruender-karte">
+        <div class="kreis">
+          <img src="assets/mitarbeiter/kristian.webp" alt="Kristian Vidakovic" width="184" height="184">
+        </div>
+        <h2>Kristian</h2>
+        <div class="rolle">Gründer, Technik und Abläufe</div>
+        <p>Über zwanzig Jahre Betrieb. Projektleitung, Product Management,
+          Angebots- und Raumplanung, Budgets, Personal, Ausbildung. Zuerst mit
+          eigener Führungsverantwortung vor Ort, später für mehrere Standorte:
+          Zahlen kontrollieren, Wirtschaftlichkeit rechnen, Verbesserungen
+          durchsetzen.</p>
+        <p>Programmiert seit Jahren selbst. Er hat <b>Ultra-Instinct</b> entwickelt,
+          eine KI-gestützte Prognosesoftware, die bei einer der grössten
+          Detailhändlerinnen der Schweiz im Einsatz war. <b>Player Two</b> hat er von
+          Grund auf gebaut: die digitale Belegschaft, das System dahinter und die
+          Seite, auf der Sie gerade sind.</p>
+
+        <div class="belege">
+          <h3>Abschlüsse</h3>
+          <ul>
+            <li>Dipl. Marketing-Manager HF</li>
+            <li>Detailhandelsspezialist mit eidgenössischem Fachausweis</li>
+          </ul>
+        </div>
+
+        <div class="belege">
+          <h3>Womit er Ihrem Betrieb hilft</h3>
+          <ul>
+            <li><b>Den Betriebsalltag von innen kennen.</b> Fünf Jahre lang hat er
+              Teams geführt, zuletzt auch die Geschäftsführung eines Betriebs
+              vertreten: Personal, Abläufe und Zahlen im Tagesgeschäft.</li>
+            <li><b>Rechnen, bevor Sie Geld ausgeben.</b> Ob sich ein Raum, ein
+              Angebot oder eine Anschaffung trägt, hat er vorher durchgerechnet und
+              den Antrag dafür gestellt. Nicht geschätzt.</li>
+            <li><b>Lücken im Ertrag finden.</b> Er hat die Zahlen laufend geprüft,
+              Umsatz und Ertrag zusammen gelesen und gesagt, wo etwas zu ändern
+              ist.</li>
+            <li><b>Vor dem Umbau die Zahlen haben.</b> Bei Neu- und Umbauten hat er
+              die Räume mitgeplant und die Zahlen dazu geliefert.</li>
+            <li><b>Leute ausbilden, die selbst führen.</b> Über Jahre hat er
+              Mitarbeitende weitergebildet, die in ihrem Bereich selbst
+              Verantwortung tragen.</li>
+            <li><b>Die Software selbst schreiben.</b> Jahrelange Erfahrung mit
+              künstlicher Intelligenz, und er baut damit selbst. Keine Agentur
+              dazwischen, die erst Zeit haben muss.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- ENTWURF, 24.08.2026: Kristinas Text ist ein erster Aufschlag, damit
+           die Karte nicht leer steht. Inhalte stammen aus dem Masterfile
+           (Teil "Die Kombination", Zeilen 677 ff. und 1509; Human Gates).
+           Vor dem Livegang von Kristina gegenlesen lassen; die Abschlüsse
+           fehlen noch. -->
+      <article class="mensch gruender-karte">
+        <div class="kreis">
+          <img src="assets/mitarbeiter/kristina.webp" alt="Kristina" width="184" height="184">
+        </div>
+        <h2>Kristina</h2>
+        <div class="rolle">Gründerin, Verkauf und Marketing</div>
+        <p>Langjährige Handelserfahrung, rund die Hälfte davon in der
+          Immobilienbranche: Bewirtschaftung und Maklerin, dazu die
+          Marketingverantwortung. Kundengespräche führen, Objekte vermarkten,
+          Inserate und Auftritt verantworten — und am Schluss den Abschluss
+          machen.</p>
+        <p>Sie ist die kreative Seite der Firma. Wie eine Seite aussieht, welche
+          Bilder es braucht und in welchem Ton ein Betrieb nach aussen spricht,
+          entscheidet sie. <b>Player Two</b> hat sie ebenfalls von Grund auf
+          mitgebaut: die Marke, den Auftritt und die Art, wie wir mit Kundschaft
+          reden.</p>
+
+        <div class="belege">
+          <h3>Abschlüsse</h3>
+          <div class="offen">Werden hier noch ergänzt.</div>
+        </div>
+
+        <div class="belege">
+          <h3>Womit sie Ihrem Betrieb hilft</h3>
+          <ul>
+            <li><b>Wissen, wie Ihre Kundschaft kauft.</b> Jahre im Verkauf und in
+              der Vermittlung: Sie kennt die Fragen, die einer stellt, bevor er
+              sich entscheidet — und sorgt dafür, dass die Antwort auf der Seite
+              steht.</li>
+            <li><b>Immobilien von innen kennen.</b> Bewirtschaftung und Maklerei:
+              Objekte, Inserate, Besichtigungen, Übergaben. Für Verwaltungen,
+              Makler und private Vermieter ist das ihr Heimspiel.</li>
+            <li><b>Über Ihren Auftritt entscheiden.</b> Bilder, Farben, Tonfall.
+              Was nach aussen geht, geht vorher über ihren Tisch.</li>
+            <li><b>Sichtbar werden ohne Werbebudget.</b> Social Media aus der
+              Praxis, nicht aus dem Lehrbuch: was ein Betrieb zeigen kann, ohne
+              dass es gestellt wirkt.</li>
+            <li><b>Sagen, was fehlt.</b> Sie liest Ihre Seite mit den Augen Ihrer
+              Kundschaft und benennt, was dort nicht verstanden wird.</li>
+            <li><b>Nichts geht ungeprüft hinaus.</b> Jeder Beitrag, der Ihren Namen
+              trägt, wird vorher angeschaut — von ihr und von Ihnen.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <div class="leiste" id="leiste">
+      <span class="zaehler"><i class="punkt arbeitet"></i><b id="z-arbeitet">0</b> arbeiten gerade</span>
+      <span class="zaehler"><i class="punkt bereit"></i><b id="z-bereit">0</b> bereit</span>
+      <span class="zaehler"><i class="punkt ausbildung"></i><b id="z-ausbildung">0</b> in Ausbildung</span>
+      <span class="stand" id="stand">Platzhalter-Stand</span>
+    </div>
+
+    <p class="erklaer">
+      Wir schalten eine Rolle erst frei, wenn ein echter Auftrag sie braucht. Was niemand braucht, läuft auch nicht mit,
+      und das hält Ihren Preis tief. Wer bereit ist und nichts zu tun hat, schläft. Auch das sehen Sie hier,
+      sobald die Anzeige am System hängt.
+    </p>
+
+    <nav class="sprung" id="sprung" aria-label="Zu einer Abteilung springen"></nav>
+
+    <div id="abteilungen"></div>
+
+    <section class="werkstatt auf" id="werkstatt">
+      <span class="kicker">Die Werkstatt</span>
+      <h2>Sehen Sie uns bei der Arbeit zu.</h2>
+      <p>In unserer Werkstatt sehen Sie, was hier wirklich passiert. Kommt eine Anfrage herein, läuft die zuständige Figur an ihren Platz und arbeitet. Ist nichts zu tun, geht sie nach Hause. Wir zeigen keinen gespielten Fleiss, sondern den echten Betrieb, auch wenn er gerade ruhig ist.</p>
+      <div class="knopfreihe">
+        <a class="btn btn-hell" href="stadt.html">Uns live bei der Arbeit zusehen</a>
+        <span class="bald">Rohbau, die Häuser bekommen ihr Aussehen noch</span>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <div class="fuss-marke">
+          <img src="assets/marke.png" alt="" width="30" height="30">
+          <span>Player Two</span>
+        </div>
+        <p style="max-width:34ch;font-size:15px">Digitale Arbeit für Schweizer KMU. Sie sind Player One. Wir spielen mit.</p>
+      </div>
+      <div class="fuss-links">
+        <a href="index.html#stufen">Angebot</a>
+        <a href="loesungen.html">Fertige Lösungen</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#kontakt">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+    <div class="fuss-klein">
+      <span>© <span id="jahr">2026</span> Player Two, Thurgau</span>
+      <span>Porträts und Zustände sind in dieser Fassung Platzhalter.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+var FARBEN = {
+  leitung:['#082056','#1E6CFF'], wachstum:['#1E6CFF','#58A8FF'], kreation:['#00C6FF','#1E6CFF'],
+  kunden:['#12A150','#00C6FF'], finanzen:['#082056','#00C6FF'], technik:['#0B1220','#1E6CFF'],
+  aufsicht:['#5B6779','#082056']
+};
+var STATUS_TEXT = {arbeitet:'arbeitet gerade', bereit:'bereit, hat gerade nichts zu tun', ausbildung:'in Ausbildung'};
+
+function el(tag, klasse, text){
+  var e = document.createElement(tag);
+  if (klasse) e.className = klasse;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+function avatar(person, abtId){
+  var wrap = el('div','avatar');
+  var rund = el('div','rund');
+  var f = FARBEN[abtId] || ['#082056','#1E6CFF'];
+  rund.style.background = 'linear-gradient(150deg,' + f[0] + ',' + f[1] + ')';
+  if (person.bild) {
+    var img = document.createElement('img');
+    img.src = person.bild; img.alt = ''; img.loading = 'lazy';
+    rund.appendChild(img);
+  } else {
+    rund.appendChild(el('span','buchstabe',person.name.charAt(0)));
+  }
+  wrap.appendChild(rund);
+  var st = el('span','status');
+  st.title = STATUS_TEXT[person.status] || person.status;
+  st.appendChild(el('i','punkt ' + person.status));
+  wrap.appendChild(st);
+  return wrap;
+}
+
+/* Auf schmalen Schirmen sind die Abteilungen zugeklappt, die erste offen.
+   Auf dem Rechner passiert nichts — dort ist alles sichtbar. */
+function schmal(){ return matchMedia('(max-width:720px)').matches; }
+
+function aufklappenEinrichten(){
+  var abteilungen = Array.prototype.slice.call(document.querySelectorAll('.abteilung'));
+
+  function stand(){
+    abteilungen.forEach(function(sec, i){
+      if (schmal()) sec.classList.toggle('zu', i > 0);
+      else sec.classList.remove('zu');
+    });
+  }
+  stand();
+  matchMedia('(max-width:720px)').addEventListener('change', stand);
+
+  abteilungen.forEach(function(sec){
+    var kopf = sec.querySelector('h2');
+    if (!kopf) return;
+    kopf.setAttribute('role','button');
+    kopf.setAttribute('tabindex','0');
+    function umschalten(){
+      if (!schmal()) return;
+      sec.classList.toggle('zu');
+    }
+    kopf.addEventListener('click', umschalten);
+    kopf.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); umschalten(); }
+    });
+  });
+
+  /* Wer über die Sprungmarken oben eine Abteilung anwählt, soll sie
+     geöffnet vorfinden. */
+  document.querySelectorAll('#sprung a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var ziel = document.querySelector(a.getAttribute('href'));
+      if (ziel) ziel.classList.remove('zu');
+    });
+  });
+}
+
+function zeichnen(daten){
+  document.getElementById('anzahl').textContent = daten.anzahl_digital;
+
+  var zaehler = {arbeitet:0, bereit:0, ausbildung:0};
+  var sprung = document.getElementById('sprung');
+  var behaelter = document.getElementById('abteilungen');
+  behaelter.textContent = '';
+  sprung.textContent = '';
+
+  daten.abteilungen.forEach(function(abt){
+    var a = el('a', null, abt.name);
+    a.href = '#abt-' + abt.id;
+    sprung.appendChild(a);
+
+    var sec = el('section','abteilung auf');
+    sec.id = 'abt-' + abt.id;
+    var kopf = el('h2', null, abt.name);
+    sec.appendChild(kopf);
+    sec.appendChild(el('p','satz',abt.satz));
+
+    var raster = el('div','leute');
+    abt.mitarbeitende.forEach(function(p){
+      zaehler[p.status] = (zaehler[p.status] || 0) + 1;
+      var karte = el('article','person');
+      karte.appendChild(avatar(p, abt.id));
+      karte.appendChild(el('div','n',p.name));
+      karte.appendChild(el('div','r',p.rolle));
+      karte.appendChild(el('p','a',p.aufgabe));
+      if (p.charakter) karte.appendChild(el('div','c',p.charakter));
+      raster.appendChild(karte);
+    });
+    sec.appendChild(raster);
+    behaelter.appendChild(sec);
+  });
+
+  aufklappenEinrichten();
+
+  document.getElementById('z-arbeitet').textContent = zaehler.arbeitet || 0;
+  document.getElementById('z-bereit').textContent = zaehler.bereit || 0;
+  document.getElementById('z-ausbildung').textContent = zaehler.ausbildung || 0;
+  document.getElementById('stand').textContent =
+    daten.stand === 'platzhalter' ? 'Platzhalter, noch nicht am System' : 'Stand ' + daten.stand;
+
+  var beob = new IntersectionObserver(function(e){
+    e.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('in'); beob.unobserve(x.target); } });
+  }, {threshold:.08});
+  document.querySelectorAll('.auf').forEach(function(x){ beob.observe(x); });
+
+/* ---------- Sprungmarken ohne Durchfahrt ---------- */
+/* Wer aus dem Menü auf einen Abschnitt springt, will dort sein und nicht
+   unterwegs jedem Abschnitt beim Auftritt zusehen. Also hart springen und
+   alles Uebersprungene sofort fertig zeigen. */
+function fertigZeigen(bisY){
+  document.querySelectorAll('.auf').forEach(function(el){
+    if (el.getBoundingClientRect().top + window.pageYOffset < bisY){
+      el.classList.add('in');
+      if (el.classList.contains('stufe')) el.classList.add('fertig');
+      beob.unobserve(el);
+    }
+  });
+}
+
+function hartSpringen(ziel){
+  var hoch = document.documentElement;
+  hoch.style.scrollBehavior = 'auto';
+  ziel.scrollIntoView();
+  fertigZeigen(window.pageYOffset);
+  requestAnimationFrame(function(){ hoch.style.scrollBehavior = ''; });
+}
+
+function markeFinden(marke){
+  if (!marke || marke.length < 2) return null;
+  try { return document.querySelector(marke); } catch (e) { return null; }
+}
+
+document.addEventListener('click', function(ev){
+  if (ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+  var a = ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+  if (!a) return;
+  var ziel = markeFinden(a.getAttribute('href'));
+  if (!ziel) return;
+  ev.preventDefault();
+  hartSpringen(ziel);
+  history.pushState(null, '', a.getAttribute('href'));
+});
+
+if (location.hash){
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var ansteuern = function(){
+    var ziel = markeFinden(location.hash);
+    if (ziel) hartSpringen(ziel);
+  };
+  ansteuern();
+  /* Nochmals, sobald Bilder und Schriften die Höhen verschoben haben. */
+  window.addEventListener('load', ansteuern);
+}
+
+}
+
+fetch('data/team.json')
+  .then(function(r){ return r.json(); })
+  .then(zeichnen)
+  .catch(function(fehler){
+    console.error('team.json nicht geladen:', fehler);
+    var lokal = location.protocol === 'file:';
+    document.getElementById('abteilungen').innerHTML = lokal
+      ? '<p style="padding:40px 0;color:#5B6779">Diese Seite wurde direkt aus dem Ordner geöffnet. ' +
+        'Der Browser lässt dabei kein Nachladen von Dateien zu, deshalb fehlt die Teamliste.<br>' +
+        'Starten Sie den Entwicklungsserver und öffnen Sie ' +
+        '<code>http://localhost:5180/team.html</code>.</p>'
+      : '<p style="padding:40px 0;color:#5B6779">Die Teamliste konnte nicht geladen werden. Bitte laden Sie die Seite neu.</p>';
+
+    /* Der Beobachter, der die Abschnitte einblendet, steht in zeichnen()
+       und laeuft hier nie. Ohne ihn bliebe die ganze uebrige Seite auf
+       Sichtbarkeit null stehen - auch die Werkstatt mit dem Knopf zur
+       Stadt. Fehlen die Daten, gibt es nichts zu inszenieren: alles
+       sofort zeigen. */
+    document.querySelectorAll('.auf').forEach(function(x){
+      x.classList.add('in');
+      if (x.classList.contains('stufe')) x.classList.add('fertig');
+    });
+  });
+})();
+</script>
+</body>
+</html>

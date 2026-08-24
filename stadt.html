@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
+     Suchmaschinen fern und muss beim echten Livegang weg. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Player Two — die Stadt</title>
+<style>
+  :root {
+    --grund: #E7E4DE; --text: #12182B; --gedaempft: #5D6973;
+    --linie: #C6C0B8; --akzent: #1E6CFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    background: var(--grund); color: var(--text);
+    font: 15px/1.5 "Inter", system-ui, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  #buehne { position: fixed; inset: 0; display: block; touch-action: none; cursor: grab; }
+  #buehne.zieht { cursor: grabbing; }
+
+  .kopf {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 5;
+    padding: 16px 20px 30px;
+    background: linear-gradient(to bottom, rgba(231,228,222,.94), rgba(231,228,222,0));
+    pointer-events: none; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
+  }
+  .kopf h1 { margin: 0; font-size: 16px; font-weight: 650; }
+  .kopf .zurueck {
+    pointer-events: auto; margin-left: auto; color: var(--gedaempft);
+    text-decoration: none; font-size: 13.5px; border: 1px solid var(--linie);
+    border-radius: 9px; padding: 7px 12px; background: rgba(255,255,255,.8);
+    display: inline-flex; align-items: center; min-height: 40px;
+  }
+  .kopf .zurueck:hover { border-color: var(--akzent); color: var(--text); }
+  .kopf p { margin: 0; font-size: 13.5px; color: var(--gedaempft); }
+
+  .steuer {
+    position: fixed; left: 20px; bottom: 20px; z-index: 5;
+    background: rgba(255,255,255,.93); border: 1px solid var(--linie);
+    border-radius: 12px; padding: 12px 15px; font-size: 13px;
+    display: flex; flex-direction: column; gap: 9px; min-width: 270px;
+  }
+  .steuer label { display: flex; align-items: center; gap: 10px; color: var(--gedaempft); }
+  .steuer label span { flex: none; width: 68px; }
+  .steuer input[type=range] { flex: 1; min-width: 0; accent-color: var(--akzent); }
+  .steuer output {
+    flex: none; width: 34px; text-align: right; color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .steuer .zeile { color: var(--text); font-weight: 600; }
+
+  .buehnenleiste {
+    position: fixed; left: 50%; transform: translateX(-50%); top: 0; z-index: 6;
+    background: rgba(18,24,43,.94); color: #EBF0F8;
+    border-radius: 0 0 14px 14px; padding: 11px 16px 13px;
+    display: none; gap: 13px; align-items: center;
+    box-shadow: 0 6px 26px rgba(0,0,0,.28); max-width: min(94vw, 760px);
+  }
+  .buehnenleiste.an { display: flex; }
+  .buehnenleiste .zaehler {
+    font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    color: #8FA6C8; font-weight: 700; white-space: nowrap;
+  }
+  .buehnenleiste .was { font-size: 15px; font-weight: 600; flex: 1; min-width: 0; }
+  .buehnenleiste .was small { display: block; font-size: 12px; color: #9DB0CC; font-weight: 400; }
+  .buehnenleiste button {
+    flex: none; border: 1px solid rgba(255,255,255,.18); border-radius: 9px;
+    background: rgba(255,255,255,.09); color: #EBF0F8;
+    font: inherit; font-size: 13.5px; padding: 8px 13px; cursor: pointer; white-space: nowrap;
+  }
+  .buehnenleiste button:hover { background: rgba(255,255,255,.17); }
+  .buehnenleiste button.haupt { background: #1E6CFF; border-color: #1E6CFF; font-weight: 650; }
+
+  @media (max-width: 700px) {
+    .buehnenleiste { left: 8px; right: 8px; transform: none; max-width: none; flex-wrap: wrap; }
+    .buehnenleiste .was { flex-basis: 100%; }
+  }
+
+  .karte {
+    position: fixed; left: 20px; bottom: 20px; z-index: 7;
+    background: #fff; border: 1px solid var(--linie); border-radius: 14px;
+    padding: 16px 18px 17px; max-width: 330px; display: none;
+    box-shadow: 0 10px 34px rgba(18,24,43,.16);
+  }
+  .karte.an { display: block; }
+  .karte .zu {
+    position: absolute; top: 9px; right: 10px; width: 30px; height: 30px;
+    border: none; background: none; font-size: 19px; line-height: 1;
+    color: var(--gedaempft); cursor: pointer;
+  }
+  .karte .rolle {
+    font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--akzent); font-weight: 700;
+  }
+  .karte h2 { margin: 3px 0 2px; font-size: 21px; font-weight: 650; }
+  .karte .abt { font-size: 12.5px; color: var(--gedaempft); }
+  .karte p { margin: 11px 0 0; font-size: 14px; line-height: 1.5; }
+  .karte .charakter {
+    margin: 8px 0 0; font-size: 13px; font-style: italic; color: var(--gedaempft);
+  }
+  .karte .tut {
+    margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--linie);
+    font-size: 13.5px; color: var(--gedaempft);
+  }
+  .karte .tut b { color: var(--text); font-weight: 600; }
+
+  .regler { position: fixed; right: 20px; bottom: 20px; z-index: 5; display: flex; gap: 7px; }
+  .regler button {
+    width: 42px; height: 42px; border: 1px solid var(--linie); border-radius: 10px;
+    background: rgba(255,255,255,.93); color: var(--text); font-size: 17px;
+    cursor: pointer; font-family: inherit;
+  }
+  .regler button:hover { border-color: var(--akzent); }
+
+  @media (max-width: 760px) {
+    .steuer { left: 10px; right: 10px; bottom: 10px; min-width: 0; }
+    .regler { bottom: 12px; right: 12px; top: auto; }
+    .regler button { width: 46px; height: 46px; }
+    .kopf { padding: 12px 14px 26px; }
+    .kopf h1 { font-size: 15px; }
+    .kopf p { display: none; }
+    .kopf .zurueck { margin-left: auto; }
+  }
+  /* In der Werkstattansicht braucht die Reglertafel unten Platz. */
+  @media (max-width: 760px) {
+    body.werkstatt .regler { bottom: 158px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="buehne"></canvas>
+
+<div class="kopf">
+  <h1>Player Two</h1>
+  <p id="lage">wird geladen …</p>
+</div>
+
+<div class="karte" id="karte">
+  <button class="zu" id="karteZu" title="schliessen">×</button>
+  <div class="rolle" id="kRolle">—</div>
+  <h2 id="kName">—</h2>
+  <div class="abt" id="kAbt"></div>
+  <p id="kAufgabe"></p>
+  <p id="kChar" class="charakter"></p>
+  <div class="tut" id="kTut"></div>
+</div>
+
+<div class="regler">
+  <button id="raus" title="kleiner">−</button>
+  <button id="rein" title="grösser">+</button>
+  <button id="hq" title="zum HQ">⌂</button>
+  <button id="alles" title="ganze Stadt">◇</button>
+</div>
+
+<script src="assets/figuren.js"></script>
+<script src="assets/netz.js"></script>
+<script>
+(function () {
+  'use strict'
+
+  var leinwand = document.getElementById('buehne')
+  var ctx = leinwand.getContext('2d')
+  var bild = new Image()
+  var bereit = false
+
+  var kamera = { x: 0, y: 0, zoom: 0.5 }
+  var sicht = { b: 0, h: 0 }
+  var wege = null
+  var team = null
+  var besetzung = []
+  var figurGroesse = 40
+  var versatz = 7   /* Feinjustierung: schiebt alle Figuren senkrecht */
+  var anteil = 1
+  var anzahlLaeufer = 59
+  var laeufer = []
+  var speicher = null       /* Kulisse plus sitzende Figuren, einmal gezeichnet */
+  var vorneSpeicher = null  /* alles, was vor den Figuren liegt, einmal freigestellt */
+  var netz = null           /* das Wegenetz aus den gezeichneten Linien */
+  var ruhend = []           /* Plätze, die dauerhaft besetzt bleiben */
+  var letzteZeit = 0
+  var laeuft = false
+
+  /* Welche Haltung zu welcher Art von Platz gehört. */
+  var HALTUNG = {
+    schreibtisch: 'sitzt', esstisch: 'sitzt', bartresen: 'sitzt',
+    schulbank: 'sitzt', bank: 'sitzt',
+    bett: 'schlaeft', liege: 'liegt', becken: 'schwimmt',
+    sportplatz: 'steht', stehen: 'steht'
+  }
+
+  /* Ortsnamen aufräumen: klein und ohne Tippfehler. */
+  function ortNorm (o) {
+    var s = String(o || 'stadt').toLowerCase().trim()
+    if (s.indexOf('restaur') === 0) return 'restaurant'
+    if (s.indexOf('schwimm') === 0) return 'schwimmbad'
+    return s
+  }
+
+  var mannschaft = []   /* die 59 Mitarbeitenden */
+  var posten = []       /* feste Leute: Lehrer, Barman, Bademeister und so weiter */
+  var sichtbar = []     /* wo gerade wer steht, fürs Antippen */
+
+  /* Die festen Rollen. Wer einen Posten setzt, wählt einen dieser Schlüssel.
+     Sie gehören nicht zu Player Two, sie gehören zur Stadt. */
+  var POSTEN = {
+    lehrer:            { name: 'Lehrer',            aufgabe: 'unterrichtet die Mitarbeitenden von morgen', geschlecht: 'm' },
+    lehrerin:          { name: 'Lehrerin',          aufgabe: 'unterrichtet die Mitarbeitenden von morgen', geschlecht: 'w' },
+    barman:            { name: 'Barman',            aufgabe: 'schenkt aus und hört zu',                    geschlecht: 'm' },
+    barfrau:           { name: 'Barfrau',           aufgabe: 'schenkt aus und hört zu',                    geschlecht: 'w' },
+    kellner:           { name: 'Kellner',           aufgabe: 'nimmt Bestellungen auf und serviert',        geschlecht: 'm' },
+    kellnerin:         { name: 'Kellnerin',         aufgabe: 'nimmt Bestellungen auf und serviert',        geschlecht: 'w' },
+    koch:              { name: 'Koch',              aufgabe: 'kocht für alle, die hereinkommen',           geschlecht: 'm' },
+    koechin:           { name: 'Köchin',            aufgabe: 'kocht für alle, die hereinkommen',           geschlecht: 'w' },
+    bademeister:       { name: 'Bademeister',       aufgabe: 'sorgt dafür, dass am Becken nichts passiert', geschlecht: 'm' },
+    baderin:           { name: 'Bademeisterin',     aufgabe: 'sorgt dafür, dass am Becken nichts passiert', geschlecht: 'w' },
+    rettungsschwimmer: { name: 'Rettungsschwimmer', aufgabe: 'hat das Wasser im Blick',                    geschlecht: 'm', bade: true },
+    rettungsschwimmerin: { name: 'Rettungsschwimmerin', aufgabe: 'hat das Wasser im Blick',                geschlecht: 'w', bade: true },
+    waechter:          { name: 'Wächter',           aufgabe: 'passt auf das Haus auf',                     geschlecht: 'm' },
+    empfang:           { name: 'Empfang',           aufgabe: 'begrüsst, wer hereinkommt',                  geschlecht: 'w' },
+    hauswart:          { name: 'Hauswart',          aufgabe: 'hält alles in Ordnung',                      geschlecht: 'm' },
+    verkaeuferin:      { name: 'Verkäuferin',       aufgabe: 'bedient am Kiosk',                           geschlecht: 'w' }
+  }
+
+  function besetzen () {
+    mannschaft = []
+    team.abteilungen.forEach(function (a) {
+      a.mitarbeitende.forEach(function (m) {
+        mannschaft.push({
+          name: m.name, rolle: m.rolle, abteilung: a.name,
+          aufgabe: m.aufgabe, charakter: m.charakter,
+          status: m.status, geschlecht: m.geschlecht || 'w'
+        })
+      })
+    })
+    /* Die Plätze sind nur noch Möbel. Besetzt wird ausschliesslich von den
+       Mitarbeitenden, die sich bewegen — sonst sitzen auf der Karte mehr
+       Leute, als die Firma hat. */
+    /* Posten sind feste Leute, keine Plätze zum Hinsetzen. */
+    posten = wege.plaetze.filter(function (p) { return p.art === 'posten' })
+      .map(function (p, i) {
+        var art = POSTEN[p.rolle] || { name: p.rolle || 'Posten', aufgabe: '', geschlecht: 'w' }
+        return {
+          x: p.x, y: p.y,
+          haltung: p.haltung || 'steht',
+          richtung: p.richtung || 'so',
+          ort: ortNorm(p.ort),
+          bade: !!art.bade,
+          person: {
+            name: art.name, rolle: art.name, aufgabe: art.aufgabe,
+            geschlecht: art.geschlecht, abteilung: null, posten: true,
+            schluessel: (p.rolle || 'posten') + '-' + i
+          }
+        }
+      })
+
+    besetzung = wege.plaetze.filter(function (p) { return p.art !== 'posten' }).map(function (p) {
+      return {
+        x: p.x, y: p.y,
+        haltung: HALTUNG[p.art] || 'steht',
+        richtung: p.richtung || 'no',
+        ort: ortNorm(p.ort),
+        art: p.art,
+        bade: (ortNorm(p.ort) === 'schwimmbad' || ortNorm(p.ort) === 'strand') &&
+              (p.art === 'liege' || p.art === 'becken')
+      }
+    })
+    besetzung.sort(function (a, b) { return a.y - b.y })
+  }
+
+  /* ---------------------------------------------------------------- Wege
+     Ein Weg ist eine Kette von Punkten. Für die Bewegung brauchen wir die
+     Länge jedes Stücks, damit alle gleich schnell laufen, egal wie eng
+     die Punkte gesetzt wurden. */
+  function wegVorbereiten (punkte) {
+    var stuecke = [], gesamt = 0, i
+    for (i = 0; i < punkte.length - 1; i++) {
+      var a = punkte[i], b = punkte[i + 1]
+      var l = Math.hypot(b[0] - a[0], b[1] - a[1])
+      stuecke.push({ a: a, b: b, l: l, bis: gesamt + l })
+      gesamt += l
+    }
+    return { punkte: punkte, stuecke: stuecke, laenge: gesamt }
+  }
+
+  /* Wo liegt der Punkt nach s Bildpunkten Wegstrecke, und wohin zeigt er? */
+  function punktAuf (weg, s) {
+    if (!weg.stuecke.length) return { x: weg.punkte[0][0], y: weg.punkte[0][1], dx: 1, dy: 0 }
+    s = Math.max(0, Math.min(weg.laenge, s))
+    for (var i = 0; i < weg.stuecke.length; i++) {
+      var st = weg.stuecke[i]
+      if (s <= st.bis || i === weg.stuecke.length - 1) {
+        var k = st.l ? (s - (st.bis - st.l)) / st.l : 0
+        return {
+          x: st.a[0] + (st.b[0] - st.a[0]) * k,
+          y: st.a[1] + (st.b[1] - st.a[1]) * k,
+          dx: (st.b[0] - st.a[0]) / (st.l || 1),
+          dy: (st.b[1] - st.a[1]) / (st.l || 1)
+        }
+      }
+    }
+  }
+
+  /* Aus der Laufrichtung die Blickrichtung ableiten. */
+  function blick (dx, dy) {
+    if (dx >= 0) return dy >= 0 ? 'so' : 'no'
+    return dy >= 0 ? 'sw' : 'nw'
+  }
+
+  /* --------------------------------------------------------- Vorführung
+     Eine Person besucht der Reihe nach jede Art von Ort. Die Kamera folgt
+     ihr, oben steht, was gerade passiert, und man kann jederzeit anhalten.
+     Gedacht zum Draufschauen und Rückmelden. */
+  var vf = { an: false, pause: false, laeufer: null, zielZoom: 0.95 }
+
+  var TAETIGKEIT = {
+    schreibtisch: 'arbeitet am Schreibtisch',
+    esstisch: 'sitzt am Tisch und isst',
+    bartresen: 'sitzt an der Bar',
+    schulbank: 'sitzt in der Schulbank',
+    bank: 'macht Pause auf der Bank',
+    bett: 'schläft',
+    liege: 'liegt in der Sonne',
+    becken: 'schwimmt',
+    sportplatz: 'macht Sport',
+    stehen: 'steht herum'
+  }
+  /* Wohin man geht, heisst auf Deutsch je nach Ort anders. */
+  var WOHIN = {
+    hq: 'ins Player Two HQ', wohnhaus: 'ins Wohnhaus', schule: 'in die Schule',
+    restaurant: 'ins Restaurant', bar: 'in die Bar', schwimmbad: 'ins Schwimmbad',
+    sport: 'auf den Sportplatz', strand: 'an den Strand', stadt: 'in die Stadt'
+  }
+  var SONDERFALL = {
+    'schule|bank': 'sitzt in der Schulbank',
+    'schule|schulbank': 'sitzt in der Schulbank',
+    'schwimmbad|bank': 'sitzt am Beckenrand',
+    'schwimmbad|liege': 'liegt am Becken',
+    'sport|liege': 'ruht sich nach dem Sport aus',
+    'sport|stehen': 'steht auf dem Platz',
+    'strand|bartresen': 'sitzt in der Strandbar',
+    'strand|bank': 'sitzt auf der Bank an der Promenade',
+    'wohnhaus|schreibtisch': 'arbeitet im Zimmer',
+    'wohnhaus|esstisch': 'isst in der Gemeinschaftsküche',
+    'hq|bank': 'wartet im Empfang',
+    'bar|esstisch': 'sitzt am Tisch in der Bar'
+  }
+  var ORTNAME = {
+    hq: 'Player Two HQ', wohnhaus: 'Wohnhaus', schule: 'Schule',
+    restaurant: 'Restaurant', bar: 'Bar', schwimmbad: 'Schwimmbad',
+    sport: 'Sportplatz', strand: 'Strand', stadt: 'Stadt'
+  }
+
+  /* Die Stationen entstehen aus den vorhandenen Daten, nicht aus einer
+     Wunschliste. So fällt nichts durch, egal wie die Arten benannt wurden. */
+  var ORTFOLGE = ['wohnhaus', 'hq', 'schule', 'restaurant', 'schwimmbad',
+                  'sport', 'strand', 'bar', 'stadt']
+
+  function stationenBauen () {
+    var gesehen = {}
+    var aus = []
+    ORTFOLGE.concat(Object.keys(besetzung.reduce(function (m, p) {
+      m[p.ort] = 1; return m
+    }, {}))).forEach(function (ort) {
+      if (gesehen['ORT:' + ort]) return
+      gesehen['ORT:' + ort] = 1
+      /* Alle Arten, die es an diesem Ort gibt. */
+      var arten = {}
+      besetzung.forEach(function (p) {
+        if (p.ort === ort && erreichbar(p) && !arten[p.art]) arten[p.art] = p
+      })
+      Object.keys(arten).forEach(function (art) {
+        var kandidaten = besetzung.filter(function (p) {
+          return p.ort === ort && p.art === art && erreichbar(p)
+        })
+        if (!kandidaten.length) return
+        /* Beim Schreibtisch den höchstgelegenen, damit der Lift vorkommt. */
+        if (ort === 'hq' && art === 'schreibtisch') {
+          kandidaten.sort(function (a, b) { return a.y - b.y })
+        }
+        aus.push(kandidaten[0])
+      })
+    })
+    return aus
+  }
+
+  function taetigkeitText (l) {
+    var ab = l.abschnitte ? l.abschnitte[l.ai] : null
+    var wohin = l.ziel ? (WOHIN[l.ziel.ort] || ('nach ' + l.ziel.ort)) : ''
+    if (l.zustand === 'sprung' && ab) {
+      if (ab.gruppe === 'hq') return { gross: 'fährt mit dem Lift', klein: 'im Player Two HQ' }
+      if (ab.gruppe === 'zwischenstueck') return { gross: 'geht um die Ecke', klein: 'kurz ausserhalb des Bildes' }
+      return { gross: 'geht durch die Tür', klein: WOHIN[ab.gruppe] || ('nach ' + ab.gruppe) }
+    }
+    if (l.zustand === 'geht') return { gross: 'geht ' + wohin, klein: 'unterwegs' }
+    /* Manche Tätigkeiten heissen je nach Ort anders. */
+    var eigen = SONDERFALL[l.platz.ort + '|' + l.platz.art]
+    return {
+      gross: eigen || TAETIGKEIT[l.platz.art] || 'ist angekommen',
+      klein: ORTNAME[l.platz.ort] || l.platz.ort
+    }
+  }
+
+  function leisteZeigen () {
+    var l = vf.laeufer
+    if (!l) return
+    var txt = taetigkeitText(l)
+    if (!document.getElementById('vfZaehler')) return
+    document.getElementById('vfZaehler').textContent =
+      'Station ' + Math.max(1, Math.min(l.planIdx, l.plan.length)) + ' von ' + l.plan.length
+    document.getElementById('vfWas').innerHTML =
+      l.person.name + ' ' + txt.gross + '<small>' + txt.klein + '</small>'
+  }
+
+  /* Kamera zieht der Figur weich nach, statt ihr zu kleben. */
+  function kameraFolgen (dt) {
+    var l = vf.laeufer
+    if (!l) return
+    var ab = l.abschnitte ? l.abschnitte[l.ai] : null
+    var p = (ab && ab.weg) ? punktAuf(ab.weg, l.s)
+      : (l.zustand === 'sprung' && ab ? sprungBild(ab, l.sprungZeit) : l.platz)
+    var zielX = sicht.b / 2 - p.x * kamera.zoom
+    var zielY = sicht.h / 2 - p.y * kamera.zoom
+    var k = Math.min(1, dt * 2.4)
+    kamera.x += (zielX - kamera.x) * k
+    kamera.y += (zielY - kamera.y) * k
+    kamera.zoom += (vf.zielZoom - kamera.zoom) * Math.min(1, dt * 1.6)
+    kameraBegrenzen()
+  }
+
+  function vorfuehrungStarten () {
+    var stationen = stationenBauen()
+    if (stationen.length < 2) return
+    /* Startplatz muss frei sein und wird belegt - sonst gibt die
+       Vorführung beim Weitergehen die Belegung eines anderen frei. */
+    var start = stationen.filter(function (p) {
+      return p.belegtVon === null || p.belegtVon === undefined
+    })[0] || stationen[0]
+    start.belegtVon = 'vorfuehrung'
+
+    vf.an = true
+    vf.pause = false
+    vf.laeufer = {
+      person: mannschaft[0],
+      platz: start,
+      ziel: null, abschnitte: null, ai: 0, sprungZeit: 0,
+      s: 0, tempo: 62, phase: 0, pause: 1.4,
+      zustand: 'wartet', auswahl: null,
+      plan: stationen, planIdx: 1
+    }
+    var leiste = document.getElementById('buehnenleiste')
+    if (leiste) leiste.classList.add('an')
+    kamera.zoom = vf.zielZoom
+    leisteZeigen()
+    schleifeStarten()
+    zeichnen()
+  }
+
+  function vorfuehrungBeenden () {
+    if (vf.laeufer && vf.laeufer.platz) vf.laeufer.platz.belegtVon = null
+    vf.an = false
+    vf.laeufer = null
+    var leisteAus = document.getElementById('buehnenleiste')
+    if (leisteAus) leisteAus.classList.remove('an')
+    alles()
+  }
+
+  /* Ein Läufer bekommt einen Platz, an dem er sitzt oder liegt, und sucht
+     sich von dort aus immer wieder einen neuen. Den Weg dorthin rechnet das
+     Netz aus. Nur Plätze, die nahe genug an einer gezeichneten Linie liegen,
+     kommen in Frage - der Rest bleibt fest besetzt. */
+  var HOECHSTABSTAND = 170   /* Bildpunkte vom Platz bis zur nächsten Linie */
+
+  function erreichbar (p) {
+    if (!netz || !netz.knoten.length) return false
+    return netz.naechster(p.x, p.y).abstand <= HOECHSTABSTAND
+  }
+
+  function laeuferAnlegen () {
+    laeufer = []
+    ruhend = []
+    besetzung.forEach(function (p) { p.belegtVon = null })
+    if (!netz || !netz.knoten.length || anzahlLaeufer <= 0) return
+
+    var moegliche = []
+    for (var i = 0; i < besetzung.length; i++) {
+      if (erreichbar(besetzung[i])) moegliche.push(i)
+    }
+    if (moegliche.length < 2) return
+
+    var wieviele = Math.min(anzahlLaeufer, mannschaft.length, moegliche.length)
+    var schritt = moegliche.length / wieviele
+    for (var n = 0; n < wieviele; n++) {
+      var platz = besetzung[moegliche[Math.floor(n * schritt)]]
+      /* Ein Platz gehört immer nur einer Person. */
+      platz.belegtVon = n
+      laeufer.push({
+        person: mannschaft[n % mannschaft.length],
+        platz: platz,
+        ziel: null, abschnitte: null, ai: 0, sprungZeit: 0,
+        s: 0,
+        tempo: 44 + (n % 6) * 5,
+        phase: n * 1.3,
+        pause: 1 + (n % 17) * 1.7,
+        zustand: 'wartet',
+        auswahl: moegliche
+      })
+    }
+  }
+
+
+  /* Sucht einen anderen erreichbaren Platz und legt den Weg dorthin an.
+     Der Weg kommt als Folge von Abschnitten: laufen, springen, laufen. */
+  function neuesZiel (l, nummer) {
+    /* Die Vorführung folgt einem festen Plan statt dem Zufall. */
+    if (l.plan) {
+      if (l.planIdx >= l.plan.length) l.planIdx = 0
+      var naechste = l.plan[l.planIdx]
+      /* Ist die geplante Station gerade besetzt, nimm eine gleichartige. */
+      if (naechste.belegtVon !== null && naechste.belegtVon !== undefined) {
+        var ersatz = besetzung.filter(function (p) {
+          return p.ort === naechste.ort && p.art === naechste.art &&
+                 (p.belegtVon === null || p.belegtVon === undefined) && erreichbar(p)
+        })[0]
+        if (ersatz) naechste = ersatz
+        else return false   /* alles besetzt: Station später erneut versuchen */
+      }
+      var abs = netz.wegVon(l.platz.x, l.platz.y, naechste.x, naechste.y)
+      if (!abs || !abs.length) return false
+      if (l.platz) l.platz.belegtVon = null
+      naechste.belegtVon = 'vorfuehrung'
+      abs.forEach(function (a) { if (a.art === 'gehen') a.weg = wegVorbereiten(a.punkte) })
+      l.ziel = naechste
+      l.abschnitte = abs
+      l.ai = 0
+      l.s = 0
+      l.sprungZeit = 0
+      l.zustand = abs[0].art === 'sprung' ? 'sprung' : 'geht'
+      l.planIdx++
+      return true
+    }
+    var kandidaten = l.auswahl
+    if (!kandidaten || kandidaten.length < 2) return false
+    for (var versuch = 0; versuch < 24; versuch++) {
+      /* Immer positiv rechnen: eine abgelaufene Pause ist negativ, und
+         der Rest einer negativen Zahl ist in JavaScript ebenfalls negativ. */
+      var roh = nummer * 13 + versuch * 7 + Math.abs(Math.round(l.pause * 3))
+      var idx = kandidaten[((roh % kandidaten.length) + kandidaten.length) % kandidaten.length]
+      var ziel = besetzung[idx]
+      if (ziel === l.platz) continue
+      /* Schon jemand dort oder unterwegs dorthin? Dann weitersuchen. */
+      if (ziel.belegtVon !== null && ziel.belegtVon !== undefined) continue
+      var abschnitte = netz.wegVon(l.platz.x, l.platz.y, ziel.x, ziel.y)
+      if (!abschnitte || !abschnitte.length) continue
+      /* Platz sofort vormerken, sonst greift ihn im selben Augenblick
+         jemand anders. Der alte wird frei. */
+      if (l.platz) l.platz.belegtVon = null
+      ziel.belegtVon = nummer
+      abschnitte.forEach(function (ab) {
+        if (ab.art === 'gehen') ab.weg = wegVorbereiten(ab.punkte)
+      })
+      l.ziel = ziel
+      l.abschnitte = abschnitte
+      l.ai = 0
+      l.s = 0
+      l.sprungZeit = 0
+      l.zustand = abschnitte[0].art === 'sprung' ? 'sprung' : 'geht'
+      return true
+    }
+    return false
+  }
+
+  var SPRUNG_DAUER = 1.4     /* Sekunden: hinein, drin, heraus */
+
+  /* Wie sichtbar ist jemand mitten im Sprung, und wo steht er? */
+  function sprungBild (ab, zeit) {
+    var k = zeit / SPRUNG_DAUER
+    if (k < 0.28) return { x: ab.von[0], y: ab.von[1], deckung: 1 - k / 0.28 }
+    if (k < 0.62) return { x: ab.nach[0], y: ab.nach[1], deckung: 0 }
+    return { x: ab.nach[0], y: ab.nach[1], deckung: Math.min(1, (k - 0.62) / 0.28) }
+  }
+
+  /* Einen Einzelnen weiterbewegen. Getrennt, damit die Vorführung
+     dieselbe Mechanik benutzt wie alle anderen. */
+  function einenBewegen (l, i, dt) {
+    if (l.zustand === 'wartet') {
+      l.pause -= dt
+      if (l.pause <= 0 && !neuesZiel(l, i)) l.pause = 6
+      return
+    }
+    var ab = l.abschnitte ? l.abschnitte[l.ai] : null
+    if (!ab) { ankommen(l, i); return }
+
+    if (ab.art === 'sprung') {
+      l.sprungZeit += dt
+      if (l.sprungZeit >= SPRUNG_DAUER) { l.sprungZeit = 0; weiterAbschnitt(l, i) }
+      return
+    }
+
+    l.s += l.tempo * dt
+    l.phase += dt * 9
+    if (l.s >= ab.weg.laenge) { l.s = 0; weiterAbschnitt(l, i) }
+  }
+
+  function bewegen (dt) {
+    if (vf.an && vf.laeufer && !vf.pause) {
+      einenBewegen(vf.laeufer, 0, dt)
+      leisteZeigen()
+      kameraFolgen(dt)
+    }
+    for (var i = 0; i < laeufer.length; i++) einenBewegen(laeufer[i], i, dt)
+  }
+
+  function weiterAbschnitt (l, i) {
+    l.ai++
+    if (l.ai >= l.abschnitte.length) { ankommen(l, i); return }
+    l.zustand = l.abschnitte[l.ai].art === 'sprung' ? 'sprung' : 'geht'
+  }
+
+  function ankommen (l, i) {
+    /* Der Zielplatz wurde beim Losgehen vorgemerkt, der alte freigegeben. */
+    l.platz = l.ziel || l.platz
+    l.ziel = null
+    l.abschnitte = null
+    l.zustand = 'wartet'
+    /* In der Vorführung nur kurz verweilen, sonst wartet man ewig. */
+    l.pause = l.plan ? 3.5 : 9 + (i % 7) * 3
+  }
+
+  /* Kulisse und alle sitzenden Figuren einmal in den Zwischenspeicher.
+     Danach wird pro Bild nur noch kopiert. */
+  function speicherBauen () {
+    if (!speicher) {
+      speicher = document.createElement('canvas')
+      speicher.width = bild.naturalWidth
+      speicher.height = bild.naturalHeight
+    }
+    var s = speicher.getContext('2d')
+    s.clearRect(0, 0, speicher.width, speicher.height)
+    s.drawImage(bild, 0, 0)
+  }
+
+  /* Alles, was vor den Figuren liegt, wird einmal aus der Kulisse
+     ausgeschnitten und in eine durchsichtige Ebene gelegt. Danach kostet es
+     pro Einzelbild nur noch eine einzige Kopie statt einer je Fläche. */
+  function vorneBauen () {
+    if (!wege.vorne || !wege.vorne.length) { vorneSpeicher = null; return }
+    if (!vorneSpeicher) {
+      vorneSpeicher = document.createElement('canvas')
+      vorneSpeicher.width = bild.naturalWidth
+      vorneSpeicher.height = bild.naturalHeight
+    }
+    var v = vorneSpeicher.getContext('2d')
+    v.clearRect(0, 0, vorneSpeicher.width, vorneSpeicher.height)
+    v.save()
+    v.beginPath()
+    wege.vorne.forEach(function (poly) {
+      if (poly.length < 3) return
+      v.moveTo(poly[0][0], poly[0][1])
+      for (var k = 1; k < poly.length; k++) v.lineTo(poly[k][0], poly[k][1])
+      v.closePath()
+    })
+    v.clip()
+    v.drawImage(bild, 0, 0)
+    v.restore()
+  }
+
+  function vorneMalen (z) {
+    if (vorneSpeicher) z.drawImage(vorneSpeicher, 0, 0)
+  }
+
+  /* ------------------------------------------------------------- Zeichnen */
+  function zeichnen () {
+    if (!bereit) return
+    if (!speicher) speicherBauen()
+    var dpr = Math.min(window.devicePixelRatio || 1, 2)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.fillStyle = '#E7E4DE'
+    ctx.fillRect(0, 0, sicht.b, sicht.h)
+
+    ctx.save()
+    ctx.translate(kamera.x, kamera.y)
+    ctx.scale(kamera.zoom, kamera.zoom)
+    ctx.imageSmoothingQuality = 'high'
+    ctx.drawImage(speicher, 0, 0)
+
+    sichtbar = []
+
+    /* Die Posten stehen immer da. */
+    posten.forEach(function (n) {
+      Figuren.zeichnen(ctx, n.x, n.y + versatz, n.person.schluessel, n.haltung,
+        n.richtung, figurGroesse, 0, { geschlecht: n.person.geschlecht, bade: n.bade })
+      sichtbar.push({ x: n.x, y: n.y + versatz, person: n.person, ort: n.ort, tut: 'im Dienst' })
+    })
+
+    var alleLaeufer = vf.an && vf.laeufer ? laeufer.concat([vf.laeufer]) : laeufer
+
+    /* Wer an seinem Platz ist, wird VOR der Vordergrundebene gezeichnet -
+       dann verdeckt ihn die Stuhllehne. Wer geht, kommt DANACH, sonst
+       verschwindet er hinter Möbeln, an denen er nur vorbeiläuft. */
+    var unterwegs = []
+    for (var i = 0; i < alleLaeufer.length; i++) {
+      var l = alleLaeufer[i]
+      var ab = l.abschnitte ? l.abschnitte[l.ai] : null
+      if ((l.zustand === 'geht' && ab && ab.weg) || l.zustand === 'sprung') {
+        unterwegs.push(l)
+        continue
+      }
+      var q = l.platz
+      Figuren.zeichnen(ctx, q.x, q.y + versatz, l.person.name, q.haltung,
+        q.richtung, figurGroesse, 0,
+        { geschlecht: l.person.geschlecht, bade: q.bade })
+      sichtbar.push({ x: q.x, y: q.y + versatz, person: l.person, ort: q.ort,
+                      tut: taetigkeitText(l).gross })
+    }
+
+    vorneMalen(ctx)
+
+    /* Und jetzt die Gehenden, oben drauf. */
+    for (var u = 0; u < unterwegs.length; u++) {
+      var g = unterwegs[u]
+      var gab = g.abschnitte ? g.abschnitte[g.ai] : null
+      if (g.zustand === 'sprung' && gab) {
+        var sp = sprungBild(gab, g.sprungZeit)
+        if (sp.deckung <= 0.02) continue
+        ctx.save()
+        ctx.globalAlpha = sp.deckung
+        Figuren.zeichnen(ctx, sp.x, sp.y + versatz, g.person.name, 'steht', 'so',
+          figurGroesse, 0, { geschlecht: g.person.geschlecht })
+        ctx.restore()
+        continue
+      }
+      var p = punktAuf(gab.weg, g.s)
+      Figuren.zeichnen(ctx, p.x, p.y + versatz, g.person.name, 'geht',
+        blick(p.dx, p.dy), figurGroesse, g.phase,
+        { geschlecht: g.person.geschlecht })
+      sichtbar.push({ x: p.x, y: p.y + versatz, person: g.person, ort: g.platz.ort,
+                      tut: taetigkeitText(g).gross })
+    }
+
+    ctx.restore()
+  }
+
+  /* Nur weiterzeichnen, wenn wirklich jemand unterwegs ist. */
+  function schleife (zeit) {
+    if (!laeuft) return
+    var dt = Math.min(0.05, (zeit - letzteZeit) / 1000 || 0)
+    letzteZeit = zeit
+    bewegen(dt)
+    zeichnen()
+    requestAnimationFrame(schleife)
+  }
+
+  function schleifeStarten () {
+    if (laeuft || !laeufer.length) return
+    laeuft = true
+    letzteZeit = performance.now()
+    requestAnimationFrame(schleife)
+  }
+
+  /* Die Kamera bleibt im Bild. Ist die Kulisse kleiner als das Fenster,
+     wird sie mittig gestellt, sonst an den Rändern angehalten. */
+  function kameraBegrenzen () {
+    if (!bereit) return
+    var bw = bild.naturalWidth * kamera.zoom
+    var bh = bild.naturalHeight * kamera.zoom
+    if (bw <= sicht.b) kamera.x = (sicht.b - bw) / 2
+    else kamera.x = Math.min(0, Math.max(sicht.b - bw, kamera.x))
+    if (bh <= sicht.h) kamera.y = (sicht.h - bh) / 2
+    else kamera.y = Math.min(0, Math.max(sicht.h - bh, kamera.y))
+  }
+
+  /* --------------------------------------------------------------- Kamera */
+  function groesse () {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2)
+    var b = window.innerWidth || document.documentElement.clientWidth || 1280
+    var h = window.innerHeight || document.documentElement.clientHeight || 800
+    if (b < 40) b = 1280
+    if (h < 40) h = 800
+    sicht.b = b; sicht.h = h
+    leinwand.style.width = b + 'px'
+    leinwand.style.height = h + 'px'
+    leinwand.width = Math.round(b * dpr)
+    leinwand.height = Math.round(h * dpr)
+    zeichnen()
+  }
+
+  function rahmen (x0, y0, x1, y1, rand) {
+    rand = rand || 30
+    var kb = x1 - x0, kh = y1 - y0
+    kamera.zoom = Math.min((sicht.b - rand * 2) / kb, (sicht.h - rand * 2) / kh)
+    kamera.x = sicht.b / 2 - (x0 + kb / 2) * kamera.zoom
+    kamera.y = sicht.h / 2 - (y0 + kh / 2) * kamera.zoom
+    kameraBegrenzen()
+    zeichnen()
+  }
+  function alles () { rahmen(0, 0, bild.naturalWidth, bild.naturalHeight, 16) }
+  function zumHQ () { rahmen(480, 220, 1340, 1060, 26) }
+
+  var zieht = false, letzteX = 0, letzteY = 0, zeiger = {}, letzterAbstand = 0
+  var bewegtSeitDruck = 0
+
+  leinwand.addEventListener('pointerdown', function (e) {
+    leinwand.setPointerCapture(e.pointerId)
+    zeiger[e.pointerId] = { x: e.clientX, y: e.clientY }
+    if (Object.keys(zeiger).length === 1) {
+      zieht = true; letzteX = e.clientX; letzteY = e.clientY
+      bewegtSeitDruck = 0
+      leinwand.classList.add('zieht')
+    }
+  })
+  leinwand.addEventListener('pointermove', function (e) {
+    if (!zeiger[e.pointerId]) return
+    zeiger[e.pointerId] = { x: e.clientX, y: e.clientY }
+    var ids = Object.keys(zeiger)
+    if (ids.length >= 2) {
+      var a = zeiger[ids[0]], b = zeiger[ids[1]]
+      var d = Math.hypot(a.x - b.x, a.y - b.y)
+      if (letzterAbstand) {
+        kamera.zoom = Math.max(0.12, Math.min(3, kamera.zoom * (d / letzterAbstand)))
+        zeichnen()
+      }
+      letzterAbstand = d
+      return
+    }
+    if (!zieht) return
+    bewegtSeitDruck += Math.abs(e.clientX - letzteX) + Math.abs(e.clientY - letzteY)
+    kamera.x += e.clientX - letzteX
+    kamera.y += e.clientY - letzteY
+    letzteX = e.clientX; letzteY = e.clientY
+    kameraBegrenzen()
+    zeichnen()
+  })
+  function los (e) {
+    delete zeiger[e.pointerId]
+    if (Object.keys(zeiger).length < 2) letzterAbstand = 0
+    if (Object.keys(zeiger).length === 0) { zieht = false; leinwand.classList.remove('zieht') }
+  }
+  leinwand.addEventListener('pointerup', los)
+  leinwand.addEventListener('pointercancel', los)
+
+  leinwand.addEventListener('wheel', function (e) {
+    e.preventDefault()
+    var vorX = (e.clientX - kamera.x) / kamera.zoom
+    var vorY = (e.clientY - kamera.y) / kamera.zoom
+    kamera.zoom = Math.max(0.12, Math.min(3, kamera.zoom * (e.deltaY < 0 ? 1.13 : 1 / 1.13)))
+    kamera.x = e.clientX - vorX * kamera.zoom
+    kamera.y = e.clientY - vorY * kamera.zoom
+    kameraBegrenzen()
+    zeichnen()
+  }, { passive: false })
+
+  document.getElementById('rein').onclick = function () {
+    kamera.zoom = Math.min(3, kamera.zoom * 1.3); kameraBegrenzen(); zeichnen()
+  }
+  document.getElementById('raus').onclick = function () {
+    kamera.zoom = Math.max(0.12, kamera.zoom / 1.3); kameraBegrenzen(); zeichnen()
+  }
+  document.getElementById('hq').onclick = zumHQ
+  document.getElementById('alles').onclick = alles
+
+  /* ------------------------------------------------------------- Antippen
+     Wer eine Figur antippt, sieht, wer sie ist und was sie gerade tut.
+     Gilt für die 59 wie für die Posten. */
+  function figurBei (bildX, bildY) {
+    var r = Math.max(18, figurGroesse * 0.55)
+    var best = null, bestL = r
+    for (var i = 0; i < sichtbar.length; i++) {
+      var f = sichtbar[i]
+      var dx = f.x - bildX, dy = (f.y - figurGroesse * 0.45) - bildY
+      var l = Math.hypot(dx, dy)
+      if (l < bestL) { bestL = l; best = f }
+    }
+    return best
+  }
+
+  function karteZeigen (f) {
+    var k = document.getElementById('karte')
+    if (!f) { k.classList.remove('an'); return }
+    document.getElementById('kRolle').textContent = f.person.rolle || 'Mitarbeitende'
+    document.getElementById('kName').textContent = f.person.name
+    document.getElementById('kAbt').textContent =
+      f.person.posten ? 'gehört zur Stadt, nicht zu Player Two' : (f.person.abteilung || '')
+    document.getElementById('kAufgabe').textContent = f.person.aufgabe || ''
+    var ch = document.getElementById('kChar')
+    ch.textContent = f.person.charakter || ''
+    ch.style.display = f.person.charakter ? '' : 'none'
+    document.getElementById('kTut').innerHTML = 'Gerade: <b>' + (f.tut || '—') + '</b>'
+    k.classList.add('an')
+  }
+
+  document.getElementById('karteZu').onclick = function () { karteZeigen(null) }
+
+  leinwand.addEventListener('click', function (e) {
+    if (bewegtSeitDruck > 6) return          /* war ein Schieben, kein Tippen */
+    var bx = (e.clientX - kamera.x) / kamera.zoom
+    var by = (e.clientY - kamera.y) / kamera.zoom
+    karteZeigen(figurBei(bx, by))
+  })
+
+  window.addEventListener('resize', groesse)
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') {
+      groesse()
+      letzteZeit = performance.now()
+      if (!laeuft && laeufer.length) schleifeStarten()
+    } else {
+      laeuft = false
+    }
+  })
+
+  /* Prüfzugang für die Entwicklung: erlaubt, die Bewegung von Hand
+     weiterzuschalten, wenn der Browser keine Einzelbilder zeichnet. */
+  window.__stadt = {
+    schritt: function (dt) { bewegen(dt || 0.5); zeichnen() },
+    stand: function () {
+      return laeufer.map(function (l) {
+        var ab = l.abschnitte ? l.abschnitte[l.ai] : null
+        var p = (ab && ab.weg) ? punktAuf(ab.weg, l.s) : l.platz
+        return { name: l.person.name, zustand: l.zustand, ort: l.platz.ort,
+                 s: Math.round(l.s), x: Math.round(p.x), y: Math.round(p.y),
+                 pause: Math.round(l.pause * 10) / 10 }
+      })
+    },
+    roh: function () {
+      return { anzahl: laeufer.length, mannschaft: mannschaft.length,
+               ohnePerson: laeufer.map(function (l, i) { return l.person ? null : i })
+                 .filter(function (x) { return x !== null }),
+               ohnePlatz: laeufer.map(function (l, i) { return l.platz ? null : i })
+                 .filter(function (x) { return x !== null }) }
+    },
+    doppelt: function () {
+      var zaehler = {}, doppelte = []
+      var alle = vf.an && vf.laeufer ? laeufer.concat([vf.laeufer]) : laeufer
+      alle.forEach(function (l) {
+        if (l.zustand !== 'wartet') return
+        var s = l.platz.x + ',' + l.platz.y
+        if (zaehler[s]) doppelte.push(s + ' (' + zaehler[s] + ' + ' + l.person.name + ')')
+        zaehler[s] = l.person.name
+      })
+      return { anzahl: doppelte.length, stellen: doppelte.slice(0, 8) }
+    },
+    kamera: function () { return { x: kamera.x, y: kamera.y, zoom: kamera.zoom } },
+    tippen: function (bx, by) { var f = figurBei(bx, by); karteZeigen(f); return f ? f.person.name + ' / ' + f.tut : null },
+    vorne: function () {
+      return { flaechen: (wege.vorne || []).length, ebene: !!vorneSpeicher }
+    },
+    vorfuehrung: function () {
+      if (!vf.laeufer) return { an: false }
+      var l = vf.laeufer
+      return { an: vf.an, pause: vf.pause, person: l.person.name,
+               station: l.planIdx, von: l.plan.length, zustand: l.zustand,
+               ort: l.platz.ort }
+    },
+    vfStart: function () { vorfuehrungStarten() },
+    netz: function () {
+      return { knoten: netz ? netz.knoten.length : 0,
+               gruppen: netz ? Object.keys(netz.gruppen) : [],
+               erreichbar: besetzung.filter(erreichbar).length,
+               gesamt: besetzung.length }
+    },
+    probe: function (vonOrt, nachOrt) {
+      var a = besetzung.filter(function (f) { return f.ort === vonOrt })[0]
+      var b = besetzung.filter(function (f) { return f.ort === nachOrt })[0]
+      if (!a || !b) return 'Ort nicht gefunden'
+      var w = netz.wegVon(a.x, a.y, b.x, b.y)
+      if (!w) return 'keine Verbindung ' + vonOrt + ' -> ' + nachOrt
+      return w.map(function (ab) {
+        return ab.art === 'sprung' ? 'SPRUNG durch ' + ab.gruppe
+          : 'gehen ' + ab.punkte.length + ' Punkte'
+      })
+    }
+  }
+
+  /* ---------------------------------------------------------------- Start */
+  Promise.all([
+    fetch('data/stadt-wege.json?t=' + Date.now()).then(function (r) { return r.json() }),
+    fetch('data/team.json').then(function (r) { return r.json() })
+  ]).then(function (beides) {
+    wege = beides[0]
+    team = beides[1]
+    besetzen()
+    bild.onload = function () {
+      bereit = true
+      groesse()
+      alles()
+      var orte = {}
+      besetzung.forEach(function (f) { orte[f.ort] = (orte[f.ort] || 0) + 1 })
+      netz = new Netz(wege.wege || [], wege.halte || [])
+      vorneBauen()
+      laeuferAnlegen()
+      speicherBauen()
+      if (laeufer.length) schleifeStarten()
+      document.getElementById('lage').textContent =
+        'Tippen Sie jemanden an, dann sehen Sie, wer das ist und was er gerade tut.'
+    }
+    bild.onerror = function () {
+      document.getElementById('lage').textContent = 'Kulisse nicht gefunden.'
+    }
+    bild.src = wege.bild || 'assets/stadt-kulisse.webp'
+  }).catch(function (e) {
+    document.getElementById('lage').textContent = 'Fehler beim Laden: ' + e
+  })
+})()
+</script>
+</body>
+</html>

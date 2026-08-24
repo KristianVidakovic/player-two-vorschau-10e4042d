@@ -1,0 +1,2840 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
+     Suchmaschinen fern und muss beim echten Livegang weg. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player Two — Websites für Handwerk, Gewerbe und Praxen</title>
+<meta name="description" content="Fertig gebaute Websites, Webshops und Anwendungen für Betriebe in der Ostschweiz. Fixpreis ab CHF 1'490, dazu digitale Mitarbeitende, die den Papierkram übernehmen. Player Two, Thurgau.">
+<meta name="theme-color" content="#F2F4F7">
+<!-- DEPLOY STEP: og:url und og:image auf die Live-Adresse setzen -->
+<meta property="og:title" content="Player Two, Websites für Handwerk, Gewerbe und Praxen">
+<meta property="og:description" content="Fertig gebaut, exklusiv vergeben, in zehn Arbeitstagen live.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/marke.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Player Two, öffentliche Website
+   Richtung aus der Welt des Films: helle Wohnung im Rohbau,
+   Morgenlicht, gestrichenes Weiss, Holzbock, kühles Blau vom iPad.
+   Darum helle Leinwand und dunkle Schrift, nicht die übliche
+   dunkle Kino-Optik.
+   Signature: die Erledigt-Liste, deren Haken sich selbst zeichnen.
+   ============================================================ */
+
+:root{
+  /* Leinwand aus der Welt des Films, nie reines Weiss */
+  --canvas:#F2F4F7;
+  --canvas-2:#E8ECF2;
+  --tief:#0B1220;          /* Marke #050A14, leicht angehoben */
+  --tief-voll:#050A14;
+  --nacht:#082056;
+  --akzent:#1E6CFF;        /* der Knopf auf dem iPad */
+  --cyan:#00C6FF;
+  --holz:#C08A52;          /* der Holzbock, Gegenton, sehr selten */
+  --grau:#5B6779;
+  --linie:rgba(11,18,32,.12);
+  --linie-stark:rgba(11,18,32,.24);
+
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Sans 3',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-soft:cubic-bezier(.33,1,.68,1);
+
+  /* Schrift über hellem Film: heller Schein statt dunklem Schatten */
+  --tshadow:0 1px 2px rgba(255,255,255,.92),0 4px 18px rgba(242,244,247,.85),0 12px 44px rgba(242,244,247,.6);
+
+  --seite:min(1180px,92vw);
+}
+
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  margin:0;background:var(--canvas);color:var(--tief);
+  font-family:var(--body);font-size:clamp(16px,1.05vw,18px);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.04;letter-spacing:-.022em;margin:0}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* Eine Umgebung: eine ruhige Ebene hinter allem */
+.umgebung{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60vw 50vh at 12% 8%,rgba(30,108,255,.07),transparent 65%),
+    radial-gradient(52vw 44vh at 88% 72%,rgba(0,198,255,.06),transparent 68%);
+  animation:atmen 84s var(--ease-soft) infinite alternate -20s;
+}
+@keyframes atmen{from{transform:translate3d(-1.2%,-1%,0) scale(1.02)}to{transform:translate3d(1.4%,1.6%,0) scale(1.07)}}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--tief);color:#fff;padding:12px 18px;z-index:200;border-radius:0 0 10px 0}
+.skip:focus{left:0}
+
+/* ---------------- Navigation ---------------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;gap:28px;
+  padding:14px max(4vw,24px);
+  background:rgba(242,244,247,0);
+  border-bottom:1px solid transparent;
+  transition:background .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s var(--ease);
+}
+.nav.fest{background:rgba(242,244,247,.86);backdrop-filter:blur(14px);border-bottom-color:var(--linie)}
+.marke{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+.marke img{width:34px;height:34px;object-fit:contain}
+.marke span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{
+  text-decoration:none;font-size:15px;color:var(--tief);opacity:.72;
+  transition:opacity .3s var(--ease);position:relative;padding:4px 0;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--akzent);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--body);font-weight:600;font-size:16px;text-decoration:none;
+  padding:13px 24px;border-radius:10px;border:1px solid transparent;cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),color .35s var(--ease);
+}
+.btn-voll{background:var(--akzent);color:#fff;box-shadow:0 6px 20px rgba(30,108,255,.28)}
+.btn-voll:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(30,108,255,.36)}
+.btn-linie{border-color:var(--linie-stark);color:var(--tief);background:rgba(255,255,255,.5)}
+.btn-linie:hover{transform:translateY(-2px);border-color:var(--tief);background:#fff}
+.btn-hell{background:#fff;color:var(--tief)}
+.btn-hell:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(5,10,20,.3)}
+:focus-visible{outline:3px solid var(--akzent);outline-offset:3px;border-radius:4px}
+@media (pointer:coarse){.btn{min-height:44px}}
+
+/* ---------------- Hero, gescrollter Film ---------------- */
+.hero{position:relative;height:720vh;z-index:1}
+.buehne{
+  position:sticky;top:0;height:100vh;overflow:hidden;
+  background:#E9ECF1;
+}
+.buehne video,.plakat{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  will-change:transform;transform:translateZ(0);
+}
+.plakat{background-size:cover;background-position:center;transition:opacity .8s var(--ease)}
+.buehne video{opacity:0;transition:opacity .8s var(--ease)}
+.buehne.video-bereit video{opacity:1}
+.buehne.video-bereit .plakat{opacity:0}
+
+/* Grundschleier: der Film wird nie roh hinter der Seite */
+.schleier{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,rgba(242,244,247,.55) 0%,rgba(242,244,247,.22) 34%,rgba(242,244,247,0) 58%);
+}
+.vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 92% at 50% 46%,rgba(242,244,247,0) 42%,rgba(226,231,238,.5) 100%);
+}
+
+.baender{position:absolute;inset:0;display:flex;align-items:center;pointer-events:none}
+.band{
+  position:absolute;left:max(4vw,26px);top:50%;transform:translateY(-50%);
+  width:min(46ch,44vw);opacity:0;
+}
+.band>*{position:relative;z-index:2}
+/* Bandschleier: heller Schleier genau unter dem Text, nie über dem Mann */
+.band::before{
+  content:"";position:absolute;left:-8%;right:-14%;top:-16%;bottom:-16%;z-index:1;pointer-events:none;
+  opacity:calc(.3 + .7*var(--k,1));
+  background:radial-gradient(ellipse 72% 62% at 40% 50%,rgba(244,246,249,.88) 0%,rgba(244,246,249,.68) 48%,rgba(244,246,249,0) 78%);
+}
+.band .kicker{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--nacht);margin-bottom:18px;display:block;
+}
+.band h1,.band h2{font-size:clamp(38px,5.2vw,74px);text-shadow:var(--tshadow)}
+.band p.unter{
+  margin-top:20px;font-size:clamp(17px,1.35vw,21px);color:#1B2432;max-width:34ch;
+  text-shadow:0 1px 2px rgba(255,255,255,.9),0 3px 14px rgba(242,244,247,.8);
+}
+.band .btn{text-shadow:none}
+.cta-reihe{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;pointer-events:auto}
+
+/* Wortweiser Auftritt, gescrubbt über --k */
+.w{display:inline-block;white-space:pre}
+.w-in{
+  display:inline-block;
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);
+  opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc))*22px));
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Die Erledigt-Liste, das Signature-Element */
+.erledigt{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:11px}
+.erledigt li{
+  display:flex;align-items:center;gap:12px;font-size:clamp(15px,1.15vw,17.5px);
+  opacity:var(--e,0);transform:translateY(calc((1 - var(--e,0))*10px));
+}
+.haken{flex:0 0 auto;width:22px;height:22px}
+.haken circle{fill:none;stroke:var(--akzent);stroke-width:2;opacity:.34}
+.haken path{
+  fill:none;stroke:var(--akzent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:22;stroke-dashoffset:calc(22 - 22*var(--e,0));
+}
+
+/* Ladering */
+.ring{position:absolute;right:max(4vw,26px);bottom:38px;width:38px;height:38px;color:var(--nacht);opacity:.5}
+.ring circle{transition:stroke-dashoffset .2s linear}
+.pfeil{position:absolute;right:max(4vw,26px);bottom:34px;opacity:.5;animation:wippen 2.6s var(--ease-soft) infinite}
+@keyframes wippen{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* Statisches Hero für Telefon, Tablet hochkant und reduzierte Bewegung */
+.hero-still{display:none;position:relative;z-index:1}
+.hero-still .bild{
+  position:relative;min-height:min(86vh,720px);
+  background-image:url('assets/hero-ende.jpg');background-size:cover;background-position:58% center;
+  display:flex;align-items:flex-end;
+}
+.hero-still .bild::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(242,244,247,.72) 0%,rgba(242,244,247,.34) 34%,rgba(242,244,247,.92) 88%);
+}
+.hero-still .text{position:relative;z-index:2;padding:34px max(5vw,22px) 40px;width:100%}
+.hero-still h1{font-size:clamp(34px,8vw,50px);margin-bottom:16px}
+.hero-still p{color:#1B2432;max-width:30ch}
+.hero-still .cta-reihe{margin-top:26px}
+
+/* ---------------- Abschnitte ---------------- */
+main{position:relative;z-index:2;background:var(--canvas)}
+section{padding:clamp(72px,9vw,124px) 0;position:relative}
+.wrap{width:var(--seite);margin:0 auto}
+.kicker{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--akzent);display:block;margin-bottom:16px;
+}
+.h2{font-size:clamp(30px,3.6vw,50px);max-width:20ch}
+.lede{margin-top:20px;font-size:clamp(17px,1.3vw,20px);color:#26313F;max-width:58ch}
+
+/* Auftritte */
+.auf{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.auf.in{opacity:1;transform:none}
+.stufe.in>*{opacity:1;transform:none}
+.stufe>*{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.stufe.in>*:nth-child(1){transition-delay:0ms}
+.stufe.in>*:nth-child(2){transition-delay:110ms}
+.stufe.in>*:nth-child(3){transition-delay:220ms}
+.stufe.in>*:nth-child(4){transition-delay:330ms}
+.stufe.fertig>*{transition-delay:0ms!important}
+
+/* Drei Fragen */
+.fragen{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.fragen.zwei{grid-template-columns:repeat(2,1fr)}
+.dauer-frage{font-family:var(--display);font-weight:600;font-size:clamp(21px,2vw,27px);margin-top:64px;letter-spacing:-.01em}
+.frage{
+  background:#fff;border:1px solid var(--linie);border-radius:16px;padding:30px 28px 32px;
+  position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+}
+.frage:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(11,18,32,.09);border-color:var(--linie-stark)}
+.frage .f-titel{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grau)}
+.frage .f-zahl{font-family:var(--display);font-weight:700;font-size:clamp(30px,3.1vw,42px);margin:14px 0 12px;letter-spacing:-.03em}
+.frage p{color:#3A4553;font-size:16.5px}
+.frage::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:linear-gradient(90deg,var(--akzent),var(--cyan));
+  transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);
+}
+.frage:hover::after{transform:scaleX(1)}
+
+/* Zwei Stufen */
+.stufen{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;margin-top:48px;align-items:stretch}
+.stufe-karte{
+  background:#fff;border:1px solid var(--linie);border-radius:20px;padding:36px 34px 34px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.stufe-karte:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(11,18,32,.1)}
+.stufe-karte.arbeitet{background:linear-gradient(168deg,#0B1220,#082056);color:#EBF8FF;border-color:transparent}
+.stufe-karte.arbeitet::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 60% at 84% 6%,rgba(30,108,255,.34),transparent 60%);
+}
+.stufe-karte>*{position:relative}
+.stufe-nr{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau)}
+.stufe-karte.arbeitet .stufe-nr{color:var(--cyan)}
+.stufe-karte h3{font-size:clamp(24px,2.4vw,32px);margin:14px 0 12px}
+.stufe-karte .satz{font-size:17px;color:#3A4553;max-width:40ch}
+.stufe-karte.arbeitet .satz{color:rgba(235,248,255,.78)}
+.kann{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:11px}
+.kann li{display:flex;gap:11px;align-items:flex-start;font-size:16.5px;color:#26313F}
+.stufe-karte.arbeitet .kann li{color:rgba(235,248,255,.9)}
+.kann li svg{flex:0 0 auto;width:19px;height:19px;margin-top:3px}
+.kann li svg path{fill:none;stroke:var(--akzent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.stufe-karte.arbeitet .kann li svg path{stroke:var(--cyan)}
+.stufe-preis{margin-top:auto;padding-top:26px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.stufe-preis .p{font-family:var(--mono);font-size:23px}
+.stufe-preis .lauf{font-size:15px;color:var(--grau);line-height:1.5;max-width:44ch}
+.stufe-karte.arbeitet .stufe-preis .lauf{color:rgba(235,248,255,.6)}
+.stufe-karte .btn{margin-top:22px;align-self:flex-start}
+.auch{
+  margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  font-size:16px;color:#3A4553;
+}
+.auch .chip{
+  font-family:var(--mono);font-size:13px;letter-spacing:.06em;padding:8px 14px;border-radius:99px;
+  border:1px solid var(--linie-stark);background:#fff;
+}
+@media (max-width:1024px){.stufen{grid-template-columns:1fr}}
+
+/* ---------- Die seitliche Strecke ----------
+   Drei Tafeln nebeneinander. Am Rechner bleibt der Ausschnitt stehen und die
+   Strecke fährt nach links, während man normal weiterscrollt - kein
+   Abfangen des Scrollrads, die Leiste bleibt bedienbar. Unter 1025 Pixeln
+   und bei reduzierter Bewegung fällt das ganz weg: dann steht alles
+   untereinander, weil seitliches Scrollen auf dem Telefon nur stört. */
+.quer{position:relative;margin-top:0}
+.quer-halt{position:sticky;top:0;height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:96px 0 54px}
+@media (min-width:1025px) and (max-height:760px){
+  .quer-halt{padding:90px 0 52px}
+  .quer-leiste{bottom:18px}
+}
+.quer-spur{display:flex;will-change:transform}
+
+/* Der Kopf bleibt stehen, die Tafeln laufen darunter durch. */
+.quer-kopf{flex:0 0 auto;padding:0 max(4vw,24px);margin-bottom:clamp(16px,2.6vh,26px)}
+.quer-kopf .k-innen{width:var(--seite);margin:0 auto}
+.quer-kopf .k-zeile{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.quer-kopf .kicker{margin-bottom:0}
+.k-zaehler{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--grau)}
+.quer-kopf h2{margin-top:clamp(7px,1.2vh,12px);transition:opacity .35s var(--ease)}
+.quer-kopf p{margin-top:clamp(6px,1vh,10px);color:#3A4553;
+  font-size:clamp(15px,1.9vh,17px);max-width:56ch;transition:opacity .35s var(--ease)}
+.quer-kopf.wechselt h2,.quer-kopf.wechselt p{opacity:.25}
+
+/* Am Rechner macht der mitfahrende Kopf die Arbeit der Tafelköpfe. */
+.tafel-kopf{display:none}
+
+.tafel{flex:0 0 100%;padding:0 max(4vw,24px);display:flex;flex-direction:column;
+  justify-content:flex-start;min-height:0}
+.tafel-kopf{max-width:var(--seite);margin:0 auto 24px;width:100%}
+.tafel-nr{font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--grau)}
+.tafel-kopf h3{font-size:clamp(26px,3vw,40px);margin:8px 0 6px;letter-spacing:-.02em}
+.tafel-kopf p{color:#3A4553;font-size:17px}
+.tafel-karten{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;
+  align-items:stretch;max-width:var(--seite);margin:0 auto;width:100%}
+
+/* Innerhalb der Strecke etwas gedrungener, damit eine Tafel auf einen
+   Bildschirm passt, auch auf einem flachen Notebook. */
+.quer .stufe-karte{padding:30px 30px 28px}
+.quer .stufe-karte h3{font-size:clamp(21px,1.9vw,27px);margin:11px 0 9px}
+.quer .stufe-karte .satz{font-size:15.5px}
+.quer .kann{margin-top:18px;gap:8px}
+.quer .kann li{font-size:15px}
+.quer .stufe-preis{padding-top:20px}
+.quer .stufe-karte .btn{margin-top:16px}
+.immer-dabei{max-width:var(--seite);margin:16px auto 0;width:100%;
+  font-size:14px;color:var(--grau);line-height:1.55}
+@media (min-width:1025px) and (max-height:860px){.immer-dabei{font-size:12.2px;margin-top:8px;line-height:1.45}}
+
+.quer-leiste{position:absolute;left:0;right:0;bottom:26px;display:flex;
+  justify-content:center;gap:10px}
+.quer-punkt{width:38px;height:5px;border-radius:99px;border:0;padding:0;cursor:pointer;
+  background:var(--linie-stark);transition:background .4s var(--ease),width .4s var(--ease)}
+.quer-punkt.an{background:var(--akzent);width:62px}
+.vs{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Flacher Bildschirm: eine Tafel muss ganz sichtbar bleiben, sonst schneidet
+   der Ausschnitt die Preise ab - und der Preis ist der Grund, warum jemand
+   hinschaut. */
+@media (min-width:1025px) and (max-height:860px){
+  .quer-kopf{margin-bottom:16px}
+  .quer-kopf h2{margin-top:7px;font-size:clamp(21px,2.3vw,30px)}
+  .quer-kopf p{margin-top:6px;font-size:15px}
+  .tafel-karten{gap:16px}
+  .quer .stufe-karte{padding:19px 21px 19px}
+  .quer .stufe-karte h3{font-size:19px;margin:7px 0 6px}
+  .quer .stufe-karte .satz{font-size:14px}
+  .quer .kann{margin-top:11px;gap:5px}
+  .quer .kann li{font-size:13.5px;line-height:1.42}
+  .quer .kann li svg{width:18px;height:18px;margin-top:3px}
+  .quer .stufe-preis{padding-top:11px;gap:3px}
+  .quer .stufe-preis .p{font-size:19px}
+  .quer .stufe-preis .lauf{font-size:12.8px;line-height:1.4;max-width:40ch}
+  .quer .stufe-karte .btn{margin-top:10px;padding-top:9px;padding-bottom:9px}
+}
+
+@media (max-width:1024px), (prefers-reduced-motion:reduce){
+  .quer{height:auto!important}
+  .quer-halt{position:static;height:auto;overflow:visible;display:block}
+  .quer-spur{display:block;transform:none!important}
+  .tafel{flex:none;max-height:none;padding:0;margin-top:54px}
+  .tafel-karten{grid-template-columns:1fr}
+  .quer-leiste{display:none}
+  .quer-kopf{display:none}
+  .tafel-kopf{display:block}
+  .tafel-kopf{margin-bottom:18px}
+  .tafel-nr{font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--grau)}
+  .tafel-kopf h3{font-size:clamp(24px,6vw,32px);margin:8px 0 6px;letter-spacing:-.02em}
+  .tafel-kopf p{color:#3A4553;font-size:16.5px}
+  .quer .stufe-karte{padding:32px 28px 30px}
+}
+@media (max-width:1024px){
+  .quer{padding:0 max(4vw,24px)}
+  .tafel-kopf{margin-bottom:20px}
+}
+
+/* Regal */
+.regal-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.regal-mehr{margin-top:26px;font-size:16px}
+.regal-mehr a{color:var(--akzent);text-decoration:none;
+  border-bottom:1px solid rgba(30,108,255,.35);padding-bottom:2px;
+  transition:border-color .3s var(--ease)}
+.regal-mehr a:hover{border-bottom-color:var(--akzent)}
+
+/* ---------- Bewegte Vorschau ----------
+   Eine Andeutung, kein falscher Bildschirmabzug. Sobald echte Vorschauen
+   da sind, ersetzt sie das hier. */
+.schau{height:196px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--nacht),var(--tief-voll));
+  display:flex;flex-direction:column;padding:12px 12px 0}
+.schau .leiste{display:flex;align-items:center;gap:5px;padding:0 2px 9px}
+.schau .leiste i{width:7px;height:7px;border-radius:50%;background:rgba(235,248,255,.28)}
+.schau .leiste span{flex:1;height:11px;margin-left:7px;border-radius:99px;
+  background:rgba(235,248,255,.14)}
+.schau .blatt{flex:1;border-radius:9px 9px 0 0;background:rgba(235,248,255,.95);
+  overflow:hidden;position:relative;padding:11px 12px}
+
+.schau-web .rollt{animation:rollen 13s var(--ease-soft) infinite}
+@keyframes rollen{0%,12%{transform:translateY(0)}
+  46%,58%{transform:translateY(-84px)}92%,100%{transform:translateY(0)}}
+.v-kopf{height:13px;width:56%;border-radius:4px;background:var(--nacht);margin-bottom:9px}
+.v-bild{height:46px;border-radius:6px;margin-bottom:9px;
+  background:linear-gradient(120deg,rgba(30,108,255,.5),rgba(0,198,255,.34))}
+.v-zeile{height:7px;border-radius:4px;background:rgba(11,18,32,.16);margin-bottom:6px}
+.v-zeile.kurz{width:64%}
+.v-knopf{height:17px;width:82px;border-radius:5px;background:var(--akzent);margin:10px 0}
+.v-zwei{display:flex;gap:7px;margin-bottom:9px}
+.v-zwei span{flex:1;height:34px;border-radius:5px;background:rgba(11,18,32,.1)}
+
+.schau-shop .v-raster{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.schau-shop .v-raster b{height:38px;border-radius:5px;
+  background:linear-gradient(130deg,rgba(30,108,255,.36),rgba(0,198,255,.24));
+  opacity:0;animation:auftauchen 9s var(--ease-soft) infinite;
+  animation-delay:calc(var(--n) * .34s)}
+@keyframes auftauchen{0%,4%{opacity:0;transform:translateY(7px)}
+  16%,72%{opacity:1;transform:none}88%,100%{opacity:0;transform:translateY(7px)}}
+.schau-shop .v-korb{position:absolute;right:12px;bottom:12px;height:22px;width:70px;
+  border-radius:5px;background:var(--akzent);
+  animation:korb 9s var(--ease-soft) infinite}
+@keyframes korb{0%,60%{transform:translateY(30px);opacity:0}
+  74%,88%{transform:none;opacity:1}100%{transform:translateY(30px);opacity:0}}
+
+.schau-app .v-reihe{display:flex;align-items:center;gap:9px;padding:6px 0;
+  border-bottom:1px solid rgba(11,18,32,.09)}
+.schau-app .v-reihe em{width:9px;height:9px;border-radius:50%;flex:0 0 auto;
+  background:rgba(11,18,32,.2);
+  animation:erledigt 10s steps(1,end) infinite;animation-delay:calc(var(--n) * 1.1s)}
+.schau-app .v-reihe u{flex:1;height:7px;border-radius:4px;background:rgba(11,18,32,.14)}
+.schau-app .v-reihe:nth-child(2) u{width:70%;flex:none}
+.schau-app .v-reihe:nth-child(4) u{width:82%;flex:none}
+@keyframes erledigt{0%,22%{background:rgba(11,18,32,.2)}
+  26%,86%{background:#1E8A4C}90%,100%{background:rgba(11,18,32,.2)}}
+
+@media (prefers-reduced-motion:reduce){
+  .schau *{animation:none!important}
+  .schau-shop .v-raster b{opacity:1}
+  .schau-shop .v-korb{opacity:1;transform:none}
+}
+
+.stuecke{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+.stueck[hidden]{display:none}
+.branche-marke{font-family:var(--mono);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--akzent)}
+.preis em{font-style:normal;font-size:14px;color:var(--grau);text-decoration:line-through;
+  margin-left:5px;letter-spacing:0}
+.tagschau{
+  align-self:flex-start;margin-top:4px;border:0;background:none;padding:0;cursor:pointer;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--akzent);
+  border-bottom:1px solid rgba(30,108,255,.4);transition:border-color .3s var(--ease);
+}
+.tagschau:hover{border-bottom-color:var(--akzent)}
+@media (pointer:coarse){.tagschau{min-height:44px}}
+.stueck{
+  background:#fff;border:1px solid var(--linie);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.stueck:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(11,18,32,.11)}
+.stueck .schaufenster{
+  height:172px;position:relative;
+  background:linear-gradient(150deg,var(--nacht),var(--tief-voll));
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.stueck .schaufenster::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 24%,rgba(30,108,255,.5),transparent 58%),
+             radial-gradient(circle at 76% 78%,rgba(0,198,255,.34),transparent 56%);
+}
+.stueck .schaufenster span{
+  position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(235,248,255,.72);
+}
+.stueck .inhalt{padding:24px 24px 26px;display:flex;flex-direction:column;gap:9px;flex:1}
+.stueck h3{font-size:22px}
+.stueck .meta{font-size:15px;color:var(--grau)}
+.stueck .fuss{display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:18px}
+.preis{font-family:var(--mono);font-weight:500;font-size:21px;letter-spacing:-.01em}
+.frei{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#1E8A4C}
+.hinweis-platzhalter{
+  margin-top:30px;font-size:15px;color:var(--grau);border-left:2px solid var(--linie-stark);padding-left:16px;
+}
+
+/* Ablauf, Zeitstrahl mit sich zeichnender Linie */
+.ablauf{background:var(--canvas-2)}
+.schritte{position:relative;margin-top:56px;display:grid;gap:34px;padding-left:56px}
+.schritte::before{
+  content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--linie);
+}
+.schritte::after{
+  content:"";position:absolute;left:19px;top:8px;width:2px;background:linear-gradient(180deg,var(--akzent),var(--cyan));
+  height:calc(var(--zeichnen,0) * (100% - 16px));transition:height .18s linear;
+}
+/* Eine Ebene ueber der Linie: die gezeichnete Linie ist ein ::after
+   von .schritte und wird sonst ueber die Nummernkreise gemalt.
+   So laeuft sie hinter ihnen durch. */
+.schritt{position:relative;z-index:1}
+.schritt .punkt{
+  position:absolute;left:-56px;top:-2px;width:40px;height:40px;border-radius:50%;
+  background:#fff;border:2px solid var(--linie);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:15px;color:var(--grau);
+  transition:border-color .5s var(--ease),color .5s var(--ease),transform .5s var(--ease);
+}
+.schritt.erreicht .punkt{border-color:var(--akzent);color:var(--akzent);transform:scale(1.06)}
+.schritt h3{font-size:clamp(21px,2vw,27px);margin-bottom:8px}
+.schritt p{color:#3A4553;max-width:52ch}
+.schritt .dauer{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--grau);margin-top:9px}
+
+/* Am Rechner stehen die vier Schritte nebeneinander, sonst füllen sie
+   allein einen Bildschirm. Die Linie läuft dann waagrecht. */
+@media (min-width:1025px){
+  .schritte{
+    grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.2vw,34px);
+    padding-left:0;padding-top:56px;margin-top:clamp(24px,4vh,50px);
+  }
+  .schritte::before{left:20px;right:20px;top:17px;bottom:auto;width:auto;height:2px}
+  .schritte::after{
+    left:20px;top:17px;width:calc(var(--zeichnen,0) * (100% - 40px));height:2px;
+    background:linear-gradient(90deg,var(--akzent),var(--cyan));
+    transition:width .18s linear;
+  }
+  .schritt .punkt{left:0;top:-56px}
+  .schritt h3{font-size:clamp(17px,1.5vw,21px);margin-bottom:6px}
+  .schritt p{font-size:clamp(14px,1.8vh,15.5px);max-width:none}
+  .schritt .dauer{margin-top:7px;font-size:11.5px}
+  .dauer-frage{margin-top:clamp(20px,3.4vh,50px);font-size:clamp(17px,2.2vh,25px)}
+  #ablauf .fragen{margin-top:clamp(16px,2.6vh,34px)}
+  #ablauf .frage{padding:clamp(15px,2.3vh,26px) clamp(18px,2vw,26px)}
+  #ablauf .frage .f-zahl{font-size:clamp(20px,2.8vh,30px);margin:9px 0 8px}
+  #ablauf .frage p{font-size:clamp(14.5px,1.8vh,16.5px)}
+  #ablauf .lede{font-size:clamp(15.5px,1.9vh,18px)}
+
+}
+
+/* Der Knopf, der eine gespielte Moment */
+.knopf-band{background:var(--tief-voll);color:#EBF8FF;position:relative;overflow:hidden}
+.knopf-band::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 70% at 50% 0%,rgba(30,108,255,.24),transparent 62%);
+}
+.knopf-band .wrap{position:relative;text-align:center}
+.knopf-band .kicker{color:var(--cyan)}
+.knopf-band .h2{margin:0 auto;color:#fff}
+.knopf-band .lede{color:rgba(235,248,255,.76);margin-left:auto;margin-right:auto}
+.tablet{
+  margin:44px auto 0;max-width:560px;background:rgba(235,248,255,.06);
+  border:1px solid rgba(235,248,255,.16);border-radius:18px;padding:28px 26px 30px;
+  backdrop-filter:blur(8px);
+}
+.tablet .zeile{display:flex;justify-content:space-between;font-size:15.5px;color:rgba(235,248,255,.72);padding:9px 0;border-bottom:1px solid rgba(235,248,255,.1)}
+.tablet .summe{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 4px;font-family:var(--mono);font-size:20px;color:#fff}
+.tablet .erledigt{margin-top:22px}
+.tablet .erledigt li{color:rgba(235,248,255,.9);font-size:16px}
+.tablet .haken circle{stroke:var(--cyan)}
+.tablet .haken path{stroke:var(--cyan)}
+#freigeben{margin-top:24px;width:100%}
+#freigeben[disabled]{opacity:.55;cursor:default;transform:none;box-shadow:none}
+
+/* ---------- Ein Abschnitt, ein Bildschirm ----------
+   Am Rechner soll jeder Abschnitt in einen Bildschirm passen. Die Abstände
+   rechnen deshalb mit der Bildschirmhöhe, nicht mit festen Pixeln, und der
+   Inhalt sitzt mittig. Die Strecke ist ausgenommen: ihre Höhe ist der
+   Scrollweg. */
+@media (min-width:1025px){
+  main > section:not(#stufen){
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding-block:clamp(44px,5.2vh,84px);
+  }
+  main > section:not(#stufen) > .wrap{width:var(--seite);margin:0 auto}
+  #branchen,#ablauf{padding-block:clamp(36px,4.2vh,68px)}
+  #was .h2{font-size:clamp(26px,min(3.4vw,4.6vh),44px)}
+  #was .lede{margin-top:clamp(12px,1.8vh,20px);font-size:clamp(16px,2vh,19px)}
+  #was .dreisatz{margin-top:clamp(22px,3.6vh,44px)}
+  #was .satz-karte{padding:clamp(20px,3vh,30px) clamp(20px,2vw,28px)}
+  #was .satz-karte .nr{width:30px;height:30px;margin-bottom:clamp(9px,1.6vh,16px)}
+  #was .satz-karte h3{font-size:clamp(17px,2.3vh,21px)}
+  #was .satz-karte p{font-size:clamp(14.5px,1.8vh,16px)}
+  #was .was-fuss{margin-top:clamp(16px,2.6vh,28px);font-size:clamp(15px,1.9vh,16.5px)}
+}
+
+/* Kurz erklärt */
+.dreisatz{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.satz-karte{
+  background:#fff;border:1px solid var(--linie);border-radius:18px;padding:30px 28px 28px;
+  position:relative;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+}
+.satz-karte:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(11,18,32,.09);
+  border-color:rgba(30,108,255,.3)}
+.satz-karte .nr{
+  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:50%;background:var(--akzent);color:#fff;
+  font-family:var(--mono);font-size:15px;margin-bottom:16px;
+  box-shadow:0 6px 16px rgba(30,108,255,.28);
+}
+.satz-karte h3{font-size:21px;line-height:1.2;margin-bottom:10px}
+.satz-karte p{font-size:16px;color:#3A4553;line-height:1.6}
+.was-fuss{margin-top:28px;font-size:16.5px;color:#3A4553;max-width:66ch;line-height:1.62}
+.was-fuss b{color:var(--tief)}
+@media (max-width:900px){.dreisatz{grid-template-columns:1fr}}
+
+/* Branchenschalter */
+.branchen{background:var(--canvas);color:var(--tief);position:relative;overflow:hidden}
+.branchen::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(64% 62% at 22% 0%,rgba(30,108,255,.13),transparent 62%),
+             radial-gradient(50% 50% at 92% 84%,rgba(0,198,255,.09),transparent 64%);
+}
+.branchen .wrap{position:relative}
+.branchen .kicker{color:var(--akzent)}
+.branchen .h2{color:var(--tief)}
+.branchen .lede{color:#3A4553}
+.mehr-branchen{margin-top:22px;font-size:15.5px;color:var(--grau)}
+.mehr-branchen a{color:var(--akzent);text-decoration:none;
+  border-bottom:1px solid rgba(30,108,255,.4);transition:border-color .3s var(--ease)}
+.mehr-branchen a:hover{border-bottom-color:var(--akzent)}
+
+.reiter{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
+.reiter button{
+  font-family:var(--body);font-size:16px;font-weight:600;color:#3A4553;
+  background:#fff;border:1px solid var(--linie-stark);
+  padding:12px 20px;border-radius:99px;cursor:pointer;
+  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
+}
+.reiter button:hover{color:var(--akzent);border-color:var(--akzent);transform:translateY(-2px)}
+.reiter button[aria-selected="true"]{background:var(--akzent);border-color:var(--akzent);color:#fff;
+  box-shadow:0 6px 18px rgba(30,108,255,.26)}
+@media (pointer:coarse){.reiter button{min-height:44px}}
+
+.fluss-raster{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;margin-top:38px;align-items:start}
+.fluss-kopf h3{font-size:clamp(23px,2.3vw,30px);color:var(--tief);margin-bottom:12px}
+.fluss-kopf p{color:#3A4553;max-width:42ch;font-size:17px}
+.fluss-kopf .womit{margin-top:24px;display:flex;gap:9px;flex-wrap:wrap}
+.fluss-kopf .womit span{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:7px 12px;border-radius:99px;
+  border:1px solid var(--linie-stark);color:var(--grau);background:#fff;
+}
+
+/* Der Bildschirm in der Mitte ist dunkel - dort läuft die Animation, dort
+   trägt der Kontrast. Der Abschnitt darum bleibt hell. */
+.schirm{
+  background:linear-gradient(168deg,#0B1220,var(--nacht));
+  border:1px solid rgba(30,108,255,.28);border-radius:18px;
+  padding:26px 24px 24px;min-height:430px;position:relative;overflow:hidden;
+  box-shadow:0 26px 60px rgba(8,32,86,.28);
+  display:flex;flex-direction:column;
+}
+.schirm::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(72% 58% at 82% 4%,rgba(30,108,255,.34),transparent 62%);
+}
+.schirm > *{position:relative}
+.schirm-kopf{
+  display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:6px;
+  border-bottom:1px solid rgba(235,248,255,.14);
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(235,248,255,.55);
+}
+.schirm-kopf i{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:block;
+  box-shadow:0 0 0 4px rgba(0,198,255,.16)}
+
+.schritte-liste{list-style:none;margin:0;padding:0;display:grid;gap:2px;flex:1}
+.schritte-liste li{
+  display:grid;grid-template-columns:22px 1fr;gap:13px;align-items:start;padding:11px 0;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.schritte-liste li.da{opacity:1;transform:none}
+.schritte-liste li .mark{width:22px;height:22px;margin-top:1px}
+.schritte-liste li .mark circle{fill:none;stroke:var(--cyan);stroke-width:2;opacity:.32}
+.schritte-liste li .mark path{
+  fill:none;stroke:var(--cyan);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:22;stroke-dashoffset:22;transition:stroke-dashoffset .5s var(--ease) .12s;
+}
+.schritte-liste li.da .mark path{stroke-dashoffset:0}
+.schritte-liste li .txt{font-size:16.5px;color:rgba(235,248,255,.92);line-height:1.5}
+.schritte-liste li .zeit{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:rgba(235,248,255,.45);
+  display:block;margin-bottom:3px;
+}
+.schritte-liste li.geld .mark circle,.schritte-liste li.geld .mark path{stroke:#7DDE9A}
+.schritte-liste li.entscheid{
+  background:rgba(30,108,255,.2);border:1px solid rgba(30,108,255,.46);border-radius:12px;
+  padding:14px 15px;margin:8px 0;grid-template-columns:1fr;
+}
+.schritte-liste li.entscheid .txt{color:#fff;font-weight:600}
+.schritte-liste li.entscheid .zeit{color:var(--cyan)}
+.entscheid-knopf{margin-top:12px;width:100%}
+.entscheid-knopf[disabled]{opacity:.5;cursor:default;transform:none;box-shadow:none}
+.fluss-fuss{
+  margin-top:18px;padding-top:16px;border-top:1px solid rgba(235,248,255,.14);
+  font-size:14.5px;color:rgba(235,248,255,.6);
+}
+@media (max-width:1024px){.fluss-raster{grid-template-columns:1fr;gap:28px}.schirm{min-height:0}}
+
+@media (min-width:1025px){
+  /* Branchen: sieben Schritte müssen mit dem Kopf zusammen auf einen
+     Bildschirm. Die Uhrzeit rückt dafür neben den Text. */
+  .branchen .h2{font-size:clamp(24px,min(3vw,4.2vh),38px)}
+  .branchen .lede{margin-top:clamp(8px,1.3vh,18px);font-size:clamp(14.5px,1.8vh,17px)}
+  .branchen .reiter{margin-top:clamp(14px,2.4vh,38px);gap:8px}
+  .branchen .reiter button{padding:clamp(8px,1.3vh,12px) clamp(14px,1.3vw,20px);
+    font-size:clamp(14px,1.8vh,16px)}
+  .branchen .mehr-branchen{margin-top:clamp(8px,1.2vh,18px);font-size:14px}
+  .fluss-raster{margin-top:clamp(12px,2vh,32px);gap:clamp(24px,2.6vw,40px)}
+  .schirm{min-height:0;padding:clamp(16px,2.2vh,26px) clamp(18px,1.8vw,24px)}
+  .schirm-kopf{padding-bottom:clamp(9px,1.4vh,16px);margin-bottom:2px}
+  .fluss-kopf h3{font-size:clamp(19px,2.6vh,30px);margin-bottom:8px}
+  .fluss-kopf p{font-size:clamp(14.5px,1.8vh,17px)}
+  .fluss-kopf .womit{margin-top:clamp(10px,2vh,24px);gap:7px}
+  .fluss-kopf .womit span{padding:5px 10px;font-size:11.5px}
+  .schritte-liste{gap:0}
+  .schritte-liste li{padding:clamp(5px,0.9vh,11px) 0;gap:10px}
+  .schritte-liste li .mark{width:19px;height:19px}
+  .schritte-liste li{grid-template-columns:19px 1fr}
+  .schritte-liste li .txt{font-size:clamp(14px,1.75vh,16.5px);line-height:1.45}
+  /* Uhrzeit vorne im selben Satz statt auf eigener Zeile. */
+  .schritte-liste li .zeit{display:inline;margin:0 8px 0 0;font-size:11px}
+  .schritte-liste li.entscheid{padding:clamp(9px,1.4vh,14px) 14px;margin:5px 0}
+  .entscheid-knopf{margin-top:9px;padding-top:10px;padding-bottom:10px}
+  .fluss-fuss{margin-top:clamp(8px,1.4vh,18px);padding-top:clamp(8px,1.2vh,16px);
+    font-size:13px}
+  .branchen .lede{max-width:64ch}
+  .schritte-liste li .txt{font-size:clamp(13.5px,1.7vh,16px)}
+  .schritte-liste li{padding:clamp(4px,0.8vh,10px) 0}
+}
+
+/* Herkunft */
+.herkunft-raster{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-top:20px}
+.koepfe{display:flex;gap:22px;margin-top:36px;flex-wrap:wrap}
+.kopf{display:flex;align-items:center;gap:14px}
+.kopf .kreis{
+  width:76px;height:76px;border-radius:50%;background:var(--canvas-2);
+  border:1px solid var(--linie);display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.kopf .kreis svg{width:100%;height:100%}
+.kopf .n{font-family:var(--display);font-weight:600;font-size:17px}
+.kopf .r{font-size:14.5px;color:var(--grau)}
+.zahl-karte{
+  background:#fff;border:1px solid var(--linie);border-radius:18px;padding:38px 34px;
+  box-shadow:0 20px 50px rgba(11,18,32,.07);
+}
+.zahl-karte .gross{font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,44px);letter-spacing:-.025em;line-height:1.12;color:var(--akzent)}
+.zahl-karte p + p{margin-top:12px}
+.kopf .kreis img{width:100%;height:100%;object-fit:cover;display:block}
+.zahl-karte p{margin-top:16px;color:#3A4553;font-size:16.5px}
+.zahl-karte .quelle{margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--grau)}
+
+/* Referenzen */
+.ref-raster{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.ref{
+  border:1px dashed var(--linie-stark);border-radius:16px;padding:28px 26px;background:rgba(255,255,255,.55);
+  display:flex;flex-direction:column;gap:10px;min-height:210px;
+}
+.ref.echt{border-style:solid;background:#fff}
+.ref .zitat{font-size:17px;color:#26313F;line-height:1.55}
+.ref .wer{margin-top:auto;display:flex;align-items:center;gap:12px}
+.ref .wer .kreis{width:46px;height:46px;border-radius:50%;background:var(--canvas-2);border:1px solid var(--linie);overflow:hidden}
+.ref .wer .n{font-weight:600;font-size:15.5px}
+.ref .wer .o{font-size:14px;color:var(--grau)}
+.ref .leer{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grau)}
+
+/* Team-Teaser */
+.team-band{background:var(--nacht);color:#EBF8FF;overflow:hidden}
+.team-raster{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.team-band .h2{color:#fff}
+.team-band .lede{color:rgba(235,248,255,.76)}
+.team-band .kicker{color:var(--cyan)}
+.kreis-reihe{display:flex;justify-content:center;list-style:none;margin:0;padding:0}
+
+/* Die zwei Menschen tragen den Abschnitt, also sind sie grösser und haben
+   als Einzige einen Namen darunter. */
+.team-schau{display:grid;gap:34px;justify-items:center}
+.menschen-zwei{display:flex;gap:28px}
+.menschen-zwei figure{margin:0;text-align:center}
+.menschen-zwei img{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;
+  box-shadow:0 0 0 3px var(--nacht),0 0 0 5px rgba(0,198,255,.55),0 14px 32px rgba(0,0,0,.4);
+  transition:transform .45s var(--ease)}
+.menschen-zwei figure:hover img{transform:translateY(-4px)}
+.menschen-zwei figcaption{margin-top:13px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(235,248,255,.82)}
+
+.digital-reihe{text-align:center}
+.d-titel{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(235,248,255,.5);margin-bottom:15px}
+.kreis-reihe .k{
+  width:78px;height:78px;border-radius:50%;background:rgba(235,248,255,.1);
+  border:2px solid var(--nacht);box-shadow:inset 0 0 0 1px rgba(235,248,255,.22);
+  margin-left:-18px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  transition:transform .45s var(--ease);
+}
+.kreis-reihe .k:first-child{margin-left:0}
+.kreis-reihe:hover .k{transform:translateY(-4px)}
+.kreis-reihe .k svg{width:100%;height:100%}
+.digital-reihe .k{width:64px;height:64px;margin-left:-15px}
+.digital-reihe .k img{width:100%;height:100%;object-fit:cover;display:block}
+.kreis-reihe .mehr{
+  font-family:var(--mono);font-size:14px;color:rgba(235,248,255,.8);background:rgba(30,108,255,.3);
+}
+.punkt-live{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--cyan);margin-top:22px}
+.punkt-live i{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:block;position:relative}
+.punkt-live i::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--cyan);opacity:.5;animation:puls 3.4s var(--ease-soft) infinite -1s}
+@keyframes puls{0%{transform:scale(.7);opacity:.6}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+
+/* Kontakt */
+.kontakt-raster{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;margin-top:44px}
+.kontakt-info p{color:#3A4553;margin-bottom:22px;max-width:40ch}
+.kontakt-info .zeile{display:flex;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--linie)}
+.kontakt-info .zeile .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--grau);width:96px;flex:0 0 auto}
+.kontakt-info .zeile a{text-decoration:none;font-weight:600}
+.kontakt-info .zeile a:hover{color:var(--akzent)}
+form{background:#fff;border:1px solid var(--linie);border-radius:18px;padding:32px 30px 34px;box-shadow:0 18px 44px rgba(11,18,32,.06)}
+.feld{margin-bottom:18px}
+.feld label{display:block;font-size:14.5px;font-weight:600;margin-bottom:7px}
+.feld input,.feld textarea{
+  width:100%;font-family:var(--body);font-size:16.5px;color:var(--tief);
+  padding:13px 15px;border:1px solid var(--linie-stark);border-radius:10px;background:var(--canvas);
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.feld input:focus,.feld textarea:focus{outline:none;border-color:var(--akzent);background:#fff}
+.feld textarea{min-height:118px;resize:vertical}
+.form-fuss{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.form-fuss small{color:var(--grau);font-size:13.5px;max-width:34ch}
+.danke{display:none;text-align:center;padding:22px 0}
+.danke.zeigen{display:block}
+.danke .haken-gross{width:56px;height:56px;margin:0 auto 16px}
+.danke .haken-gross circle{fill:none;stroke:var(--akzent);stroke-width:2;opacity:.35}
+.danke .haken-gross path{fill:none;stroke:var(--akzent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:zeichnen .7s var(--ease) forwards .12s}
+@keyframes zeichnen{to{stroke-dashoffset:0}}
+form.gesendet .form-inhalt{display:none}
+
+/* Fuss */
+footer{background:var(--tief-voll);color:rgba(235,248,255,.66);padding:64px 0 40px}
+.fuss-raster{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+footer a{color:rgba(235,248,255,.66);text-decoration:none;transition:color .3s var(--ease)}
+footer a:hover{color:#fff}
+.fuss-links{display:flex;gap:26px;flex-wrap:wrap;font-size:15px}
+.fuss-marke{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.fuss-marke img{width:30px;height:30px;object-fit:contain}
+.fuss-marke span{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#EBF8FF}
+.fuss-klein{margin-top:34px;padding-top:22px;border-top:1px solid rgba(235,248,255,.12);font-size:13.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ---------------- Tablet ---------------- */
+@media (max-width:1024px){
+  .herkunft-raster,.kontakt-raster,.team-raster{grid-template-columns:1fr;gap:38px}
+  .fragen,.stuecke,.ref-raster{grid-template-columns:repeat(2,1fr)}
+  .band{width:min(48ch,62vw)}
+  .nav-links{display:none}
+}
+
+/* ---------------- Telefon ---------------- */
+@media (max-width:720px){
+  .fragen,.fragen.zwei,.stuecke,.ref-raster{grid-template-columns:1fr}
+  .schritte{padding-left:44px}
+  .schritt .punkt{left:-44px;width:32px;height:32px;font-size:13px}
+  .schritte::before,.schritte::after{left:15px}
+  section{padding:64px 0}
+  .kreis-reihe .k{width:58px;height:58px}
+}
+
+/* Statisches Hero: die fünf Tore, zeichengleich mit dem JavaScript */
+@media (max-width:720px),
+       (orientation:portrait) and (max-width:1024px),
+       (orientation:portrait) and (pointer:coarse),
+       (orientation:landscape) and (pointer:coarse) and (max-height:560px),
+       (prefers-reduced-motion:reduce){
+  .hero{display:none}
+  .hero-still{display:block}
+}
+@media (max-height:560px){.ring,.pfeil{display:none}}
+
+/* Bewegung reduzieren */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .auf,.stufe>*{opacity:1!important;transform:none!important}
+  .schritte::after{height:calc(100% - 16px)!important}
+  .erledigt li{opacity:1!important;transform:none!important}
+  .haken path{stroke-dashoffset:0!important}
+}
+
+/* ---- Ab hier stand frueher ein zweiter Stilblock am Ende des Bodys.
+        Dort wurde er erst nach dem Markup gelesen, weshalb der Hero beim
+        Laden kurz ungestylt aufblitzte. Die Reihenfolge ist unveraendert. ---- */
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+    /* ---- Tippziele auf Touchgeräten ----
+       Textlinks in Navigation und Fusszeile sind rund 24 Bildpunkte hoch.
+       Auf dem Telefon trifft man die kaum. 44 ist die übliche Untergrenze;
+       wir erreichen sie über Polsterung, damit sich am Aussehen auf dem
+       Rechner nichts ändert. */
+    @media (pointer:coarse){
+      .nav-links a, .fuss-links a, .fuss-klein a, footer a, nav a{
+        display:inline-flex; align-items:center; min-height:44px;
+      }
+      .fuss-links{gap:8px 26px}
+    }
+
+/* ---------- Zuletzt: was den Bildschirm füllen soll ----------
+   Steht bewusst am Ende, damit es die Regeln weiter oben übersteuert. */
+@media (min-width:1025px){
+/* Wer dahintersteckt: die Gesichter tragen den Abschnitt, also dürfen
+     sie gross sein. */
+  #herkunft .herkunft-raster{gap:clamp(40px,6vw,80px)}
+  #herkunft .h2{font-size:clamp(28px,min(3.6vw,5vh),46px)}
+  #herkunft .lede{font-size:clamp(16px,2.1vh,20px);margin-top:clamp(16px,2.4vh,26px)}
+  #herkunft .koepfe{margin-top:clamp(28px,4.6vh,52px);gap:clamp(20px,2.4vw,34px)}
+  #herkunft .kopf .kreis{width:clamp(76px,10.5vh,112px);height:clamp(76px,10.5vh,112px)}
+  #herkunft .kopf .n{font-size:clamp(17px,2.2vh,21px)}
+  #herkunft .kopf .r{font-size:clamp(14.5px,1.8vh,16px)}
+  #herkunft .zahl-karte{padding:clamp(30px,4.6vh,52px) clamp(28px,2.6vw,42px)}
+  #herkunft .zahl-karte .gross{font-size:clamp(30px,min(3.4vw,4.6vh),46px)}
+  #herkunft .zahl-karte p{font-size:clamp(15.5px,2vh,18px);margin-top:clamp(14px,2.2vh,22px)}
+  #herkunft .zahl-karte .quelle{margin-top:clamp(14px,2.2vh,22px)}
+
+  /* Referenzen: die Platzhalter dürfen die Fläche annehmen, die eine
+     echte Referenz später braucht. */
+  #referenzen .h2{font-size:clamp(28px,min(3.6vw,5vh),46px)}
+  #referenzen .lede{font-size:clamp(16px,2.1vh,20px);margin-top:clamp(16px,2.4vh,26px)}
+  #referenzen .ref-raster{margin-top:clamp(30px,4.6vh,54px);gap:clamp(20px,2.2vw,30px)}
+  #referenzen .ref{min-height:clamp(210px,30vh,320px);padding:clamp(24px,3.4vh,38px) clamp(22px,2vw,32px)}
+
+  /* Team: die Porträts sind der Beweis, also gross genug zum Erkennen. */
+  #team .h2{font-size:clamp(28px,min(3.6vw,5vh),46px)}
+  #team .lede{font-size:clamp(16px,2.1vh,20px);margin-top:clamp(16px,2.4vh,26px)}
+  #team .team-raster{gap:clamp(40px,5vw,72px)}
+  #team .team-schau{gap:clamp(26px,4.4vh,48px)}
+  #team .menschen-zwei{gap:clamp(24px,2.8vw,38px)}
+  #team .menschen-zwei img{width:clamp(96px,13vh,138px);height:clamp(96px,13vh,138px)}
+  #team .menschen-zwei figcaption{margin-top:clamp(11px,1.6vh,16px);font-size:13px}
+  #team .digital-reihe .k{width:clamp(64px,8.6vh,90px);height:clamp(64px,8.6vh,90px);
+    margin-left:clamp(-20px,-2vh,-15px)}
+  #team .punkt-live{margin-top:clamp(20px,3vh,30px);font-size:14px}
+  #team .cta-reihe{margin-top:clamp(26px,4vh,40px)!important}
+
+  /* Branchen: die letzten Pixel, damit die Animation ganz auf den Schirm passt. */
+  #branchen{padding-block:clamp(32px,3.8vh,60px)}
+}
+
+
+/* ---------- Die Strecke: Kopf und Karten auf die Höhe gerechnet ---------- */
+@media (min-width:1025px){
+  .quer-kopf h2{font-size:clamp(21px,3.1vh,30px)}
+  .quer-kopf .kicker{margin-bottom:clamp(6px,0.9vh,11px)}
+  .k-lede{font-size:clamp(13.5px,1.6vh,15px);margin-top:clamp(5px,0.9vh,10px);max-width:74ch}
+  .k-tafel{margin-top:clamp(9px,1.4vh,16px);padding-top:clamp(8px,1.2vh,14px)}
+  .k-tafel strong{font-size:clamp(17px,2.1vh,21px)}
+  .k-tafel span:last-child{font-size:clamp(13.5px,1.65vh,15.5px)}
+  .quer-kopf{margin-bottom:clamp(12px,1.8vh,20px)}
+
+  .quer .stufe-karte{padding:clamp(20px,3.1vh,32px) clamp(20px,2.1vw,30px)}
+  .quer .stufe-karte h3{font-size:clamp(19px,2.7vh,25px);margin:8px 0 9px}
+  .quer .stufe-karte .satz{font-size:clamp(14.5px,1.85vh,16.5px);line-height:1.5}
+  .quer .kann{margin-top:clamp(14px,2.1vh,22px);gap:clamp(7px,1.05vh,10px)}
+  .quer .kann li{font-size:clamp(14px,1.8vh,16px);line-height:1.45}
+  .quer .kann li svg{width:15px;height:15px;margin-top:2px}
+  .quer .stufe-preis{padding-top:clamp(14px,2.1vh,22px);gap:5px}
+  .quer .stufe-preis .p{font-size:clamp(19px,2.4vh,23px)}
+  .quer .stufe-preis .lauf{font-size:clamp(13px,1.6vh,14.5px);line-height:1.45;max-width:44ch}
+  .quer .stufe-karte .btn{margin-top:clamp(14px,2vh,20px);padding:11px 22px;font-size:15.5px}
+  .immer-dabei{font-size:clamp(12.5px,1.55vh,14px);margin-top:clamp(12px,1.8vh,18px);line-height:1.5}
+  .tafel-karten{gap:clamp(14px,1.6vw,22px)}
+}
+
+
+/* ---------- Referenzband ----------
+   Die Karten laufen von rechts nach links durch. Die Liste steht zweimal
+   im Markup, damit der Umlauf keinen Sprung hat; die zweite Fassung ist
+   für Vorleseprogramme ausgeblendet. Bei Mausberührung und bei reduzierter
+   Bewegung hält das Band an. */
+.ref-band{position:relative;overflow:hidden;width:100%;align-self:stretch;
+  margin-top:clamp(26px,4vh,44px);
+  padding:6px 0 10px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ref-band-spur{display:flex;gap:22px;width:max-content;
+  animation:bandlauf 96s linear infinite}
+.ref-band:hover .ref-band-spur,.band:focus-within .ref-band-spur{animation-play-state:paused}
+@keyframes bandlauf{from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(calc(-50% - 11px),0,0)}}
+
+.stimme{
+  flex:0 0 clamp(280px,23vw,340px);margin:0;
+  background:#fff;border:1px solid var(--linie);border-radius:16px;
+  padding:clamp(20px,2.8vh,26px) clamp(20px,1.8vw,24px);
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.stimme:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(11,18,32,.1)}
+.stimme-kopf{display:flex;align-items:center;gap:13px}
+.stimme-bild{
+  width:46px;height:46px;border-radius:50%;flex:0 0 auto;
+  background:var(--f);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:14.5px;letter-spacing:.04em;
+}
+.stimme figcaption{display:flex;flex-direction:column;gap:2px;min-width:0}
+.stimme-name{font-family:var(--display);font-weight:600;font-size:16px}
+.stimme-ort{font-size:13.5px;color:var(--grau)}
+.stimme blockquote{margin:0;font-size:clamp(14.5px,1.8vh,16px);color:#26313F;
+  line-height:1.55}
+.stimme blockquote::before{content:"«"}
+.stimme blockquote::after{content:"»"}
+
+@media (prefers-reduced-motion:reduce){
+  .ref-band-spur{animation:none}
+  .ref-band{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+}
+@media (max-width:720px){.stimme{flex-basis:min(78vw,300px)}}
+
+/* ---------- Hero: zentraler Fluss (aus Kristians Fassung) ---------- */
+.pt-hero {
+  --pt-canvas: #f2f4f7;
+  --pt-ink: #0b1220;
+  --pt-navy: #082056;
+  --pt-blue: #1e6cff;
+  --pt-cyan: #00c6ff;
+  --pt-ease: cubic-bezier(.22,.61,.36,1);
+  position: relative;
+  height: 190svh;
+  color: var(--pt-ink);
+  background: var(--pt-canvas);
+  font-family: var(--body);
+}
+.pt-hero, .pt-hero * { box-sizing: border-box; }
+.pt-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background: var(--pt-canvas);
+  isolation: isolate;
+}
+.pt-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.012);
+  transition: transform 1.1s var(--pt-ease), filter 1.1s var(--pt-ease);
+}
+.pt-phase-1 .pt-photo { transform: scale(1.02); }
+.pt-phase-2 .pt-photo { transform: scale(1.028); filter: saturate(.94); }
+.pt-phase-3 .pt-photo { transform: scale(1.018); filter: saturate(1.02); }
+.pt-grade {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,rgba(242,244,247,.12),transparent 20%,transparent 80%,rgba(5,10,20,.15)),
+    linear-gradient(90deg,transparent 57%,rgba(8,32,86,.035));
+}
+.pt-copy {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  width: min(46vw,820px);
+  display: flex;
+  align-items: center;
+  background: rgba(242,244,247,.97);
+}
+.pt-copy::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: min(12vw,210px);
+  background: linear-gradient(90deg,rgba(242,244,247,.97),rgba(242,244,247,0));
+  pointer-events: none;
+}
+.pt-copy-inner {
+  position: relative;
+  z-index: 2;
+  width: min(630px,85%);
+  margin-left: clamp(36px,4.2vw,76px);
+  transform: translateY(-1vh);
+}
+.pt-eyebrow {
+  margin: 0 0 24px;
+  color: var(--pt-blue);
+  font-size: clamp(11px,.84vw,14px);
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.pt-hero h1 {
+  font-family: var(--display);
+  max-width: 14ch;
+  margin: 0;
+  font-size: clamp(42px,4.6vw,76px);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.02;
+}
+.pt-subline {
+  max-width: 35ch;
+  margin: 28px 0 0;
+  color: #202b3c;
+  font-size: clamp(18px,1.3vw,24px);
+  line-height: 1.48;
+}
+.pt-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+.pt-button {
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform .25s var(--pt-ease),box-shadow .25s var(--pt-ease);
+}
+.pt-button:hover { transform: translateY(-2px); }
+.pt-primary {
+  color: white;
+  background: var(--pt-blue);
+  box-shadow: 0 12px 32px rgba(30,108,255,.24);
+}
+.pt-secondary {
+  color: var(--pt-blue);
+  border: 1.5px solid var(--pt-blue);
+  background: rgba(255,255,255,.6);
+}
+.pt-closing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--pt-navy);
+  font-weight: 750;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .55s var(--pt-ease),transform .55s var(--pt-ease);
+}
+.pt-phase-3 .pt-closing { opacity: 1; transform: translateY(0); }
+.pt-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--pt-blue);
+  box-shadow: 0 0 0 5px rgba(30,108,255,.11);
+}
+.pt-tasks { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.pt-task {
+  position: absolute;
+  width: clamp(205px,15.5vw,280px);
+  min-height: 132px;
+  padding: 16px 17px;
+  color: var(--pt-ink);
+  background: rgba(255,255,255,.93);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 14px;
+  box-shadow: 0 22px 55px rgba(5,10,20,.24),0 2px 8px rgba(5,10,20,.1);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(28px) scale(.96);
+  transition:
+    opacity .5s var(--pt-ease),transform .65s var(--pt-ease),border-color .35s ease,
+    left .7s var(--pt-ease),right .7s var(--pt-ease),top .7s var(--pt-ease);
+}
+.pt-task:nth-child(2) { transition-delay: 70ms; }
+.pt-task:nth-child(3) { transition-delay: 140ms; }
+.pt-phase-1 .pt-task,.pt-phase-2 .pt-task,.pt-phase-3 .pt-task {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.pt-phase-2 .pt-task { border-color: rgba(30,108,255,.55); }
+.pt-phase-3 .pt-task {
+  border-color: rgba(30,108,255,.24);
+  box-shadow: 0 20px 48px rgba(5,10,20,.2),0 0 0 1px rgba(30,108,255,.08);
+}
+/* Gleichmaessig verteilt: gleiche Schritte in der Breite,
+   die mittlere tiefer, damit sie zur Nabe zeigt. */
+.pt-painter { left: 47.12%;   top: 10.58%; }
+.pt-bakery  { left: 65.84%; top: 80.08%; }
+.pt-office  { left: 84.08%;   top: 10.17%; }
+.pt-task-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 11px;
+  color: #526074;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.pt-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pt-cyan);
+  box-shadow: 0 0 0 4px rgba(0,198,255,.12);
+}
+.pt-phase-2 .pt-status {
+  background: var(--pt-blue);
+  animation: pt-pulse 1.2s ease-in-out infinite;
+}
+.pt-task strong { display: block; padding-right: 24px; font-size: 16px; line-height: 1.2; }
+.pt-task p { min-height: 40px; margin: 7px 0 0; color: #344155; font-size: 13px; line-height: 1.35; }
+.pt-loading {
+  display: none;
+  position: absolute;
+  left: 17px;
+  right: 17px;
+  bottom: 12px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(30,108,255,.12);
+}
+.pt-phase-2 .pt-loading { display: block; }
+.pt-loading::after {
+  content: "";
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--pt-blue);
+  animation: pt-loading 1.15s ease-in-out infinite;
+}
+.pt-done {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 46px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  place-items: center;
+  color: white;
+  background: var(--pt-blue);
+  font-size: 14px;
+  font-weight: 900;
+}
+.pt-phase-3 .pt-done { display: grid; }
+.pt-flow {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.pt-phase-2 .pt-flow,.pt-phase-3 .pt-flow { opacity: 1; }
+.pt-hub {
+  position: absolute;
+  left: 71.97%;
+  top: 48.96%;
+  width: 134px;
+  height: 134px;
+  transform: translate(-50%,-50%) scale(.75);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+  background: rgba(8,32,86,.94);
+  border: 1px solid rgba(0,198,255,.75);
+  box-shadow: 0 0 0 12px rgba(30,108,255,.12),0 20px 48px rgba(5,10,20,.32);
+  opacity: 0;
+  transition: opacity .5s ease,transform .65s var(--pt-ease);
+}
+.pt-phase-2 .pt-hub,.pt-phase-3 .pt-hub {
+  opacity: 1;
+  transform: translate(-50%,-50%) scale(1);
+}
+.pt-phase-3 .pt-hub { transform: translate(-50%,-50%) scale(.82); opacity: .78; }
+.pt-hub::before {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  border: 1px solid rgba(0,198,255,.42);
+  border-radius: inherit;
+  animation: pt-hub 1.8s ease-in-out infinite;
+}
+.pt-hub span { font-size: 11px; font-weight: 900; letter-spacing: .12em; }
+.pt-hub b { display: block; max-width: 12ch; margin: 5px auto 0; color: #bfeeff; font-size: 10px; line-height: 1.2; }
+.pt-flow-line {
+  position: absolute;
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg,rgba(0,198,255,.92),rgba(0,198,255,0));
+  transform-origin: left;
+  opacity: .75;
+}
+/* Laenge, Lage und Winkel setzt das Skript, siehe linienZiehen(). */
+/* Phase 2 verschiebt die Meldungen nicht mehr. Sie bleiben dort, wo sie
+   gesetzt wurden; beim Scrollen wechselt nur der Text darin. */
+.pt-scroll {
+  position: absolute;
+  z-index: 8;
+  right: 44px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(5,10,20,.8);
+}
+.pt-scroll svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: pt-bob 1.7s ease-in-out infinite;
+}
+@keyframes pt-pulse { 50% { box-shadow: 0 0 0 7px rgba(30,108,255,.09); } }
+@keyframes pt-loading { 0% { transform: translateX(-120%); } 100% { transform: translateX(340%); } }
+@keyframes pt-hub { 50% { transform: scale(1.07); opacity: .28; } }
+@keyframes pt-bob { 50% { transform: translateY(5px); } }
+
+@media (max-width:1100px) {
+  .pt-copy { width: 48vw; }
+  .pt-painter { left: 45%; }
+  .pt-bakery { left: 64%; }
+  .pt-office { left: 83%; }
+  .pt-task { width: 21vw; }
+  .pt-hero h1 { font-size: clamp(48px,6vw,68px); }
+}
+@media (max-width:780px) {
+  .pt-hero { height: 210svh; }
+  .pt-stage { min-height: 620px; }
+  .pt-photo { object-position: 72% center; opacity: .5; }
+  .pt-copy {
+    inset: 0;
+    width: 100%;
+    align-items: flex-start;
+    padding-top: clamp(38px,7vh,72px);
+    background: linear-gradient(180deg,rgba(242,244,247,.98),rgba(242,244,247,.91) 48%,rgba(242,244,247,.44) 70%,rgba(242,244,247,.06));
+  }
+  .pt-copy::after { display: none; }
+  .pt-copy-inner { width: auto; margin: 0 22px; transform: none; }
+  .pt-eyebrow { margin-bottom: 15px; letter-spacing: .12em; }
+  .pt-hero h1 { max-width: 10ch; font-size: clamp(43px,12vw,64px); }
+  .pt-subline { max-width: 31ch; margin-top: 18px; font-size: 17px; }
+  .pt-actions { margin-top: 20px; }
+  .pt-button { min-height: 45px; padding: 0 15px; font-size: 13px; }
+  .pt-closing { margin-top: 16px; font-size: 14px; }
+  .pt-tasks {
+    inset: auto 14px 52px;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 7px;
+  }
+  .pt-task {
+    position: relative;
+    inset: auto;
+    width: auto;
+    min-height: 116px;
+    padding: 11px;
+    border-radius: 10px;
+  }
+  .pt-task strong { font-size: 12px; }
+  .pt-task p { min-height: 34px; font-size: 10px; }
+  .pt-task-head { font-size: 7px; letter-spacing: .08em; }
+  .pt-done { top: 40px; right: 8px; width: 18px; height: 18px; font-size: 10px; }
+  .pt-flow { display: none; }
+  .pt-phase-2 .pt-task { position: relative; inset: auto; transform: scale(.96); }
+  .pt-scroll { right: 18px; bottom: 10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .pt-hero *,.pt-hero *::before,.pt-hero *::after {
+    animation: none !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="umgebung" aria-hidden="true"></div>
+<a class="skip" href="#main">Direkt zum Inhalt</a>
+
+<nav class="nav" id="nav">
+  <a class="marke" href="#top" aria-label="Player Two, Startseite">
+    <img src="assets/marke.png" srcset="assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
+    <span>Player Two</span>
+  </a>
+  <div class="nav-links">
+    <a href="#stufen">Angebot</a>
+    <a href="loesungen.html">Fertige Lösungen</a>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#herkunft">Über uns</a>
+    <a href="team.html">Team</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a class="btn btn-voll" href="#regal" style="margin-left:22px">Fertige Lösungen ansehen</a>
+</nav>
+
+<div id="top"></div>
+
+<!-- ================= Hero, der gescrollte Film ================= -->
+<header class="pt-hero pt-phase-0" id="hero" data-pt-hero
+  aria-label="Player Two: Malerbetrieb, Bäckerei und Treuhand im zentralen Fluss">
+  <div class="pt-stage">
+    <picture>
+      <source media="(max-width:780px)" srcset="assets/hero-hoch.webp">
+      <img class="pt-photo" src="assets/hero-breit.webp" alt="" aria-hidden="true"
+        width="1672" height="941" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="pt-grade" aria-hidden="true"></div>
+
+    <div class="pt-copy">
+      <div class="pt-copy-inner">
+        <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
+        <h1>Mehr Zeit für das, was wichtig ist.</h1>
+        <p class="pt-subline">Wir bauen Ihre Website — und stellen digitale
+          Mitarbeitende dazu, die Anfragen aufnehmen, Offerten mit Ihren Preisen
+          rechnen und Rechnungen nachfassen.</p>
+        <div class="pt-actions">
+          <a class="pt-button pt-primary" href="#was">So funktioniert es</a>
+          <a class="pt-button pt-secondary" href="#branchen">Für meine Branche ansehen</a>
+        </div>
+        <div class="pt-closing">
+          <span class="pt-check">✓</span>
+          <span>Sie entscheiden. Der Rest läuft.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-tasks" aria-live="polite">
+      <article class="pt-task pt-painter"
+        data-incoming="Offertanfrage · 3½ Zimmer"
+        data-processing="Positionen und Preise werden vorbereitet"
+        data-done="Offerte ist bereit zur Freigabe">
+        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
+        <strong>Malerbetrieb</strong>
+        <p data-pt-message>Offertanfrage · 3½ Zimmer</p>
+        <span class="pt-loading" aria-hidden="true"></span>
+        <span class="pt-done" aria-hidden="true">✓</span>
+      </article>
+
+      <article class="pt-task pt-bakery"
+        data-incoming="Bestellung · 2 Zöpfe für Samstag"
+        data-processing="Bestand und Abholzeit werden geprüft"
+        data-done="Bestellung ist bestätigt">
+        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
+        <strong>Bäckerei &amp; Hofladen</strong>
+        <p data-pt-message>Bestellung · 2 Zöpfe für Samstag</p>
+        <span class="pt-loading" aria-hidden="true"></span>
+        <span class="pt-done" aria-hidden="true">✓</span>
+      </article>
+
+      <article class="pt-task pt-office"
+        data-incoming="Unterlagen · Mandat Muster AG"
+        data-processing="Dokumente werden geprüft und geordnet"
+        data-done="Unterlagen sind vollständig abgelegt">
+        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
+        <strong>Treuhand &amp; Büro</strong>
+        <p data-pt-message>Unterlagen · Mandat Muster AG</p>
+        <span class="pt-loading" aria-hidden="true"></span>
+        <span class="pt-done" aria-hidden="true">✓</span>
+      </article>
+    </div>
+
+    <div class="pt-flow" aria-hidden="true">
+      <i class="pt-flow-line pt-flow-one"></i>
+      <i class="pt-flow-line pt-flow-two"></i>
+      <i class="pt-flow-line pt-flow-three"></i>
+      <div class="pt-hub">
+        <span>PLAYER TWO</span>
+        <b data-pt-hub>bereitet alles vor</b>
+      </div>
+    </div>
+
+    <div class="pt-scroll" aria-hidden="true">
+      <span data-pt-scroll>Kurz scrollen</span>
+      <svg viewBox="0 0 24 24"><path d="M12 4v14m-6-6 6 6 6-6"></path></svg>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= Zwei Stufen ================= -->
+<!-- ================= branchen ================= -->
+<!-- ================= was ================= -->
+<section id="was">
+  <div class="wrap">
+    <span class="kicker auf">Kurz erklärt</span>
+    <h2 class="h2 auf">Künstliche Intelligenz macht die Arbeit, die sie heute schon kann.</h2>
+    <p class="lede auf">Und das ist mehr, als die meisten denken: Anfragen
+      aufnehmen, Offerten mit Ihren Preisen rechnen, Termine abmachen, Mails
+      beantworten, Rechnungen nachfassen. Was übrig bleibt, ist die Arbeit, für
+      die es Sie wirklich braucht — und die Zeit fürs Wesentliche.</p>
+
+    <div class="dreisatz stufe">
+      <article class="satz-karte">
+        <span class="nr">1</span>
+        <h3>Alles, was digital geht</h3>
+        <p>Wir schauen Ihre Woche an: Was jeden Tag anfällt und keine
+          Handschrift braucht, übernimmt die künstliche Intelligenz. Den Rest
+          machen Sie weiter selbst — weil es Sie dafür braucht.</p>
+      </article>
+      <article class="satz-karte">
+        <span class="nr">2</span>
+        <h3>Auf Ihrer Website, mit Ihren Zahlen</h3>
+        <p>Die Website bekommen Sie dazu, denn dort kommt die Arbeit herein.
+          Gerechnet wird mit Ihren Preisen, geschrieben in Ihrem Ton — auch
+          samstags früh und abends um zehn.</p>
+      </article>
+      <article class="satz-karte">
+        <span class="nr">3</span>
+        <h3>Sie behalten den Daumen drauf</h3>
+        <p>Nichts geht ohne Ihre Freigabe hinaus. Jeder digitale Mitarbeiter ist
+          gekennzeichnet und gibt sich nie als Mensch aus. Was ein Urteil
+          braucht, bleibt bei Ihnen.</p>
+      </article>
+    </div>
+
+    <p class="was-fuss auf"><b>Wir automatisieren Aufgaben, nicht Menschen.</b>
+      Die frei gewordene Zeit gehört Ihnen und Ihren Leuten — nicht dem nächsten
+      Auftrag.</p>
+  </div>
+</section>
+
+<!-- ================= stufen ================= -->
+<section id="stufen">
+  <div class="quer" id="quer">
+    <div class="quer-halt">
+      <div class="quer-kopf">
+      <div class="k-innen">
+        <div class="k-zeile">
+          <span class="kicker">Was Sie bekommen</span>
+          <span class="k-zaehler" id="k-zaehler">1 von 3</span>
+        </div>
+        <h2 class="h2" id="k-titel">Website</h2>
+        <p id="k-satz">Damit Sie gefunden werden — und danach weniger Post haben.</p>
+      </div>
+    </div>
+
+    <div class="quer-spur" id="quer-spur">
+      <section class="tafel" id="tafel-website" aria-label="Website">
+        <header class="tafel-kopf">
+          <span class="tafel-nr">1 von 3</span>
+          <h3>Website</h3>
+          <p>Damit Sie gefunden werden — und danach weniger Post haben.</p>
+        </header>
+        <div class="tafel-karten">
+        <article class="stufe-karte">
+          <span class="stufe-nr">Stufe 1</span>
+          <h3>Die Website</h3>
+          <p class="satz">Ihr Betrieb, wie er ist: sauber gezeigt, schnell geladen, bei Google und in den neuen Antwortsystemen auffindbar.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Arbeiten, Ihre Leistungen, Ihre Preise</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Gefunden werden ist eingebaut, nicht ein Zusatzmodul</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="web1">ab CHF 1'490</span>
+            <span class="lauf" data-lauf="web1">wenn Sie Texte und Bilder liefern. Mit Texten und Bildern von uns CHF 2'490. Dazu CHF 129 im Monat.</span>
+          </div>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
+        </article>
+
+        <article class="stufe-karte arbeitet">
+          <span class="stufe-nr">Stufe 2</span>
+          <h3>Die Website, die mitarbeitet</h3>
+          <p class="satz">Dieselbe Seite, aber sie nimmt Ihnen den Papierkram ab. Gleich unten sehen Sie das an einem Tag in Ihrer Branche.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Anfrage kommt herein, Offerte geht mit Ihren Preisen zurück</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Termine und Reservationen ohne Telefonrunde</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Mails werden beantwortet, nicht liegen gelassen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Kundendaten stehen sauber am gleichen Ort</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="web2">ab CHF 3'900</span>
+            <span class="lauf" data-lauf="web2">wenn Sie Texte und Bilder liefern. Mit Texten und Bildern von uns CHF 4'900. Dazu CHF 290 im Monat.</span>
+          </div>
+          <a class="btn btn-hell" href="#branchen">Für meine Branche ansehen</a>
+        </article>
+        </div>
+
+        <p class="immer-dabei">Immer dabei, ohne Aufpreis: technisches SEO · Schema-Markup · Freigabe der KI-Crawler · mobil und schnell · Impressum und Datenschutz · Google-Profil. Halbe Sachen bauen wir nicht.</p>
+      </section>
+
+      <section class="tafel" id="tafel-shop" aria-label="Webshop">
+        <header class="tafel-kopf">
+          <span class="tafel-nr">2 von 3</span>
+          <h3>Webshop</h3>
+          <p>Wenn Sie etwas verkaufen, das man in einen Korb legen kann.</p>
+        </header>
+        <div class="tafel-karten">
+        <article class="stufe-karte">
+          <span class="stufe-nr">Stufe 1</span>
+          <h3>Der Webshop</h3>
+          <p class="satz">Ihre Ware online, mit TWINT und Karte. Kein Katalog mit fünfhundert Artikeln, den nie jemand pflegt.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Die zwanzig Artikel, die achtzig Prozent Ihres Umsatzes machen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>TWINT, Karte und Rechnung eingerichtet</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung im Laden oder Versand, wie Sie wollen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Produkttexte und Bilder, die verkaufen</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="shop1">ab CHF 1'990</span>
+            <span class="lauf" data-lauf="shop1">wenn Sie Produktdaten, Texte und Bilder liefern. Mit Produkttexten und Bildern von uns CHF 3'400. Dazu CHF 179 im Monat.</span>
+          </div>
+          <a class="btn btn-linie" href="#kontakt">Anfrage stellen</a>
+        </article>
+
+        <article class="stufe-karte arbeitet">
+          <span class="stufe-nr">Stufe 2</span>
+          <h3>Der Webshop, der mitarbeitet</h3>
+          <p class="satz">Derselbe Shop, aber die Bestellungen laufen nicht mehr über Ihren Feierabend.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Bestellungen werden bestätigt, ohne dass Sie tippen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Fragt jemand nach der Lieferung, antwortet jemand</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie sehen früh, wenn ein Renner ausgeht</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Retouren und Rückfragen vorbereitet, Sie entscheiden</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="shop2">ab CHF 4'900</span>
+            <span class="lauf" data-lauf="shop2">wenn Sie Produktdaten, Texte und Bilder liefern. Mit Produkttexten und Bildern von uns CHF 5'800. Dazu CHF 390 im Monat.</span>
+          </div>
+          <a class="btn btn-hell" href="#kontakt">Anfrage stellen</a>
+        </article>
+        </div>
+
+        <p class="immer-dabei">Immer dabei, ohne Aufpreis: technisches SEO · TWINT und Karte · Versand und Abholung · mobil und schnell · Impressum, Datenschutz und AGB · Google-Profil. Halbe Sachen bauen wir nicht.</p>
+      </section>
+
+      <section class="tafel" id="tafel-anwendung" aria-label="Anwendung">
+        <header class="tafel-kopf">
+          <span class="tafel-nr">3 von 3</span>
+          <h3>Anwendung</h3>
+          <p>Für den einen Ablauf, den kein fertiges Werkzeug abbildet.</p>
+        </header>
+        <div class="tafel-karten">
+        <article class="stufe-karte">
+          <span class="stufe-nr">Stufe 1</span>
+          <h3>Die Anwendung</h3>
+          <p class="satz">Buchung, Kundenportal, Mitarbeiterbereich, Auftragsverwaltung. Gebaut auf Ihren Ablauf, nicht auf den von jemand anderem.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Genau Ihr Ablauf, mit Ihren Begriffen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Leute und Ihre Kunden bekommen je ihren Zugang</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft auf Schweizer Servern</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Gibt es das fertig zu kaufen, sagen wir Ihnen das</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="app1">ab CHF 2'900</span>
+            <span class="lauf" data-lauf="app1">nach Aufwand, Fixpreis nach dem Gespräch. Dazu CHF 249 im Monat.</span>
+          </div>
+          <a class="btn btn-linie" href="#kontakt">Anfrage stellen</a>
+        </article>
+
+        <article class="stufe-karte arbeitet">
+          <span class="stufe-nr">Stufe 2</span>
+          <h3>Die Anwendung, die mitarbeitet</h3>
+          <p class="satz">Dieselbe Anwendung, aber jemand bedient sie mit. Auch nachts, auch am Samstag.</p>
+          <ul class="kann">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Erfasst, ordnet zu und bereitet vor</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Meldet, was hängt, bevor Sie es merken</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Schreibt die Rückmeldung, Sie lesen sie nur noch</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Jeder Schritt ist protokolliert und nachvollziehbar</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+          </ul>
+          <div class="stufe-preis">
+            <span class="p" data-preis="app2">ab CHF 5'900</span>
+            <span class="lauf" data-lauf="app2">nach Aufwand, Fixpreis nach dem Gespräch. Dazu CHF 490 im Monat.</span>
+          </div>
+          <a class="btn btn-hell" href="#kontakt">Anfrage stellen</a>
+        </article>
+        </div>
+
+        <p class="immer-dabei">Immer dabei, ohne Aufpreis: Schweizer Server · Rollen und Rechte · Sicherung und Wiederherstellung · mobil und schnell · Datenschutz nach DSG · Einschulung Ihrer Leute. Halbe Sachen bauen wir nicht.</p>
+      </section>
+      </div>
+
+      <div class="quer-leiste" role="tablist" aria-label="Zwischen den drei Angeboten wechseln">
+        <button type="button" class="quer-punkt an" data-zu="0"><span class="vs">Website</span></button>
+        <button type="button" class="quer-punkt" data-zu="1"><span class="vs">Webshop</span></button>
+        <button type="button" class="quer-punkt" data-zu="2"><span class="vs">Anwendung</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= regal ================= -->
+<section id="regal">
+  <div class="wrap">
+    <div class="regal-kopf">
+      <div>
+        <span class="kicker auf">Fertige Lösungen</span>
+        <h2 class="h2 auf">Ihre Lösung steht schon im Regal.</h2>
+        <p class="lede auf">Wir bauen fertig vor. Sie schauen an, wählen aus, wir
+          übertragen es auf Ihren Betrieb. Jedes Stück wird genau einmal vergeben.
+          Drei Beispiele — im Regal liegt mehr.</p>
+      </div>
+      <a class="btn btn-voll auf" href="loesungen.html">Ins Regal</a>
+    </div>
+
+    <div class="stuecke stufe" id="stuecke">
+      <article class="stueck" data-sorte="website">
+        <div class="schau schau-web" aria-hidden="true">
+              <div class="leiste"><i></i><i></i><i></i><span></span></div>
+              <div class="blatt"><div class="rollt">
+                <div class="v-kopf"></div><div class="v-bild"></div>
+                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
+                <div class="v-knopf"></div>
+                <div class="v-zwei"><span></span><span></span></div>
+                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
+              </div></div>
+            </div>
+        <div class="inhalt">
+          <span class="branche-marke">Website · Maler und Handwerk</span>
+          <h3>Malerbetrieb</h3>
+          <p class="meta">Eine Seite. Arbeiten, Leistungen, Offertanfrage.</p>
+          <div class="fuss">
+            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
+            <span class="frei">Frei</span>
+          </div>
+        </div>
+      </article>
+      <article class="stueck" data-sorte="shop">
+        <div class="schau schau-shop" aria-hidden="true">
+              <div class="leiste"><i></i><i></i><i></i><span></span></div>
+              <div class="blatt">
+                <div class="v-raster">
+                  <b style="--n:0"></b><b style="--n:1"></b><b style="--n:2"></b>
+                  <b style="--n:3"></b><b style="--n:4"></b><b style="--n:5"></b>
+                </div>
+                <div class="v-korb"></div>
+              </div>
+            </div>
+        <div class="inhalt">
+          <span class="branche-marke">Webshop · Bäckerei und Hofladen</span>
+          <h3>Hofladen</h3>
+          <p class="meta">Shop bis 50 Artikel. Abholung, Versand, TWINT.</p>
+          <div class="fuss">
+            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
+            <span class="frei">Frei</span>
+          </div>
+        </div>
+      </article>
+      <article class="stueck" data-sorte="anwendung">
+        <div class="schau schau-app" aria-hidden="true">
+              <div class="leiste"><i></i><i></i><i></i><span></span></div>
+              <div class="blatt">
+                <div class="v-reihe" style="--n:0"><em></em><u></u></div>
+                <div class="v-reihe" style="--n:1"><em></em><u></u></div>
+                <div class="v-reihe" style="--n:2"><em></em><u></u></div>
+                <div class="v-reihe" style="--n:3"><em></em><u></u></div>
+              </div>
+            </div>
+        <div class="inhalt">
+          <span class="branche-marke">Anwendung · Restaurant und Café</span>
+          <h3>Tischreservation</h3>
+          <p class="meta">Tischplan, Bestätigung, Erinnerung, Gruppenanfragen.</p>
+          <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
+          <div class="fuss">
+            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
+            <span class="frei">Frei</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="regal-mehr auf">
+      <a href="loesungen.html">Alle Lösungen ansehen und nach Ihrer Branche filtern</a>
+    </p>
+  </div>
+</section>
+
+<!-- ================= branchen ================= -->
+<section class="branchen" id="branchen">
+  <div class="wrap">
+    <span class="kicker auf">Was das für Sie heisst</span>
+    <h2 class="h2 auf">Suchen Sie Ihre Branche.</h2>
+    <p class="lede auf">Wir zeigen den Tag, wie er dann läuft. Jede Branche hat einen anderen Papierkram — hier sehen Sie, was ohne Sie läuft und wo Sie noch entscheiden.</p>
+
+    <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
+    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Im Regal liegen
+      Lösungen für <a href="loesungen.html">über hundert Branchen</a> — von der
+      Physiotherapie über die Garage bis zur Dachdeckerei.</p>
+
+    <div class="fluss-raster">
+      <div class="fluss-kopf auf">
+        <h3 id="fluss-titel">Malerbetrieb</h3>
+        <p id="fluss-satz">Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.</p>
+        <div class="womit" id="fluss-womit"></div>
+      </div>
+
+      <div class="schirm auf" id="schirm">
+        <div class="schirm-kopf"><i></i><span id="schirm-titel">Ihr Tag</span></div>
+        <ul class="schritte-liste" id="fluss-schritte" aria-live="polite"></ul>
+        <div class="fluss-fuss">Alles, was hier steht, passiert erst nach Ihrer Freigabe. Sie behalten den Daumen drauf.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ablauf ================= -->
+<section id="ablauf" class="ablauf">
+  <div class="wrap">
+    <span class="kicker auf">So läuft es ab</span>
+    <h2 class="h2 auf">Vier Schritte, und Sie sind live.</h2>
+    <p class="lede auf">Die Tage daneben gelten für eine Seite, die gefunden werden
+      soll. Was mehr können muss, braucht mehr Vorlauf. Was das heisst, steht
+      darunter.</p>
+
+    <div class="schritte" id="schritte">
+      <article class="schritt">
+        <div class="punkt">1</div>
+        <h3>Wir reden kurz</h3>
+        <p>Dreissig Minuten, bei Ihnen im Betrieb oder am Telefon. Wir schauen an, was Sie machen und wer Sie anfragen soll.</p>
+        <div class="dauer">Tag 1</div>
+      </article>
+      <article class="schritt">
+        <div class="punkt">2</div>
+        <h3>Sie liefern, was nur Sie haben</h3>
+        <p>Fotos von Ihren Arbeiten, Ihre Preise, Ihre Referenzen. Wir sagen genau, was fehlt, und fragen nach, statt zu warten.</p>
+        <div class="dauer">Tag 1 bis 3</div>
+      </article>
+      <article class="schritt">
+        <div class="punkt">3</div>
+        <h3>Wir bauen, Sie schauen zu</h3>
+        <p>Sie sehen die fertige Seite, bevor Sie etwas bezahlen. Eine Korrekturrunde ist inbegriffen.</p>
+        <div class="dauer">Tag 3 bis 9</div>
+      </article>
+      <article class="schritt">
+        <div class="punkt">4</div>
+        <h3>Live, und dann geben wir acht</h3>
+        <p>Sie geben frei, wir schalten auf. Die Rechnung kommt danach, in einem Betrag. Betrieb und Pflege kosten CHF 154 im Monat und sind monatlich kündbar.</p>
+        <div class="dauer">Tag 10</div>
+      </article>
+    </div>
+
+    <h3 class="dauer-frage auf">Wie lange dauert es wirklich?</h3>
+    <div class="fragen zwei stufe">
+      <article class="frage">
+        <span class="f-titel">Stufe 1</span>
+        <div class="f-zahl">Ein paar Tage</div>
+        <p>Sie wählen eine aus dem Regal. Wir setzen Ihre Bilder, Ihre Texte und
+          Ihre Preise ein und schalten auf.</p>
+      </article>
+      <article class="frage">
+        <span class="f-titel">Stufe 2</span>
+        <div class="f-zahl">Erst reden, dann bauen</div>
+        <p>Vorher klären wir genau, was sie Ihnen abnehmen soll. Erst wenn das
+          steht, bauen wir. Sonst macht sie nachher etwas anderes, als Sie sich
+          vorgestellt haben.</p>
+      </article>
+    </div>
+        <p>Grössere Vorhaben bekommen einen eigenen Termin. Den nennen wir Ihnen
+          vor der Zusage, nicht danach.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= herkunft ================= -->
+<section id="herkunft">
+  <div class="wrap">
+    <div class="herkunft-raster">
+      <div>
+        <span class="kicker auf">Wer dahintersteckt</span>
+        <h2 class="h2 auf">Wir kommen aus dem Betrieb, nicht aus der Agentur.</h2>
+        <p class="lede auf">Wir sind Kristian und Kristina aus dem Thurgau. Wir haben
+          Teams im Tagesgeschäft geführt und Kunden am Tresen bedient, bevor wir
+          Websites gebaut haben. Darum wissen wir, wie sich ein Montagmorgen mit
+          fehlendem Personal anfühlt — und darum bauen wir keine Seite, die schön
+          aussieht und nichts bringt.</p>
+
+        <div class="koepfe auf">
+          <div class="kopf">
+            <div class="kreis">
+              <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
+                width="76" height="76" loading="lazy">
+            </div>
+            <div><div class="n">Kristina</div><div class="r">Verkauf und Marketing</div></div>
+          </div>
+          <div class="kopf">
+            <div class="kreis">
+              <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
+                width="76" height="76" loading="lazy">
+            </div>
+            <div><div class="n">Kristian</div><div class="r">Technik und Prozesse</div></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="zahl-karte auf">
+        <div class="gross">Abend und Wochenende<br>gehören Ihnen</div>
+        <p>Offerten schreiben, Mails beantworten, Termine verschieben, Rechnungen
+          nachfassen: Das bleibt bei den meisten Betrieben für den Feierabend und
+          das Wochenende liegen. Nichts davon muss von Ihnen erledigt werden.</p>
+        <p>Wir automatisieren Aufgaben, nicht Menschen. Was dabei frei wird, gehört
+          Ihnen und Ihrer Familie, nicht dem nächsten Auftrag.</p>
+        <div class="quelle">Wofür wir stehen, seit dem ersten Tag</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= referenzen ================= -->
+<!-- ACHTUNG: Die zehn Stimmen in diesem Band sind erfunden.
+     Sie stehen nur in dieser Vorschlagsfassung, damit die Seite im
+     Endzustand beurteilt werden kann. Vor dem Livegang durch echte
+     Betriebe ersetzen oder den Abschnitt leeren. -->
+<section id="referenzen">
+  <div class="wrap">
+    <span class="kicker auf">Referenzen</span>
+    <h2 class="h2 auf">Was Betriebe danach sagen.</h2>
+    <p class="lede auf"><b>Musterstimmen.</b> Wir gehen erst mit echten Kunden
+      live — solange keine echte Referenz hier steht, behaupten wir auch keine.
+      So sieht der Abschnitt aus, sobald die erste da ist. Fahren Sie mit der
+      Maus darüber, dann hält das Band an.</p>
+  </div>
+
+  <div class="ref-band" id="ref-band">
+    <div class="ref-band-spur">
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#1E6CFF" aria-hidden="true">BM</span>
+            <figcaption>
+              <span class="stimme-name">B. Müller</span>
+              <span class="stimme-ort">Malergeschäft, Weinfelden</span>
+            </figcaption>
+          </div>
+          <blockquote>Ich habe zwanzig Jahre lang Offerten nach dem Znacht geschrieben. Jetzt liegen sie am Morgen bereit und ich gebe sie frei. Die Abende gehören wieder mir.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#0B7285" aria-hidden="true">SK</span>
+            <figcaption>
+              <span class="stimme-name">S. Keller</span>
+              <span class="stimme-ort">Bäckerei, Amriswil</span>
+            </figcaption>
+          </div>
+          <blockquote>Die Vorbestellungen laufen über die Seite, bis achtzehn Uhr. Um fünf steht die Liste in der Backstube. Kein Zettelkrieg mehr am Telefon.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#7048E8" aria-hidden="true">AF</span>
+            <figcaption>
+              <span class="stimme-name">A. Frei</span>
+              <span class="stimme-ort">Physiotherapie, St. Gallen</span>
+            </figcaption>
+          </div>
+          <blockquote>Das Telefon hat während jeder Behandlung geklingelt. Heute buchen die Patientinnen selbst, und ich bin bei dem, der auf der Liege liegt.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#2B8A3E" aria-hidden="true">MB</span>
+            <figcaption>
+              <span class="stimme-name">M. Brunner</span>
+              <span class="stimme-ort">Garage, Frauenfeld</span>
+            </figcaption>
+          </div>
+          <blockquote>Vor dem Pneuwechsel war der Frühling die Hölle. Jetzt kommen die Termine geordnet herein, und ich weiss am Montag, wie die Woche aussieht.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#C2410C" aria-hidden="true">NH</span>
+            <figcaption>
+              <span class="stimme-name">N. Hasler</span>
+              <span class="stimme-ort">Coiffeursalon, Romanshorn</span>
+            </figcaption>
+          </div>
+          <blockquote>Zwischen zwei Kundinnen ans Telefon rennen ist vorbei. Wer absagt, wird nachbesetzt, ohne dass ich etwas tun muss.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#0C8599" aria-hidden="true">TR</span>
+            <figcaption>
+              <span class="stimme-name">T. Roth</span>
+              <span class="stimme-ort">Hausverwaltung, Kreuzlingen</span>
+            </figcaption>
+          </div>
+          <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#5F3DC4" aria-hidden="true">CW</span>
+            <figcaption>
+              <span class="stimme-name">C. Wegmüller</span>
+              <span class="stimme-ort">Treuhandbüro, Wil</span>
+            </figcaption>
+          </div>
+          <blockquote>Belege einfordern war ein Drittel meiner Zeit. Das macht jetzt jemand anderes, freundlich und hartnäckig. Ich rechne wieder, statt zu mahnen.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#A61E4D" aria-hidden="true">PS</span>
+            <figcaption>
+              <span class="stimme-name">P. Signer</span>
+              <span class="stimme-ort">Hofladen, Bürglen</span>
+            </figcaption>
+          </div>
+          <blockquote>Am Wochenende stand ich zwischen Feld und Telefon. Die Bestellungen laufen jetzt allein, und ich war das erste Mal seit Jahren am Sonntag mit den Kindern am See.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#1864AB" aria-hidden="true">LG</span>
+            <figcaption>
+              <span class="stimme-name">L. Gantenbein</span>
+              <span class="stimme-ort">Restaurant, Arbon</span>
+            </figcaption>
+          </div>
+          <blockquote>Reservationen während dem Service haben uns jeden Abend zerrissen. Heute bestätigt sich das selbst, und wir kochen.</blockquote>
+        </figure>
+        <figure class="stimme">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#495057" aria-hidden="true">DZ</span>
+            <figcaption>
+              <span class="stimme-name">D. Zeller</span>
+              <span class="stimme-ort">Schreinerei, Sirnach</span>
+            </figcaption>
+          </div>
+          <blockquote>Anfragen sind bei mir früher liegen geblieben, ehrlich gesagt. Jetzt bleibt keine mehr liegen, und ich habe drei Aufträge, die ich sonst nie bekommen hätte.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#1E6CFF" aria-hidden="true">BM</span>
+            <figcaption>
+              <span class="stimme-name">B. Müller</span>
+              <span class="stimme-ort">Malergeschäft, Weinfelden</span>
+            </figcaption>
+          </div>
+          <blockquote>Ich habe zwanzig Jahre lang Offerten nach dem Znacht geschrieben. Jetzt liegen sie am Morgen bereit und ich gebe sie frei. Die Abende gehören wieder mir.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#0B7285" aria-hidden="true">SK</span>
+            <figcaption>
+              <span class="stimme-name">S. Keller</span>
+              <span class="stimme-ort">Bäckerei, Amriswil</span>
+            </figcaption>
+          </div>
+          <blockquote>Die Vorbestellungen laufen über die Seite, bis achtzehn Uhr. Um fünf steht die Liste in der Backstube. Kein Zettelkrieg mehr am Telefon.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#7048E8" aria-hidden="true">AF</span>
+            <figcaption>
+              <span class="stimme-name">A. Frei</span>
+              <span class="stimme-ort">Physiotherapie, St. Gallen</span>
+            </figcaption>
+          </div>
+          <blockquote>Das Telefon hat während jeder Behandlung geklingelt. Heute buchen die Patientinnen selbst, und ich bin bei dem, der auf der Liege liegt.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#2B8A3E" aria-hidden="true">MB</span>
+            <figcaption>
+              <span class="stimme-name">M. Brunner</span>
+              <span class="stimme-ort">Garage, Frauenfeld</span>
+            </figcaption>
+          </div>
+          <blockquote>Vor dem Pneuwechsel war der Frühling die Hölle. Jetzt kommen die Termine geordnet herein, und ich weiss am Montag, wie die Woche aussieht.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#C2410C" aria-hidden="true">NH</span>
+            <figcaption>
+              <span class="stimme-name">N. Hasler</span>
+              <span class="stimme-ort">Coiffeursalon, Romanshorn</span>
+            </figcaption>
+          </div>
+          <blockquote>Zwischen zwei Kundinnen ans Telefon rennen ist vorbei. Wer absagt, wird nachbesetzt, ohne dass ich etwas tun muss.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#0C8599" aria-hidden="true">TR</span>
+            <figcaption>
+              <span class="stimme-name">T. Roth</span>
+              <span class="stimme-ort">Hausverwaltung, Kreuzlingen</span>
+            </figcaption>
+          </div>
+          <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#5F3DC4" aria-hidden="true">CW</span>
+            <figcaption>
+              <span class="stimme-name">C. Wegmüller</span>
+              <span class="stimme-ort">Treuhandbüro, Wil</span>
+            </figcaption>
+          </div>
+          <blockquote>Belege einfordern war ein Drittel meiner Zeit. Das macht jetzt jemand anderes, freundlich und hartnäckig. Ich rechne wieder, statt zu mahnen.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#A61E4D" aria-hidden="true">PS</span>
+            <figcaption>
+              <span class="stimme-name">P. Signer</span>
+              <span class="stimme-ort">Hofladen, Bürglen</span>
+            </figcaption>
+          </div>
+          <blockquote>Am Wochenende stand ich zwischen Feld und Telefon. Die Bestellungen laufen jetzt allein, und ich war das erste Mal seit Jahren am Sonntag mit den Kindern am See.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#1864AB" aria-hidden="true">LG</span>
+            <figcaption>
+              <span class="stimme-name">L. Gantenbein</span>
+              <span class="stimme-ort">Restaurant, Arbon</span>
+            </figcaption>
+          </div>
+          <blockquote>Reservationen während dem Service haben uns jeden Abend zerrissen. Heute bestätigt sich das selbst, und wir kochen.</blockquote>
+        </figure>
+        <figure class="stimme" aria-hidden="true">
+          <div class="stimme-kopf">
+            <span class="stimme-bild" style="--f:#495057" aria-hidden="true">DZ</span>
+            <figcaption>
+              <span class="stimme-name">D. Zeller</span>
+              <span class="stimme-ort">Schreinerei, Sirnach</span>
+            </figcaption>
+          </div>
+          <blockquote>Anfragen sind bei mir früher liegen geblieben, ehrlich gesagt. Jetzt bleibt keine mehr liegen, und ich habe drei Aufträge, die ich sonst nie bekommen hätte.</blockquote>
+        </figure>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= team ================= -->
+<section class="team-band" id="team">
+  <div class="wrap">
+    <div class="team-raster">
+      <div>
+        <span class="kicker auf">Wie wir das zu zweit schaffen</span>
+        <h2 class="h2 auf">Zwei Menschen und ein Team digitaler Mitarbeitender.</h2>
+        <p class="lede auf">Die digitalen Kolleginnen und Kollegen übernehmen Routine und Technik, damit wir bei Ihnen vor Ort sein können, zuhören und entscheiden. Jede und jeder von ihnen hat einen Namen, eine Aufgabe und klare Grenzen. Sie können ihnen bei der Arbeit zusehen.</p>
+        <div class="punkt-live"><i></i> Wenn nichts zu tun ist, schlafen sie. Das sehen Sie auch.</div>
+        <div class="cta-reihe" style="margin-top:28px">
+          <a class="btn btn-hell" href="team.html">Das Team ansehen</a>
+        </div>
+      </div>
+      <div class="team-schau auf">
+        <div class="menschen-zwei">
+          <figure>
+            <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
+              width="96" height="96" loading="lazy">
+            <figcaption>Kristina</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
+              width="96" height="96" loading="lazy">
+            <figcaption>Kristian</figcaption>
+          </figure>
+        </div>
+
+        <div class="digital-reihe">
+          <span class="d-titel">Ihr digitales Team</span>
+          <ul class="kreis-reihe">
+          <li class="k"><img src="assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
+            title="Lea, Verkauf und Kundenstamm" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
+            title="Ferro, Website-Produktion" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/sora.webp" alt="Sora, Texte"
+            title="Sora, Texte" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
+            title="Kairo, Auffindbarkeit" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
+            title="Flora, Rechnungen" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
+            title="Leon, Technik und Sicherheit" width="64" height="64" loading="lazy"></li>
+            <li class="k mehr" id="team-rest">+53</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= kontakt ================= -->
+<section id="kontakt">
+  <div class="wrap">
+    <span class="kicker auf">Kontakt</span>
+    <h2 class="h2 auf">Reden wir kurz.</h2>
+
+    <div class="kontakt-raster">
+      <div class="kontakt-info auf">
+        <p>Sagen Sie uns in zwei Sätzen, was Sie brauchen. Wir melden uns innerhalb von 24 Stunden, an Werktagen meist schneller.</p>
+        <div class="zeile"><span class="lbl">Telefon</span><a href="tel:+41000000000">Platzhalter</a></div>
+        <div class="zeile"><span class="lbl">Mail</span><a href="mailto:hallo@player-two.ch">hallo@player-two.ch</a></div>
+        <div class="zeile"><span class="lbl">Wo</span><span>Thurgau, für die ganze Ostschweiz</span></div>
+      </div>
+
+      <form id="anfrage" novalidate>
+        <div class="form-inhalt">
+          <div class="feld">
+            <label for="f-name">Ihr Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="feld">
+            <label for="f-mail">E-Mail</label>
+            <input id="f-mail" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="feld">
+            <label for="f-text">Worum geht es?</label>
+            <textarea id="f-text" name="message" required placeholder="Zum Beispiel: Malergeschäft, vier Mitarbeitende, wir haben noch keine Website."></textarea>
+          </div>
+          <div class="form-fuss">
+            <button class="btn btn-voll" type="submit">Anfrage senden</button>
+            <small>Ihre Angaben bleiben bei uns. Wir schreiben Ihnen nur zu dieser Anfrage.</small>
+          </div>
+        </div>
+        <div class="danke" id="danke">
+          <svg class="haken-gross" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25"/><path d="M17 29l7.5 7.5L40 20"/></svg>
+          <h3 style="font-size:24px;margin-bottom:8px">Angekommen.</h3>
+          <p style="color:#3A4553">Wir melden uns innerhalb von 24 Stunden.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <div class="fuss-marke">
+          <img src="assets/marke.png" alt="" width="30" height="30">
+          <span>Player Two</span>
+        </div>
+        <p style="max-width:34ch;font-size:15px">Digitale Arbeit für Schweizer KMU.</p>
+        <p style="max-width:34ch;font-size:15px;margin-top:6px">Sie sind Player One. Wir spielen mit.</p>
+      </div>
+      <div class="fuss-links">
+        <a href="#stufen">Angebot</a>
+    <a href="loesungen.html">Fertige Lösungen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="team.html">Team</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+    <div class="fuss-klein">
+      <span>© <span id="jahr">2026</span> Player Two, Thurgau</span>
+      <span>Preise, Referenzen und Bilder sind in dieser Fassung Platzhalter.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- Kleinigkeiten ---------- */
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+var nav = document.getElementById('nav');
+addEventListener('scroll', function(){
+  if (scrollY > 40) nav.classList.add('fest'); else nav.classList.remove('fest');
+}, {passive:true});
+
+/* ---------- Auftritte ---------- */
+var auftritt = new IntersectionObserver(function(eintraege){
+  eintraege.forEach(function(e){
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    if (e.target.classList.contains('stufe')) {
+      setTimeout(function(){ e.target.classList.add('fertig'); }, 900);
+    }
+    auftritt.unobserve(e.target);
+  });
+}, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.auf,.stufe').forEach(function(el){ auftritt.observe(el); });
+
+/* ---------- Regal vorne: nur der Weg zur Branchenanimation ----------
+   Gefiltert wird im Katalog auf loesungen.html, nicht hier. */
+(function(){
+  var regal = document.getElementById('stuecke');
+  if (!regal) return;
+  regal.addEventListener('click', function(ev){
+    var k = ev.target.closest ? ev.target.closest('.tagschau') : null;
+    if (!k) return;
+    var ziel = document.getElementById('branchen');
+    if (!ziel) return;
+    if (typeof hartSpringen === 'function') hartSpringen(ziel);
+    else ziel.scrollIntoView();
+    var knopf = document.querySelector('#reiter [data-branche="' + k.getAttribute('data-branche') + '"]');
+    if (knopf) knopf.click();
+  });
+
+  /* Wer aus dem Katalog kommt, landet direkt auf seiner Branche. */
+  var mit = (location.search.match(/[?&]branche=([a-z]+)/) || [])[1];
+  if (mit) {
+    addEventListener('load', function(){
+      var knopf = document.querySelector('#reiter [data-branche="' + mit + '"]');
+      if (knopf) knopf.click();
+    });
+  }
+})();
+
+/* ---------- Die seitliche Strecke ---------- */
+(function(){
+  var quer = document.getElementById('quer');
+  var spur = document.getElementById('quer-spur');
+  if (!quer || !spur) return;
+  var tafeln = spur.querySelectorAll('.tafel');
+  var punkte = quer.querySelectorAll('.quer-punkt');
+  var aus = matchMedia('(max-width:1024px), (prefers-reduced-motion: reduce)');
+  var weg = 0, anzeige = -1;
+
+  /* Anderthalb Bildschirmbreiten Scrollweg pro Tafel: die Strecke läuft
+     langsamer durch und wirkt nicht gehetzt. */
+  var TEMPO = 1.5;
+  var strecke = 0;
+
+  function messen(){
+    if (aus.matches){ quer.style.height = ''; spur.style.transform = ''; weg = 0; return; }
+    var sicht = spur.parentElement.clientWidth;
+    weg = spur.scrollWidth - sicht;
+    strecke = weg * TEMPO;
+    quer.style.height = (window.innerHeight + strecke) + 'px';
+    schieben();
+  }
+
+  var kopf = quer.querySelector('.quer-kopf');
+  var kTitel = document.getElementById('k-titel');
+  var kSatz = document.getElementById('k-satz');
+  var kZaehler = document.getElementById('k-zaehler');
+  var KOEPFE = [["Website", "Damit Sie gefunden werden — und danach weniger Post haben."],
+                ["Webshop", "Wenn Sie etwas verkaufen, das man in einen Korb legen kann."],
+                ["Anwendung", "Für den einen Ablauf, den kein fertiges Werkzeug abbildet."]];
+
+  function schieben(){
+    if (aus.matches || weg <= 0) return;
+    var oben = quer.getBoundingClientRect().top;
+    var anteil = Math.min(1, Math.max(0, -oben / strecke));
+    spur.style.transform = 'translate3d(' + (-anteil * weg) + 'px,0,0)';
+    var jetzt = Math.min(tafeln.length - 1, Math.round(anteil * (tafeln.length - 1)));
+    if (jetzt !== anzeige){
+      anzeige = jetzt;
+      for (var i = 0; i < punkte.length; i++){
+        punkte[i].classList.toggle('an', i === jetzt);
+        punkte[i].setAttribute('aria-selected', i === jetzt ? 'true' : 'false');
+      }
+      /* Kurz ausblenden, Text tauschen, wieder einblenden. */
+      kopf.classList.add('wechselt');
+      setTimeout(function(){
+        kTitel.textContent = KOEPFE[anzeige][0];
+        kSatz.textContent = KOEPFE[anzeige][1];
+        kZaehler.textContent = (anzeige + 1) + ' von ' + tafeln.length;
+        kopf.classList.remove('wechselt');
+      }, 170);
+    }
+  }
+
+  for (var i = 0; i < punkte.length; i++){
+    punkte[i].addEventListener('click', function(){
+      var zu = +this.getAttribute('data-zu');
+      var ziel = quer.getBoundingClientRect().top + window.pageYOffset
+               + (strecke * zu / (tafeln.length - 1));
+      window.scrollTo({top: ziel, behavior: 'smooth'});
+    });
+  }
+
+  addEventListener('scroll', schieben, {passive:true});
+  addEventListener('resize', messen);
+  aus.addEventListener('change', messen);
+  messen();
+  /* Nochmals, wenn Schriften und Bilder die Breiten verschoben haben. */
+  addEventListener('load', messen);
+})();
+
+/* ---------- Sprungmarken ohne Durchfahrt ---------- */
+/* Wer aus dem Menü auf einen Abschnitt springt, will dort sein und nicht
+   unterwegs jedem Abschnitt beim Auftritt zusehen. Also hart springen und
+   alles Uebersprungene sofort fertig zeigen. */
+function fertigZeigen(bisY){
+  document.querySelectorAll('.auf,.stufe').forEach(function(el){
+    if (el.getBoundingClientRect().top + window.pageYOffset < bisY){
+      el.classList.add('in');
+      if (el.classList.contains('stufe')) el.classList.add('fertig');
+      auftritt.unobserve(el);
+    }
+  });
+}
+
+function hartSpringen(ziel){
+  var hoch = document.documentElement;
+  hoch.style.scrollBehavior = 'auto';
+  ziel.scrollIntoView();
+  fertigZeigen(window.pageYOffset);
+  setTimeout(function(){ hoch.style.scrollBehavior = ''; }, 80);
+}
+
+function markeFinden(marke){
+  if (!marke || marke.length < 2) return null;
+  try { return document.querySelector(marke); } catch (e) { return null; }
+}
+
+document.addEventListener('click', function(ev){
+  if (ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+  var a = ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+  if (!a) return;
+  var ziel = markeFinden(a.getAttribute('href'));
+  if (!ziel) return;
+  ev.preventDefault();
+  hartSpringen(ziel);
+  history.pushState(null, '', a.getAttribute('href'));
+});
+
+if (location.hash){
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var ansteuern = function(){
+    var ziel = markeFinden(location.hash);
+    if (ziel) hartSpringen(ziel);
+  };
+  ansteuern();
+  /* Nochmals, sobald Bilder und Schriften die Höhen verschoben haben. */
+  window.addEventListener('load', ansteuern);
+}
+
+
+/* ---------- Die Erledigt-Liste, Signature ---------- */
+function listeSetzen(liste, wert){
+  var lis = liste.children, n = lis.length;
+  for (var i=0;i<n;i++){
+    var start = i / n * .55;
+    var e = Math.max(0, Math.min(1, (wert - start) / .45));
+    if (lis[i]._e !== e) { lis[i]._e = e; lis[i].style.setProperty('--e', e.toFixed(3)); }
+  }
+}
+
+/* ---------- Der Ablauf, Linie zeichnet sich ---------- */
+var schritte = document.getElementById('schritte');
+var schrittEls = schritte ? [].slice.call(schritte.querySelectorAll('.schritt')) : [];
+var zeichenWert = -1;
+function ablaufZeichnen(){
+  if (!schritte) return;
+  var r = schritte.getBoundingClientRect();
+  var h = innerHeight;
+  var p = (h * .78 - r.top) / (r.height + h * .2);
+  p = Math.max(0, Math.min(1, p));
+  if (Math.abs(p - zeichenWert) > .004) {
+    zeichenWert = p;
+    schritte.style.setProperty('--zeichnen', p.toFixed(3));
+    schrittEls.forEach(function(s, i){
+      var an = p > (i + .35) / schrittEls.length;
+      if (s._an !== an) { s._an = an; s.classList.toggle('erreicht', an); }
+    });
+  }
+}
+addEventListener('scroll', ablaufZeichnen, {passive:true});
+addEventListener('resize', ablaufZeichnen);
+ablaufZeichnen();
+
+/* ============================================================
+   Branchenschalter mit gespieltem Ablauf
+   ============================================================ */
+var BRANCHEN = [
+  {
+    id:'handwerk', reiter:'Maler und Handwerk', titel:'Malerbetrieb',
+    satz:'Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.',
+    womit:['Offerte','Termin','Rechnung','Nachfassen'],
+    schirm:'Anfrage von Frau Bauer, Wängi',
+    schritte:[
+      {zeit:'08:14', txt:'Anfrage über Ihre Website: Innenanstrich, 3.5 Zimmer'},
+      {zeit:'08:14', txt:'Rückfragen gestellt: Fläche, Zustand, Wunschtermin'},
+      {zeit:'08:31', txt:'Offerte erstellt, mit Ihren Positionen und Ihren Preisen: CHF 3\u2019935'},
+      {zeit:'wartet auf Sie', txt:'Passt das so?', typ:'entscheid', knopf:'Offerte freigeben'},
+      {zeit:'08:32', txt:'Offerte versendet und Besichtigung vorgeschlagen'},
+      {zeit:'08:32', txt:'Kundin im Kundenstamm erfasst, Nachfassen in fünf Tagen geplant'},
+      {zeit:'nach dem Auftrag', txt:'Rechnung geschrieben, Zahlungseingang überwacht, Erinnerung bei Verzug', typ:'geld'}
+    ]
+  },
+  {
+    id:'gastro', reiter:'Restaurant und Café', titel:'Restaurant',
+    satz:'Das Telefon klingelt während dem Service. Muss es nicht.',
+    womit:['Reservation','Erinnerung','Bewertung','Auswertung'],
+    schirm:'Reservation für Freitag',
+    schritte:[
+      {zeit:'19:02', txt:'Reservation über Ihre Website: 4 Personen, Freitag 19:30'},
+      {zeit:'19:02', txt:'Tischplan geprüft, sofort bestätigt, Gast hat die Bestätigung'},
+      {zeit:'Donnerstag', txt:'Erinnerung an den Gast, damit der Tisch nicht leer bleibt'},
+      {zeit:'wartet auf Sie', txt:'Gruppe von 12 mit Sonderwunsch, nehmen wir das an?', typ:'entscheid', knopf:'Gruppe bestätigen'},
+      {zeit:'Samstag', txt:'Freundliche Bitte um eine Google-Bewertung, nur an Gäste, die da waren'},
+      {zeit:'Monatsende', txt:'Sie sehen, welche Abende voll sind und welche nicht'},
+      {zeit:'laufend', txt:'Rechnungen für Bankette geschrieben und überwacht', typ:'geld'}
+    ]
+  },
+  {
+    id:'termin', reiter:'Coiffeur und Studio', titel:'Coiffeursalon',
+    satz:'Jeder Anruf während dem Schneiden kostet Sie Zeit und Nerven.',
+    womit:['Terminbuchung','Erinnerung','Nachrücken','Wiederkommen'],
+    schirm:'Terminkalender',
+    schritte:[
+      {zeit:'21:40', txt:'Kundin bucht online, sieht nur Zeiten, die wirklich frei sind'},
+      {zeit:'21:40', txt:'Bestätigung sofort, Eintrag im Kalender'},
+      {zeit:'Vortag', txt:'Erinnerung, damit niemand vergisst'},
+      {zeit:'wartet auf Sie', txt:'Neue Kundin möchte Farbe und Schnitt, Zeit reicht knapp. Annehmen?', typ:'entscheid', knopf:'Termin annehmen'},
+      {zeit:'bei Absage', txt:'Der frei gewordene Platz wird sofort anderen angeboten'},
+      {zeit:'nach acht Wochen', txt:'Freundliche Erinnerung, dass der nächste Termin ansteht'},
+      {zeit:'monatlich', txt:'Offene Beträge im Blick, Quittungen automatisch', typ:'geld'}
+    ]
+  },
+  {
+    id:'laden', reiter:'Bäckerei und Hofladen', titel:'Bäckerei und Hofladen',
+    satz:'Vorbestellungen auf Zetteln, und am Samstag weiss niemand mehr, was gilt.',
+    womit:['Vorbestellung','Abholzeit','Saison','Stammkunden'],
+    schirm:'Bestellungen für Samstag',
+    schritte:[
+      {zeit:'Mittwoch', txt:'Vorbestellung über Ihre Website: 2 Zöpfe, Samstag 8 Uhr'},
+      {zeit:'Mittwoch', txt:'Bestätigung mit Abholzeit, Bestellung auf der Liste für die Backstube'},
+      {zeit:'laufend', txt:'Was nicht mehr da ist, verschwindet von der Seite. Erdbeeren durch, Zwetschgen da'},
+      {zeit:'wartet auf Sie', txt:'Bestellung über 40 Stück für einen Anlass. Schaffen wir das?', typ:'entscheid', knopf:'Bestellung annehmen'},
+      {zeit:'Samstag', txt:'Bezahlt wird online oder im Laden, der Beleg entsteht von selbst', typ:'geld'},
+      {zeit:'zur Saison', txt:'Stammkunden erfahren als Erste, wenn es die neue Ware gibt'},
+      {zeit:'Monatsende', txt:'Sie sehen, was sich verkauft hat und was liegen blieb'}
+    ]
+  },
+  {
+    id:'immobilien', reiter:'Hausverwaltung', titel:'Hausverwaltung',
+    satz:'Zehn Mieter, zehn Anrufe, und alle fragen dasselbe: was ist der Stand?',
+    womit:['Schadensmeldung','Handwerker','Portal','Abrechnung'],
+    schirm:'Meldung Objekt Rosenweg 4',
+    schritte:[
+      {zeit:'07:50', txt:'Mieter meldet einen Wasserschaden über das Portal, mit Foto'},
+      {zeit:'07:50', txt:'Fall angelegt, Dringlichkeit eingeschätzt, Eigentümer informiert'},
+      {zeit:'07:58', txt:'Passender Handwerker angefragt, Termin mit dem Mieter abgestimmt'},
+      {zeit:'wartet auf Sie', txt:'Kostenvoranschlag CHF 1\u2019240, über Ihrer Freigabegrenze', typ:'entscheid', knopf:'Auftrag freigeben'},
+      {zeit:'laufend', txt:'Mieter und Eigentümer sehen den Stand, ohne anzurufen'},
+      {zeit:'nach der Arbeit', txt:'Rechnung dem richtigen Objekt zugeordnet und verbucht', typ:'geld'},
+      {zeit:'jährlich', txt:'Unterlagen für die Abrechnung liegen beisammen, nicht in Ordnern'}
+    ]
+  },
+  {
+    id:'buero', reiter:'Treuhand und Büro', titel:'Treuhandbüro',
+    satz:'Die Hälfte der Arbeit ist, den Unterlagen hinterherzulaufen.',
+    womit:['Unterlagen','Fristen','Freigabe','Honorar'],
+    schirm:'Mandat Muster AG',
+    schritte:[
+      {zeit:'Montag', txt:'Mandant lädt die Unterlagen über das Portal hoch'},
+      {zeit:'Montag', txt:'Was fehlt, wird freundlich nachgefragt, mit Frist'},
+      {zeit:'Dienstag', txt:'Eingang bestätigt, Ablage sortiert, nichts liegt im Mailfach'},
+      {zeit:'wartet auf Sie', txt:'Abschluss geprüft, bereit zum Versand', typ:'entscheid', knopf:'Freigeben und senden'},
+      {zeit:'sofort', txt:'Unterlagen versendet, Mandant hat die Bestätigung'},
+      {zeit:'gleichentags', txt:'Honorarrechnung erstellt, offene Posten im Blick', typ:'geld'},
+      {zeit:'vor der Frist', txt:'Alle Mandanten rechtzeitig erinnert, ohne dass Sie eine Liste führen'}
+    ]
+  }
+];
+
+(function branchenSchalter(){
+  var reiter = document.getElementById('reiter');
+  if (!reiter) return;
+  var liste = document.getElementById('fluss-schritte');
+  var titel = document.getElementById('fluss-titel');
+  var satz = document.getElementById('fluss-satz');
+  var womit = document.getElementById('fluss-womit');
+  var schirmTitel = document.getElementById('schirm-titel');
+  var laufTimer = [], aktiv = 0, sichtbar = false, schonGespielt = false;
+  var wenigerBewegung = matchMedia('(prefers-reduced-motion: reduce)');
+
+  function haken(){
+    return '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.4l3 3 6-6.4"/></svg>';
+  }
+
+  function stopp(){ laufTimer.forEach(clearTimeout); laufTimer = []; }
+
+  function zeichnen(i, sofort){
+    stopp();
+    aktiv = i;
+    var b = BRANCHEN[i];
+    titel.textContent = b.titel;
+    satz.textContent = b.satz;
+    schirmTitel.textContent = b.schirm;
+    womit.innerHTML = b.womit.map(function(w){ return '<span>' + w + '</span>'; }).join('');
+    [].forEach.call(reiter.children, function(k, n){
+      k.setAttribute('aria-selected', n === i ? 'true' : 'false');
+    });
+
+    liste.innerHTML = b.schritte.map(function(s, n){
+      var klasse = 'schritt-z' + (s.typ ? ' ' + s.typ : '');
+      if (s.typ === 'entscheid') {
+        return '<li class="' + klasse + '" data-n="' + n + '">' +
+               '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span>' +
+               '<button class="btn btn-voll entscheid-knopf" type="button" data-knopf="' + n + '">' + s.knopf + '</button></div></li>';
+      }
+      return '<li class="' + klasse + '" data-n="' + n + '">' + haken() +
+             '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span></div></li>';
+    }).join('');
+
+    var lis = [].slice.call(liste.children);
+    var entscheidIndex = b.schritte.findIndex(function(s){ return s.typ === 'entscheid'; });
+
+    if (sofort || wenigerBewegung.matches) {
+      lis.forEach(function(li){ li.classList.add('da'); });
+      var k0 = liste.querySelector('[data-knopf]');
+      if (k0) { k0.disabled = true; k0.textContent = 'Freigegeben'; }
+      return;
+    }
+
+    lis.forEach(function(li, n){
+      if (n > entscheidIndex) return;
+      laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 260 + n * 620));
+    });
+
+    var knopf = liste.querySelector('[data-knopf]');
+    if (knopf) {
+      knopf.addEventListener('click', function(){
+        knopf.disabled = true;
+        knopf.textContent = 'Freigegeben';
+        lis.forEach(function(li, n){
+          if (n <= entscheidIndex) return;
+          laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 180 + (n - entscheidIndex) * 620));
+        });
+      });
+    }
+  }
+
+  BRANCHEN.forEach(function(b, i){
+    var k = document.createElement('button');
+    k.type = 'button';
+    k.setAttribute('role', 'tab');
+    k.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    k.setAttribute('data-branche', b.id);
+    k.textContent = b.reiter;
+    k.addEventListener('click', function(){ zeichnen(i, false); });
+    reiter.appendChild(k);
+  });
+
+  zeichnen(0, true);
+
+  var beob = new IntersectionObserver(function(e){
+    if (e[0].isIntersecting && !schonGespielt) {
+      schonGespielt = true;
+      zeichnen(aktiv, false);
+    }
+    sichtbar = e[0].isIntersecting;
+  }, {threshold:.3});
+  beob.observe(document.getElementById('schirm'));
+
+  wenigerBewegung.addEventListener('change', function(e){ if (e.matches) zeichnen(aktiv, true); });
+})();
+
+/* ---------- Formular ---------- */
+var form = document.getElementById('anfrage');
+form.addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var name = form.name.value.trim(), mail = form.email.value.trim(), text = form.message.value.trim();
+  if (!name || !mail || !text) { form.reportValidity(); return; }
+  /* Solange die Seite nicht am HQ hängt, geht die Anfrage per Mailprogramm raus.
+     Beim Anschluss ans HQ wird das ein POST auf /ingress/leads. */
+  var betreff = encodeURIComponent('Anfrage von ' + name);
+  var koerper = encodeURIComponent(text + '\n\n' + name + '\n' + mail);
+  window.location.href = 'mailto:hallo@player-two.ch?subject=' + betreff + '&body=' + koerper;
+  form.classList.add('gesendet');
+  document.getElementById('danke').classList.add('zeigen');
+});
+
+/* Bewegung reduzieren, live in beide Richtungen */
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function(e){
+  if (e.matches) {
+    if (schritte) { schritte.style.setProperty('--zeichnen', 1); schrittEls.forEach(function(s){ s.classList.add('erreicht'); }); }
+    document.querySelectorAll('.auf,.stufe').forEach(function(el){ el.classList.add('in','fertig'); });
+  } else {
+    zeichenWert = -1; ablaufZeichnen();
+  }
+});
+
+/* Laufende Animationen ruhen lassen, wenn der Tab weg ist */
+addEventListener('visibilitychange', function(){
+  document.body.classList.toggle('paused', document.hidden);
+});
+})();
+
+/* ---------- Hero: zentraler Fluss ---------- */
+(function () {
+  var hero = document.querySelector("[data-pt-hero]");
+  if (!hero) return;
+
+  var cards = Array.prototype.slice.call(hero.querySelectorAll(".pt-task"));
+  var labels = hero.querySelectorAll("[data-pt-label]");
+  var scrollText = hero.querySelector("[data-pt-scroll]");
+  var hubText = hero.querySelector("[data-pt-hub]");
+  var currentPhase = -1;
+  var frame = 0;
+
+  function phaseFor(progress) {
+    if (progress < 0.13) return 0;
+    if (progress < 0.43) return 1;
+    if (progress < 0.70) return 2;
+    return 3;
+  }
+
+  function setPhase(phase) {
+    if (phase === currentPhase) return;
+    hero.classList.remove("pt-phase-0", "pt-phase-1", "pt-phase-2", "pt-phase-3");
+    hero.classList.add("pt-phase-" + phase);
+    currentPhase = phase;
+
+    var label = phase === 1 ? "Neu eingegangen" :
+                phase === 2 ? "Player Two arbeitet" : "Erledigt";
+
+    cards.forEach(function (card, index) {
+      labels[index].textContent = label;
+      var message = phase === 1 ? card.dataset.incoming :
+                    phase === 2 ? card.dataset.processing : card.dataset.done;
+      card.querySelector("[data-pt-message]").textContent = message;
+    });
+
+    scrollText.textContent = phase === 0 ? "Kurz scrollen" : phase < 3 ? "Weiter" : "Fertig";
+    hubText.textContent = phase === 3 ? "3 Ergebnisse bereit" : "bereitet alles vor";
+    /* Die Karten wandern beim Wechsel; erst danach passen die Linien. */
+    setTimeout(linienZiehen, 720);
+  }
+
+  /* Die drei Linien vom Kreis zur jeweiligen Karte legen. So stimmt die
+     Verbindung bei jeder Fensterbreite und bei jedem Platz, den die
+     Karten oder der Kreis bekommen. */
+  var buehne = hero.querySelector(".pt-stage");
+  var flow = hero.querySelector(".pt-flow");
+  var hub = hero.querySelector(".pt-hub");
+  var linien = [].slice.call(hero.querySelectorAll(".pt-flow-line"));
+
+  /* Die Prozentwerte wandern mit der Fenstergroesse. Wo eine Karte
+     dabei aus dem Bild oder unter den Kopf laufen wuerde, wird sie
+     zurueckgeschoben - und nur dann. */
+  var RAND = 16;
+  var kopf = document.getElementById('nav');
+
+  function kartenHalten() {
+    if (!buehne || document.body.classList.contains('setzt')) return;
+    if (!matchMedia('(min-width:781px)').matches) {
+      cards.forEach(function (c) { c.style.margin = ''; });
+      return;
+    }
+    /* Alles in Buehnen-Koordinaten. Die Buehne klebt oben am Rand,
+       solange man sie sieht, also ist der Platz unter der Kopfzeile
+       darin ein fester Wert - unabhaengig davon, wie weit gescrollt
+       wurde. Wird gegen den Bildschirm gerechnet, kleben die Karten
+       daran fest, statt mitzuscrollen. */
+    var oben = RAND;
+    if (kopf) oben = Math.max(RAND, kopf.getBoundingClientRect().height + 12);
+
+    var bb = buehne.offsetWidth, bh = buehne.offsetHeight;
+    cards.forEach(function (card) {
+      card.style.margin = '';
+      var l = card.offsetLeft, o = card.offsetTop;
+      var w = card.offsetWidth, h = card.offsetHeight;
+      var dx = 0, dy = 0;
+      if (l + w > bb - RAND) dx = bb - RAND - (l + w);
+      if (l + dx < RAND) dx = RAND - l;
+      if (o + h > bh - RAND) dy = bh - RAND - (o + h);
+      if (o + dy < oben) dy = oben - o;
+      if (dx) card.style.marginLeft = dx + 'px';
+      if (dy) card.style.marginTop = dy + 'px';
+    });
+  }
+
+  function linienZiehen() {
+    kartenHalten();
+    if (!flow || !hub || linien.length !== cards.length) return;
+    var f = flow.getBoundingClientRect();
+    var n = hub.getBoundingClientRect();
+    var nx = (n.left + n.right) / 2 - f.left;
+    var ny = (n.top + n.bottom) / 2 - f.top;
+    cards.forEach(function (card, i) {
+      var k = card.getBoundingClientRect();
+      var dx = (k.left + k.right) / 2 - f.left - nx;
+      var dy = (k.top + k.bottom) / 2 - f.top - ny;
+      var l = linien[i];
+      l.style.left = nx + "px";
+      l.style.top = ny + "px";
+      l.style.width = Math.sqrt(dx * dx + dy * dy) + "px";
+      l.style.transform = "rotate(" + (Math.atan2(dy, dx) * 180 / Math.PI) + "deg)";
+    });
+  }
+  hero.ptLinien = linienZiehen;
+
+  function update() {
+    frame = 0;
+    linienZiehen();
+    if (hero.hasAttribute("data-pt-halt")) return;
+    var rect = hero.getBoundingClientRect();
+    var distance = Math.max(1, hero.offsetHeight - window.innerHeight);
+    var progress = Math.max(0, Math.min(1, -rect.top / distance));
+    setPhase(phaseFor(progress));
+  }
+
+  function onScroll() {
+    if (!frame) frame = requestAnimationFrame(update);
+  }
+
+  hero.ptPhaseSetzen = setPhase;
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+})();
+
+
+
+</script>
+
+</body>
+</html>
