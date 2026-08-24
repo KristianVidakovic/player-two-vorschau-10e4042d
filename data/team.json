@@ -1,5 +1,4 @@
 {
- "hinweis": "Diese Datei ist die einzige Quelle fuer Teamseite und Stadt. Spaeter erzeugt das HQ sie automatisch. Die Zustaende sind bis dahin Platzhalter.",
  "stand": "platzhalter",
  "menschen": [
   {
@@ -665,7 +664,5 @@
   }
  ],
  "anzahl_digital": 59,
- "anzahl_menschen": 2,
- "hinweis_geschlecht": "Geschaetzt nach Namensendung, damit Frauen lange und Maenner kurze Haare bekommen. Hier von Hand korrigierbar: w oder m.",
- "hinweis_bilder": "Portraets, mit KI erzeugt. Vorlagen liegen in PLAYER TWO/Bilder Mitarbeiter."
+ "anzahl_menschen": 2
 }
