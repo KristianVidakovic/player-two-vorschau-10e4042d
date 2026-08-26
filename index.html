@@ -1038,15 +1038,15 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   --pt-cyan: #00c6ff;
   --pt-ease: cubic-bezier(.22,.61,.36,1);
   position: relative;
-  height: 190svh;
+  height: 100svh;
+  min-height: 620px;
   color: var(--pt-ink);
   background: var(--pt-canvas);
   font-family: var(--body);
 }
 .pt-hero, .pt-hero * { box-sizing: border-box; }
 .pt-stage {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100svh;
   min-height: 620px;
   overflow: hidden;
@@ -1064,9 +1064,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   transform: scale(1.012);
   transition: transform 1.1s var(--pt-ease), filter 1.1s var(--pt-ease);
 }
-.pt-phase-1 .pt-photo { transform: scale(1.02); }
-.pt-phase-2 .pt-photo { transform: scale(1.028); filter: saturate(.94); }
-.pt-phase-3 .pt-photo { transform: scale(1.018); filter: saturate(1.02); }
 .pt-grade {
   position: absolute;
   inset: 0;
@@ -1161,7 +1158,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   transform: translateY(12px);
   transition: opacity .55s var(--pt-ease),transform .55s var(--pt-ease);
 }
-.pt-phase-3 .pt-closing { opacity: 1; transform: translateY(0); }
 .pt-check {
   width: 26px;
   height: 26px;
@@ -1172,193 +1168,22 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   background: var(--pt-blue);
   box-shadow: 0 0 0 5px rgba(30,108,255,.11);
 }
-.pt-tasks { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
-.pt-task {
-  position: absolute;
-  width: clamp(205px,15.5vw,280px);
-  min-height: 132px;
-  padding: 16px 17px;
-  color: var(--pt-ink);
-  background: rgba(255,255,255,.93);
-  border: 1px solid rgba(255,255,255,.9);
-  border-radius: 14px;
-  box-shadow: 0 22px 55px rgba(5,10,20,.24),0 2px 8px rgba(5,10,20,.1);
-  backdrop-filter: blur(16px);
-  opacity: 0;
-  transform: translateY(28px) scale(.96);
-  transition:
-    opacity .5s var(--pt-ease),transform .65s var(--pt-ease),border-color .35s ease,
-    left .7s var(--pt-ease),right .7s var(--pt-ease),top .7s var(--pt-ease);
-}
-.pt-task:nth-child(2) { transition-delay: 70ms; }
-.pt-task:nth-child(3) { transition-delay: 140ms; }
-.pt-phase-1 .pt-task,.pt-phase-2 .pt-task,.pt-phase-3 .pt-task {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.pt-phase-2 .pt-task { border-color: rgba(30,108,255,.55); }
-.pt-phase-3 .pt-task {
-  border-color: rgba(30,108,255,.24);
-  box-shadow: 0 20px 48px rgba(5,10,20,.2),0 0 0 1px rgba(30,108,255,.08);
-}
 /* Gleichmaessig verteilt: gleiche Schritte in der Breite,
    die mittlere tiefer, damit sie zur Nabe zeigt. */
-.pt-painter { left: 47.12%;   top: 10.58%; }
-.pt-bakery  { left: 65.84%; top: 80.08%; }
-.pt-office  { left: 84.08%;   top: 10.17%; }
-.pt-task-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 11px;
-  color: #526074;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-}
-.pt-status {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--pt-cyan);
-  box-shadow: 0 0 0 4px rgba(0,198,255,.12);
-}
-.pt-phase-2 .pt-status {
-  background: var(--pt-blue);
-  animation: pt-pulse 1.2s ease-in-out infinite;
-}
-.pt-task strong { display: block; padding-right: 24px; font-size: 16px; line-height: 1.2; }
-.pt-task p { min-height: 40px; margin: 7px 0 0; color: #344155; font-size: 13px; line-height: 1.35; }
-.pt-loading {
-  display: none;
-  position: absolute;
-  left: 17px;
-  right: 17px;
-  bottom: 12px;
-  height: 3px;
-  overflow: hidden;
-  border-radius: 99px;
-  background: rgba(30,108,255,.12);
-}
-.pt-phase-2 .pt-loading { display: block; }
-.pt-loading::after {
-  content: "";
-  display: block;
-  width: 42%;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--pt-blue);
-  animation: pt-loading 1.15s ease-in-out infinite;
-}
-.pt-done {
-  display: none;
-  position: absolute;
-  right: 15px;
-  top: 46px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  place-items: center;
-  color: white;
-  background: var(--pt-blue);
-  font-size: 14px;
-  font-weight: 900;
-}
-.pt-phase-3 .pt-done { display: grid; }
-.pt-flow {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .45s ease;
-}
-.pt-phase-2 .pt-flow,.pt-phase-3 .pt-flow { opacity: 1; }
-.pt-hub {
-  position: absolute;
-  left: 71.97%;
-  top: 48.96%;
-  width: 134px;
-  height: 134px;
-  transform: translate(-50%,-50%) scale(.75);
-  display: grid;
-  place-content: center;
-  text-align: center;
-  border-radius: 50%;
-  color: white;
-  background: rgba(8,32,86,.94);
-  border: 1px solid rgba(0,198,255,.75);
-  box-shadow: 0 0 0 12px rgba(30,108,255,.12),0 20px 48px rgba(5,10,20,.32);
-  opacity: 0;
-  transition: opacity .5s ease,transform .65s var(--pt-ease);
-}
-.pt-phase-2 .pt-hub,.pt-phase-3 .pt-hub {
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
-}
-.pt-phase-3 .pt-hub { transform: translate(-50%,-50%) scale(.82); opacity: .78; }
-.pt-hub::before {
-  content: "";
-  position: absolute;
-  inset: -13px;
-  border: 1px solid rgba(0,198,255,.42);
-  border-radius: inherit;
-  animation: pt-hub 1.8s ease-in-out infinite;
-}
-.pt-hub span { font-size: 11px; font-weight: 900; letter-spacing: .12em; }
-.pt-hub b { display: block; max-width: 12ch; margin: 5px auto 0; color: #bfeeff; font-size: 10px; line-height: 1.2; }
-.pt-flow-line {
-  position: absolute;
-  width: 180px;
-  height: 1px;
-  background: linear-gradient(90deg,rgba(0,198,255,.92),rgba(0,198,255,0));
-  transform-origin: left;
-  opacity: .75;
-}
 /* Laenge, Lage und Winkel setzt das Skript, siehe linienZiehen(). */
 /* Phase 2 verschiebt die Meldungen nicht mehr. Sie bleiben dort, wo sie
    gesetzt wurden; beim Scrollen wechselt nur der Text darin. */
-.pt-scroll {
-  position: absolute;
-  z-index: 8;
-  right: 44px;
-  bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 16px rgba(5,10,20,.8);
-}
-.pt-scroll svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  animation: pt-bob 1.7s ease-in-out infinite;
-}
-@keyframes pt-pulse { 50% { box-shadow: 0 0 0 7px rgba(30,108,255,.09); } }
 @keyframes pt-loading { 0% { transform: translateX(-120%); } 100% { transform: translateX(340%); } }
-@keyframes pt-hub { 50% { transform: scale(1.07); opacity: .28; } }
-@keyframes pt-bob { 50% { transform: translateY(5px); } }
 
 @media (max-width:1100px) {
   .pt-copy { width: 48vw; }
   .pt-painter { left: 45%; }
   .pt-bakery { left: 64%; }
   .pt-office { left: 83%; }
-  .pt-task { width: 21vw; }
   .pt-hero h1 { font-size: clamp(48px,6vw,68px); }
 }
 @media (max-width:780px) {
-  .pt-hero { height: 210svh; }
+  .pt-hero { height: auto; min-height: 88svh; }
   .pt-stage { min-height: 620px; }
   .pt-photo { object-position: 72% center; opacity: .5; }
   .pt-copy {
@@ -1376,27 +1201,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .pt-actions { margin-top: 20px; }
   .pt-button { min-height: 45px; padding: 0 15px; font-size: 13px; }
   .pt-closing { margin-top: 16px; font-size: 14px; }
-  .pt-tasks {
-    inset: auto 14px 52px;
-    display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 7px;
-  }
-  .pt-task {
-    position: relative;
-    inset: auto;
-    width: auto;
-    min-height: 116px;
-    padding: 11px;
-    border-radius: 10px;
-  }
-  .pt-task strong { font-size: 12px; }
-  .pt-task p { min-height: 34px; font-size: 10px; }
-  .pt-task-head { font-size: 7px; letter-spacing: .08em; }
   .pt-done { top: 40px; right: 8px; width: 18px; height: 18px; font-size: 10px; }
-  .pt-flow { display: none; }
-  .pt-phase-2 .pt-task { position: relative; inset: auto; transform: scale(.96); }
-  .pt-scroll { right: 18px; bottom: 10px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .pt-hero *,.pt-hero *::before,.pt-hero *::after {
@@ -1405,6 +1210,188 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   }
 }
 
+
+/* ---------- Was es kostet ---------- */
+.preis-drei{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,1.6vw,22px);margin-top:clamp(22px,3vh,38px)}
+.preis-drei article{background:#fff;border:1px solid var(--linie);border-radius:16px;
+  padding:clamp(17px,2.2vh,24px)}
+.preis-drei h3{font-size:clamp(16px,2.1vh,19px);line-height:1.25;margin-bottom:4px}
+.preis-drei .zusatz{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:9px}
+.preis-drei p{font-size:clamp(14px,1.8vh,15.5px);color:#3A4553;line-height:1.55}
+.preis-noch{margin-top:clamp(18px,2.4vh,28px);padding:clamp(15px,2vh,20px) clamp(16px,2vw,24px);
+  border-radius:14px;background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
+  font-size:clamp(14.5px,1.85vh,16px);line-height:1.6}
+.preis-drin{list-style:none;margin:clamp(18px,2.4vh,30px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:9px 26px}
+.preis-drin li{position:relative;padding-left:26px;font-size:clamp(14px,1.8vh,15.5px);
+  line-height:1.55;color:#3A4553}
+.preis-drin li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;
+  border-left:2px solid #1E8A4C;border-bottom:2px solid #1E8A4C;transform:rotate(-45deg)}
+@media (max-width:820px){.preis-drei,.preis-drin{grid-template-columns:1fr}}
+
+/* ---------- Haeufige Fragen ----------
+   Ohne Skript: <details> kann das von sich aus. */
+.faq-liste{margin-top:clamp(24px,3.2vh,44px);border-top:1px solid var(--linie)}
+.faq-liste details{border-bottom:1px solid var(--linie)}
+.faq-liste summary{cursor:pointer;list-style:none;padding:clamp(15px,2vh,20px) 44px
+  clamp(15px,2vh,20px) 0;position:relative;font-family:var(--display);font-weight:600;
+  font-size:clamp(16px,2.1vh,19px);line-height:1.35}
+.faq-liste summary::-webkit-details-marker{display:none}
+.faq-liste summary::after{content:"";position:absolute;right:12px;top:50%;
+  width:11px;height:11px;margin-top:-7px;
+  border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);
+  transform:rotate(45deg);transition:transform .3s var(--ease)}
+.faq-liste details[open] summary::after{transform:rotate(-135deg);margin-top:-3px}
+.faq-liste summary:hover{color:var(--akzent)}
+.faq-liste .antwort{padding:0 44px clamp(17px,2.3vh,24px) 0;
+  font-size:clamp(14.5px,1.85vh,16px);line-height:1.65;color:#3A4553;max-width:82ch}
+.faq-fuss{margin-top:clamp(18px,2.4vh,28px);font-size:clamp(15px,1.9vh,16.5px)}
+
+/* ---------- Drei Vertrauenszeilen unter dem Hero ---------- */
+.signale{background:var(--canvas-2);border-bottom:1px solid var(--linie)}
+.signale ul{list-style:none;margin:0 auto;padding:15px 0;width:var(--seite);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px clamp(20px,4vw,54px)}
+.signale li{display:flex;align-items:center;gap:9px;font-size:15px;color:#3A4553}
+.signale svg{width:17px;height:17px;flex:0 0 auto;stroke:#1E8A4C;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:720px){.signale li{font-size:13.5px}.signale ul{gap:8px 18px}}
+
+/* ---------- Das Blatt: Warum Player Two ----------
+   Ein Dokument statt Karten. Auf der Seite gibt es schon Kartenraster,
+   Vorher-nachher-Kacheln, Tafeln, einen Zeitstrahl, Aufklapper und ein
+   laufendes Band - ein weisses Blatt mit Kopfleiste und Haarlinien kommt
+   nirgends vor. Genau darum steht es hier. */
+#warum{background:var(--canvas-2)}
+.blatt{margin-top:clamp(18px,2.8vh,36px);background:#fff;
+  border:1px solid var(--linie);border-radius:16px;
+  box-shadow:0 22px 50px rgba(11,18,32,.07);overflow:hidden}
+.blatt-kopf{display:flex;justify-content:space-between;gap:16px;
+  padding:clamp(9px,1.3vh,13px) clamp(20px,2.2vw,30px);
+  border-bottom:1px solid var(--linie);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau)}
+
+.nie-raster{display:grid;grid-template-columns:1fr 1fr}
+.nie-zelle{padding:clamp(15px,2.3vh,26px) clamp(20px,2.2vw,32px)}
+.nie-zelle:nth-child(1),.nie-zelle:nth-child(2){border-bottom:1px solid var(--linie)}
+.nie-zelle:nth-child(odd){border-right:1px solid var(--linie)}
+
+.nie-marke{font-family:var(--mono);font-weight:500;font-size:11.5px;
+  letter-spacing:.16em;color:var(--akzent);margin-right:10px}
+.nie-zelle h3{display:inline;font-family:var(--display);font-weight:600;
+  font-size:clamp(16px,2.1vh,20px);line-height:1.28;letter-spacing:-.01em;
+  color:var(--tief)}
+.nie-zelle p{margin-top:8px;font-size:clamp(14px,1.8vh,15.5px);
+  line-height:1.55;color:#3A4553}
+.nie-pruef{margin-top:clamp(9px,1.4vh,14px);padding-top:clamp(7px,1.1vh,11px);
+  border-top:1px solid var(--linie);
+  font-size:clamp(13px,1.65vh,14.5px);line-height:1.5;color:var(--grau)}
+.nie-pruef b{display:block;font-family:var(--mono);font-weight:500;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau);margin-bottom:4px}
+
+.blatt-fuss{border-top:1px solid var(--linie-stark);background:var(--canvas);
+  display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;align-items:center;
+  padding:clamp(12px,1.9vh,22px) clamp(20px,2.2vw,32px)}
+.blatt-fuss .stark{font-size:clamp(15px,1.95vh,17px);font-weight:600;color:var(--tief)}
+.blatt-fuss .leise{font-size:clamp(13px,1.7vh,14.5px);line-height:1.5;
+  color:var(--grau);text-align:right}
+
+@media (max-width:900px){
+  .nie-raster{grid-template-columns:1fr}
+  .nie-zelle{border-right:0}
+  .nie-zelle:nth-child(3){border-bottom:1px solid var(--linie)}
+  .nie-zelle:last-child{border-bottom:0}
+  .blatt-fuss{grid-template-columns:1fr}
+  .blatt-fuss .leise{text-align:left}
+  .blatt-kopf span:last-child{display:none}
+}
+
+/* ---------- Das Infozeichen ----------
+   Erklaert einen Fachbegriff, ohne den Lesefluss zu stoeren. Reines CSS:
+   geht mit der Maus, mit der Tastatur und auf dem Telefon per Antippen
+   (der Knopf bekommt dort den Fokus). Kein Skript noetig. */
+.info{position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:17px;height:17px;margin-left:7px;vertical-align:-3px;flex:0 0 auto;
+  border:1px solid currentColor;border-radius:50%;background:none;color:inherit;
+  opacity:.55;font:600 11px/1 var(--body);cursor:help;padding:0}
+.info:hover,.info:focus-visible{opacity:1;color:var(--akzent)}
+.info-blase{position:absolute;left:50%;bottom:calc(100% + 10px);
+  transform:translateX(-50%) translateY(4px);
+  width:min(300px,72vw);padding:13px 15px;border-radius:12px;
+  background:var(--tief);color:#EBF8FF;
+  font:400 13.5px/1.5 var(--body);text-align:left;letter-spacing:0;
+  text-transform:none;box-shadow:0 18px 40px rgba(5,10,20,.3);
+  opacity:0;visibility:hidden;pointer-events:none;z-index:20;
+  transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.info-blase b{display:block;margin-bottom:5px;color:#fff;font-weight:600}
+.info-blase::after{content:"";position:absolute;left:50%;top:100%;
+  margin-left:-7px;border:7px solid transparent;border-top-color:var(--tief)}
+.info:hover .info-blase,.info:focus-visible .info-blase{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+/* In der dunklen Karte bleibt die Blase hell lesbar. */
+.stufe-karte.arbeitet .info-blase{background:#fff;color:var(--tief)}
+.stufe-karte.arbeitet .info-blase b{color:var(--tief)}
+.stufe-karte.arbeitet .info-blase::after{border-top-color:#fff}
+@media (max-width:720px){
+  .info-blase{left:0;transform:translateY(4px);width:min(280px,80vw)}
+  .info-blase::after{left:14px}
+  .info:hover .info-blase,.info:focus-visible .info-blase{transform:translateY(0)}
+}
+@media (prefers-reduced-motion:reduce){.info-blase{transition:none}}
+
+/* ---------- Heute und nachher ----------
+   Ein Raster mit zwei Spalten statt zweier Kaesten: nur so liegt jede
+   Zeile links wirklich neben ihrer Entsprechung rechts. Ohne
+   Branchennamen erkennt man sonst nicht, was zu was gehoert.
+   Links hell, rechts dunkel - die Haken laufen nacheinander durch. */
+.gegen{display:grid;grid-template-columns:1fr 1fr;
+  margin-top:clamp(20px,3vh,40px);border-radius:18px;overflow:hidden;
+  box-shadow:0 22px 50px rgba(11,18,32,.09)}
+.sp-kopf{padding:clamp(9px,1.3vh,13px) clamp(18px,2.2vw,30px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.sp-kopf.links{background:#fff;color:var(--grau);border-bottom:1px solid var(--linie)}
+.sp-kopf.rechts{background:var(--nacht);color:var(--cyan);
+  border-bottom:1px solid rgba(235,248,255,.16)}
+
+.gegen .z{display:flex;gap:12px;align-items:flex-start;
+  padding:clamp(10px,1.55vh,16px) clamp(18px,2.2vw,30px);
+  font-size:clamp(14.5px,1.85vh,16.5px);line-height:1.45}
+.gegen .z.links{background:#fff;border-bottom:1px solid var(--linie);color:#3A4553}
+.gegen .z.rechts{background:var(--nacht);color:#EBF8FF;
+  border-bottom:1px solid rgba(235,248,255,.14)}
+.gegen > .z:nth-last-child(-n+2){border-bottom:0}
+
+.gegen .z i{width:16px;height:16px;border-radius:50%;margin-top:3px;flex:0 0 auto;
+  position:relative;border:1.5px solid var(--linie-stark)}
+.gegen .z.links i::after{content:"";position:absolute;left:50%;top:50%;
+  width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;
+  background:var(--linie-stark)}
+.gegen .z.rechts i{border-color:#5BD98A;background:#5BD98A;opacity:0;
+  animation:hakenAuf .45s var(--ease) forwards}
+.gegen .z.rechts i::after{content:"";position:absolute;left:4px;top:1.5px;
+  width:5px;height:9px;border:solid var(--nacht);border-width:0 2px 2px 0;
+  transform:rotate(42deg)}
+@keyframes hakenAuf{to{opacity:1}}
+.gegen .z.rechts:nth-of-type(2) i{animation-delay:.6s}
+.gegen .z.rechts:nth-of-type(4) i{animation-delay:1.05s}
+.gegen .z.rechts:nth-of-type(6) i{animation-delay:1.5s}
+.gegen .z.rechts:nth-of-type(8) i{animation-delay:1.95s}
+.gegen .z.rechts:nth-of-type(10) i{animation-delay:2.4s}
+.gegen .z.rechts:nth-of-type(12) i{animation-delay:2.85s}
+
+.gegen-fuss{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,34px);
+  margin-top:clamp(16px,2.4vh,28px)}
+.gegen-fuss div{font-size:clamp(15px,1.9vh,16.5px);line-height:1.55;color:#3A4553}
+.gegen-fuss b{color:var(--tief)}
+
+@media (max-width:820px){
+  .gegen{grid-template-columns:1fr}
+  .gegen-fuss{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){ .gegen .z.rechts i{animation:none;opacity:1} }
 </style>
 </head>
 <body>
@@ -1420,7 +1407,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <a href="#stufen">Angebot</a>
     <a href="loesungen.html">Fertige Lösungen</a>
     <a href="#ablauf">Ablauf</a>
-    <a href="#herkunft">Über uns</a>
+    <a href="#team">Über uns</a>
     <a href="team.html">Team</a>
     <a href="#kontakt">Kontakt</a>
   </div>
@@ -1430,8 +1417,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <div id="top"></div>
 
 <!-- ================= Hero, der gescrollte Film ================= -->
-<header class="pt-hero pt-phase-0" id="hero" data-pt-hero
-  aria-label="Player Two: Malerbetrieb, Bäckerei und Treuhand im zentralen Fluss">
+<header class="pt-hero" id="hero"
+  aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
   <div class="pt-stage">
     <picture>
       <source media="(max-width:780px)" srcset="assets/hero-hoch.webp">
@@ -1444,12 +1431,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="pt-copy-inner">
         <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
         <h1>Mehr Zeit für das, was wichtig ist.</h1>
-        <p class="pt-subline">Wir bauen Ihre Website — und stellen digitale
-          Mitarbeitende dazu, die Anfragen aufnehmen, Offerten mit Ihren Preisen
-          rechnen und Rechnungen nachfassen.</p>
+        <p class="pt-subline">Player Two baut und betreibt Websites, Webshops
+          und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
+          digitaler Mitarbeiter mit.</p>
         <div class="pt-actions">
-          <a class="pt-button pt-primary" href="#was">So funktioniert es</a>
-          <a class="pt-button pt-secondary" href="#branchen">Für meine Branche ansehen</a>
+          <a class="pt-button pt-primary" href="#stufen">Lösungen ansehen</a>
+          <a class="pt-button pt-secondary" href="#kontakt">Projekt besprechen</a>
         </div>
         <div class="pt-closing">
           <span class="pt-check">✓</span>
@@ -1457,104 +1444,120 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
       </div>
     </div>
-
-    <div class="pt-tasks" aria-live="polite">
-      <article class="pt-task pt-painter"
-        data-incoming="Offertanfrage · 3½ Zimmer"
-        data-processing="Positionen und Preise werden vorbereitet"
-        data-done="Offerte ist bereit zur Freigabe">
-        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
-        <strong>Malerbetrieb</strong>
-        <p data-pt-message>Offertanfrage · 3½ Zimmer</p>
-        <span class="pt-loading" aria-hidden="true"></span>
-        <span class="pt-done" aria-hidden="true">✓</span>
-      </article>
-
-      <article class="pt-task pt-bakery"
-        data-incoming="Bestellung · 2 Zöpfe für Samstag"
-        data-processing="Bestand und Abholzeit werden geprüft"
-        data-done="Bestellung ist bestätigt">
-        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
-        <strong>Bäckerei &amp; Hofladen</strong>
-        <p data-pt-message>Bestellung · 2 Zöpfe für Samstag</p>
-        <span class="pt-loading" aria-hidden="true"></span>
-        <span class="pt-done" aria-hidden="true">✓</span>
-      </article>
-
-      <article class="pt-task pt-office"
-        data-incoming="Unterlagen · Mandat Muster AG"
-        data-processing="Dokumente werden geprüft und geordnet"
-        data-done="Unterlagen sind vollständig abgelegt">
-        <div class="pt-task-head"><span class="pt-status"></span><span data-pt-label>Wartet</span></div>
-        <strong>Treuhand &amp; Büro</strong>
-        <p data-pt-message>Unterlagen · Mandat Muster AG</p>
-        <span class="pt-loading" aria-hidden="true"></span>
-        <span class="pt-done" aria-hidden="true">✓</span>
-      </article>
-    </div>
-
-    <div class="pt-flow" aria-hidden="true">
-      <i class="pt-flow-line pt-flow-one"></i>
-      <i class="pt-flow-line pt-flow-two"></i>
-      <i class="pt-flow-line pt-flow-three"></i>
-      <div class="pt-hub">
-        <span>PLAYER TWO</span>
-        <b data-pt-hub>bereitet alles vor</b>
-      </div>
-    </div>
-
-    <div class="pt-scroll" aria-hidden="true">
-      <span data-pt-scroll>Kurz scrollen</span>
-      <svg viewBox="0 0 24 24"><path d="M12 4v14m-6-6 6 6 6-6"></path></svg>
-    </div>
   </div>
 </header>
 
+
+<div class="signale">
+  <ul>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Schweizer Partner, Server in der Schweiz</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Fixpreis, bevor Sie zusagen</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Zwei Menschen, die Sie am Telefon erreichen</li>
+  </ul>
+</div>
 <main id="main" tabindex="-1">
 
-<!-- ================= Zwei Stufen ================= -->
-<!-- ================= branchen ================= -->
+
+<!-- ================= referenzen ================= -->
+<!-- ACHTUNG: Die zehn Stimmen in diesem Band sind erfunden.
+     Sie stehen nur in dieser Vorschlagsfassung, damit die Seite im
+     Endzustand beurteilt werden kann. Vor dem Livegang durch echte
+     Betriebe ersetzen oder den Abschnitt leeren. -->
+<!-- ================= preise =================
+     ACHTUNG: Masterfile Teil 70.4 sperrt die Veroeffentlichung konkreter
+     Betraege, bis Kristian die Preisform entschieden hat. Die alten Zahlen
+     bilden die Vorlage OHNE digitalen Mitarbeiter ab. Dieser Abschnitt nennt
+     deshalb bewusst keine Zahl. -->
+<!-- ================= alltag =================
+     ACHTUNG vor dem Livegang: Die zweite Zeile («Er bekommt sofort eine
+     Nachricht») verspricht eine Rueckmeldung an einen Anrufer. Das ist im
+     Masterfile NICHT geregelt - weder SMS noch verpasster Anruf noch
+     Rueckruf kommen darin vor, der digitale Mitarbeiter lebt dort nur auf
+     der Website. Von Kristian am 26.08.2026 ausdruecklich gewuenscht.
+     Braucht einen Masterfile-Eintrag und einen Telefonanbieter, bevor es
+     oeffentlich behauptet werden darf. -->
+<section id="alltag">
+  <div class="wrap">
+    <span class="kicker auf">Aus dem Alltag</span>
+    <h2 class="h2 auf">Kommt Ihnen das bekannt vor?</h2>
+    <p class="lede auf">Sechs Sachen, die es in jedem Betrieb gibt. Links, wie
+      es heute läuft. Rechts, wie es mit Player Two läuft.</p>
+
+    <div class="gegen stufe">
+      <div class="sp-kopf links">Heute</div>
+      <div class="sp-kopf rechts">Mit Player Two</div>
+
+      <div class="z links"><i></i><div>Sie schreiben die Offerte am Abend. Weil tagsüber keine Zeit war.</div></div>
+      <div class="z rechts"><i></i><div>Die Offerte ist gerechnet, wenn Sie Feierabend machen. Sie schauen sie an und geben sie frei.</div></div>
+
+      <div class="z links"><i></i><div>Sie können gerade nicht ans Telefon. Der Anrufer hört es klingeln.</div></div>
+      <div class="z rechts"><i></i><div>Er bekommt sofort eine Nachricht: dass Sie bei einem Kunden sind und wann Sie zurückrufen.</div></div>
+
+      <div class="z links"><i></i><div>Für einen Termin telefonieren Sie zweimal hin und her.</div></div>
+      <div class="z rechts"><i></i><div>Der Kunde bekommt drei freie Termine vorgeschlagen und wählt einen aus.</div></div>
+
+      <div class="z links"><i></i><div>Zum vierzigsten Mal die Frage nach den Öffnungszeiten.</div></div>
+      <div class="z rechts"><i></i><div>Beantwortet. Sie erfahren gar nicht, dass jemand gefragt hat.</div></div>
+
+      <div class="z links"><i></i><div>Eine neue Bewertung im Netz. Antworten wollten Sie längst.</div></div>
+      <div class="z rechts"><i></i><div>Die Antwort ist entworfen, in Ihrem Ton. Sie lesen sie kurz und schicken sie ab.</div></div>
+
+      <div class="z links"><i></i><div>Die Rechnung ist offen. Mahnen mögen Sie nicht.</div></div>
+      <div class="z rechts"><i></i><div>Es wird freundlich erinnert. Kommt nichts zurück, fragt er Sie, wie es weitergehen soll.</div></div>
+
+    </div>
+
+    <div class="gegen-fuss auf">
+      <div><b>Keine davon ist schwierig.</b> Sie kommen nur alle dann, wenn Sie
+        gerade nicht können.</div>
+      <div><b>Bei Ihnen bleibt die Entscheidung.</b> Alles davor macht Ihr
+        digitaler Mitarbeiter.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= was ================= -->
 <section id="was">
   <div class="wrap">
-    <span class="kicker auf">Kurz erklärt</span>
-    <h2 class="h2 auf">Künstliche Intelligenz macht die Arbeit, die sie heute schon kann.</h2>
-    <p class="lede auf">Und das ist mehr, als die meisten denken: Anfragen
-      aufnehmen, Offerten mit Ihren Preisen rechnen, Termine abmachen, Mails
-      beantworten, Rechnungen nachfassen. Was übrig bleibt, ist die Arbeit, für
-      die es Sie wirklich braucht — und die Zeit fürs Wesentliche.</p>
+    <span class="kicker auf">Website, Webshop, Anwendung — immer mit digitalem Mitarbeiter</span>
+    <h2 class="h2 auf">Bei uns steht die Seite nicht nur da. Sie arbeitet mit.</h2>
+    <p class="lede auf">Zu jeder Website, zu jedem Webshop und zu jeder Anwendung
+      von Player Two gehört mindestens ein digitaler Mitarbeiter. Er übernimmt
+      eine Aufgabe, die heute jeden Tag bei Ihnen liegen bleibt.</p>
 
     <div class="dreisatz stufe">
       <article class="satz-karte">
         <span class="nr">1</span>
-        <h3>Alles, was digital geht</h3>
-        <p>Wir schauen Ihre Woche an: Was jeden Tag anfällt und keine
-          Handschrift braucht, übernimmt die künstliche Intelligenz. Den Rest
-          machen Sie weiter selbst — weil es Sie dafür braucht.</p>
+        <h3>Sie übernimmt echte Arbeit</h3>
+        <p>Anfragen aufnehmen und beantworten, Termine vorbereiten, Unterlagen
+          einsammeln, Antworten auf Bewertungen entwerfen. Das ist kein
+          Kontaktformular und kein Chatfenster ohne Aufgabe — es ist die Arbeit,
+          die sonst niemand macht.</p>
       </article>
       <article class="satz-karte">
         <span class="nr">2</span>
-        <h3>Auf Ihrer Website, mit Ihren Zahlen</h3>
-        <p>Die Website bekommen Sie dazu, denn dort kommt die Arbeit herein.
-          Gerechnet wird mit Ihren Preisen, geschrieben in Ihrem Ton — auch
-          samstags früh und abends um zehn.</p>
+        <h3>Mit Ihren Preisen, in Ihrem Ton</h3>
+        <p>Vorbereitet ist die Lösung samt seiner Rolle: seine Aufgabe, seine
+          Grenzen, der Punkt, an dem er an Sie übergibt. Ihr Wissen und Ihre
+          Preise kommen dazu, wenn wir ihn auf Ihren Betrieb übertragen.</p>
       </article>
       <article class="satz-karte">
         <span class="nr">3</span>
         <h3>Sie behalten den Daumen drauf</h3>
-        <p>Nichts geht ohne Ihre Freigabe hinaus. Jeder digitale Mitarbeiter ist
-          gekennzeichnet und gibt sich nie als Mensch aus. Was ein Urteil
-          braucht, bleibt bei Ihnen.</p>
+        <p>Was sie nicht sicher weiss, beantwortet sie nicht — sie übergibt an
+          Sie und sagt das auch.</p>
       </article>
     </div>
 
-    <p class="was-fuss auf"><b>Wir automatisieren Aufgaben, nicht Menschen.</b>
-      Die frei gewordene Zeit gehört Ihnen und Ihren Leuten — nicht dem nächsten
-      Auftrag.</p>
+    <p class="was-fuss auf"><b>Der Umfang richtet sich nach Ihrem Betrieb.</b>
+      Das gilt für dreissig Mitarbeitende genauso wie für den Betrieb, der aus
+      einer Person besteht. Dort ist sein Aufgabengebiet kleiner — und die
+      Entlastung am grössten.</p>
   </div>
 </section>
 
 <!-- ================= stufen ================= -->
+<!-- ================= Drei Einstiege ================= -->
 <section id="stufen">
   <div class="quer" id="quer">
     <div class="quer-halt">
@@ -1574,92 +1577,78 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <header class="tafel-kopf">
           <span class="tafel-nr">1 von 3</span>
           <h3>Website</h3>
-          <p>Damit Sie gefunden werden — und danach weniger Post haben.</p>
+          <p>Sie werden gefunden. Und was hereinkommt, bleibt nicht liegen.</p>
         </header>
         <div class="tafel-karten">
         <article class="stufe-karte">
-          <span class="stufe-nr">Stufe 1</span>
-          <h3>Die Website</h3>
-          <p class="satz">Ihr Betrieb, wie er ist: sauber gezeigt, schnell geladen, bei Google und in den neuen Antwortsystemen auffindbar.</p>
+          <span class="stufe-nr">Was Sie bekommen</span>
+          <h3>Die Seite</h3>
+          <p class="satz">Ihre Arbeit, wie sie ist: sauber gezeigt, schnell geladen — und auffindbar bei Google wie bei ChatGPT, Perplexity und Gemini.</p>
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Arbeiten, Ihre Leistungen, Ihre Preise</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Gefunden werden ist eingebaut, nicht ein Zusatzmodul</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="web1">ab CHF 1'490</span>
-            <span class="lauf" data-lauf="web1">wenn Sie Texte und Bilder liefern. Mit Texten und Bildern von uns CHF 2'490. Dazu CHF 129 im Monat.</span>
-          </div>
           <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Stufe 2</span>
-          <h3>Die Website, die mitarbeitet</h3>
-          <p class="satz">Dieselbe Seite, aber sie nimmt Ihnen den Papierkram ab. Gleich unten sehen Sie das an einem Tag in Ihrer Branche.</p>
+          <span class="stufe-nr">Wer darin mitarbeitet</span>
+          <h3>Inklusive digitaler Mitarbeiter</h3>
+          <p class="satz">Umfang je nach Auftrag. Malerbetrieb, vier Mitarbeitende. Um 08:14 kommt über Ihre Seite eine Anfrage für einen Innenanstrich. Um 08:31 liegt die Offerte bereit — mit Ihren Positionen und Ihren Preisen.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Anfrage kommt herein, Offerte geht mit Ihren Preisen zurück</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Termine und Reservationen ohne Telefonrunde</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Mails werden beantwortet, nicht liegen gelassen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Kundendaten stehen sauber am gleichen Ort</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt die Anfrage auf und fragt nach, was fehlt</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Rechnet die Offerte mit Ihren Preisen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Legt sie Ihnen zur Freigabe hin</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Plant das Nachfassen in fünf Tagen ein</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst geht nichts hinaus</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="web2">ab CHF 3'900</span>
-            <span class="lauf" data-lauf="web2">wenn Sie Texte und Bilder liefern. Mit Texten und Bildern von uns CHF 4'900. Dazu CHF 290 im Monat.</span>
-          </div>
-          <a class="btn btn-hell" href="#branchen">Für meine Branche ansehen</a>
+          <a class="btn btn-hell" href="#preise">Was das kostet</a>
         </article>
         </div>
 
-        <p class="immer-dabei">Immer dabei, ohne Aufpreis: technisches SEO · Schema-Markup · Freigabe der KI-Crawler · mobil und schnell · Impressum und Datenschutz · Google-Profil. Halbe Sachen bauen wir nicht.</p>
+        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
-
       <section class="tafel" id="tafel-shop" aria-label="Webshop">
         <header class="tafel-kopf">
           <span class="tafel-nr">2 von 3</span>
           <h3>Webshop</h3>
-          <p>Wenn Sie etwas verkaufen, das man in einen Korb legen kann.</p>
+          <p>Verkaufen, ohne dass die Bestellungen über Ihren Feierabend laufen.</p>
         </header>
         <div class="tafel-karten">
         <article class="stufe-karte">
-          <span class="stufe-nr">Stufe 1</span>
-          <h3>Der Webshop</h3>
-          <p class="satz">Ihre Ware online, mit TWINT und Karte. Kein Katalog mit fünfhundert Artikeln, den nie jemand pflegt.</p>
+          <span class="stufe-nr">Was Sie bekommen</span>
+          <h3>Der Shop</h3>
+          <p class="satz">Ein Shop mit genau den Artikeln, die Ihren Umsatz machen — gepflegt in Minuten statt Stunden, gefunden bei Google wie bei ChatGPT.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Die zwanzig Artikel, die achtzig Prozent Ihres Umsatzes machen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>TWINT, Karte und Rechnung eingerichtet</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung im Laden oder Versand, wie Sie wollen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Produkttexte und Bilder, die verkaufen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung, Versand oder beides</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zahlung über die üblichen Schweizer Wege</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="shop1">ab CHF 1'990</span>
-            <span class="lauf" data-lauf="shop1">wenn Sie Produktdaten, Texte und Bilder liefern. Mit Produkttexten und Bildern von uns CHF 3'400. Dazu CHF 179 im Monat.</span>
-          </div>
-          <a class="btn btn-linie" href="#kontakt">Anfrage stellen</a>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Stufe 2</span>
-          <h3>Der Webshop, der mitarbeitet</h3>
-          <p class="satz">Derselbe Shop, aber die Bestellungen laufen nicht mehr über Ihren Feierabend.</p>
+          <span class="stufe-nr">Wer darin mitarbeitet</span>
+          <h3>Inklusive digitaler Mitarbeiter</h3>
+          <p class="satz">Umfang je nach Auftrag. Bäckerei mit Hofladen. Am Mittwoch kommt die Vorbestellung: zwei Zöpfe, Samstag 8 Uhr. Die Bestätigung geht sofort raus, die Bestellung steht auf der Liste für die Backstube.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Bestellungen werden bestätigt, ohne dass Sie tippen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Fragt jemand nach der Lieferung, antwortet jemand</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie sehen früh, wenn ein Renner ausgeht</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Retouren und Rückfragen vorbereitet, Sie entscheiden</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt Vorbestellungen an und bestätigt die Abholzeit</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Hält den Bestand auf der Seite aktuell</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Meldet Ihnen, was eine Entscheidung braucht</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zeigt am Monatsende, was sich verkauft hat</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Grosse Bestellungen entscheiden Sie</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="shop2">ab CHF 4'900</span>
-            <span class="lauf" data-lauf="shop2">wenn Sie Produktdaten, Texte und Bilder liefern. Mit Produkttexten und Bildern von uns CHF 5'800. Dazu CHF 390 im Monat.</span>
-          </div>
-          <a class="btn btn-hell" href="#kontakt">Anfrage stellen</a>
+          <a class="btn btn-hell" href="#preise">Was das kostet</a>
         </article>
         </div>
 
-        <p class="immer-dabei">Immer dabei, ohne Aufpreis: technisches SEO · TWINT und Karte · Versand und Abholung · mobil und schnell · Impressum, Datenschutz und AGB · Google-Profil. Halbe Sachen bauen wir nicht.</p>
+        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
 
       <section class="tafel" id="tafel-anwendung" aria-label="Anwendung">
@@ -1670,42 +1659,36 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </header>
         <div class="tafel-karten">
         <article class="stufe-karte">
-          <span class="stufe-nr">Stufe 1</span>
+          <span class="stufe-nr">Was Sie bekommen</span>
           <h3>Die Anwendung</h3>
-          <p class="satz">Buchung, Kundenportal, Mitarbeiterbereich, Auftragsverwaltung. Gebaut auf Ihren Ablauf, nicht auf den von jemand anderem.</p>
+          <p class="satz">Gebaut auf Ihren Ablauf, nicht auf den von jemand anderem. Was nach aussen zeigt, ist auffindbar bei Google wie bei ChatGPT.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Genau Ihr Ablauf, mit Ihren Begriffen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Leute und Ihre Kunden bekommen je ihren Zugang</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft auf Schweizer Servern</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Gibt es das fertig zu kaufen, sagen wir Ihnen das</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Bereich für Ihre Leute, einer für Ihre Kundschaft</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft im Browser, nichts zu installieren</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="app1">ab CHF 2'900</span>
-            <span class="lauf" data-lauf="app1">nach Aufwand, Fixpreis nach dem Gespräch. Dazu CHF 249 im Monat.</span>
-          </div>
-          <a class="btn btn-linie" href="#kontakt">Anfrage stellen</a>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Stufe 2</span>
-          <h3>Die Anwendung, die mitarbeitet</h3>
-          <p class="satz">Dieselbe Anwendung, aber jemand bedient sie mit. Auch nachts, auch am Samstag.</p>
+          <span class="stufe-nr">Wer darin mitarbeitet</span>
+          <h3>Inklusive digitaler Mitarbeiter</h3>
+          <p class="satz">Umfang je nach Auftrag. Hausverwaltung. Ein Mieter meldet einen Schaden über das Portal. Die Meldung ist aufgenommen, dem Objekt zugeordnet und beim Handwerker — der Stand steht für alle sichtbar da.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Erfasst, ordnet zu und bereitet vor</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Meldet, was hängt, bevor Sie es merken</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Schreibt die Rückmeldung, Sie lesen sie nur noch</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Jeder Schritt ist protokolliert und nachvollziehbar</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst läuft nichts hinaus</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt Meldungen auf und ordnet sie zu</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Hält alle Beteiligten auf dem Laufenden</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Erinnert an das, was liegen bleibt</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Fasst nach, ohne dass Sie eine Liste führen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Was ein Urteil braucht, kommt zu Ihnen</li>
           </ul>
-          <div class="stufe-preis">
-            <span class="p" data-preis="app2">ab CHF 5'900</span>
-            <span class="lauf" data-lauf="app2">nach Aufwand, Fixpreis nach dem Gespräch. Dazu CHF 490 im Monat.</span>
-          </div>
-          <a class="btn btn-hell" href="#kontakt">Anfrage stellen</a>
+          <a class="btn btn-hell" href="#preise">Was das kostet</a>
         </article>
         </div>
 
-        <p class="immer-dabei">Immer dabei, ohne Aufpreis: Schweizer Server · Rollen und Rechte · Sicherung und Wiederherstellung · mobil und schnell · Datenschutz nach DSG · Einschulung Ihrer Leute. Halbe Sachen bauen wir nicht.</p>
+        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
       </div>
 
@@ -1713,6 +1696,34 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <button type="button" class="quer-punkt an" data-zu="0"><span class="vs">Website</span></button>
         <button type="button" class="quer-punkt" data-zu="1"><span class="vs">Webshop</span></button>
         <button type="button" class="quer-punkt" data-zu="2"><span class="vs">Anwendung</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= branchen ================= -->
+<section class="branchen" id="branchen">
+  <div class="wrap">
+    <span class="kicker auf">Was das für Sie heisst</span>
+    <h2 class="h2 auf">Suchen Sie Ihre Branche.</h2>
+    <p class="lede auf">Wir zeigen den Tag, wie er dann läuft. Jede Branche hat einen anderen Papierkram — hier sehen Sie, was ohne Sie läuft und wo Sie noch entscheiden.</p>
+
+    <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
+    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Im Regal liegen
+      Lösungen für <a href="loesungen.html">über hundert Branchen</a> — von der
+      Physiotherapie über die Garage bis zur Dachdeckerei.</p>
+
+    <div class="fluss-raster">
+      <div class="fluss-kopf auf">
+        <h3 id="fluss-titel">Malerbetrieb</h3>
+        <p id="fluss-satz">Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.</p>
+        <div class="womit" id="fluss-womit"></div>
+      </div>
+
+      <div class="schirm auf" id="schirm">
+        <div class="schirm-kopf"><i></i><span id="schirm-titel">Ihr Tag</span></div>
+        <ul class="schritte-liste" id="fluss-schritte" aria-live="polite"></ul>
+        <div class="fluss-fuss">Alles, was hier steht, passiert erst nach Ihrer Freigabe. Sie behalten den Daumen drauf.</div>
       </div>
     </div>
   </div>
@@ -1804,33 +1815,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ================= branchen ================= -->
-<section class="branchen" id="branchen">
-  <div class="wrap">
-    <span class="kicker auf">Was das für Sie heisst</span>
-    <h2 class="h2 auf">Suchen Sie Ihre Branche.</h2>
-    <p class="lede auf">Wir zeigen den Tag, wie er dann läuft. Jede Branche hat einen anderen Papierkram — hier sehen Sie, was ohne Sie läuft und wo Sie noch entscheiden.</p>
-
-    <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
-    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Im Regal liegen
-      Lösungen für <a href="loesungen.html">über hundert Branchen</a> — von der
-      Physiotherapie über die Garage bis zur Dachdeckerei.</p>
-
-    <div class="fluss-raster">
-      <div class="fluss-kopf auf">
-        <h3 id="fluss-titel">Malerbetrieb</h3>
-        <p id="fluss-satz">Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.</p>
-        <div class="womit" id="fluss-womit"></div>
-      </div>
-
-      <div class="schirm auf" id="schirm">
-        <div class="schirm-kopf"><i></i><span id="schirm-titel">Ihr Tag</span></div>
-        <ul class="schritte-liste" id="fluss-schritte" aria-live="polite"></ul>
-        <div class="fluss-fuss">Alles, was hier steht, passiert erst nach Ihrer Freigabe. Sie behalten den Daumen drauf.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================= ablauf ================= -->
 <section id="ablauf" class="ablauf">
@@ -1863,89 +1847,169 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <article class="schritt">
         <div class="punkt">4</div>
         <h3>Live, und dann geben wir acht</h3>
-        <p>Sie geben frei, wir schalten auf. Die Rechnung kommt danach, in einem Betrag. Betrieb und Pflege kosten CHF 154 im Monat und sind monatlich kündbar.</p>
+        <p>Sie geben frei, wir schalten auf. Die Rechnung kommt danach, in einem Betrag. Betrieb und Pflege laufen monatlich weiter und sind monatlich kündbar.</p>
         <div class="dauer">Tag 10</div>
       </article>
     </div>
 
-    <h3 class="dauer-frage auf">Wie lange dauert es wirklich?</h3>
-    <div class="fragen zwei stufe">
-      <article class="frage">
-        <span class="f-titel">Stufe 1</span>
-        <div class="f-zahl">Ein paar Tage</div>
-        <p>Sie wählen eine aus dem Regal. Wir setzen Ihre Bilder, Ihre Texte und
-          Ihre Preise ein und schalten auf.</p>
+    <p class="was-fuss auf">Grössere Vorhaben bekommen einen eigenen Termin. Den nennen wir Ihnen vor der Zusage, nicht danach.</p>
+  </div>
+</section>
+
+<section id="preise">
+  <div class="wrap">
+    <span class="kicker auf">Was es kostet</span>
+    <h2 class="h2 auf">Sie wissen vor dem Ja, was es kostet.</h2>
+    <p class="lede auf">Ein Fixpreis für den Aufbau, ein fester Betrag im Monat
+      für den Betrieb. Kein Stundenzähler, keine Nachforderung. Geht die Arbeit
+      schneller als gedacht, ist das unser Risiko und Ihr Vorteil.</p>
+
+    <div class="preis-drei stufe">
+      <article>
+        <h3>Website</h3>
+        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
+        <p>Er nimmt die Anfrage auf und legt Ihnen die Offerte zur
+          Freigabe hin.</p>
       </article>
-      <article class="frage">
-        <span class="f-titel">Stufe 2</span>
-        <div class="f-zahl">Erst reden, dann bauen</div>
-        <p>Vorher klären wir genau, was sie Ihnen abnehmen soll. Erst wenn das
-          steht, bauen wir. Sonst macht sie nachher etwas anderes, als Sie sich
-          vorgestellt haben.</p>
-        <p>Grössere Vorhaben bekommen einen eigenen Termin. Den nennen wir Ihnen
-          vor der Zusage, nicht danach.</p>
+      <article>
+        <h3>Webshop</h3>
+        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
+        <p>Er nimmt Bestellungen auf, bestätigt die Abholzeit und hält
+          den Bestand aktuell.</p>
       </article>
+      <article>
+        <h3>Anwendung</h3>
+        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
+        <p>Er nimmt Meldungen auf, ordnet sie zu und hält alle
+          Beteiligten auf dem Laufenden.</p>
+      </article>
+    </div>
+
+    <div class="preis-noch auf"><b>Die Beträge rechnen wir gerade neu</b>, weil
+      der digitale Mitarbeiter neu im Preis enthalten ist. Wir stellen keine Zahl hin,
+      die wir nachher korrigieren müssen. Fragen Sie an, dann bekommen Sie den
+      Fixpreis für Ihren Fall — beide Zahlen stehen in Ihrer Offerte, bevor Sie
+      zusagen.</div>
+
+    <h3 class="dauer-frage auf">Was im Preis enthalten ist</h3>
+    <ul class="preis-drin stufe">
+      <li>Die fertig gebaute Seite mit allen Funktionen, die auf ihrem Datenblatt stehen.</li>
+      <li>Die Übertragung auf Ihren Betrieb: Ihr Logo, Ihre Farben, Ihre Bilder, Ihre Texte.</li>
+      <li>Der digitale Mitarbeiter, eingerichtet mit Ihren Preisen und Ihrem Ton — getestet, bevor sie zum ersten Mal mit einem Kunden spricht.</li>
+      <li>Die Gebühren für Ihre Adresse weisen wir separat aus, damit Sie sehen, was davon uns gehört.</li>
+    </ul>
+
+    <p class="was-fuss auf"><b>Wenn eine vorhandene Standardlösung besser und
+      günstiger ist, sagen wir das.</b> Wir bauen kein grosses System, wenn eine
+      kleine Lösung genügt.</p>
+  </div>
+</section>
+
+<!-- ================= warum =================
+     Die vier Regeln stehen woertlich im Masterfile, Zeile 320 bis 330
+     ("Wir tun nie"). Die vierte stuetzt sich zusaetzlich auf die
+     Effizienz-Dividende, Zeile 777. Nichts davon ist erfunden. -->
+<section id="warum">
+  <div class="wrap">
+    <span class="kicker auf">Woran Sie uns messen können</span>
+    <h2 class="h2 auf">Was wir nie tun.</h2>
+    <p class="lede auf">Was ein Anbieter kann, steht auf jeder Seite. Was er
+      sich selbst verbietet, steht fast nirgends. Diese vier Regeln stehen bei
+      uns aufgeschrieben — daneben, woran Sie merken, ob wir uns daran halten.</p>
+
+    <div class="blatt auf">
+      <div class="blatt-kopf">
+        <span>Aus unserem Regelwerk</span>
+        <span>Gilt für jeden Auftrag</span>
+      </div>
+      <div class="nie-raster stufe">
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Menschen wegrationalisieren, um Ihnen etwas zu verkaufen.</h3>
+        <p>Wir nehmen Aufgaben ab, keine Menschen. Die Zeit, die frei wird, gehört den Leuten in Ihrem Betrieb.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>In keiner Offerte von uns steht eine eingesparte Stelle.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Technik verkaufen, die Sie nicht brauchen.</h3>
+        <p>Findet sich bei Ihnen keine Arbeit, die ein digitaler Mitarbeiter wirklich abnimmt, sagen wir Ihnen das — auch wenn uns das den Auftrag kostet.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Im ersten Gespräch nennen wir die Aufgabe. Oder dass es keine gibt.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Knebelverträge, versteckte Kosten, Intransparenz.</h3>
+        <p>Ein Fixpreis für den Aufbau, ein fester Betrag im Monat, monatlich kündbar ohne Begründung. Fremdkosten weisen wir getrennt aus.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Beide Zahlen stehen in Ihrer Offerte, bevor Sie zusagen.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Den Vorteil behalten, wenn unsere Arbeit günstiger wird.</h3>
+        <p>Werden unsere Werkzeuge günstiger, prüfen wir einmal im Jahr, ob Ihr Preis sinken kann. Auch wenn Sie längst unterschrieben haben.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Wir melden uns mit dem Ergebnis — auch wenn es Nein lautet.</div>
+      </div>
+      </div>
+      <div class="blatt-fuss">
+        <div class="stark">Sie müssen uns nicht glauben. Sie dürfen uns daran messen.</div>
+        <div class="leise">Diese Sätze stehen so in unserem Regelwerk — seit dem
+          ersten Tag, nicht seit dieser Seite.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================= herkunft ================= -->
-<section id="herkunft">
+<!-- ================= team ================= -->
+<section class="team-band" id="team">
   <div class="wrap">
-    <div class="herkunft-raster">
+    <div class="team-raster">
       <div>
-        <span class="kicker auf">Wer dahintersteckt</span>
-        <h2 class="h2 auf">Wir kommen aus dem Betrieb, nicht aus der Agentur.</h2>
-        <p class="lede auf">Wir sind Kristian und Kristina aus dem Thurgau. Wir haben
-          Teams im Tagesgeschäft geführt und Kunden am Tresen bedient, bevor wir
-          Websites gebaut haben. Darum wissen wir, wie sich ein Montagmorgen mit
-          fehlendem Personal anfühlt — und darum bauen wir keine Seite, die schön
-          aussieht und nichts bringt.</p>
-
-        <div class="koepfe auf">
-          <div class="kopf">
-            <div class="kreis">
-              <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
-                width="76" height="76" loading="lazy">
-            </div>
-            <div><div class="n">Kristina</div><div class="r">Verkauf und Marketing</div></div>
-          </div>
-          <div class="kopf">
-            <div class="kreis">
-              <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
-                width="76" height="76" loading="lazy">
-            </div>
-            <div><div class="n">Kristian</div><div class="r">Technik und Prozesse</div></div>
-          </div>
+        <span class="kicker auf">Wie wir das zu zweit schaffen</span>
+        <h2 class="h2 auf">Zwei Menschen und ein Team digitaler Mitarbeitender.</h2>
+        <p class="lede auf">Die digitalen Kolleginnen und Kollegen übernehmen Routine und Technik, damit wir bei Ihnen vor Ort sein können. Sie können ihnen bei der Arbeit zusehen.</p>
+        <div class="punkt-live"><i></i> Wenn nichts zu tun ist, schlafen sie. Das sehen Sie auch.</div>
+        <div class="cta-reihe" style="margin-top:28px">
+          <a class="btn btn-hell" href="team.html">Das Team ansehen</a>
         </div>
       </div>
+      <div class="team-schau auf">
+        <div class="menschen-zwei">
+          <figure>
+            <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
+              width="96" height="96" loading="lazy">
+            <figcaption>Kristina</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
+              width="96" height="96" loading="lazy">
+            <figcaption>Kristian</figcaption>
+          </figure>
+        </div>
 
-      <aside class="zahl-karte auf">
-        <div class="gross">Abend und Wochenende<br>gehören Ihnen</div>
-        <p>Offerten schreiben, Mails beantworten, Termine verschieben, Rechnungen
-          nachfassen: Das bleibt bei den meisten Betrieben für den Feierabend und
-          das Wochenende liegen. Nichts davon muss von Ihnen erledigt werden.</p>
-        <p>Wir automatisieren Aufgaben, nicht Menschen. Was dabei frei wird, gehört
-          Ihnen und Ihrer Familie, nicht dem nächsten Auftrag.</p>
-        <div class="quelle">Wofür wir stehen, seit dem ersten Tag</div>
-      </aside>
+        <div class="digital-reihe">
+          <span class="d-titel">Ihr digitales Team</span>
+          <ul class="kreis-reihe">
+          <li class="k"><img src="assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
+            title="Lea, Verkauf und Kundenstamm" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
+            title="Ferro, Website-Produktion" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/sora.webp" alt="Sora, Texte"
+            title="Sora, Texte" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
+            title="Kairo, Auffindbarkeit" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
+            title="Flora, Rechnungen" width="64" height="64" loading="lazy"></li>
+          <li class="k"><img src="assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
+            title="Leon, Technik und Sicherheit" width="64" height="64" loading="lazy"></li>
+            <li class="k mehr" id="team-rest">+53</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================= referenzen ================= -->
-<!-- ACHTUNG: Die zehn Stimmen in diesem Band sind erfunden.
-     Sie stehen nur in dieser Vorschlagsfassung, damit die Seite im
-     Endzustand beurteilt werden kann. Vor dem Livegang durch echte
-     Betriebe ersetzen oder den Abschnitt leeren. -->
 <section id="referenzen">
   <div class="wrap">
     <span class="kicker auf">Referenzen</span>
     <h2 class="h2 auf">Was Betriebe danach sagen.</h2>
     <p class="lede auf"><b>Musterstimmen.</b> Wir gehen erst mit echten Kunden
       live — solange keine echte Referenz hier steht, behaupten wir auch keine.
-      So sieht der Abschnitt aus, sobald die erste da ist. Fahren Sie mit der
-      Maus darüber, dann hält das Band an.</p>
+      So sieht der Abschnitt aus, sobald die erste da ist.</p>
   </div>
 
   <div class="ref-band" id="ref-band">
@@ -2010,46 +2074,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
           <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
         </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#5F3DC4" aria-hidden="true">CW</span>
-            <figcaption>
-              <span class="stimme-name">C. Wegmüller</span>
-              <span class="stimme-ort">Treuhandbüro, Wil</span>
-            </figcaption>
-          </div>
-          <blockquote>Belege einfordern war ein Drittel meiner Zeit. Das macht jetzt jemand anderes, freundlich und hartnäckig. Ich rechne wieder, statt zu mahnen.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#A61E4D" aria-hidden="true">PS</span>
-            <figcaption>
-              <span class="stimme-name">P. Signer</span>
-              <span class="stimme-ort">Hofladen, Bürglen</span>
-            </figcaption>
-          </div>
-          <blockquote>Am Wochenende stand ich zwischen Feld und Telefon. Die Bestellungen laufen jetzt allein, und ich war das erste Mal seit Jahren am Sonntag mit den Kindern am See.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#1864AB" aria-hidden="true">LG</span>
-            <figcaption>
-              <span class="stimme-name">L. Gantenbein</span>
-              <span class="stimme-ort">Restaurant, Arbon</span>
-            </figcaption>
-          </div>
-          <blockquote>Reservationen während dem Service haben uns jeden Abend zerrissen. Heute bestätigt sich das selbst, und wir kochen.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#495057" aria-hidden="true">DZ</span>
-            <figcaption>
-              <span class="stimme-name">D. Zeller</span>
-              <span class="stimme-ort">Schreinerei, Sirnach</span>
-            </figcaption>
-          </div>
-          <blockquote>Anfragen sind bei mir früher liegen geblieben, ehrlich gesagt. Jetzt bleibt keine mehr liegen, und ich habe drei Aufträge, die ich sonst nie bekommen hätte.</blockquote>
-        </figure>
         <figure class="stimme" aria-hidden="true">
           <div class="stimme-kopf">
             <span class="stimme-bild" style="--f:#1E6CFF" aria-hidden="true">BM</span>
@@ -2110,98 +2134,59 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
           <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
         </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#5F3DC4" aria-hidden="true">CW</span>
-            <figcaption>
-              <span class="stimme-name">C. Wegmüller</span>
-              <span class="stimme-ort">Treuhandbüro, Wil</span>
-            </figcaption>
-          </div>
-          <blockquote>Belege einfordern war ein Drittel meiner Zeit. Das macht jetzt jemand anderes, freundlich und hartnäckig. Ich rechne wieder, statt zu mahnen.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#A61E4D" aria-hidden="true">PS</span>
-            <figcaption>
-              <span class="stimme-name">P. Signer</span>
-              <span class="stimme-ort">Hofladen, Bürglen</span>
-            </figcaption>
-          </div>
-          <blockquote>Am Wochenende stand ich zwischen Feld und Telefon. Die Bestellungen laufen jetzt allein, und ich war das erste Mal seit Jahren am Sonntag mit den Kindern am See.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#1864AB" aria-hidden="true">LG</span>
-            <figcaption>
-              <span class="stimme-name">L. Gantenbein</span>
-              <span class="stimme-ort">Restaurant, Arbon</span>
-            </figcaption>
-          </div>
-          <blockquote>Reservationen während dem Service haben uns jeden Abend zerrissen. Heute bestätigt sich das selbst, und wir kochen.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#495057" aria-hidden="true">DZ</span>
-            <figcaption>
-              <span class="stimme-name">D. Zeller</span>
-              <span class="stimme-ort">Schreinerei, Sirnach</span>
-            </figcaption>
-          </div>
-          <blockquote>Anfragen sind bei mir früher liegen geblieben, ehrlich gesagt. Jetzt bleibt keine mehr liegen, und ich habe drei Aufträge, die ich sonst nie bekommen hätte.</blockquote>
-        </figure>
-    </div>
+      </div>
   </div>
 
 </section>
 
-<!-- ================= team ================= -->
-<section class="team-band" id="team">
-  <div class="wrap">
-    <div class="team-raster">
-      <div>
-        <span class="kicker auf">Wie wir das zu zweit schaffen</span>
-        <h2 class="h2 auf">Zwei Menschen und ein Team digitaler Mitarbeitender.</h2>
-        <p class="lede auf">Die digitalen Kolleginnen und Kollegen übernehmen Routine und Technik, damit wir bei Ihnen vor Ort sein können, zuhören und entscheiden. Jede und jeder von ihnen hat einen Namen, eine Aufgabe und klare Grenzen. Sie können ihnen bei der Arbeit zusehen.</p>
-        <div class="punkt-live"><i></i> Wenn nichts zu tun ist, schlafen sie. Das sehen Sie auch.</div>
-        <div class="cta-reihe" style="margin-top:28px">
-          <a class="btn btn-hell" href="team.html">Das Team ansehen</a>
-        </div>
-      </div>
-      <div class="team-schau auf">
-        <div class="menschen-zwei">
-          <figure>
-            <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
-              width="96" height="96" loading="lazy">
-            <figcaption>Kristina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
-              width="96" height="96" loading="lazy">
-            <figcaption>Kristian</figcaption>
-          </figure>
-        </div>
 
-        <div class="digital-reihe">
-          <span class="d-titel">Ihr digitales Team</span>
-          <ul class="kreis-reihe">
-          <li class="k"><img src="assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
-            title="Lea, Verkauf und Kundenstamm" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
-            title="Ferro, Website-Produktion" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/sora.webp" alt="Sora, Texte"
-            title="Sora, Texte" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
-            title="Kairo, Auffindbarkeit" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
-            title="Flora, Rechnungen" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
-            title="Leon, Technik und Sicherheit" width="64" height="64" loading="lazy"></li>
-            <li class="k mehr" id="team-rest">+53</li>
-          </ul>
-        </div>
-      </div>
+<!-- ================= faq ================= -->
+<section id="faq">
+  <div class="wrap">
+    <span class="kicker auf">Häufige Fragen</span>
+    <h2 class="h2 auf">Das fragen uns Betriebe, bevor sie zusagen.</h2>
+
+    <div class="faq-liste stufe">
+      <details>
+        <summary>Muss ich bereits eine Website haben?</summary>
+        <div class="antwort">Nein. Sie können gar keine Seite haben, eine zehn Jahre alte, oder eine, die jemand anders gebaut hat — wir fangen in allen drei Fällen neu an. Fremde Systeme bauen wir nicht um: fremder Code wird immer teurer, als er aussieht, und wir übernehmen keine Verantwortung für etwas, das wir nicht kennen. Was von der alten Seite brauchbar ist — Texte, Fotos, die Kundendaten aus dem Formular — holen wir vorher heraus.</div>
+      </details>
+      <details>
+        <summary>Wir sind ein kleiner Betrieb. Lohnt sich das überhaupt?</summary>
+        <div class="antwort">Ja. Wir arbeiten ausdrücklich auch für Kleinbetriebe und Einmannbetriebe. Dort ist die Lösung meistens kleiner — und die Entlastung am grössten, weil sonst niemand da ist, der die Arbeit übernimmt. Ein kleiner Auftrag ist bei uns kein Gefallen, sondern ein Auftrag mit kleinerem Umfang.</div>
+      </details>
+      <details>
+        <summary>Kann ich meine bestehende Domain behalten?</summary>
+        <div class="antwort">Ja. Eingetragener Inhaber Ihrer Adresse bleiben Sie, auch wenn wir sie technisch verwalten. Die Verlängerung behalten wir im Auge, damit sie nicht unbemerkt abläuft. Vor dem Umschalten schreiben wir auf, welche Einträge Ihre Geschäftsmail braucht, und ändern nur, was die Website betrifft — so kommt am Umschalttag keine Mail abhanden. Haben Sie noch keine Adresse, prüfen wir Ihre Wunschadresse und registrieren erst nach Ihrer ausdrücklichen Bestätigung.</div>
+      </details>
+      <details>
+        <summary>Was geschieht nach dem Livegang?</summary>
+        <div class="antwort">Am Aufschalttag prüfen wir die Seite auf dem Livesystem und schalten die Überwachung ein. Sie bekommen Ihre Zugänge, den Weg für Meldungen und eine klare Liste, was ab jetzt überwacht wird: Erreichbarkeit, Ladezeit, Formulare, Zertifikat und Sicherungen. Danach betreiben wir die Seite weiter — Hosting in der Schweiz, technische Pflege, Sicherungen, Überwachung und der Betrieb Ihres digitalen Mitarbeiters. Dass sich eine Sicherung wirklich zurückspielen lässt, prüfen wir monatlich. Nach sechs und nach zwölf Monaten melden wir uns von uns aus — mit einem Blick auf Ihre Seite, nicht mit einem Serienbrief.</div>
+      </details>
+      <details>
+        <summary>Kann ich Inhalte selbst ändern?</summary>
+        <div class="antwort">Sie müssen nicht. Sie melden die Änderung, wir setzen sie um — zuerst auf einer Vorschau, die Sie vorher sehen. Live geht nichts von allein: jede Änderung wird von Hand freigegeben, auch die kleine. Neue Öffnungszeiten, ein anderes Foto, ein geänderter Preis sind in der laufenden Betreuung enthalten. Grösseres rechnen wir vorher aus und nennen Ihnen den Betrag, bevor Sie zusagen. Eine Anlage, die Sie selbst betreuen müssen, bekommen Sie nicht.</div>
+      </details>
+      <details>
+        <summary>Was kostet die laufende Betreuung?</summary>
+        <div class="antwort">Ein fester Betrag im Monat, monatlich kündbar, ohne Begründung — das steht im Vertrag, nicht nur im Verkaufsgespräch. Enthalten sind Hosting in der Schweiz, technische Pflege, Sicherungen, Überwachung, kleine Änderungen und der laufende Betrieb Ihres digitalen Mitarbeiters. Die Gebühren für Ihre Adresse weisen wir separat aus. Den Betrag für Ihren Betrieb nennen wir in der Offerte, bevor Sie zusagen.</div>
+      </details>
+      <details>
+        <summary>Ersetzt die künstliche Intelligenz den persönlichen Kontakt?</summary>
+        <div class="antwort">Nein. Ihre Ansprechpartner sind zwei Menschen aus der Region, am Telefon erreichbar. Der digitale Mitarbeiter übernimmt die Arbeit, die sonst liegen bleibt: die Anfrage um zehn Uhr abends, die immer gleiche Frage am Morgen. Er trägt sichtbar «KI», gibt sich nie als Mensch aus, auch nicht auf ausdrücklichen Wunsch, und was er nicht sicher weiss, beantwortet er nicht — er übergibt an einen Menschen und sagt das auch.</div>
+      </details>
+      <details>
+        <summary>Wo werden meine Daten gespeichert?</summary>
+        <div class="antwort">Ihre Website liegt bei einem Schweizer Anbieter mit ausgewiesenem Server- und Datenstandort Schweiz. Was über Ihre Formulare hereinkommt, wird auf unseren Servern in der Schweiz weiterverarbeitet. Für das Verstehen und Formulieren von Antworten arbeiten wir zusätzlich mit geprüften, vertraglich freigegebenen Dienstleistern. Welche Daten dabei verarbeitet werden, steht in Ihrer Datenschutzerklärung; was nicht nötig ist, wird gar nicht erst mitgeschickt. Die Gesprächsverläufe Ihres digitalen Mitarbeiters löschen wir nach neunzig Tagen.</div>
+      </details>
+      <details>
+        <summary>Was passiert, wenn etwas nicht funktioniert?</summary>
+        <div class="antwort">Die Überwachung meldet Ausfall, Fehler und lange Ladezeiten zuerst uns — meistens wissen wir von einer Störung, bevor Sie sie bemerken. Bei einem echten Ausfall setzen wir die Seite sofort auf den letzten funktionierenden Stand zurück. Abgeschlossen ist eine Störung erst, wenn die Ursache gefunden und die Massnahme dagegen geprüft ist. Fällt der digitale Mitarbeiter aus, bleibt Ihre Seite online, Formulare und Bestellungen laufen weiter.</div>
+      </details>
     </div>
+
+    <p class="faq-fuss auf">Steht Ihre Frage nicht dabei:
+      <a href="#kontakt">Schreiben Sie uns zwei Sätze.</a></p>
   </div>
 </section>
 
@@ -2247,6 +2232,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
   </div>
 </section>
+
 
 </main>
 
@@ -2702,131 +2688,6 @@ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', functi
 addEventListener('visibilitychange', function(){
   document.body.classList.toggle('paused', document.hidden);
 });
-})();
-
-/* ---------- Hero: zentraler Fluss ---------- */
-(function () {
-  var hero = document.querySelector("[data-pt-hero]");
-  if (!hero) return;
-
-  var cards = Array.prototype.slice.call(hero.querySelectorAll(".pt-task"));
-  var labels = hero.querySelectorAll("[data-pt-label]");
-  var scrollText = hero.querySelector("[data-pt-scroll]");
-  var hubText = hero.querySelector("[data-pt-hub]");
-  var currentPhase = -1;
-  var frame = 0;
-
-  function phaseFor(progress) {
-    if (progress < 0.13) return 0;
-    if (progress < 0.43) return 1;
-    if (progress < 0.70) return 2;
-    return 3;
-  }
-
-  function setPhase(phase) {
-    if (phase === currentPhase) return;
-    hero.classList.remove("pt-phase-0", "pt-phase-1", "pt-phase-2", "pt-phase-3");
-    hero.classList.add("pt-phase-" + phase);
-    currentPhase = phase;
-
-    var label = phase === 1 ? "Neu eingegangen" :
-                phase === 2 ? "Player Two arbeitet" : "Erledigt";
-
-    cards.forEach(function (card, index) {
-      labels[index].textContent = label;
-      var message = phase === 1 ? card.dataset.incoming :
-                    phase === 2 ? card.dataset.processing : card.dataset.done;
-      card.querySelector("[data-pt-message]").textContent = message;
-    });
-
-    scrollText.textContent = phase === 0 ? "Kurz scrollen" : phase < 3 ? "Weiter" : "Fertig";
-    hubText.textContent = phase === 3 ? "3 Ergebnisse bereit" : "bereitet alles vor";
-    /* Die Karten wandern beim Wechsel; erst danach passen die Linien. */
-    setTimeout(linienZiehen, 720);
-  }
-
-  /* Die drei Linien vom Kreis zur jeweiligen Karte legen. So stimmt die
-     Verbindung bei jeder Fensterbreite und bei jedem Platz, den die
-     Karten oder der Kreis bekommen. */
-  var buehne = hero.querySelector(".pt-stage");
-  var flow = hero.querySelector(".pt-flow");
-  var hub = hero.querySelector(".pt-hub");
-  var linien = [].slice.call(hero.querySelectorAll(".pt-flow-line"));
-
-  /* Die Prozentwerte wandern mit der Fenstergroesse. Wo eine Karte
-     dabei aus dem Bild oder unter den Kopf laufen wuerde, wird sie
-     zurueckgeschoben - und nur dann. */
-  var RAND = 16;
-  var kopf = document.getElementById('nav');
-
-  function kartenHalten() {
-    if (!buehne || document.body.classList.contains('setzt')) return;
-    if (!matchMedia('(min-width:781px)').matches) {
-      cards.forEach(function (c) { c.style.margin = ''; });
-      return;
-    }
-    /* Alles in Buehnen-Koordinaten. Die Buehne klebt oben am Rand,
-       solange man sie sieht, also ist der Platz unter der Kopfzeile
-       darin ein fester Wert - unabhaengig davon, wie weit gescrollt
-       wurde. Wird gegen den Bildschirm gerechnet, kleben die Karten
-       daran fest, statt mitzuscrollen. */
-    var oben = RAND;
-    if (kopf) oben = Math.max(RAND, kopf.getBoundingClientRect().height + 12);
-
-    var bb = buehne.offsetWidth, bh = buehne.offsetHeight;
-    cards.forEach(function (card) {
-      card.style.margin = '';
-      var l = card.offsetLeft, o = card.offsetTop;
-      var w = card.offsetWidth, h = card.offsetHeight;
-      var dx = 0, dy = 0;
-      if (l + w > bb - RAND) dx = bb - RAND - (l + w);
-      if (l + dx < RAND) dx = RAND - l;
-      if (o + h > bh - RAND) dy = bh - RAND - (o + h);
-      if (o + dy < oben) dy = oben - o;
-      if (dx) card.style.marginLeft = dx + 'px';
-      if (dy) card.style.marginTop = dy + 'px';
-    });
-  }
-
-  function linienZiehen() {
-    kartenHalten();
-    if (!flow || !hub || linien.length !== cards.length) return;
-    var f = flow.getBoundingClientRect();
-    var n = hub.getBoundingClientRect();
-    var nx = (n.left + n.right) / 2 - f.left;
-    var ny = (n.top + n.bottom) / 2 - f.top;
-    cards.forEach(function (card, i) {
-      var k = card.getBoundingClientRect();
-      var dx = (k.left + k.right) / 2 - f.left - nx;
-      var dy = (k.top + k.bottom) / 2 - f.top - ny;
-      var l = linien[i];
-      l.style.left = nx + "px";
-      l.style.top = ny + "px";
-      l.style.width = Math.sqrt(dx * dx + dy * dy) + "px";
-      l.style.transform = "rotate(" + (Math.atan2(dy, dx) * 180 / Math.PI) + "deg)";
-    });
-  }
-  hero.ptLinien = linienZiehen;
-
-  function update() {
-    frame = 0;
-    linienZiehen();
-    if (hero.hasAttribute("data-pt-halt")) return;
-    var rect = hero.getBoundingClientRect();
-    var distance = Math.max(1, hero.offsetHeight - window.innerHeight);
-    var progress = Math.max(0, Math.min(1, -rect.top / distance));
-    setPhase(phaseFor(progress));
-  }
-
-  function onScroll() {
-    if (!frame) frame = requestAnimationFrame(update);
-  }
-
-  hero.ptPhaseSetzen = setPhase;
-
-  update();
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
 })();
 
 
