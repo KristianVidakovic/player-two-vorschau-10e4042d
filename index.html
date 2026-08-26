@@ -17,6 +17,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+/* Entscheidet vor dem ersten Anstrich, ob der Hero-Film laeuft. Steht
+   hier oben und nicht unten, damit nicht kurz das Endbild aufblitzt. */
+try{
+  if (matchMedia('(min-width:781px)').matches
+   && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.documentElement.className += ' pt-film-an';
+  }
+}catch(e){}
+</script>
 <style>
 /* ============================================================
    Player Two, öffentliche Website
@@ -1369,18 +1379,24 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .gegen .z.links i::after{content:"";position:absolute;left:50%;top:50%;
   width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;
   background:var(--linie-stark)}
-.gegen .z.rechts i{border-color:#5BD98A;background:#5BD98A;opacity:0;
-  animation:hakenAuf .45s var(--ease) forwards}
+.gegen .z.rechts i{border-color:#5BD98A;background:#5BD98A}
+/* Ohne Skript stehen die Haken einfach da. Kuendigt das Skript den Takt
+   an, sind sie kurz weg und laufen dann durch - aber erst, wenn man den
+   Abschnitt sieht. */
+.gegen.taktbereit .z.rechts i{opacity:0}
+.gegen.taktbereit.in .z.rechts i{animation:hakenAuf .45s var(--ease) forwards}
 .gegen .z.rechts i::after{content:"";position:absolute;left:4px;top:1.5px;
   width:5px;height:9px;border:solid var(--nacht);border-width:0 2px 2px 0;
   transform:rotate(42deg)}
 @keyframes hakenAuf{to{opacity:1}}
-.gegen .z.rechts:nth-of-type(2) i{animation-delay:.6s}
-.gegen .z.rechts:nth-of-type(4) i{animation-delay:1.05s}
-.gegen .z.rechts:nth-of-type(6) i{animation-delay:1.5s}
-.gegen .z.rechts:nth-of-type(8) i{animation-delay:1.95s}
-.gegen .z.rechts:nth-of-type(10) i{animation-delay:2.4s}
-.gegen .z.rechts:nth-of-type(12) i{animation-delay:2.85s}
+/* Die rechten Zeilen sind Kind 4, 6, 8, 10, 12 und 14 - die zwei
+   Spaltenkoepfe zaehlen mit. */
+.gegen.taktbereit.in .z.rechts:nth-child(4) i{animation-delay:0s}
+.gegen.taktbereit.in .z.rechts:nth-child(6) i{animation-delay:.18s}
+.gegen.taktbereit.in .z.rechts:nth-child(8) i{animation-delay:.36s}
+.gegen.taktbereit.in .z.rechts:nth-child(10) i{animation-delay:.54s}
+.gegen.taktbereit.in .z.rechts:nth-child(12) i{animation-delay:.72s}
+.gegen.taktbereit.in .z.rechts:nth-child(14) i{animation-delay:.9s}
 
 .gegen-fuss{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,34px);
   margin-top:clamp(16px,2.4vh,28px)}
@@ -1392,6 +1408,61 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .gegen-fuss{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){ .gegen .z.rechts i{animation:none;opacity:1} }
+
+
+/* ---------- Hero-Film: der Weg unter dem stehenden Bild ----------
+   Der Hero ist so hoch wie ein Bildschirm plus Scrollweg. Die
+   Halteschicht klebt oben und ist genau einen Bildschirm hoch - solange
+   man durch den Weg scrollt, steht das Bild still und nur der Film
+   bewegt sich. Ist der Weg zu Ende, loest sich der Hero von selbst.
+   --pt-weg ist die Laenge. Kristian nennt 100 bis 130 Prozent
+   Bildschirmhoehe; 115 liegt in der Mitte und ist eher eine kraeftige
+   als zwei normale Scrollbewegungen. */
+.pt-hero{--pt-weg:115svh}
+.pt-halt{position:relative;height:100%}
+html.pt-film-an .pt-hero{height:calc(100svh + var(--pt-weg))}
+html.pt-film-an .pt-halt{position:sticky;top:0;height:100svh;min-height:620px}
+
+.pt-film{
+  position:absolute;inset:0;z-index:-4;
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  background:var(--pt-canvas);display:none;pointer-events:none;
+}
+html.pt-film-an .pt-film{display:block}
+/* Solange der Film laeuft, traegt er das Bild. Faellt er aus, uebernimmt
+   das Endbild darunter wieder. */
+html.pt-film-an .pt-photo{opacity:0;transition:opacity .4s var(--pt-ease)}
+
+/* Die Textflaeche oeffnet sich, waehrend der Schreibtisch leer wird.
+   --pt-oeffnung setzt das Skript von 0 auf 1. Ohne Skript bleibt sie
+   bei 0, also so deckend wie bisher. */
+.pt-copy{background:rgba(242,244,247,calc(.96 - .51*var(--pt-oeffnung,0)))}
+.pt-copy::after{
+  width:calc(min(12vw,210px) + 8vw*var(--pt-oeffnung,0));
+  background:linear-gradient(90deg,
+    rgba(242,244,247,calc(.96 - .51*var(--pt-oeffnung,0))),
+    rgba(242,244,247,0));
+}
+/* Beim Endbild soll der Satz am staerksten stehen. Drei Prozent groesser
+   sind kaum messbar und trotzdem spuerbar. */
+.pt-hero h1{transform-origin:left center;
+  transform:scale(calc(1 + .03*var(--pt-oeffnung,0)))}
+
+/* Auf dem Handy und bei reduzierter Bewegung laeuft kein Film: dann
+   steht das Endbild, und der Hero ist wieder einen Bildschirm hoch. */
+@media (max-width:780px){
+  html.pt-film-an .pt-hero{height:auto}
+  html.pt-film-an .pt-halt{position:relative;height:100%;min-height:0}
+  html.pt-film-an .pt-film{display:none}
+  html.pt-film-an .pt-photo{opacity:.5}
+  .pt-photo{object-position:62% center}
+}
+@media (prefers-reduced-motion:reduce){
+  html.pt-film-an .pt-hero{height:100svh}
+  html.pt-film-an .pt-halt{position:relative;height:100%}
+  html.pt-film-an .pt-film{display:none}
+  html.pt-film-an .pt-photo{opacity:1}
+}
 </style>
 </head>
 <body>
@@ -1416,15 +1487,21 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div id="top"></div>
 
-<!-- ================= Hero, der gescrollte Film ================= -->
+<!-- ================= Hero, der gescrollte Film =================
+     Der Film haengt am Scrollrad, nicht an einer Uhr. Das Bild darunter
+     ist das Endbild: es traegt den Hero, wenn kein Film laeuft (Handy,
+     reduzierte Bewegung, kein Skript, Ladefehler). -->
 <header class="pt-hero" id="hero"
   aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
+  <div class="pt-halt">
   <div class="pt-stage">
-    <picture>
-      <source media="(max-width:780px)" srcset="assets/hero-hoch.webp">
-      <img class="pt-photo" src="assets/hero-breit.webp" alt="" aria-hidden="true"
-        width="1672" height="941" fetchpriority="high" decoding="async">
-    </picture>
+    <img class="pt-photo" src="assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
+      width="1920" height="1082" fetchpriority="high" decoding="async">
+    <video class="pt-film" aria-hidden="true" muted playsinline preload="none"
+      disablepictureinpicture disableremoteplayback
+      poster="assets/hero-wandel-start.jpg"
+      data-quelle="assets/hero-wandel.mp4"
+      width="1920" height="1082"></video>
     <div class="pt-grade" aria-hidden="true"></div>
 
     <div class="pt-copy">
@@ -1444,6 +1521,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
       </div>
     </div>
+  </div>
   </div>
 </header>
 
@@ -1483,7 +1561,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <p class="lede auf">Sechs Sachen, die es in jedem Betrieb gibt. Links, wie
       es heute läuft. Rechts, wie es mit Player Two läuft.</p>
 
-    <div class="gegen stufe">
+    <div class="gegen">
       <div class="sp-kopf links">Heute</div>
       <div class="sp-kopf rechts">Mit Player Two</div>
 
@@ -2289,6 +2367,13 @@ var auftritt = new IntersectionObserver(function(eintraege){
 }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.auf,.stufe').forEach(function(el){ auftritt.observe(el); });
 
+/* Die Heute-nachher-Tabelle steht sofort. Nur die Haken warten, bis man
+   sie sieht - sonst sind sie durchgelaufen, bevor jemand hinschaut. */
+document.querySelectorAll('.gegen').forEach(function(el){
+  el.classList.add('taktbereit');
+  auftritt.observe(el);
+});
+
 /* ---------- Regal vorne: nur der Weg zur Branchenanimation ----------
    Gefiltert wird im Katalog auf loesungen.html, nicht hier. */
 (function(){
@@ -2692,6 +2777,93 @@ addEventListener('visibilitychange', function(){
 
 
 
+
+
+/* ---------- Hero-Film am Scrollrad ----------
+   Der Film haengt am Scrollfortschritt statt an einer Uhr. Kamera und
+   Raum stehen im Video ohnehin still; hier bewegt sich nur die Zeit.
+
+   Der Weg ist in drei Teile geteilt: zuerst haelt das Startbild kurz,
+   dann laeuft der Film durch, am Ende haelt das Endbild kurz. Ohne die
+   beiden Halteteile wuerde der Film schon bei der kleinsten Bewegung
+   losspringen und am Ende hart abreissen. */
+(function(){
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+  var film = hero.querySelector('.pt-film');
+  if (!film) return;
+
+  var HALT_START = .14;   /* bis hierhin steht das Startbild */
+  var HALT_ENDE  = .94;   /* ab hier steht das Endbild */
+
+  var breitGenug   = matchMedia('(min-width:781px)');
+  var wenigBewegen = matchMedia('(prefers-reduced-motion:reduce)');
+
+  var laeuft = false, laenge = 0, zuletzt = -1;
+
+  function fortschritt(){
+    /* offsetTop und offsetHeight sind Layoutwerte - sie kennen weder
+       Transformationen noch die feste Kopfzeile. Damit stimmt die
+       Rechnung auch dann, wenn oben etwas klebt. */
+    var weg = hero.offsetHeight - window.innerHeight;
+    if (weg <= 0) return 0;
+    var p = (window.pageYOffset - hero.offsetTop) / weg;
+    return p < 0 ? 0 : (p > 1 ? 1 : p);
+  }
+
+  function laufbereit(){ return laeuft && laenge > 0; }
+
+  function setzen(){
+    var p = fortschritt();
+    var f = (p - HALT_START) / (HALT_ENDE - HALT_START);
+    f = f < 0 ? 0 : (f > 1 ? 1 : f);
+    hero.style.setProperty('--pt-oeffnung', f.toFixed(4));
+    if (!laufbereit()) return;
+    var zeit = f * laenge;
+    /* Unter einem halben Einzelbild lohnt sich das Springen nicht. */
+    if (Math.abs(zeit - zuletzt) < 1/48) return;
+    zuletzt = zeit;
+    try { film.currentTime = zeit; } catch(e){}
+  }
+
+  function anwerfen(){
+    if (laeuft || !breitGenug.matches || wenigBewegen.matches) return;
+    laeuft = true;
+    film.addEventListener('loadeddata', function(){
+      laenge = film.duration || 0;
+      zuletzt = -1;
+      setzen();
+    }, {once:true});
+    /* Faellt der Film aus, uebernimmt das Endbild darunter wieder. */
+    film.addEventListener('error', function(){
+      laeuft = false; laenge = 0;
+      document.documentElement.classList.remove('pt-film-an');
+    }, {once:true});
+    film.src = film.dataset.quelle;
+    film.load();
+  }
+
+  function nachmessen(){
+    if (!breitGenug.matches || wenigBewegen.matches){
+      document.documentElement.classList.remove('pt-film-an');
+    } else {
+      document.documentElement.classList.add('pt-film-an');
+      anwerfen();
+    }
+    zuletzt = -1;
+    setzen();
+  }
+
+  window.addEventListener('scroll', setzen, {passive:true});
+  window.addEventListener('resize', nachmessen);
+  if (breitGenug.addEventListener) breitGenug.addEventListener('change', nachmessen);
+
+  setzen();
+  /* Das Endbild ist schon da und traegt den Hero. Der Film darf sich
+     dahinter Zeit lassen und dem ersten Anstrich nicht im Weg stehen. */
+  if (document.readyState === 'complete') anwerfen();
+  else window.addEventListener('load', anwerfen);
+})();
 </script>
 
 </body>
