@@ -1071,7 +1071,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   width: min(46vw,820px);
   display: flex;
   align-items: center;
-  background: rgba(242,244,247,.97);
+  /* Fest, nicht wandernd. Gemessen: ueber der dunkelsten Stelle des
+     Startbildes 9,6:1 Kontrast zur Schrift, ueber dem Endbild 10,2:1.
+     Noetig waeren 4,5. */
+  background: rgba(242,244,247,.62);
 }
 .pt-copy::after {
   content: "";
@@ -1080,7 +1083,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   bottom: 0;
   left: 100%;
   width: min(12vw,210px);
-  background: linear-gradient(90deg,rgba(242,244,247,.97),rgba(242,244,247,0));
+  background: linear-gradient(90deg,rgba(242,244,247,.62),rgba(242,244,247,0));
   pointer-events: none;
 }
 .pt-copy-inner {
@@ -1453,24 +1456,17 @@ html.pt-film-an .pt-stage.film-da .pt-photo{opacity:0}
    nichts uebersehen werden. */
 .pt-stufe{--k:1;opacity:var(--k);
   transform:translateY(calc((1 - var(--k)) * .42em))}
-html.pt-film-an .pt-satz-b{--k:clamp(0,(var(--pt-p) - .20) * 2.8,1)}
-html.pt-film-an .pt-subline{--k:clamp(0,(var(--pt-p) - .40) * 3.2,1)}
-html.pt-film-an .pt-actions{--k:clamp(0,(var(--pt-p) - .54) * 3.6,1)}
-html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .62) * 4.4,1)}
+/* Beim Laden steht kein Wort da, nur der Raum. Der erste Teil des Satzes
+   kommt schon bei der ersten Radbewegung, alles Weitere gestaffelt. */
+html.pt-film-an .pt-satz-a{--k:clamp(0,(var(--pt-p) - .02) * 8,1)}
+html.pt-film-an .pt-eyebrow,
+html.pt-film-an .pt-satz-b{--k:clamp(0,(var(--pt-p) - .18) * 3.6,1)}
+html.pt-film-an .pt-subline{--k:clamp(0,(var(--pt-p) - .32) * 3.8,1)}
+html.pt-film-an .pt-actions{--k:clamp(0,(var(--pt-p) - .43) * 4.2,1)}
+html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 /* Solange der zweite Teil noch fehlt, soll der erste nicht allein
    umbrechen und dann springen. */
 .pt-hero h1{text-wrap:balance}
-
-/* Die Textflaeche oeffnet sich, waehrend der Schreibtisch leer wird.
-   Der Endwert ist gemessen, nicht geschaetzt: ueber dem dunkelsten
-   Bereich des Endbildes (den Ordnerruecken) ergibt .62 noch 10,2:1
-   Kontrast zur Schrift, noetig waeren 4,5. */
-html.pt-film-an .pt-copy{background:rgba(242,244,247,calc(.96 - .34*var(--pt-p)))}
-html.pt-film-an .pt-copy::after{
-  width:calc(min(12vw,210px) + 7vw*var(--pt-p));
-  background:linear-gradient(90deg,
-    rgba(242,244,247,calc(.96 - .34*var(--pt-p))),
-    rgba(242,244,247,0))}
 
 /* ---------- Die fuenf Tore ----------
    Wer hier hineinfaellt, bekommt statt des Films das komponierte
@@ -1487,7 +1483,9 @@ html.pt-film-an .pt-copy::after{
   html.pt-film-an .pt-film,
   html.pt-film-an .pt-stage::before{display:none}
   html.pt-film-an .pt-stage.film-da .pt-photo{opacity:1}
+  html.pt-film-an .pt-satz-a,
   html.pt-film-an .pt-satz-b,
+  html.pt-film-an .pt-eyebrow,
   html.pt-film-an .pt-subline,
   html.pt-film-an .pt-actions,
   html.pt-film-an .pt-closing{--k:1}
@@ -1552,9 +1550,11 @@ html.pt-film-an .pt-halt{top:38px}
 
       <div class="pt-copy">
         <div class="pt-copy-inner">
-          <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
-          <h1><span class="pt-satz-a">Mehr Zeit für das,</span>
-            <span class="pt-satz-b pt-stufe">was wichtig ist.</span></h1>
+          <p class="pt-eyebrow pt-stufe">Websites, Webshops und digitale Abläufe</p>
+          <!-- Kein Leerzeichen und kein Zeilenumbruch zwischen den beiden
+               Teilen: das Komma gehoert zum zweiten und erscheint mit ihm. -->
+          <h1><span class="pt-satz-a pt-stufe">Mehr Zeit für das</span><span
+            class="pt-satz-b pt-stufe">, was wichtig ist.</span></h1>
           <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
             und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
             digitaler Mitarbeiter mit.</p>
@@ -1597,9 +1597,11 @@ html.pt-film-an .pt-halt{top:38px}
 
       <div class="pt-copy">
         <div class="pt-copy-inner">
-          <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
-          <h1><span class="pt-satz-a">Mehr Zeit für das,</span>
-            <span class="pt-satz-b pt-stufe">was wichtig ist.</span></h1>
+          <p class="pt-eyebrow pt-stufe">Websites, Webshops und digitale Abläufe</p>
+          <!-- Kein Leerzeichen und kein Zeilenumbruch zwischen den beiden
+               Teilen: das Komma gehoert zum zweiten und erscheint mit ihm. -->
+          <h1><span class="pt-satz-a pt-stufe">Mehr Zeit für das</span><span
+            class="pt-satz-b pt-stufe">, was wichtig ist.</span></h1>
           <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
             und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
             digitaler Mitarbeiter mit.</p>
@@ -1642,9 +1644,11 @@ html.pt-film-an .pt-halt{top:38px}
 
       <div class="pt-copy">
         <div class="pt-copy-inner">
-          <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
-          <h1><span class="pt-satz-a">Mehr Zeit für das,</span>
-            <span class="pt-satz-b pt-stufe">was wichtig ist.</span></h1>
+          <p class="pt-eyebrow pt-stufe">Websites, Webshops und digitale Abläufe</p>
+          <!-- Kein Leerzeichen und kein Zeilenumbruch zwischen den beiden
+               Teilen: das Komma gehoert zum zweiten und erscheint mit ihm. -->
+          <h1><span class="pt-satz-a pt-stufe">Mehr Zeit für das</span><span
+            class="pt-satz-b pt-stufe">, was wichtig ist.</span></h1>
           <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
             und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
             digitaler Mitarbeiter mit.</p>
