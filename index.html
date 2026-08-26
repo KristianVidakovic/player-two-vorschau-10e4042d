@@ -1469,8 +1469,15 @@ html.pt-film-an .pt-stage.film-da .pt-photo{opacity:0}
    nichts uebersehen werden. */
 .pt-stufe{--k:1;opacity:var(--k);
   transform:translateY(calc((1 - var(--k)) * .42em))}
-/* Beim Laden steht kein Wort da, nur der Raum. Der erste Teil des Satzes
-   kommt schon bei der ersten Radbewegung, alles Weitere gestaffelt. */
+/* Beim Laden steht weder ein Wort noch eine Flaeche da, nur der Raum.
+   Die Flaeche laeuft knapp vor dem Text herein, damit nie Schrift auf
+   blankem Bild steht. Danach bleibt sie konstant. */
+html.pt-film-an .pt-copy{--pt-flaeche:clamp(0,(var(--pt-p) - .01) * 9,1);
+  background:rgba(242,244,247,calc(.62 * var(--pt-flaeche)))}
+html.pt-film-an .pt-copy::after{
+  background:linear-gradient(90deg,
+    rgba(242,244,247,calc(.62 * var(--pt-flaeche))),
+    rgba(242,244,247,0))}
 html.pt-film-an .pt-satz-a{--k:clamp(0,(var(--pt-p) - .02) * 8,1)}
 html.pt-film-an .pt-eyebrow,
 html.pt-film-an .pt-satz-b{--k:clamp(0,(var(--pt-p) - .18) * 3.6,1)}
@@ -1496,6 +1503,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
   html.pt-film-an .pt-film,
   html.pt-film-an .pt-stage::before{display:none}
   html.pt-film-an .pt-stage.film-da .pt-photo{opacity:1}
+  html.pt-film-an .pt-copy{--pt-flaeche:1}
   html.pt-film-an .pt-satz-a,
   html.pt-film-an .pt-satz-b,
   html.pt-film-an .pt-eyebrow,
