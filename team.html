@@ -67,12 +67,27 @@ main{position:relative;z-index:2}
   color:var(--akzent);display:block;margin-bottom:16px}
 
 /* Kopf */
-.kopf{padding:calc(78px + 7vw) 0 44px}
-.kopf h1{font-size:clamp(36px,5.4vw,68px);max-width:17ch}
+.kopf{padding:calc(66px + 5vw) 0 34px}
+.kopf h1{font-size:clamp(36px,5.4vw,68px);max-width:20ch}
 .kopf .lede{margin-top:24px;font-size:clamp(17px,1.35vw,21px);color:#26313F;max-width:60ch}
 
 /* Die zwei Menschen */
-.menschen{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin:44px 0 0}
+.menschen{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin:30px 0 0}
+
+/* Ab 1025 Pixeln stehen Foto und Name nebeneinander. Vorher stand der
+   Name unter dem Foto und damit unter der Bildschirmkante - man kam auf
+   die Seite und sah ein angeschnittenes Bild ohne Namen. Alles andere
+   (Text, Abschluesse, Koennen) laeuft weiterhin ueber die ganze Breite. */
+@media (min-width:1025px){
+  .mensch.gruender-karte{display:grid;grid-template-columns:auto 1fr;
+    column-gap:26px;align-items:start;text-align:left}
+  .mensch.gruender-karte .kreis{grid-column:1;grid-row:1 / span 2;margin:0}
+  .mensch.gruender-karte h2{grid-column:2;grid-row:1;align-self:end;margin:0}
+  .mensch.gruender-karte .rolle{grid-column:2;grid-row:2;align-self:start;margin:9px 0 0}
+  /* Alles Uebrige spannt sich unter beide Spalten. */
+  .mensch.gruender-karte > :not(.kreis):not(h2):not(.rolle){grid-column:1 / -1}
+  .mensch.gruender-karte > p:first-of-type{margin-top:24px}
+}
 .mensch{background:#fff;border:1px solid var(--linie);border-radius:22px;
   padding:38px 34px 34px;text-align:center;
   transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease)}
