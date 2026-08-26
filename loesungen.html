@@ -6,8 +6,8 @@
 <!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
      Suchmaschinen fern und muss beim echten Livegang weg. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fertige Lösungen, Player Two</title>
-<meta name="description" content="Fertig vorgebaute Websites, Webshops und Anwendungen für Schweizer Betriebe: Handwerk, Gewerbe, Gesundheit, Studios, Fahrzeug, Immobilien. Anschauen, auswählen, übernehmen.">
+<title>Schaufenster, Player Two</title>
+<meta name="description" content="Websites, Webshops und Anwendungen für Schweizer Betriebe: Handwerk, Gewerbe, Gesundheit, Studios, Fahrzeug, Immobilien. Schauen Sie, wie es bei Ihrer Branche aussieht.">
 <meta name="theme-color" content="#F2F4F7">
 <link rel="icon" href="assets/marke.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,9 +112,9 @@ main{position:relative;z-index:2}
   border:0;background:none;color:var(--akzent);cursor:pointer;padding:6px 2px;
   border-bottom:1px solid rgba(30,108,255,.4)}
 @media (pointer:coarse){.suchfeld input,.feldrahmen select,.zuruecksetzen{min-height:44px}}
-.regal-zahl{font-family:var(--mono);font-size:13px;color:var(--grau);margin-top:14px;display:block}
+.schau-zahl{font-family:var(--mono);font-size:13px;color:var(--grau);margin-top:14px;display:block}
 
-/* Regal */
+/* Schaufenster */
 .stuecke{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:26px}
 .stueck{background:#fff;border:1px solid var(--linie);border-radius:16px;overflow:hidden;
   display:flex;flex-direction:column;
@@ -168,28 +168,31 @@ main{position:relative;z-index:2}
   </a>
   <div class="nav-links">
     <a href="index.html#stufen">Angebot</a>
-    <a href="loesungen.html" aria-current="page">Fertige Lösungen</a>
+    <a href="loesungen.html" aria-current="page">Schaufenster</a>
     <a href="index.html#ablauf">Ablauf</a>
-    <a href="index.html#herkunft">Über uns</a>
+    <a href="index.html#team">Über uns</a>
     <a href="team.html">Team</a>
     <a href="index.html#kontakt">Kontakt</a>
   </div>
-  <a class="btn btn-voll" href="index.html#kontakt" style="margin-left:22px">Anfrage stellen</a>
+  <a class="btn btn-voll" href="index.html#kontakt" style="margin-left:22px">Termin vereinbaren</a>
 </nav>
 
 <main id="main" tabindex="-1">
   <div class="wrap">
     <header class="kopf">
-      <span class="kicker">Fertige Lösungen</span>
-      <h1>Anschauen, auswählen, übernehmen.</h1>
-      <p class="lede">Wir bauen für Handwerk, Gewerbe, Praxen und Studios fertig vor. Jedes Stück
-        wird genau einmal vergeben — was hier steht, bekommt kein zweiter Betrieb
-        in der Region. Filtern Sie nach Sorte oder nach Ihrer Branche.</p>
+      <span class="kicker">Schaufenster</span>
+      <h1>So sieht es bei Ihrer Branche aus.</h1>
+      <p class="lede">Für Handwerk, Gewerbe, Praxen und Studios ist durchdacht, was
+        die Seite können muss und welcher digitale Mitarbeiter darin arbeitet.
+        Filtern Sie nach Sorte oder nach Ihrer Branche. Gebaut wird danach für
+        Ihren Betrieb — im Gespräch, nicht ab Stange.</p>
+      <p class="lede"><a class="btn btn-voll" href="index.html#kontakt"
+        style="margin-top:18px">Termin vereinbaren</a></p>
     </header>
 
     <div class="wahl" role="group" aria-label="Was Sie suchen">
         <button type="button" class="w-karte an" data-sorte="alle" aria-pressed="true">
-          <b>Alles</b><small>Der ganze Bestand</small>
+          <b>Alles</b><small>Alle Branchen</small>
         </button>
         <button type="button" class="w-karte" data-sorte="website" aria-pressed="false">
           <b>Website</b><small>Damit Sie gefunden werden</small>
@@ -206,7 +209,7 @@ main{position:relative;z-index:2}
       <div class="suchfeld">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
         <input type="search" id="suche" placeholder="Suchen: Bäckerei, Termin, Portal …"
-          autocomplete="off" aria-label="Im Regal suchen">
+          autocomplete="off" aria-label="Im Schaufenster suchen">
       </div>
       <div class="feldrahmen">
         <select id="branche" aria-label="Branche wählen">
@@ -343,7 +346,7 @@ main{position:relative;z-index:2}
       </div>
       <button type="button" class="zuruecksetzen" id="zuruecksetzen" hidden>Zurücksetzen</button>
     </div>
-    <span class="regal-zahl" id="regal-zahl"></span>
+    <span class="schau-zahl" id="schau-zahl"></span>
 
 
 
@@ -355,10 +358,6 @@ main{position:relative;z-index:2}
           <h3>Malerbetrieb</h3>
           <p class="meta">Eine Seite. Arbeiten, Leistungen, Offertanfrage.</p>
           <button type="button" class="tagschau" data-branche="handwerk">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="cafes-restaurants" data-suche="website cafes restaurants restaurant sechs seiten karte oeffnungszeiten tischanfrage beiz gasthaus wirtschaft essen tisch menue cafe">
@@ -368,10 +367,6 @@ main{position:relative;z-index:2}
           <h3>Restaurant</h3>
           <p class="meta">Sechs Seiten. Karte, Öffnungszeiten, Tischanfrage.</p>
           <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="coiffeur" data-suche="website coiffeur coiffeursalon fuenf seiten team preise terminanfrage friseur haare salon schneiden faerben barbier">
@@ -381,10 +376,6 @@ main{position:relative;z-index:2}
           <h3>Coiffeursalon</h3>
           <p class="meta">Fünf Seiten. Team, Preise, Terminanfrage.</p>
           <button type="button" class="tagschau" data-branche="termin">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="baeckerei" data-suche="website baeckerei baeckerei fuenf seiten sortiment filialen bestellhinweis brot gipfeli konditorei backstube zopf patisserie">
@@ -394,10 +385,6 @@ main{position:relative;z-index:2}
           <h3>Bäckerei</h3>
           <p class="meta">Fünf Seiten. Sortiment, Filialen, Bestellhinweis.</p>
           <button type="button" class="tagschau" data-branche="laden">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="hausverwaltungen" data-suche="website hausverwaltungen hausverwaltung neun seiten objekte formulare meldewege liegenschaft mieter verwaltung schadenmeldung">
@@ -407,10 +394,6 @@ main{position:relative;z-index:2}
           <h3>Hausverwaltung</h3>
           <p class="meta">Neun Seiten. Objekte, Formulare, Meldewege.</p>
           <button type="button" class="tagschau" data-branche="immobilien">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'290 <em>statt 2'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="treuhandbueros" data-suche="website treuhandbueros treuhandbuero sechs seiten leistungen team sichere ablage buchhaltung steuern treuhand abschluss lohn mwst">
@@ -420,10 +403,6 @@ main{position:relative;z-index:2}
           <h3>Treuhandbüro</h3>
           <p class="meta">Sechs Seiten. Leistungen, Team, sichere Ablage.</p>
           <button type="button" class="tagschau" data-branche="buero">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="schreiner" data-suche="website schreiner schreinerei sechs seiten arbeiten werkstatt team kontakt moebel kueche innenausbau holz zimmerei">
@@ -432,10 +411,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Schreiner</span>
           <h3>Schreinerei</h3>
           <p class="meta">Sechs Seiten. Arbeiten, Werkstatt, Team, Kontakt.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="tattoo-studios" data-suche="website tattoo studios tattoo studio fuenf seiten galerie kuenstler terminanfrage pflege taetowierung piercing taetowierer stechen motiv">
@@ -444,10 +419,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Tattoo-Studios</span>
           <h3>Tattoo-Studio</h3>
           <p class="meta">Fünf Seiten. Galerie, Künstler, Terminanfrage, Pflege.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="metzgerei" data-suche="website metzgerei metzgerei fuenf seiten sortiment wurstwaren bestellhinweis fleisch wurst grillieren cervelat charcuterie">
@@ -456,10 +427,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Metzgerei</span>
           <h3>Metzgerei</h3>
           <p class="meta">Fünf Seiten. Sortiment, Wurstwaren, Bestellhinweis.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="sanitaer" data-suche="website sanitaer sanitaerbetrieb eine seite notfallnummer leistungen anfrage wasser badezimmer heizung rohr notfall spengler">
@@ -468,10 +435,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Sanitär</span>
           <h3>Sanitärbetrieb</h3>
           <p class="meta">Eine Seite. Notfallnummer, Leistungen, Anfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="elektriker" data-suche="website elektriker elektriker eine seite plus karriereseite notfall leistungen lehrstellen strom elektro installation kontrolle steckdose">
@@ -480,10 +443,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Elektriker</span>
           <h3>Elektriker</h3>
           <p class="meta">Eine Seite plus Karriereseite. Notfall, Leistungen, Lehrstellen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'690 <em>statt 2'190</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="gaertner" data-suche="website gaertner gaertnerei sechs seiten arbeiten nach jahreszeit pflanzenliste pflanzen blumen garten setzlinge floristik">
@@ -492,10 +451,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Gärtner</span>
           <h3>Gärtnerei</h3>
           <p class="meta">Sechs Seiten. Arbeiten nach Jahreszeit, Pflanzenliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="website ferienwohnungen ferienhaeuser ferienwohnung eine seite pro objekt bilder preise besichtigung ferien vermieten wohnung feriengast airbnb">
@@ -504,10 +459,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Ferienwohnungen & Ferienhäuser</span>
           <h3>Ferienwohnung</h3>
           <p class="meta">Eine Seite pro Objekt. Bilder, Preise, Besichtigung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="vereins-dorfanlaesse" data-suche="website vereins dorfanlaesse dorfanlass eine seite programm anmeldung helfersuche dorffest verein turnfest jubilaeum helfer">
@@ -516,10 +467,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Vereins- & Dorfanlässe</span>
           <h3>Dorfanlass</h3>
           <p class="meta">Eine Seite. Programm, Anmeldung, Helfersuche.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="shop" data-zweig="hoflaeden-direktvermarkter" data-suche="webshop hoflaeden direktvermarkter hofladen shop bis 50 artikel abholung versand twint bauernhof regional saisonal selbstbedienung">
@@ -528,10 +475,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Hofläden & Direktvermarkter</span>
           <h3>Hofladen</h3>
           <p class="meta">Shop bis 50 Artikel. Abholung, Versand, TWINT.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="shop" data-zweig="baeckerei" data-suche="webshop baeckerei baeckerei mit vorbestellung vorbestellen bis 18 uhr abholen am morgen brot gipfeli konditorei">
@@ -540,10 +483,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Bäckerei</span>
           <h3>Bäckerei mit Vorbestellung</h3>
           <p class="meta">Vorbestellen bis 18 Uhr, abholen am Morgen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="shop" data-zweig="coiffeur" data-suche="webshop coiffeur pflegeprodukte dreissig artikel nachbestellung mit einem klick shampoo haarpflege friseur salon nachbestellen">
@@ -552,10 +491,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Coiffeur</span>
           <h3>Pflegeprodukte</h3>
           <p class="meta">Dreissig Artikel, Nachbestellung mit einem Klick.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="shop" data-zweig="obst-beerenbau" data-suche="webshop obst beerenbau obsthof saisonales sortiment selbstpfluecken abholtage aepfel birnen beeren kirschen mosterei">
@@ -564,10 +499,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Obst- & Beerenbau</span>
           <h3>Obsthof</h3>
           <p class="meta">Saisonales Sortiment, Selbstpflücken, Abholtage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="shop" data-zweig="optiker" data-suche="webshop optiker optiker fassungen und zubehoer termin zur anpassung brille sehtest kontaktlinsen optometrie fassung">
@@ -576,10 +507,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Optiker</span>
           <h3>Optiker</h3>
           <p class="meta">Fassungen und Zubehör, Termin zur Anpassung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="cafes-restaurants" data-suche="anwendung cafes restaurants tischreservation tischplan bestaetigung erinnerung gruppenanfragen tisch reservieren beiz restaurant gaeste">
@@ -589,10 +516,6 @@ main{position:relative;z-index:2}
           <h3>Tischreservation</h3>
           <p class="meta">Tischplan, Bestätigung, Erinnerung, Gruppenanfragen.</p>
           <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="coiffeur" data-suche="anwendung coiffeur terminbuchung nur echte freie zeiten erinnerung nachruecken friseur coiffeur salon termin haare buchen freie zeiten">
@@ -602,10 +525,6 @@ main{position:relative;z-index:2}
           <h3>Terminbuchung</h3>
           <p class="meta">Nur echte freie Zeiten, Erinnerung, Nachrücken.</p>
           <button type="button" class="tagschau" data-branche="termin">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="hausverwaltungen" data-suche="anwendung hausverwaltungen mieterportal schadenmeldung dokumente stand der sache schaden melden mieter liegenschaft">
@@ -615,10 +534,6 @@ main{position:relative;z-index:2}
           <h3>Mieterportal</h3>
           <p class="meta">Schadenmeldung, Dokumente, Stand der Sache.</p>
           <button type="button" class="tagschau" data-branche="immobilien">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="treuhandbueros" data-suche="anwendung treuhandbueros belegportal kunden laden belege hoch sie sehen was fehlt buchhaltung treuhand quittungen hochladen">
@@ -628,10 +543,6 @@ main{position:relative;z-index:2}
           <h3>Belegportal</h3>
           <p class="meta">Kunden laden Belege hoch, Sie sehen, was fehlt.</p>
           <button type="button" class="tagschau" data-branche="buero">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="private-vermieter" data-suche="anwendung private vermieter besichtigungsplaner interessenten waehlen einen termin sie sehen die liste besichtigung wohnung interessent vermieten">
@@ -640,10 +551,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Private Vermieter</span>
           <h3>Besichtigungsplaner</h3>
           <p class="meta">Interessenten wählen einen Termin, Sie sehen die Liste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
 <article class="stueck" data-sorte="anwendung" data-zweig="kurse-seminare-workshops" data-suche="anwendung kurse seminare workshops kursanmeldung plaetze warteliste zahlung erinnerung kurs seminar workshop anmeldung weiterbildung">
@@ -652,10 +559,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Kurse, Seminare & Workshops</span>
           <h3>Kursanmeldung</h3>
           <p class="meta">Plätze, Warteliste, Zahlung, Erinnerung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="garage" data-suche="website garage fahrzeug werkstatt garage sechs seiten services marken occasionen servicetermin auto occasion service mfk reparatur">
@@ -664,10 +567,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Garage</span>
           <h3>Garage</h3>
           <p class="meta">Sechs Seiten. Services, Marken, Occasionen, Servicetermin.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="garage" data-suche="anwendung garage fahrzeug werkstatt serviceplaner termin nach arbeit und dauer ersatzwagen erinnerung auto service mfk">
@@ -676,10 +575,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Garage</span>
           <h3>Serviceplaner</h3>
           <p class="meta">Termin nach Arbeit und Dauer, Ersatzwagen, Erinnerung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="pneuservice-pneuhotel" data-suche="anwendung pneuservice pneuhotel fahrzeug werkstatt pneuwechsel planer zwei saisonspitzen ohne telefonchaos einlagerung im blick reifen pneu raeder sommerreifen winterreifen wechsel">
@@ -688,10 +583,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Pneuservice & Pneuhotel</span>
           <h3>Pneuwechsel-Planer</h3>
           <p class="meta">Zwei Saisonspitzen ohne Telefonchaos. Einlagerung im Blick.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="velo-e-bike-werkstatt" data-suche="website velo e bike werkstatt fahrzeug werkstatt velowerkstatt fuenf seiten service occasionen probefahrt termin fahrrad ebike occasion">
@@ -700,10 +591,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Velo- & E-Bike-Werkstatt</span>
           <h3>Velowerkstatt</h3>
           <p class="meta">Fünf Seiten. Service, Occasionen, Probefahrt, Termin.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="gebaeudereinigung" data-suche="website gebaeudereinigung gebaeudedienste entsorgung gebaeudereinigung sechs seiten unterhalt umzugsreinigung mit abnahmegarantie putzen reinigung unterhaltsreinigung bueroreinigung">
@@ -712,10 +599,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Gebäudereinigung</span>
           <h3>Gebäudereinigung</h3>
           <p class="meta">Sechs Seiten. Unterhalt, Umzugsreinigung mit Abnahmegarantie.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="umzug-zuegeln-raeumung" data-suche="website umzug zuegeln raeumung gebaeudedienste entsorgung umzugsfirma fuenf seiten zuegeln raeumung einlagerung offertrechner umziehen transport moebel">
@@ -724,10 +607,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Umzug, Zügeln & Räumung</span>
           <h3>Umzugsfirma</h3>
           <p class="meta">Fünf Seiten. Zügeln, Räumung, Einlagerung, Offertrechner.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="physiotherapie" data-suche="website physiotherapie gesundheit praxen physiotherapie sechs seiten team raeume anfahrt terminanfrage therapie ruecken knie rehabilitation praxis behandlung">
@@ -736,10 +615,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Physiotherapie</span>
           <h3>Physiotherapie</h3>
           <p class="meta">Sechs Seiten. Team, Räume, Anfahrt, Terminanfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="physiotherapie" data-suche="anwendung physiotherapie gesundheit praxen praxistermine serientermine erinnerung warteliste ohne diagnosebezug termin therapie praxis serientermin behandlung">
@@ -748,10 +623,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Physiotherapie</span>
           <h3>Praxistermine</h3>
           <p class="meta">Serientermine, Erinnerung, Warteliste. Ohne Diagnosebezug.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="zahnarztpraxis" data-suche="website zahnarztpraxis gesundheit praxen zahnarztpraxis sechs seiten praxis team technik notfallnummer zahn dentist dentalhygiene kontrolle zahnschmerzen notfall">
@@ -760,10 +631,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Zahnarztpraxis</span>
           <h3>Zahnarztpraxis</h3>
           <p class="meta">Sechs Seiten. Praxis, Team, Technik, Notfallnummer.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="tierarztpraxis" data-suche="website tierarztpraxis gesundheit praxen tierarztpraxis fuenf seiten sprechstunden notfall impfungen hofbesuche veterinaer tier hund katze impfung nutztier">
@@ -772,10 +639,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Tierarztpraxis</span>
           <h3>Tierarztpraxis</h3>
           <p class="meta">Fünf Seiten. Sprechstunden, Notfall, Impfungen, Hofbesuche.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="fahrschulen" data-suche="website fahrschulen studios schulen fahrschule fuenf seiten lektionen vku nothelferkurs preise mit allem lernfahrausweis nothelfer fuehrerschein autopruefung fahrlehrer theorie">
@@ -784,10 +647,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Fahrschulen</span>
           <h3>Fahrschule</h3>
           <p class="meta">Fünf Seiten. Lektionen, VKU, Nothelferkurs, Preise mit allem.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="fitness-gesundheitszentren" data-suche="anwendung fitness gesundheitszentren studios schulen kursplan plaetze warteliste probetraining abo mit endpreis training yoga pilates kurs">
@@ -796,10 +655,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Fitness- & Gesundheitszentren</span>
           <h3>Kursplan</h3>
           <p class="meta">Plätze, Warteliste, Probetraining, Abo mit Endpreis.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="heizung-waermepumpe-solar" data-suche="website heizung waermepumpe solar handwerk heizung und solar sechs seiten waermepumpe photovoltaik foerderbeitraege offerte pv solaranlage oel gas pellet foerderbeitrag">
@@ -808,10 +663,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Heizung, Wärmepumpe & Solar</span>
           <h3>Heizung und Solar</h3>
           <p class="meta">Sechs Seiten. Wärmepumpe, Photovoltaik, Förderbeiträge, Offerte.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'690 <em>statt 2'190</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="garten-landschaftsbau" data-suche="website garten landschaftsbau handwerk garten und landschaftsbau sechs seiten arbeiten nach jahreszeit unterhalt offerte rasen hecke pflaesterung sitzplatz">
@@ -820,10 +671,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Garten- & Landschaftsbau</span>
           <h3>Garten- und Landschaftsbau</h3>
           <p class="meta">Sechs Seiten. Arbeiten nach Jahreszeit, Unterhalt, Offerte.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="dachdecker" data-suche="website dachdecker handwerk dachdeckerei fuenf seiten dach spenglerei sturmschaden notfallnummer ziegel spengler flachdach">
@@ -832,10 +679,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Dachdecker</span>
           <h3>Dachdeckerei</h3>
           <p class="meta">Fünf Seiten. Dach, Spenglerei, Sturmschaden, Notfallnummer.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="architekturbueros" data-suche="website architekturbueros planung bau architekturbuero sechs seiten mit projektkatalog jedes projekt als eigene seite architekt umbau neubau baugesuch">
@@ -844,10 +687,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Architekturbüros</span>
           <h3>Architekturbüro</h3>
           <p class="meta">Sechs Seiten mit Projektkatalog, jedes Projekt als eigene Seite.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'890 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="anwaltskanzleien" data-suche="website anwaltskanzleien beratung buero anwaltskanzlei sechs seiten je eine pro rechtsgebiet sachlich ohne versprechen rechtsanwalt recht kanzlei jurist">
@@ -856,10 +695,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Anwaltskanzleien</span>
           <h3>Anwaltskanzlei</h3>
           <p class="meta">Sechs Seiten, je eine pro Rechtsgebiet. Sachlich, ohne Versprechen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="kosmetikstudios" data-suche="website kosmetikstudios dienstleistung gewerbe kosmetikstudio fuenf seiten behandlungen mit dauer und preis terminanfrage kosmetik gesichtsbehandlung wimpern nagelstudio manikuere kosmetikerin">
@@ -868,10 +703,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Kosmetikstudios</span>
           <h3>Kosmetikstudio</h3>
           <p class="meta">Fünf Seiten. Behandlungen mit Dauer und Preis, Terminanfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="eventagenturen-veranstalter" data-suche="website eventagenturen veranstalter events anlaesse eventagentur sechs seiten referenzen nach anlassart leistungen anfrage organisator anlass event agentur">
@@ -880,10 +711,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Eventagenturen & Veranstalter</span>
           <h3>Eventagentur</h3>
           <p class="meta">Sechs Seiten. Referenzen nach Anlassart, Leistungen, Anfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="hochzeiten-private-feste" data-suche="website hochzeiten private feste events anlaesse hochzeitsseite eine seite programm anfahrt zusage geschenkliste heiraten hochzeit fest trauung">
@@ -892,10 +719,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Hochzeiten & private Feste</span>
           <h3>Hochzeitsseite</h3>
           <p class="meta">Eine Seite. Programm, Anfahrt, Zusage, Geschenkliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="firmenanlaesse-firmenjubilaeen" data-suche="website firmenanlaesse firmenjubilaeen events anlaesse firmenanlass eine seite einladung anmeldung menuewahl teilnehmerliste firmenfest jubilaeum anlass mitarbeiterfest">
@@ -904,10 +727,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Firmenanlässe & Firmenjubiläen</span>
           <h3>Firmenanlass</h3>
           <p class="meta">Eine Seite. Einladung, Anmeldung, Menüwahl, Teilnehmerliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="konzerte-festivals-kulturanlaesse" data-suche="webshop konzerte festivals kulturanlaesse events anlaesse festivalseite programm tickets mit twint anfahrt helferaufruf konzert festival kultur openair">
@@ -916,10 +735,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Konzerte, Festivals & Kulturanlässe</span>
           <h3>Festivalseite</h3>
           <p class="meta">Programm, Tickets mit TWINT, Anfahrt, Helferaufruf.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="maerkte-messen" data-suche="website maerkte messen events anlaesse marktseite fuenf seiten standplan ausstelleranmeldung oeffnungszeiten markt messe stand aussteller weihnachtsmarkt">
@@ -928,10 +743,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Märkte & Messen</span>
           <h3>Marktseite</h3>
           <p class="meta">Fünf Seiten. Standplan, Ausstelleranmeldung, Öffnungszeiten.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="sportanlaesse-turniere" data-suche="anwendung sportanlaesse turniere events anlaesse turnieranmeldung kategorien startgeld startliste rangliste am selben tag turnier sport wettkampf anmeldung">
@@ -940,10 +751,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Sportanlässe & Turniere</span>
           <h3>Turnieranmeldung</h3>
           <p class="meta">Kategorien, Startgeld, Startliste, Rangliste am selben Tag.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="eventlokale-festwirtschaften" data-suche="anwendung eventlokale festwirtschaften events anlaesse lokalbelegung raeume kapazitaet freie daten anfrage mit rueckmeldung saal festhuette eventlokal mieten festwirtschaft">
@@ -952,10 +759,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Eventlokale & Festwirtschaften</span>
           <h3>Lokalbelegung</h3>
           <p class="meta">Räume, Kapazität, freie Daten, Anfrage mit Rückmeldung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="spezialitaetenlaeden-internationale-lebensmittel" data-suche="website spezialitaetenlaeden internationale lebensmittel detailhandel food spezialitaetenladen fuenf seiten sortiment herkunft frischetage oeffnungszeiten tuerkisch thailaendisch italienisch asiatisch griechisch spanisch portugiesisch balkan orientalisch asia doener international quartierladen feinkost">
@@ -964,10 +767,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Spezialitätenläden & internationale Lebensmittel</span>
           <h3>Spezialitätenladen</h3>
           <p class="meta">Fünf Seiten. Sortiment, Herkunft, Frischetage, Öffnungszeiten.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="spezialitaetenlaeden-internationale-lebensmittel" data-suche="webshop spezialitaetenlaeden internationale lebensmittel detailhandel food spezialitaeten online haltbares im versand frisches zur abholung twint tuerkisch thailaendisch italienisch asiatisch balkan asia international feinkost">
@@ -976,10 +775,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Spezialitätenläden & internationale Lebensmittel</span>
           <h3>Spezialitäten online</h3>
           <p class="meta">Haltbares im Versand, Frisches zur Abholung, TWINT.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="quartier-dorflaeden" data-suche="website quartier dorflaeden detailhandel food dorfladen fuenf seiten sortiment bringdienst oeffnungszeiten team quartierladen volg landi lebensmittel nahversorger">
@@ -988,10 +783,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Quartier- & Dorfläden</span>
           <h3>Dorfladen</h3>
           <p class="meta">Fünf Seiten. Sortiment, Bringdienst, Öffnungszeiten, Team.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="kaeserei" data-suche="website kaeserei detailhandel food kaeserei fuenf seiten sorten reifung oeffnungszeiten direktverkauf kaese molkerei sennerei alpkaese">
@@ -1000,10 +791,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Käserei</span>
           <h3>Käserei</h3>
           <p class="meta">Fünf Seiten. Sorten, Reifung, Öffnungszeiten, Direktverkauf.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="weinhaendler" data-suche="webshop weinhaendler detailhandel food weinhandlung sortiment nach region degustationen versand ab sechs flaschen wein degustation rebe winzer weinkeller">
@@ -1012,10 +799,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Weinhändler</span>
           <h3>Weinhandlung</h3>
           <p class="meta">Sortiment nach Region, Degustationen, Versand ab sechs Flaschen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="makler-immobilienvermarktung" data-suche="website makler immobilienvermarktung immobilien vermietung immobilienmakler sechs seiten objekte verkaufsablauf bewertung kontakt verkaufen kaufen vermarktung liegenschaft">
@@ -1024,10 +807,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Makler & Immobilienvermarktung</span>
           <h3>Immobilienmakler</h3>
           <p class="meta">Sechs Seiten. Objekte, Verkaufsablauf, Bewertung, Kontakt.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'890 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="makler-immobilienvermarktung" data-suche="anwendung makler immobilienvermarktung immobilien vermietung objektportal objekte mit unterlagen interessenten besichtigungen besichtigung liegenschaft verkauf">
@@ -1036,10 +815,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Makler & Immobilienvermarktung</span>
           <h3>Objektportal</h3>
           <p class="meta">Objekte mit Unterlagen, Interessenten, Besichtigungen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="immobilienbewirtschaftung-stwe-verwaltung" data-suche="website immobilienbewirtschaftung stwe verwaltung immobilien vermietung immobilienbewirtschaftung sieben seiten bewirtschaftung stockwerkeigentum meldewege liegenschaft bewirtschafter">
@@ -1048,10 +823,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Immobilienbewirtschaftung & STWE-Verwaltung</span>
           <h3>Immobilienbewirtschaftung</h3>
           <p class="meta">Sieben Seiten. Bewirtschaftung, Stockwerkeigentum, Meldewege.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'890 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="immobilienbewirtschaftung-stwe-verwaltung" data-suche="anwendung immobilienbewirtschaftung stwe verwaltung immobilien vermietung eigentuemerportal abrechnung protokolle traktanden beschluesse stockwerkeigentum protokoll versammlung">
@@ -1060,10 +831,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Immobilienbewirtschaftung & STWE-Verwaltung</span>
           <h3>Eigentümerportal</h3>
           <p class="meta">Abrechnung, Protokolle, Traktanden, Beschlüsse.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="erstvermietung-mietersuche" data-suche="website erstvermietung mietersuche immobilien vermietung erstvermietung eine seite pro ueberbauung wohnungen grundrisse anmeldung vermieten wohnung neubau">
@@ -1072,10 +839,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Erstvermietung & Mietersuche</span>
           <h3>Erstvermietung</h3>
           <p class="meta">Eine Seite pro Überbauung. Wohnungen, Grundrisse, Anmeldung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'890 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="privater-eigenheimverkauf" data-suche="website privater eigenheimverkauf immobilien vermietung eigenheim verkaufen eine seite fuer ihr haus bilder grundriss unterlagen besichtigung privat liegenschaft">
@@ -1084,10 +847,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Privater Eigenheimverkauf</span>
           <h3>Eigenheim verkaufen</h3>
           <p class="meta">Eine Seite für Ihr Haus. Bilder, Grundriss, Unterlagen, Besichtigung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="zimmer-b-b" data-suche="website zimmer b b immobilien vermietung zimmer und b b eine seite zimmer preise freie naechte anfrage uebernachten fruehstueck gaeste pension">
@@ -1096,10 +855,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Zimmer & B&B</span>
           <h3>Zimmer und B&B</h3>
           <p class="meta">Eine Seite. Zimmer, Preise, freie Nächte, Anfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="gewerbe-lager-atelierflaechen" data-suche="website gewerbe lager atelierflaechen immobilien vermietung gewerbeflaeche fuenf seiten flaechen grundrisse erschliessung anfrage atelier werkstatt mieten flaeche">
@@ -1108,10 +863,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Gewerbe-, Lager- & Atelierflächen</span>
           <h3>Gewerbefläche</h3>
           <p class="meta">Fünf Seiten. Flächen, Grundrisse, Erschliessung, Anfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="parkplaetze-einstellhallen" data-suche="website parkplaetze einstellhallen immobilien vermietung parkplatzvermietung eine seite standorte freie plaetze anmeldung kuendigung parkplatz einstellhalle garage mieten abstellplatz">
@@ -1120,10 +871,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Parkplätze & Einstellhallen</span>
           <h3>Parkplatzvermietung</h3>
           <p class="meta">Eine Seite. Standorte, freie Plätze, Anmeldung, Kündigung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="stell-bootsplaetze" data-suche="website stell bootsplaetze immobilien vermietung stell und bootsplaetze eine seite plaetze masse saison warteliste boot wohnwagen stellplatz hafen">
@@ -1132,10 +879,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Stell- & Bootsplätze</span>
           <h3>Stell- und Bootsplätze</h3>
           <p class="meta">Eine Seite. Plätze, Masse, Saison, Warteliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'190 <em>statt 1'590</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="hauswart-facility-management" data-suche="website hauswart facility management immobilien vermietung hauswartung fuenf seiten leistungen einsatzgebiet meldung notfall unterhalt winterdienst umgebung">
@@ -1144,10 +887,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Hauswart & Facility Management</span>
           <h3>Hauswartung</h3>
           <p class="meta">Fünf Seiten. Leistungen, Einsatzgebiet, Meldung, Notfall.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="confiserie-konditorei" data-suche="webshop confiserie konditorei detailhandel food confiserie torten auf bestellung anlass groesse sujet abholtag confiserie konditorei torte bestellen hochzeitstorte geburtstagstorte kinder pralinen kaufen aperogebaeck bestellen">
@@ -1156,10 +895,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Confiserie & Konditorei</span>
           <h3>Confiserie</h3>
           <p class="meta">Torten auf Bestellung: Anlass, Grösse, Sujet, Abholtag.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="kaffeeroesterei-teehandel" data-suche="webshop kaffeeroesterei teehandel detailhandel food kaffeeroesterei bohnen im abo firmenkonto fuers buero maschinenservice kaffeeroesterei kaffeebohnen kaufen espresso abo teeladen kaffee fuers buero liefern kaffeemaschine service">
@@ -1168,10 +903,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Kaffeerösterei & Teehandel</span>
           <h3>Kaffeerösterei</h3>
           <p class="meta">Bohnen im Abo, Firmenkonto fürs Büro, Maschinenservice.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="papeterie-buerobedarf" data-suche="webshop papeterie buerobedarf detailhandel non food papeterie schulmaterial listen zum anklicken firmenkonto druckauftrag papeterie buerobedarf schulmaterial liste oberstufe druckerpatronen kaufen kopieren und drucken laden geschenkartikel papeterie">
@@ -1180,10 +911,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Papeterie & Bürobedarf</span>
           <h3>Papeterie</h3>
           <p class="meta">Schulmaterial-Listen zum Anklicken, Firmenkonto, Druckauftrag.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="zoohandlung-tierbedarf" data-suche="webshop zoohandlung tierbedarf detailhandel non food zoohandlung futter im abo liefergebiet abholfach beratung zoohandlung hundefutter kaufen tierbedarf katzenfutter liefern lassen aquarium zubehoer barf">
@@ -1192,10 +919,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Zoohandlung & Tierbedarf</span>
           <h3>Zoohandlung</h3>
           <p class="meta">Futter im Abo, Liefergebiet, Abholfach, Beratung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="sanitaetsgeschaeft-orthopaedietechnik" data-suche="website sanitaetsgeschaeft orthopaedietechnik detailhandel non food sanitaetsgeschaeft anprobetermin mietartikel erinnerung an die erneuerung sanitaetsgeschaeft kompressionsstruempfe messen lassen einlagen orthopaedie rollator mieten pflegebett mieten bandage knie kaufen">
@@ -1204,10 +927,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Sanitätsgeschäft & Orthopädietechnik</span>
           <h3>Sanitätsgeschäft</h3>
           <p class="meta">Anprobetermin, Mietartikel, Erinnerung an die Erneuerung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="ackerbau-kartoffeln-getreide" data-suche="webshop ackerbau kartoffeln getreide produzenten landwirtschaft hof mit ackerbau kartoffeln mehl und oel ab hof sackware abholtage kartoffeln ab hof speisekartoffeln sackware kaufen dinkelmehl direkt vom bauern rapsoel ab hof getreide bauer saatkartoffeln kaufen">
@@ -1216,10 +935,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Ackerbau, Kartoffeln & Getreide</span>
           <h3>Hof mit Ackerbau</h3>
           <p class="meta">Kartoffeln, Mehl und Öl ab Hof, Sackware, Abholtage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="brennholz-pellets-holzschnitzel" data-suche="webshop brennholz pellets holzschnitzel produzenten landwirtschaft brennholz und pellets ster schuettraummeter lieferung saisonvorbestellung brennholz kaufen buchenholz ster preis pellets liefern holzschnitzel heizung chemineeholz trocken anfeuerholz bestellen">
@@ -1228,10 +943,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Brennholz, Pellets & Holzschnitzel</span>
           <h3>Brennholz und Pellets</h3>
           <p class="meta">Ster, Schüttraummeter, Lieferung, Saisonvorbestellung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="brauerei-craft-bier" data-suche="webshop brauerei craft bier produzenten landwirtschaft brauerei sorten ab hof verkauf festbier fuer vereine braukurse brauerei craft bier kaufen bier ab hof braukurs geschenk festbier fuer verein bestellen harass bier depot">
@@ -1240,10 +951,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Brauerei & Craft-Bier</span>
           <h3>Brauerei</h3>
           <p class="meta">Sorten, Ab-Hof-Verkauf, Festbier für Vereine, Braukurse.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="landwirtschaftlicher-lohnunternehmer" data-suche="website landwirtschaftlicher lohnunternehmer produzenten landwirtschaft lohnunternehmer maschinenpark einsatzgebiet anfrage mit flaeche und termin lohnunternehmer silieren lohnarbeit maehdrescher lohnarbeit guelle ausbringen schleppschlauch ballenpressen lohnarbeit hackschnitzeln service">
@@ -1252,10 +959,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Landwirtschaftlicher Lohnunternehmer</span>
           <h3>Lohnunternehmer</h3>
           <p class="meta">Maschinenpark, Einsatzgebiet, Anfrage mit Fläche und Termin.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="glaserei-glasservice" data-suche="website glaserei glasservice handwerk glaserei glas nach mass notfall bei bruch duschtrennwaende glaser glaserei fensterscheibe gesprungen ersetzen glas nach mass duschtrennwand glas spiegel nach mass glasnotfall 24h">
@@ -1264,10 +967,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Glaserei & Glasservice</span>
           <h3>Glaserei</h3>
           <p class="meta">Glas nach Mass, Notfall bei Bruch, Duschtrennwände.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="lueftung-klima-kaeltetechnik" data-suche="website lueftung klima kaeltetechnik handwerk lueftung und klima einbau service filterwechsel wartungsvertrag klimaanlage wohnung einbauen lueftungsreinigung komfortlueftung filter wechseln klimageraet service kuehlraum reparatur klimaanlage kosten schweiz">
@@ -1276,10 +975,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Lüftung, Klima & Kältetechnik</span>
           <h3>Lüftung und Klima</h3>
           <p class="meta">Einbau, Service, Filterwechsel, Wartungsvertrag.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="elektrokontrolle-sicherheitsnachweis" data-suche="anwendung elektrokontrolle sicherheitsnachweis handwerk elektrokontrolle fristen im blick termin sicherheitsnachweis maengelliste elektrokontrolle sicherheitsnachweis sina periodische kontrolle elektro kosten nin kontrolle elektrokontrolle vor hausverkauf kontrollfrist liegenschaft">
@@ -1288,10 +983,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Elektrokontrolle & Sicherheitsnachweis</span>
           <h3>Elektrokontrolle</h3>
           <p class="meta">Fristen im Blick, Termin, Sicherheitsnachweis, Mängelliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="geruestbau" data-suche="website geruestbau handwerk geruestbau fassadengeruest treppenturm mietdauer offerte nach flaeche geruest mieten fassadengeruest preis geruestbau geruest fuer einfamilienhaus treppenturm mieten geruest miete pro woche">
@@ -1300,10 +991,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Gerüstbau</span>
           <h3>Gerüstbau</h3>
           <p class="meta">Fassadengerüst, Treppenturm, Mietdauer, Offerte nach Fläche.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="fassadenbau-waermedaemmung" data-suche="website fassadenbau waermedaemmung handwerk fassadenbau aussendaemmung verkleidung foerderbeitraege offerte fassade sanieren kosten aussendaemmung einfamilienhaus fassadenverkleidung holz kellerdecke daemmen estrich daemmen foerderung fassade neu verputzen">
@@ -1312,10 +999,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Fassadenbau & Wärmedämmung</span>
           <h3>Fassadenbau</h3>
           <p class="meta">Aussendämmung, Verkleidung, Förderbeiträge, Offerte.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="tor-garagentorbau" data-suche="website tor garagentorbau handwerk torbau sektionaltor antrieb reparatur service garagentor reparieren sektionaltor preis torantrieb defekt garagentor ersetzen kosten industrietor service garagentor motor nachruesten">
@@ -1324,10 +1007,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Tor- & Garagentorbau</span>
           <h3>Torbau</h3>
           <p class="meta">Sektionaltor, Antrieb, Reparatur, Service.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="schluesseldienst-schliessanlagen" data-suche="website schluesseldienst schliessanlagen handwerk schluesseldienst notfallnummer festpreise zylinder schliessanlagen schluesseldienst ausgesperrt wohnung tuere oeffnen kosten zylinder wechseln preis schliessanlage liegenschaft schluessel nachmachen">
@@ -1336,10 +1015,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Schlüsseldienst & Schliessanlagen</span>
           <h3>Schlüsseldienst</h3>
           <p class="meta">Notfallnummer, Festpreise, Zylinder, Schliessanlagen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="raumausstattung-vorhaenge-polsterei" data-suche="website raumausstattung vorhaenge polsterei handwerk raumausstattung vorhaenge nach mass plissee moebel neu beziehen vorhaenge nach mass plissee rollo innen sofa neu beziehen lassen polsterei raumausstatter sessel aufpolstern">
@@ -1348,10 +1023,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Raumausstattung, Vorhänge & Polsterei</span>
           <h3>Raumausstattung</h3>
           <p class="meta">Vorhänge nach Mass, Plissee, Möbel neu beziehen.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="steinmetz-grabmale" data-suche="website steinmetz grabmale handwerk steinmetz grabmale beschriftung kuechenabdeckungen naturstein grabstein kosten steinmetz grabmal gestalten grabbeschriftung nachtraeglich kuechenabdeckung granit preis fensterbank stein ersetzen">
@@ -1360,10 +1031,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Steinmetz & Grabmale</span>
           <h3>Steinmetz</h3>
           <p class="meta">Grabmale, Beschriftung, Küchenabdeckungen, Naturstein.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="forstunternehmen-baumpflege" data-suche="website forstunternehmen baumpflege handwerk baumpflege baeume faellen kronenpflege sturmschaden holzerei baum faellen lassen baumpflege forstunternehmen sturmschaden baum entfernen hohe hecke schneiden lassen baumkontrolle liegenschaft">
@@ -1372,10 +1039,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Forstunternehmen & Baumpflege</span>
           <h3>Baumpflege</h3>
           <p class="meta">Bäume fällen, Kronenpflege, Sturmschaden, Holzerei.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="rohrreinigung-kanalservice" data-suche="website rohrreinigung kanalservice gebaeudedienste entsorgung rohrreinigung notdienst rund um die uhr kanal tv festpreise rohrreinigung notdienst abfluss verstopft wc verstopft notfall kanalreinigung preis kanal tv untersuchung dole verstopft">
@@ -1384,10 +1047,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Rohrreinigung & Kanalservice</span>
           <h3>Rohrreinigung</h3>
           <p class="meta">Notdienst rund um die Uhr, Kanal-TV, Festpreise.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="bautrocknung-wasserschaden-leckortung" data-suche="website bautrocknung wasserschaden leckortung gebaeudedienste entsorgung bautrocknung wasserschaden sofortmassnahme leckortung trocknung wasserschaden was tun bautrocknung mieten keller unter wasser leckortung kosten schimmel nach wasserschaden trocknungsgeraet mieten">
@@ -1396,10 +1055,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Bautrocknung, Wasserschaden & Leckortung</span>
           <h3>Bautrocknung</h3>
           <p class="meta">Wasserschaden: Sofortmassnahme, Leckortung, Trocknung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="abbruch-rueckbau-schadstoffsanierung" data-suche="website abbruch rueckbau schadstoffsanierung gebaeudedienste entsorgung abbruch und rueckbau entkernung abbruch asbest entsorgungsnachweis haus abbrechen kosten rueckbau innenausbau entkernung wohnung abbruchfirma asbest entfernen lassen eternit entsorgen">
@@ -1408,10 +1063,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Abbruch, Rückbau & Schadstoffsanierung</span>
           <h3>Abbruch und Rückbau</h3>
           <p class="meta">Entkernung, Abbruch, Asbest, Entsorgungsnachweis.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="schaedlingsbekaempfung-holzschutz" data-suche="website schaedlingsbekaempfung holzschutz gebaeudedienste entsorgung schaedlingsbekaempfung wespen marder maeuse bettwanzen rasch und diskret wespennest entfernen kosten marder im dach vertreiben maeuse im haus bettwanzen bekaempfen schaedlingsbekaempfung holzwurm behandeln">
@@ -1420,10 +1071,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Schädlingsbekämpfung & Holzschutz</span>
           <h3>Schädlingsbekämpfung</h3>
           <p class="meta">Wespen, Marder, Mäuse, Bettwanzen. Rasch und diskret.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="sicherheitsdienst-bewachung" data-suche="website sicherheitsdienst bewachung gebaeudedienste entsorgung sicherheitsdienst anlaesse baustellen kontrollgaenge interventionsdienst sicherheitsdienst security fuer anlass mieten baustellenbewachung kontrollgang liegenschaft ordnungsdienst fest wachdienst">
@@ -1432,10 +1079,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Sicherheitsdienst & Bewachung</span>
           <h3>Sicherheitsdienst</h3>
           <p class="meta">Anlässe, Baustellen, Kontrollgänge, Interventionsdienst.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="autohandel-occasionen" data-suche="anwendung autohandel occasionen fahrzeug werkstatt occasionsportal fahrzeugbestand mit filter probefahrt eintauschanfrage occasion kaufen occasionen auto verkaufen ankauf autohaendler eintausch altes auto occasionsauto guenstig">
@@ -1444,10 +1087,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Autohandel & Occasionen</span>
           <h3>Occasionsportal</h3>
           <p class="meta">Fahrzeugbestand mit Filter, Probefahrt, Eintauschanfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="autovermietung-lieferwagenmiete" data-suche="anwendung autovermietung lieferwagenmiete fahrzeug werkstatt fahrzeugmiete verfuegbarkeit tarife abholung rueckgabe lieferwagen mieten transporter mieten zuegelwagen mieten auto mieten guenstig bus mieten 9 plaetze mietwagen ohne kreditkarte">
@@ -1456,10 +1095,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Autovermietung & Lieferwagenmiete</span>
           <h3>Fahrzeugmiete</h3>
           <p class="meta">Verfügbarkeit, Tarife, Abholung, Rückgabe.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="wohnmobil-camper" data-suche="anwendung wohnmobil camper fahrzeug werkstatt wohnmobilmiete kalender saisonpreise uebergabe checkliste wohnmobil mieten camper mieten wohnwagen occasion kastenwagen mieten wohnmobil service gaspruefung camper ausbau schweiz">
@@ -1468,10 +1103,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Wohnmobil & Camper</span>
           <h3>Wohnmobilmiete</h3>
           <p class="meta">Kalender, Saisonpreise, Übergabe, Checkliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="toeff-rollerwerkstatt" data-suche="website toeff rollerwerkstatt fahrzeug werkstatt toeffwerkstatt service mfk vorbereitung pneuwechsel einwinterung toeff service preise toeffwerkstatt roller reparatur toeff mfk vorbereiten pneuwechsel toeff roller 50ccm service">
@@ -1480,10 +1111,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Töff- & Rollerwerkstatt</span>
           <h3>Töffwerkstatt</h3>
           <p class="meta">Service, MFK-Vorbereitung, Pneuwechsel, Einwinterung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="bootswerft-bootsservice" data-suche="anwendung bootswerft bootsservice fahrzeug werkstatt bootsservice winterlager kranen service unterwasseranstrich bootsservice winterlager boot preise boot kranen lassen unterwasseranstrich boot motorbootservice arbon boot reparieren kreuzlingen">
@@ -1492,10 +1119,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Bootswerft & Bootsservice</span>
           <h3>Bootsservice</h3>
           <p class="meta">Winterlager, Kranen, Service, Unterwasseranstrich.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="autoaufbereitung-fahrzeugpflege" data-suche="anwendung autoaufbereitung fahrzeugpflege fahrzeug werkstatt autoaufbereitung innenreinigung politur versiegelung terminwahl autoaufbereitung preise auto innenreinigung keramikversiegelung schweiz politur auto kosten autopflege autositze reinigen lassen">
@@ -1504,10 +1127,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Autoaufbereitung & Fahrzeugpflege</span>
           <h3>Autoaufbereitung</h3>
           <p class="meta">Innenreinigung, Politur, Versiegelung, Terminwahl.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="reisecar-carunternehmen" data-suche="website reisecar carunternehmen fahrzeug werkstatt carunternehmen flotte tagesreisen vereinsausflug offerte car mieten mit chauffeur carreisen vereinsausflug bus mieten tagesreisen car reisecar 50 plaetze carunternehmen">
@@ -1516,10 +1135,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Reisecar & Carunternehmen</span>
           <h3>Carunternehmen</h3>
           <p class="meta">Flotte, Tagesreisen, Vereinsausflug, Offerte.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="taxi-fahrdienst-krankentransport" data-suche="anwendung taxi fahrdienst krankentransport fahrzeug werkstatt fahrdienst fahrt bestellen flughafentransfer rollstuhltransport taxi bestellen flughafentransfer preis krankentransport rollstuhltransport fahrdienst senioren taxi festpreis flughafen">
@@ -1528,10 +1143,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Taxi, Fahrdienst & Krankentransport</span>
           <h3>Fahrdienst</h3>
           <p class="meta">Fahrt bestellen, Flughafentransfer, Rollstuhltransport.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="baumaschinen-geraetevermietung" data-suche="anwendung baumaschinen geraetevermietung fahrzeug werkstatt geraetevermietung minibagger hebebuehne ruettelplatte frei ab wann minibagger mieten hebebuehne mieten preis ruettelplatte mieten stapler mieten baumaschinen vermietung maschinen mieten wochenende">
@@ -1540,10 +1151,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Baumaschinen- & Gerätevermietung</span>
           <h3>Gerätevermietung</h3>
           <p class="meta">Minibagger, Hebebühne, Rüttelplatte. Frei ab wann.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="dentalhygiene-prophylaxe" data-suche="anwendung dentalhygiene prophylaxe gesundheit praxen dentalhygiene termin recall nach sechs oder zwoelf monaten warteliste dentalhygiene dentalhygienikerin zahnreinigung preis prophylaxe termin zahnstein entfernen kosten recall dentalhygiene">
@@ -1552,10 +1159,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Dentalhygiene & Prophylaxe</span>
           <h3>Dentalhygiene</h3>
           <p class="meta">Termin, Recall nach sechs oder zwölf Monaten, Warteliste.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="sprachschulen-deutschkurse" data-suche="anwendung sprachschulen deutschkurse studios schulen sprachschule kurse mit plaetzen einstufung firmenkurse anmeldung deutschkurs sprachschule englisch abendkurs a2 pruefung vorbereitung firmenkurs business english integrationskurs deutsch">
@@ -1564,10 +1167,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Sprachschulen & Deutschkurse</span>
           <h3>Sprachschule</h3>
           <p class="meta">Kurse mit Plätzen, Einstufung, Firmenkurse, Anmeldung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="umbau-sanierung-aus-einer-hand" data-suche="website umbau sanierung aus einer hand planung bau umbau aus einer hand von der idee bis zur uebergabe ein ansprechpartner umbau aus einer hand haus sanieren kosten generalunternehmer einfamilienhaus altbausanierung badumbau komplett sanierung offerte">
@@ -1576,10 +1175,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Umbau & Sanierung aus einer Hand</span>
           <h3>Umbau aus einer Hand</h3>
           <p class="meta">Von der Idee bis zur Übergabe, ein Ansprechpartner.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="bauherrenberatung-bauexpertise" data-suche="website bauherrenberatung bauexpertise planung bau bauherrenberatung abnahme maengelprotokoll gutachten begleitung bauherrenvertretung kosten bauabnahme experte baumaengel gutachten wohnungsabnahme protokoll hauskauf begutachten lassen werkvertrag pruefen lassen">
@@ -1588,10 +1183,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Bauherrenberatung & Bauexpertise</span>
           <h3>Bauherrenberatung</h3>
           <p class="meta">Abnahme, Mängelprotokoll, Gutachten, Begleitung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="selfstorage-lagerboxen" data-suche="anwendung selfstorage lagerboxen immobilien vermietung lagerboxen groessen freie boxen preise vertrag ab monat lagerraum mieten selfstorage lagerbox mieten preis moebel einlagern kleiner lagerraum archiv einlagern firma">
@@ -1600,10 +1191,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Selfstorage & Lagerboxen</span>
           <h3>Lagerboxen</h3>
           <p class="meta">Grössen, freie Boxen, Preise, Vertrag ab Monat.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="festzelt-partyvermietung" data-suche="anwendung festzelt partyvermietung events anlaesse festzeltvermietung zelte baenke zapfanlage kuehlanhaenger frei ab wann festzelt mieten festbaenke mieten partyzelt preise zapfanlage mieten kuehlanhaenger mieten geschirr mieten fest">
@@ -1612,10 +1199,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Festzelt- & Partyvermietung</span>
           <h3>Festzeltvermietung</h3>
           <p class="meta">Zelte, Bänke, Zapfanlage, Kühlanhänger. Frei ab wann.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop" data-zweig="take-away-imbiss-pizzakurier" data-suche="webshop take away imbiss pizzakurier dienstleistung gewerbe take away eigene bestellseite ohne plattformgebuehr abholzeitfenster pizza bestellen pizzakurier take away kebab mittagsmenue zum mitnehmen essen liefern lassen">
@@ -1624,10 +1207,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Webshop · Take-away, Imbiss & Pizzakurier</span>
           <h3>Take-away</h3>
           <p class="meta">Eigene Bestellseite ohne Plattformgebühr, Abholzeitfenster.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="werbetechnik-fahrzeugbeschriftung" data-suche="website werbetechnik fahrzeugbeschriftung dienstleistung gewerbe werbetechnik fahrzeuge schaufenster blachen beschriftung auto beschriften lassen firmenwagen beschriftung kosten folierung auto preis lieferwagen beschriften schaufensterbeschriftung blache bedrucken">
@@ -1636,10 +1215,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Werbetechnik & Fahrzeugbeschriftung</span>
           <h3>Werbetechnik</h3>
           <p class="meta">Fahrzeuge, Schaufenster, Blachen, Beschriftung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="waescherei-textilreinigung" data-suche="website waescherei textilreinigung dienstleistung gewerbe textilreinigung abholung hemdenservice teppiche firmenwaesche textilreinigung chemische reinigung hemden buegeln service waescherei abholservice teppich reinigen lassen hotelwaesche service">
@@ -1648,10 +1223,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Wäscherei & Textilreinigung</span>
           <h3>Textilreinigung</h3>
           <p class="meta">Abholung, Hemdenservice, Teppiche, Firmenwäsche.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="fotografen-fotostudios" data-suche="website fotografen fotostudios dienstleistung gewerbe fotostudio hochzeit bewerbung firma familie termin und preise fotograf hochzeitsfotograf bewerbungsfoto businessfotos firma familienshooting preise passfoto">
@@ -1660,10 +1231,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Fotografen & Fotostudios</span>
           <h3>Fotostudio</h3>
           <p class="meta">Hochzeit, Bewerbung, Firma, Familie. Termin und Preise.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="kita-kinderbetreuung" data-suche="anwendung kita kinderbetreuung dienstleistung gewerbe kita freie plaetze anmeldung betreuungstage tarife kita freie plaetze kinderkrippe tagesmutter betreuungskosten kita krippe anmeldung hort nach der schule">
@@ -1672,10 +1239,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Kita & Kinderbetreuung</span>
           <h3>Kita</h3>
           <p class="meta">Freie Plätze, Anmeldung, Betreuungstage, Tarife.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="hundesalon-tierpension-tierbetreuung" data-suche="anwendung hundesalon tierpension tierbetreuung dienstleistung gewerbe hundesalon und pension termin fuer pflege freie plaetze in der pension hundesalon hund scheren preis hundepension katzenpension hundetagesstaette ferienbetreuung hund">
@@ -1684,10 +1247,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Hundesalon, Tierpension & Tierbetreuung</span>
           <h3>Hundesalon und Pension</h3>
           <p class="meta">Termin für Pflege, freie Plätze in der Pension.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="website" data-zweig="bestattungsinstitute" data-suche="website bestattungsinstitute dienstleistung gewerbe bestattungsinstitut was zuerst zu tun ist leistungen kosten erreichbarkeit bestattungsinstitut bestattung kosten todesfall was tun urnenbeisetzung organisieren bestatter abdankung planen">
@@ -1696,10 +1255,6 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Website · Bestattungsinstitute</span>
           <h3>Bestattungsinstitut</h3>
           <p class="meta">Was zuerst zu tun ist, Leistungen, Kosten, Erreichbarkeit.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung" data-zweig="hotels-landgasthoefe-pensionen" data-suche="anwendung hotels landgasthoefe pensionen dienstleistung gewerbe landgasthof zimmer freie naechte seminarraeume direkte buchung hotel garni landgasthof zimmer uebernachtung seminarhotel gasthof mit zimmern zimmer buchen kreuzlingen">
@@ -1708,21 +1263,17 @@ main{position:relative;z-index:2}
           <span class="branche-marke">Anwendung · Hotels, Landgasthöfe & Pensionen</span>
           <h3>Landgasthof</h3>
           <p class="meta">Zimmer, freie Nächte, Seminarräume, direkte Buchung.</p>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
         </div>
       </article>
     </div>
-    <p class="leer" id="leer" hidden>Für diese Kombination liegt noch nichts im
-      Regal. Sagen Sie uns, was Sie brauchen — wir bauen es als Nächstes.</p>
+    <p class="leer" id="leer" hidden>Für diese Kombination haben wir noch nichts
+      durchdacht. Sagen Sie uns, was Sie brauchen — wir schauen es uns an.</p>
 
     <p class="hinweis-platzhalter">
       Platzhalter. Sobald die ersten Stücke gebaut sind, steht hier je eine echte
       Vorschau, die sich vollständig durchscrollen lässt, auf dem Handy und am
-      Computer. Die Preise gelten für die Übernahme aus dem Regal, wenn Sie Texte
-      und Bilder liefern; der Vergleichspreis daneben ist der Individualbau.
+      Computer. Was Ihre Seite kostet, sagen wir im Gespräch — es hängt daran,
+      was der digitale Mitarbeiter bei Ihnen übernehmen soll.
     </p>
   </div>
 </main>
@@ -1739,7 +1290,7 @@ main{position:relative;z-index:2}
       </div>
       <div class="fuss-links">
         <a href="index.html#stufen">Angebot</a>
-        <a href="loesungen.html">Fertige Lösungen</a>
+        <a href="loesungen.html">Schaufenster</a>
         <a href="team.html">Team</a>
         <a href="index.html#kontakt">Kontakt</a>
         <a href="#">Impressum</a>
@@ -1763,7 +1314,7 @@ var feld = document.getElementById('branche');
 var suche = document.getElementById('suche');
 var zurueck = document.getElementById('zuruecksetzen');
 var regal = document.getElementById('stuecke');
-var zahl = document.getElementById('regal-zahl');
+var zahl = document.getElementById('schau-zahl');
 var leer = document.getElementById('leer');
 var stuecke = regal.querySelectorAll('.stueck');
 var sorte = 'alle', branche = 'alle', wort = '';
@@ -1790,8 +1341,9 @@ function zeigen(){
     s.hidden = !passt;
     if (passt) da++;
   }
+  /* Kein Lagerbestand mehr: es wird gezeigt, nicht vergeben. */
   zahl.textContent = da === 0 ? 'Nichts gefunden'
-    : da + (da === 1 ? ' Stück frei' : ' Stücke frei');
+    : da + (da === 1 ? ' Beispiel' : ' Beispiele');
   leer.hidden = da > 0;
   zurueck.hidden = (sorte === 'alle' && branche === 'alle' && !wort);
 }
