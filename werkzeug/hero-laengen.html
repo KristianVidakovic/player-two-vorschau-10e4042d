@@ -1,26 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de-CH">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
-<!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
-     Suchmaschinen fern und muss beim echten Livegang weg. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Player Two — Websites für Handwerk, Gewerbe und Praxen</title>
-<meta name="description" content="Fertig gebaute Websites, Webshops und Anwendungen für Betriebe in der Ostschweiz. Fixpreis ab CHF 1'490, dazu digitale Mitarbeitende, die den Papierkram übernehmen. Player Two, Thurgau.">
-<meta name="theme-color" content="#F2F4F7">
-<!-- DEPLOY STEP: og:url und og:image auf die Live-Adresse setzen -->
-<meta property="og:title" content="Player Two, Websites für Handwerk, Gewerbe und Praxen">
-<meta property="og:description" content="Fertig gebaut, exklusiv vergeben, in zehn Arbeitstagen live.">
-<meta property="og:type" content="website">
-<link rel="icon" href="assets/marke.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<!-- Der Hero-Film. Absichtlich ohne defer im Kopf: die Datei entscheidet
-     vor dem ersten Anstrich, ob der Film laeuft, sonst blitzt kurz der
-     statische Hero auf. Neun Kilobyte, lokal. -->
-<script src="assets/hero-film.js"></script>
+<title>Hero-Längen im Vergleich — Player Two, intern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<!-- Dieselbe Engine wie auf der echten Seite. -->
+<script src="../assets/hero-film.js"></script>
 <style>
 /* ============================================================
    Player Two, öffentliche Website
@@ -206,7 +193,7 @@ img{max-width:100%;display:block}
 .hero-still{display:none;position:relative;z-index:1}
 .hero-still .bild{
   position:relative;min-height:min(86vh,720px);
-  background-image:url('assets/hero-ende.jpg');background-size:cover;background-position:58% center;
+  background-image:url('../assets/hero-ende.jpg');background-size:cover;background-position:58% center;
   display:flex;align-items:flex-end;
 }
 .hero-still .bild::after{
@@ -1488,7 +1475,7 @@ html.pt-film-an .pt-copy::after{
 /* ---------- Die fuenf Tore ----------
    Wer hier hineinfaellt, bekommt statt des Films das komponierte
    Standbild. Die fuenf Bedingungen stehen zeichengleich in
-   assets/hero-film.js. Weichen sie voneinander ab, laedt die eine Seite,
+   ../assets/hero-film.js. Weichen sie voneinander ab, laedt die eine Seite,
    was die andere versteckt. */
 @media (max-width: 720px),
        (orientation: portrait) and (max-width: 1024px),
@@ -1506,48 +1493,57 @@ html.pt-film-an .pt-copy::after{
   html.pt-film-an .pt-closing{--k:1}
 }
 </style>
+<style>
+/* Nur fuer diese Vergleichsseite. Die echte Seite hat davon nichts. */
+body{background:var(--canvas)}
+.hinweis{
+  position:fixed;left:0;right:0;top:0;z-index:9000;
+  background:var(--tief-voll);color:#EBF8FF;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  padding:9px clamp(14px,3vw,28px);display:flex;gap:18px;
+  align-items:center;flex-wrap:wrap}
+.hinweis b{color:var(--cyan)}
+.hinweis a{color:#EBF8FF;text-decoration:none;border-bottom:1px solid rgba(235,248,255,.4);
+  padding-bottom:1px}
+.hinweis a:hover{border-bottom-color:var(--cyan)}
+.marke-laenge{
+  background:var(--nacht);color:#EBF8FF;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+  padding:14px clamp(14px,3vw,28px);display:flex;flex-wrap:wrap;align-items:baseline}
+.marke-laenge b{color:var(--cyan);font-size:16px;margin-right:4px}
+.danach{background:var(--canvas-2);padding:clamp(48px,9vh,110px) 0}
+.danach-innen{width:var(--seite);margin:0 auto;max-width:62ch}
+.danach h2{font-family:var(--display);font-weight:600;
+  font-size:clamp(26px,3.2vw,40px);letter-spacing:-.01em;margin:10px 0 14px}
+.danach p{color:var(--grau);font-size:17px;line-height:1.6}
+.danach b{color:var(--tief)}
+/* Die feste Kopfzeile der echten Seite gibt es hier nicht - dafuer den
+   Hinweisbalken. Der Hero klebt darunter. */
+html.pt-film-an .pt-halt{top:38px}
+</style>
 </head>
 <body>
-<div class="umgebung" aria-hidden="true"></div>
-<a class="skip" href="#main">Direkt zum Inhalt</a>
 
-<nav class="nav" id="nav">
-  <a class="marke" href="#top" aria-label="Player Two, Startseite">
-    <img src="assets/marke.png" srcset="assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
-    <span>Player Two</span>
-  </a>
-  <div class="nav-links">
-    <a href="#stufen">Angebot</a>
-    <a href="loesungen.html">Fertige Lösungen</a>
-    <a href="#ablauf">Ablauf</a>
-    <a href="#team">Über uns</a>
-    <a href="team.html">Team</a>
-    <a href="#kontakt">Kontakt</a>
-  </div>
-  <a class="btn btn-voll" href="#regal" style="margin-left:22px">Fertige Lösungen ansehen</a>
-</nav>
+<div class="hinweis">
+  <span><b>Intern.</b> Drei Längen des Hero-Films im Vergleich.</span>
+  <span>Springen zu:
+    <a href="#teil-a">A kurz</a> ·
+    <a href="#teil-b">B mittel</a> ·
+    <a href="#teil-c">C lang</a></span>
+  <span>Alles andere ist identisch mit der echten Seite.</span>
+</div>
 
-<div id="top"></div>
 
-<!-- ================= Hero, der gescrollte Film =================
-     Der Film haengt am Scrollrad, nicht an einer Uhr. Drei Bilder liegen
-     uebereinander: unten das Endbild (traegt den Hero, wenn kein Film
-     laeuft), darueber das Startbild als Plakat waehrend das Video laedt,
-     darueber das Video selbst. Das Video wird erst sichtbar, wenn es
-     wirklich ein Bild gemalt hat - nicht schon, wenn die Daten da sind.
-
-     Die Laenge des Scrollwegs steht als --pt-weg weiter oben im CSS.
-
-     Der Satz baut sich beim Scrollen zu Ende: "Mehr Zeit fuer das," steht
-     von Anfang an, "was wichtig ist." kommt dazu, waehrend der
-     Schreibtisch leer wird. Danach Untertext, Knoepfe, Abbinder. -->
-<header class="pt-hero" id="hero"
-  data-film="assets/hero-wandel.mp4"
-  data-plakat="assets/hero-wandel-start.jpg"
+<div class="marke-laenge" id="teil-a">
+  <b>A</b> &nbsp;kurz &nbsp;·&nbsp; Scrollweg 130vh &nbsp;·&nbsp; Eine kräftige Scrollbewegung. Deine ursprüngliche Vorgabe.
+</div>
+<header class="pt-hero" style="--pt-weg:130vh" id="hero-a"
+  data-film="../assets/hero-wandel.mp4"
+  data-plakat="../assets/hero-wandel-start.jpg"
   aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
   <div class="pt-halt" data-halt>
     <div class="pt-stage" data-buehne>
-      <img class="pt-photo" src="assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
+      <img class="pt-photo" src="../assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
         width="1920" height="1082" fetchpriority="high" decoding="async">
       <video class="pt-film" muted playsinline preload="none" aria-hidden="true"
         tabindex="-1" disablepictureinpicture disableremoteplayback
@@ -1575,1263 +1571,114 @@ html.pt-film-an .pt-copy::after{
     </div>
   </div>
 </header>
-
-
-<div class="signale">
-  <ul>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Schweizer Partner, Server in der Schweiz</li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Fixpreis, bevor Sie zusagen</li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5 11-11"/></svg> Zwei Menschen, die Sie am Telefon erreichen</li>
-  </ul>
+<section class="danach">
+  <div class="danach-innen">
+    <p class="kicker">So geht es weiter</p>
+    <h2>Hier löst sich der Hero und der Inhalt kommt hoch.</h2>
+    <p>Genau dieser Moment unterscheidet die drei Längen. Bei <b>A</b> hat es
+      kurz gedauert. Scrollen Sie weiter zur nächsten Fassung.</p>
+  </div>
+</section>
+<div class="marke-laenge" id="teil-b">
+  <b>B</b> &nbsp;mittel &nbsp;·&nbsp; Scrollweg 280vh &nbsp;·&nbsp; Zwei bis drei Bewegungen. Jede Textstufe hat Zeit anzukommen.
 </div>
-<main id="main" tabindex="-1">
+<header class="pt-hero" style="--pt-weg:280vh" id="hero-b"
+  data-film="../assets/hero-wandel.mp4"
+  data-plakat="../assets/hero-wandel-start.jpg"
+  aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
+  <div class="pt-halt" data-halt>
+    <div class="pt-stage" data-buehne>
+      <img class="pt-photo" src="../assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
+        width="1920" height="1082" fetchpriority="high" decoding="async">
+      <video class="pt-film" muted playsinline preload="none" aria-hidden="true"
+        tabindex="-1" disablepictureinpicture disableremoteplayback
+        width="1920" height="1082"></video>
+      <div class="pt-grade" aria-hidden="true"></div>
 
-
-<!-- ================= referenzen ================= -->
-<!-- ACHTUNG: Die zehn Stimmen in diesem Band sind erfunden.
-     Sie stehen nur in dieser Vorschlagsfassung, damit die Seite im
-     Endzustand beurteilt werden kann. Vor dem Livegang durch echte
-     Betriebe ersetzen oder den Abschnitt leeren. -->
-<!-- ================= preise =================
-     ACHTUNG: Masterfile Teil 70.4 sperrt die Veroeffentlichung konkreter
-     Betraege, bis Kristian die Preisform entschieden hat. Die alten Zahlen
-     bilden die Vorlage OHNE digitalen Mitarbeiter ab. Dieser Abschnitt nennt
-     deshalb bewusst keine Zahl. -->
-<!-- ================= alltag =================
-     ACHTUNG vor dem Livegang: Die zweite Zeile («Er bekommt sofort eine
-     Nachricht») verspricht eine Rueckmeldung an einen Anrufer. Das ist im
-     Masterfile NICHT geregelt - weder SMS noch verpasster Anruf noch
-     Rueckruf kommen darin vor, der digitale Mitarbeiter lebt dort nur auf
-     der Website. Von Kristian am 26.08.2026 ausdruecklich gewuenscht.
-     Braucht einen Masterfile-Eintrag und einen Telefonanbieter, bevor es
-     oeffentlich behauptet werden darf. -->
-<section id="alltag">
-  <div class="wrap">
-    <span class="kicker auf">Aus dem Alltag</span>
-    <h2 class="h2 auf">Kommt Ihnen das bekannt vor?</h2>
-    <p class="lede auf">Sechs Sachen, die es in jedem Betrieb gibt. Links, wie
-      es heute läuft. Rechts, wie es mit Player Two läuft.</p>
-
-    <div class="gegen">
-      <div class="sp-kopf links">Heute</div>
-      <div class="sp-kopf rechts">Mit Player Two</div>
-
-      <div class="z links"><i></i><div>Sie schreiben die Offerte am Abend. Weil tagsüber keine Zeit war.</div></div>
-      <div class="z rechts"><i></i><div>Die Offerte ist gerechnet, wenn Sie Feierabend machen. Sie schauen sie an und geben sie frei.</div></div>
-
-      <div class="z links"><i></i><div>Sie können gerade nicht ans Telefon. Der Anrufer hört es klingeln.</div></div>
-      <div class="z rechts"><i></i><div>Er bekommt sofort eine Nachricht: dass Sie bei einem Kunden sind und wann Sie zurückrufen.</div></div>
-
-      <div class="z links"><i></i><div>Für einen Termin telefonieren Sie zweimal hin und her.</div></div>
-      <div class="z rechts"><i></i><div>Der Kunde bekommt drei freie Termine vorgeschlagen und wählt einen aus.</div></div>
-
-      <div class="z links"><i></i><div>Zum vierzigsten Mal die Frage nach den Öffnungszeiten.</div></div>
-      <div class="z rechts"><i></i><div>Beantwortet. Sie erfahren gar nicht, dass jemand gefragt hat.</div></div>
-
-      <div class="z links"><i></i><div>Eine neue Bewertung im Netz. Antworten wollten Sie längst.</div></div>
-      <div class="z rechts"><i></i><div>Die Antwort ist entworfen, in Ihrem Ton. Sie lesen sie kurz und schicken sie ab.</div></div>
-
-      <div class="z links"><i></i><div>Die Rechnung ist offen. Mahnen mögen Sie nicht.</div></div>
-      <div class="z rechts"><i></i><div>Es wird freundlich erinnert. Kommt nichts zurück, fragt er Sie, wie es weitergehen soll.</div></div>
-
+      <div class="pt-copy">
+        <div class="pt-copy-inner">
+          <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
+          <h1><span class="pt-satz-a">Mehr Zeit für das,</span>
+            <span class="pt-satz-b pt-stufe">was wichtig ist.</span></h1>
+          <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
+            und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
+            digitaler Mitarbeiter mit.</p>
+          <div class="pt-actions pt-stufe">
+            <a class="pt-button pt-primary" href="#stufen">Lösungen ansehen</a>
+            <a class="pt-button pt-secondary" href="#kontakt">Projekt besprechen</a>
+          </div>
+          <div class="pt-closing pt-stufe">
+            <span class="pt-check">✓</span>
+            <span>Sie entscheiden. Der Rest läuft.</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</header>
+<section class="danach">
+  <div class="danach-innen">
+    <p class="kicker">So geht es weiter</p>
+    <h2>Hier löst sich der Hero und der Inhalt kommt hoch.</h2>
+    <p>Genau dieser Moment unterscheidet die drei Längen. Bei <b>B</b> hat es
+      mittel gedauert. Scrollen Sie weiter zur nächsten Fassung.</p>
+  </div>
+</section>
+<div class="marke-laenge" id="teil-c">
+  <b>C</b> &nbsp;lang &nbsp;·&nbsp; Scrollweg 420vh &nbsp;·&nbsp; Der Standard aus dem Skill. Vier Bewegungen, ruhigstes Tempo.
+</div>
+<header class="pt-hero" style="--pt-weg:420vh" id="hero-c"
+  data-film="../assets/hero-wandel.mp4"
+  data-plakat="../assets/hero-wandel-start.jpg"
+  aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
+  <div class="pt-halt" data-halt>
+    <div class="pt-stage" data-buehne>
+      <img class="pt-photo" src="../assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
+        width="1920" height="1082" fetchpriority="high" decoding="async">
+      <video class="pt-film" muted playsinline preload="none" aria-hidden="true"
+        tabindex="-1" disablepictureinpicture disableremoteplayback
+        width="1920" height="1082"></video>
+      <div class="pt-grade" aria-hidden="true"></div>
 
-    <div class="gegen-fuss auf">
-      <div><b>Keine davon ist schwierig.</b> Sie kommen nur alle dann, wenn Sie
-        gerade nicht können.</div>
-      <div><b>Bei Ihnen bleibt die Entscheidung.</b> Alles davor macht Ihr
-        digitaler Mitarbeiter.</div>
+      <div class="pt-copy">
+        <div class="pt-copy-inner">
+          <p class="pt-eyebrow">Websites, Webshops und digitale Abläufe</p>
+          <h1><span class="pt-satz-a">Mehr Zeit für das,</span>
+            <span class="pt-satz-b pt-stufe">was wichtig ist.</span></h1>
+          <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
+            und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
+            digitaler Mitarbeiter mit.</p>
+          <div class="pt-actions pt-stufe">
+            <a class="pt-button pt-primary" href="#stufen">Lösungen ansehen</a>
+            <a class="pt-button pt-secondary" href="#kontakt">Projekt besprechen</a>
+          </div>
+          <div class="pt-closing pt-stufe">
+            <span class="pt-check">✓</span>
+            <span>Sie entscheiden. Der Rest läuft.</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</header>
+<section class="danach">
+  <div class="danach-innen">
+    <p class="kicker">So geht es weiter</p>
+    <h2>Hier löst sich der Hero und der Inhalt kommt hoch.</h2>
+    <p>Genau dieser Moment unterscheidet die drei Längen. Bei <b>C</b> hat es
+      lang gedauert. Scrollen Sie weiter zur nächsten Fassung.</p>
   </div>
 </section>
 
-<!-- ================= was ================= -->
-<section id="was">
-  <div class="wrap">
-    <span class="kicker auf">Website, Webshop, Anwendung — immer mit digitalem Mitarbeiter</span>
-    <h2 class="h2 auf">Bei uns steht die Seite nicht nur da. Sie arbeitet mit.</h2>
-    <p class="lede auf">Zu jeder Website, zu jedem Webshop und zu jeder Anwendung
-      von Player Two gehört mindestens ein digitaler Mitarbeiter. Er übernimmt
-      eine Aufgabe, die heute jeden Tag bei Ihnen liegen bleibt.</p>
-
-    <div class="dreisatz stufe">
-      <article class="satz-karte">
-        <span class="nr">1</span>
-        <h3>Sie übernimmt echte Arbeit</h3>
-        <p>Anfragen aufnehmen und beantworten, Termine vorbereiten, Unterlagen
-          einsammeln, Antworten auf Bewertungen entwerfen. Das ist kein
-          Kontaktformular und kein Chatfenster ohne Aufgabe — es ist die Arbeit,
-          die sonst niemand macht.</p>
-      </article>
-      <article class="satz-karte">
-        <span class="nr">2</span>
-        <h3>Mit Ihren Preisen, in Ihrem Ton</h3>
-        <p>Vorbereitet ist die Lösung samt seiner Rolle: seine Aufgabe, seine
-          Grenzen, der Punkt, an dem er an Sie übergibt. Ihr Wissen und Ihre
-          Preise kommen dazu, wenn wir ihn auf Ihren Betrieb übertragen.</p>
-      </article>
-      <article class="satz-karte">
-        <span class="nr">3</span>
-        <h3>Sie behalten den Daumen drauf</h3>
-        <p>Was sie nicht sicher weiss, beantwortet sie nicht — sie übergibt an
-          Sie und sagt das auch.</p>
-      </article>
-    </div>
-
-    <p class="was-fuss auf"><b>Der Umfang richtet sich nach Ihrem Betrieb.</b>
-      Das gilt für dreissig Mitarbeitende genauso wie für den Betrieb, der aus
-      einer Person besteht. Dort ist sein Aufgabengebiet kleiner — und die
-      Entlastung am grössten.</p>
+<section class="danach" style="background:var(--tief-voll);color:#EBF8FF">
+  <div class="danach-innen">
+    <p class="kicker" style="color:var(--cyan)">Fertig</p>
+    <h2 style="color:#fff">Welche Länge fühlt sich richtig an?</h2>
+    <p style="color:#B7C4D6">A ist am schnellsten durch, C am ruhigsten.
+      Achten Sie darauf, wann «was wichtig ist.» ankommt und ob die Knöpfe
+      früh genug da sind.</p>
   </div>
 </section>
-
-<!-- ================= stufen ================= -->
-<!-- ================= Drei Einstiege ================= -->
-<section id="stufen">
-  <div class="quer" id="quer">
-    <div class="quer-halt">
-      <div class="quer-kopf">
-      <div class="k-innen">
-        <div class="k-zeile">
-          <span class="kicker">Was Sie bekommen</span>
-          <span class="k-zaehler" id="k-zaehler">1 von 3</span>
-        </div>
-        <h2 class="h2" id="k-titel">Website</h2>
-        <p id="k-satz">Damit Sie gefunden werden — und danach weniger Post haben.</p>
-      </div>
-    </div>
-
-    <div class="quer-spur" id="quer-spur">
-      <section class="tafel" id="tafel-website" aria-label="Website">
-        <header class="tafel-kopf">
-          <span class="tafel-nr">1 von 3</span>
-          <h3>Website</h3>
-          <p>Sie werden gefunden. Und was hereinkommt, bleibt nicht liegen.</p>
-        </header>
-        <div class="tafel-karten">
-        <article class="stufe-karte">
-          <span class="stufe-nr">Was Sie bekommen</span>
-          <h3>Die Seite</h3>
-          <p class="satz">Ihre Arbeit, wie sie ist: sauber gezeigt, schnell geladen — und auffindbar bei Google wie bei ChatGPT, Perplexity und Gemini.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Arbeiten, Ihre Leistungen, Ihre Preise</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
-          </ul>
-          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
-        </article>
-
-        <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Wer darin mitarbeitet</span>
-          <h3>Inklusive digitaler Mitarbeiter</h3>
-          <p class="satz">Umfang je nach Auftrag. Malerbetrieb, vier Mitarbeitende. Um 08:14 kommt über Ihre Seite eine Anfrage für einen Innenanstrich. Um 08:31 liegt die Offerte bereit — mit Ihren Positionen und Ihren Preisen.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt die Anfrage auf und fragt nach, was fehlt</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Rechnet die Offerte mit Ihren Preisen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Legt sie Ihnen zur Freigabe hin</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Plant das Nachfassen in fünf Tagen ein</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sie geben frei. Sonst geht nichts hinaus</li>
-          </ul>
-          <a class="btn btn-hell" href="#preise">Was das kostet</a>
-        </article>
-        </div>
-
-        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
-      </section>
-      <section class="tafel" id="tafel-shop" aria-label="Webshop">
-        <header class="tafel-kopf">
-          <span class="tafel-nr">2 von 3</span>
-          <h3>Webshop</h3>
-          <p>Verkaufen, ohne dass die Bestellungen über Ihren Feierabend laufen.</p>
-        </header>
-        <div class="tafel-karten">
-        <article class="stufe-karte">
-          <span class="stufe-nr">Was Sie bekommen</span>
-          <h3>Der Shop</h3>
-          <p class="satz">Ein Shop mit genau den Artikeln, die Ihren Umsatz machen — gepflegt in Minuten statt Stunden, gefunden bei Google wie bei ChatGPT.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung, Versand oder beides</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zahlung über die üblichen Schweizer Wege</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
-          </ul>
-          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
-        </article>
-
-        <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Wer darin mitarbeitet</span>
-          <h3>Inklusive digitaler Mitarbeiter</h3>
-          <p class="satz">Umfang je nach Auftrag. Bäckerei mit Hofladen. Am Mittwoch kommt die Vorbestellung: zwei Zöpfe, Samstag 8 Uhr. Die Bestätigung geht sofort raus, die Bestellung steht auf der Liste für die Backstube.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt Vorbestellungen an und bestätigt die Abholzeit</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Hält den Bestand auf der Seite aktuell</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Meldet Ihnen, was eine Entscheidung braucht</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zeigt am Monatsende, was sich verkauft hat</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Grosse Bestellungen entscheiden Sie</li>
-          </ul>
-          <a class="btn btn-hell" href="#preise">Was das kostet</a>
-        </article>
-        </div>
-
-        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
-      </section>
-
-      <section class="tafel" id="tafel-anwendung" aria-label="Anwendung">
-        <header class="tafel-kopf">
-          <span class="tafel-nr">3 von 3</span>
-          <h3>Anwendung</h3>
-          <p>Für den einen Ablauf, den kein fertiges Werkzeug abbildet.</p>
-        </header>
-        <div class="tafel-karten">
-        <article class="stufe-karte">
-          <span class="stufe-nr">Was Sie bekommen</span>
-          <h3>Die Anwendung</h3>
-          <p class="satz">Gebaut auf Ihren Ablauf, nicht auf den von jemand anderem. Was nach aussen zeigt, ist auffindbar bei Google wie bei ChatGPT.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Bereich für Ihre Leute, einer für Ihre Kundschaft</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft im Browser, nichts zu installieren</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
-          </ul>
-          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
-        </article>
-
-        <article class="stufe-karte arbeitet">
-          <span class="stufe-nr">Wer darin mitarbeitet</span>
-          <h3>Inklusive digitaler Mitarbeiter</h3>
-          <p class="satz">Umfang je nach Auftrag. Hausverwaltung. Ein Mieter meldet einen Schaden über das Portal. Die Meldung ist aufgenommen, dem Objekt zugeordnet und beim Handwerker — der Stand steht für alle sichtbar da.</p>
-          <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt Meldungen auf und ordnet sie zu</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Hält alle Beteiligten auf dem Laufenden</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Erinnert an das, was liegen bleibt</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Fasst nach, ohne dass Sie eine Liste führen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Was ein Urteil braucht, kommt zu Ihnen</li>
-          </ul>
-          <a class="btn btn-hell" href="#preise">Was das kostet</a>
-        </article>
-        </div>
-
-        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
-      </section>
-      </div>
-
-      <div class="quer-leiste" role="tablist" aria-label="Zwischen den drei Angeboten wechseln">
-        <button type="button" class="quer-punkt an" data-zu="0"><span class="vs">Website</span></button>
-        <button type="button" class="quer-punkt" data-zu="1"><span class="vs">Webshop</span></button>
-        <button type="button" class="quer-punkt" data-zu="2"><span class="vs">Anwendung</span></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= branchen ================= -->
-<section class="branchen" id="branchen">
-  <div class="wrap">
-    <span class="kicker auf">Was das für Sie heisst</span>
-    <h2 class="h2 auf">Suchen Sie Ihre Branche.</h2>
-    <p class="lede auf">Wir zeigen den Tag, wie er dann läuft. Jede Branche hat einen anderen Papierkram — hier sehen Sie, was ohne Sie läuft und wo Sie noch entscheiden.</p>
-
-    <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
-    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Im Regal liegen
-      Lösungen für <a href="loesungen.html">über hundert Branchen</a> — von der
-      Physiotherapie über die Garage bis zur Dachdeckerei.</p>
-
-    <div class="fluss-raster">
-      <div class="fluss-kopf auf">
-        <h3 id="fluss-titel">Malerbetrieb</h3>
-        <p id="fluss-satz">Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.</p>
-        <div class="womit" id="fluss-womit"></div>
-      </div>
-
-      <div class="schirm auf" id="schirm">
-        <div class="schirm-kopf"><i></i><span id="schirm-titel">Ihr Tag</span></div>
-        <ul class="schritte-liste" id="fluss-schritte" aria-live="polite"></ul>
-        <div class="fluss-fuss">Alles, was hier steht, passiert erst nach Ihrer Freigabe. Sie behalten den Daumen drauf.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= regal ================= -->
-<section id="regal">
-  <div class="wrap">
-    <div class="regal-kopf">
-      <div>
-        <span class="kicker auf">Fertige Lösungen</span>
-        <h2 class="h2 auf">Ihre Lösung steht schon im Regal.</h2>
-        <p class="lede auf">Wir bauen fertig vor. Sie schauen an, wählen aus, wir
-          übertragen es auf Ihren Betrieb. Jedes Stück wird genau einmal vergeben.
-          Drei Beispiele — im Regal liegt mehr.</p>
-      </div>
-      <a class="btn btn-voll auf" href="loesungen.html">Ins Regal</a>
-    </div>
-
-    <div class="stuecke stufe" id="stuecke">
-      <article class="stueck" data-sorte="website">
-        <div class="schau schau-web" aria-hidden="true">
-              <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="blatt"><div class="rollt">
-                <div class="v-kopf"></div><div class="v-bild"></div>
-                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
-                <div class="v-knopf"></div>
-                <div class="v-zwei"><span></span><span></span></div>
-                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
-              </div></div>
-            </div>
-        <div class="inhalt">
-          <span class="branche-marke">Website · Maler und Handwerk</span>
-          <h3>Malerbetrieb</h3>
-          <p class="meta">Eine Seite. Arbeiten, Leistungen, Offertanfrage.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
-            <span class="frei">Frei</span>
-          </div>
-        </div>
-      </article>
-      <article class="stueck" data-sorte="shop">
-        <div class="schau schau-shop" aria-hidden="true">
-              <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="blatt">
-                <div class="v-raster">
-                  <b style="--n:0"></b><b style="--n:1"></b><b style="--n:2"></b>
-                  <b style="--n:3"></b><b style="--n:4"></b><b style="--n:5"></b>
-                </div>
-                <div class="v-korb"></div>
-              </div>
-            </div>
-        <div class="inhalt">
-          <span class="branche-marke">Webshop · Bäckerei und Hofladen</span>
-          <h3>Hofladen</h3>
-          <p class="meta">Shop bis 50 Artikel. Abholung, Versand, TWINT.</p>
-          <div class="fuss">
-            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
-            <span class="frei">Frei</span>
-          </div>
-        </div>
-      </article>
-      <article class="stueck" data-sorte="anwendung">
-        <div class="schau schau-app" aria-hidden="true">
-              <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="blatt">
-                <div class="v-reihe" style="--n:0"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:1"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:2"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:3"><em></em><u></u></div>
-              </div>
-            </div>
-        <div class="inhalt">
-          <span class="branche-marke">Anwendung · Restaurant und Café</span>
-          <h3>Tischreservation</h3>
-          <p class="meta">Tischplan, Bestätigung, Erinnerung, Gruppenanfragen.</p>
-          <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
-          <div class="fuss">
-            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
-            <span class="frei">Frei</span>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <p class="regal-mehr auf">
-      <a href="loesungen.html">Alle Lösungen ansehen und nach Ihrer Branche filtern</a>
-    </p>
-  </div>
-</section>
-
-
-<!-- ================= ablauf ================= -->
-<section id="ablauf" class="ablauf">
-  <div class="wrap">
-    <span class="kicker auf">So läuft es ab</span>
-    <h2 class="h2 auf">Vier Schritte, und Sie sind live.</h2>
-    <p class="lede auf">Die Tage daneben gelten für eine Seite, die gefunden werden
-      soll. Was mehr können muss, braucht mehr Vorlauf. Was das heisst, steht
-      darunter.</p>
-
-    <div class="schritte" id="schritte">
-      <article class="schritt">
-        <div class="punkt">1</div>
-        <h3>Wir reden kurz</h3>
-        <p>Dreissig Minuten, bei Ihnen im Betrieb oder am Telefon. Wir schauen an, was Sie machen und wer Sie anfragen soll.</p>
-        <div class="dauer">Tag 1</div>
-      </article>
-      <article class="schritt">
-        <div class="punkt">2</div>
-        <h3>Sie liefern, was nur Sie haben</h3>
-        <p>Fotos von Ihren Arbeiten, Ihre Preise, Ihre Referenzen. Wir sagen genau, was fehlt, und fragen nach, statt zu warten.</p>
-        <div class="dauer">Tag 1 bis 3</div>
-      </article>
-      <article class="schritt">
-        <div class="punkt">3</div>
-        <h3>Wir bauen, Sie schauen zu</h3>
-        <p>Sie sehen die fertige Seite, bevor Sie etwas bezahlen. Eine Korrekturrunde ist inbegriffen.</p>
-        <div class="dauer">Tag 3 bis 9</div>
-      </article>
-      <article class="schritt">
-        <div class="punkt">4</div>
-        <h3>Live, und dann geben wir acht</h3>
-        <p>Sie geben frei, wir schalten auf. Die Rechnung kommt danach, in einem Betrag. Betrieb und Pflege laufen monatlich weiter und sind monatlich kündbar.</p>
-        <div class="dauer">Tag 10</div>
-      </article>
-    </div>
-
-    <p class="was-fuss auf">Grössere Vorhaben bekommen einen eigenen Termin. Den nennen wir Ihnen vor der Zusage, nicht danach.</p>
-  </div>
-</section>
-
-<section id="preise">
-  <div class="wrap">
-    <span class="kicker auf">Was es kostet</span>
-    <h2 class="h2 auf">Sie wissen vor dem Ja, was es kostet.</h2>
-    <p class="lede auf">Ein Fixpreis für den Aufbau, ein fester Betrag im Monat
-      für den Betrieb. Kein Stundenzähler, keine Nachforderung. Geht die Arbeit
-      schneller als gedacht, ist das unser Risiko und Ihr Vorteil.</p>
-
-    <div class="preis-drei stufe">
-      <article>
-        <h3>Website</h3>
-        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p>Er nimmt die Anfrage auf und legt Ihnen die Offerte zur
-          Freigabe hin.</p>
-      </article>
-      <article>
-        <h3>Webshop</h3>
-        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p>Er nimmt Bestellungen auf, bestätigt die Abholzeit und hält
-          den Bestand aktuell.</p>
-      </article>
-      <article>
-        <h3>Anwendung</h3>
-        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p>Er nimmt Meldungen auf, ordnet sie zu und hält alle
-          Beteiligten auf dem Laufenden.</p>
-      </article>
-    </div>
-
-    <div class="preis-noch auf"><b>Die Beträge rechnen wir gerade neu</b>, weil
-      der digitale Mitarbeiter neu im Preis enthalten ist. Wir stellen keine Zahl hin,
-      die wir nachher korrigieren müssen. Fragen Sie an, dann bekommen Sie den
-      Fixpreis für Ihren Fall — beide Zahlen stehen in Ihrer Offerte, bevor Sie
-      zusagen.</div>
-
-    <h3 class="dauer-frage auf">Was im Preis enthalten ist</h3>
-    <ul class="preis-drin stufe">
-      <li>Die fertig gebaute Seite mit allen Funktionen, die auf ihrem Datenblatt stehen.</li>
-      <li>Die Übertragung auf Ihren Betrieb: Ihr Logo, Ihre Farben, Ihre Bilder, Ihre Texte.</li>
-      <li>Der digitale Mitarbeiter, eingerichtet mit Ihren Preisen und Ihrem Ton — getestet, bevor sie zum ersten Mal mit einem Kunden spricht.</li>
-      <li>Die Gebühren für Ihre Adresse weisen wir separat aus, damit Sie sehen, was davon uns gehört.</li>
-    </ul>
-
-    <p class="was-fuss auf"><b>Wenn eine vorhandene Standardlösung besser und
-      günstiger ist, sagen wir das.</b> Wir bauen kein grosses System, wenn eine
-      kleine Lösung genügt.</p>
-  </div>
-</section>
-
-<!-- ================= warum =================
-     Die vier Regeln stehen woertlich im Masterfile, Zeile 320 bis 330
-     ("Wir tun nie"). Die vierte stuetzt sich zusaetzlich auf die
-     Effizienz-Dividende, Zeile 777. Nichts davon ist erfunden. -->
-<section id="warum">
-  <div class="wrap">
-    <span class="kicker auf">Woran Sie uns messen können</span>
-    <h2 class="h2 auf">Was wir nie tun.</h2>
-    <p class="lede auf">Was ein Anbieter kann, steht auf jeder Seite. Was er
-      sich selbst verbietet, steht fast nirgends. Diese vier Regeln stehen bei
-      uns aufgeschrieben — daneben, woran Sie merken, ob wir uns daran halten.</p>
-
-    <div class="blatt auf">
-      <div class="blatt-kopf">
-        <span>Aus unserem Regelwerk</span>
-        <span>Gilt für jeden Auftrag</span>
-      </div>
-      <div class="nie-raster stufe">
-      <div class="nie-zelle">
-        <span class="nie-marke">NIE</span><h3>Menschen wegrationalisieren, um Ihnen etwas zu verkaufen.</h3>
-        <p>Wir nehmen Aufgaben ab, keine Menschen. Die Zeit, die frei wird, gehört den Leuten in Ihrem Betrieb.</p>
-        <div class="nie-pruef"><b>Woran Sie es merken</b>In keiner Offerte von uns steht eine eingesparte Stelle.</div>
-      </div>
-      <div class="nie-zelle">
-        <span class="nie-marke">NIE</span><h3>Technik verkaufen, die Sie nicht brauchen.</h3>
-        <p>Findet sich bei Ihnen keine Arbeit, die ein digitaler Mitarbeiter wirklich abnimmt, sagen wir Ihnen das — auch wenn uns das den Auftrag kostet.</p>
-        <div class="nie-pruef"><b>Woran Sie es merken</b>Im ersten Gespräch nennen wir die Aufgabe. Oder dass es keine gibt.</div>
-      </div>
-      <div class="nie-zelle">
-        <span class="nie-marke">NIE</span><h3>Knebelverträge, versteckte Kosten, Intransparenz.</h3>
-        <p>Ein Fixpreis für den Aufbau, ein fester Betrag im Monat, monatlich kündbar ohne Begründung. Fremdkosten weisen wir getrennt aus.</p>
-        <div class="nie-pruef"><b>Woran Sie es merken</b>Beide Zahlen stehen in Ihrer Offerte, bevor Sie zusagen.</div>
-      </div>
-      <div class="nie-zelle">
-        <span class="nie-marke">NIE</span><h3>Den Vorteil behalten, wenn unsere Arbeit günstiger wird.</h3>
-        <p>Werden unsere Werkzeuge günstiger, prüfen wir einmal im Jahr, ob Ihr Preis sinken kann. Auch wenn Sie längst unterschrieben haben.</p>
-        <div class="nie-pruef"><b>Woran Sie es merken</b>Wir melden uns mit dem Ergebnis — auch wenn es Nein lautet.</div>
-      </div>
-      </div>
-      <div class="blatt-fuss">
-        <div class="stark">Sie müssen uns nicht glauben. Sie dürfen uns daran messen.</div>
-        <div class="leise">Diese Sätze stehen so in unserem Regelwerk — seit dem
-          ersten Tag, nicht seit dieser Seite.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= team ================= -->
-<section class="team-band" id="team">
-  <div class="wrap">
-    <div class="team-raster">
-      <div>
-        <span class="kicker auf">Wie wir das zu zweit schaffen</span>
-        <h2 class="h2 auf">Zwei Menschen und ein Team digitaler Mitarbeitender.</h2>
-        <p class="lede auf">Die digitalen Kolleginnen und Kollegen übernehmen Routine und Technik, damit wir bei Ihnen vor Ort sein können. Sie können ihnen bei der Arbeit zusehen.</p>
-        <div class="punkt-live"><i></i> Wenn nichts zu tun ist, schlafen sie. Das sehen Sie auch.</div>
-        <div class="cta-reihe" style="margin-top:28px">
-          <a class="btn btn-hell" href="team.html">Das Team ansehen</a>
-        </div>
-      </div>
-      <div class="team-schau auf">
-        <div class="menschen-zwei">
-          <figure>
-            <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
-              width="96" height="96" loading="lazy">
-            <figcaption>Kristina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
-              width="96" height="96" loading="lazy">
-            <figcaption>Kristian</figcaption>
-          </figure>
-        </div>
-
-        <div class="digital-reihe">
-          <span class="d-titel">Ihr digitales Team</span>
-          <ul class="kreis-reihe">
-          <li class="k"><img src="assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
-            title="Lea, Verkauf und Kundenstamm" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
-            title="Ferro, Website-Produktion" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/sora.webp" alt="Sora, Texte"
-            title="Sora, Texte" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
-            title="Kairo, Auffindbarkeit" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
-            title="Flora, Rechnungen" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
-            title="Leon, Technik und Sicherheit" width="64" height="64" loading="lazy"></li>
-            <li class="k mehr" id="team-rest">+53</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="referenzen">
-  <div class="wrap">
-    <span class="kicker auf">Referenzen</span>
-    <h2 class="h2 auf">Was Betriebe danach sagen.</h2>
-    <p class="lede auf"><b>Musterstimmen.</b> Wir gehen erst mit echten Kunden
-      live — solange keine echte Referenz hier steht, behaupten wir auch keine.
-      So sieht der Abschnitt aus, sobald die erste da ist.</p>
-  </div>
-
-  <div class="ref-band" id="ref-band">
-    <div class="ref-band-spur">
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#1E6CFF" aria-hidden="true">BM</span>
-            <figcaption>
-              <span class="stimme-name">B. Müller</span>
-              <span class="stimme-ort">Malergeschäft, Weinfelden</span>
-            </figcaption>
-          </div>
-          <blockquote>Ich habe zwanzig Jahre lang Offerten nach dem Znacht geschrieben. Jetzt liegen sie am Morgen bereit und ich gebe sie frei. Die Abende gehören wieder mir.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#0B7285" aria-hidden="true">SK</span>
-            <figcaption>
-              <span class="stimme-name">S. Keller</span>
-              <span class="stimme-ort">Bäckerei, Amriswil</span>
-            </figcaption>
-          </div>
-          <blockquote>Die Vorbestellungen laufen über die Seite, bis achtzehn Uhr. Um fünf steht die Liste in der Backstube. Kein Zettelkrieg mehr am Telefon.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#7048E8" aria-hidden="true">AF</span>
-            <figcaption>
-              <span class="stimme-name">A. Frei</span>
-              <span class="stimme-ort">Physiotherapie, St. Gallen</span>
-            </figcaption>
-          </div>
-          <blockquote>Das Telefon hat während jeder Behandlung geklingelt. Heute buchen die Patientinnen selbst, und ich bin bei dem, der auf der Liege liegt.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#2B8A3E" aria-hidden="true">MB</span>
-            <figcaption>
-              <span class="stimme-name">M. Brunner</span>
-              <span class="stimme-ort">Garage, Frauenfeld</span>
-            </figcaption>
-          </div>
-          <blockquote>Vor dem Pneuwechsel war der Frühling die Hölle. Jetzt kommen die Termine geordnet herein, und ich weiss am Montag, wie die Woche aussieht.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#C2410C" aria-hidden="true">NH</span>
-            <figcaption>
-              <span class="stimme-name">N. Hasler</span>
-              <span class="stimme-ort">Coiffeursalon, Romanshorn</span>
-            </figcaption>
-          </div>
-          <blockquote>Zwischen zwei Kundinnen ans Telefon rennen ist vorbei. Wer absagt, wird nachbesetzt, ohne dass ich etwas tun muss.</blockquote>
-        </figure>
-        <figure class="stimme">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#0C8599" aria-hidden="true">TR</span>
-            <figcaption>
-              <span class="stimme-name">T. Roth</span>
-              <span class="stimme-ort">Hausverwaltung, Kreuzlingen</span>
-            </figcaption>
-          </div>
-          <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#1E6CFF" aria-hidden="true">BM</span>
-            <figcaption>
-              <span class="stimme-name">B. Müller</span>
-              <span class="stimme-ort">Malergeschäft, Weinfelden</span>
-            </figcaption>
-          </div>
-          <blockquote>Ich habe zwanzig Jahre lang Offerten nach dem Znacht geschrieben. Jetzt liegen sie am Morgen bereit und ich gebe sie frei. Die Abende gehören wieder mir.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#0B7285" aria-hidden="true">SK</span>
-            <figcaption>
-              <span class="stimme-name">S. Keller</span>
-              <span class="stimme-ort">Bäckerei, Amriswil</span>
-            </figcaption>
-          </div>
-          <blockquote>Die Vorbestellungen laufen über die Seite, bis achtzehn Uhr. Um fünf steht die Liste in der Backstube. Kein Zettelkrieg mehr am Telefon.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#7048E8" aria-hidden="true">AF</span>
-            <figcaption>
-              <span class="stimme-name">A. Frei</span>
-              <span class="stimme-ort">Physiotherapie, St. Gallen</span>
-            </figcaption>
-          </div>
-          <blockquote>Das Telefon hat während jeder Behandlung geklingelt. Heute buchen die Patientinnen selbst, und ich bin bei dem, der auf der Liege liegt.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#2B8A3E" aria-hidden="true">MB</span>
-            <figcaption>
-              <span class="stimme-name">M. Brunner</span>
-              <span class="stimme-ort">Garage, Frauenfeld</span>
-            </figcaption>
-          </div>
-          <blockquote>Vor dem Pneuwechsel war der Frühling die Hölle. Jetzt kommen die Termine geordnet herein, und ich weiss am Montag, wie die Woche aussieht.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#C2410C" aria-hidden="true">NH</span>
-            <figcaption>
-              <span class="stimme-name">N. Hasler</span>
-              <span class="stimme-ort">Coiffeursalon, Romanshorn</span>
-            </figcaption>
-          </div>
-          <blockquote>Zwischen zwei Kundinnen ans Telefon rennen ist vorbei. Wer absagt, wird nachbesetzt, ohne dass ich etwas tun muss.</blockquote>
-        </figure>
-        <figure class="stimme" aria-hidden="true">
-          <div class="stimme-kopf">
-            <span class="stimme-bild" style="--f:#0C8599" aria-hidden="true">TR</span>
-            <figcaption>
-              <span class="stimme-name">T. Roth</span>
-              <span class="stimme-ort">Hausverwaltung, Kreuzlingen</span>
-            </figcaption>
-          </div>
-          <blockquote>Schadenmeldungen kamen früher per Anruf, per Mail und per Zettel im Briefkasten. Heute an einem Ort, mit Foto, und der Mieter sieht selbst, wie weit es ist.</blockquote>
-        </figure>
-      </div>
-  </div>
-
-</section>
-
-
-<!-- ================= faq ================= -->
-<section id="faq">
-  <div class="wrap">
-    <span class="kicker auf">Häufige Fragen</span>
-    <h2 class="h2 auf">Das fragen uns Betriebe, bevor sie zusagen.</h2>
-
-    <div class="faq-liste stufe">
-      <details>
-        <summary>Muss ich bereits eine Website haben?</summary>
-        <div class="antwort">Nein. Sie können gar keine Seite haben, eine zehn Jahre alte, oder eine, die jemand anders gebaut hat — wir fangen in allen drei Fällen neu an. Fremde Systeme bauen wir nicht um: fremder Code wird immer teurer, als er aussieht, und wir übernehmen keine Verantwortung für etwas, das wir nicht kennen. Was von der alten Seite brauchbar ist — Texte, Fotos, die Kundendaten aus dem Formular — holen wir vorher heraus.</div>
-      </details>
-      <details>
-        <summary>Wir sind ein kleiner Betrieb. Lohnt sich das überhaupt?</summary>
-        <div class="antwort">Ja. Wir arbeiten ausdrücklich auch für Kleinbetriebe und Einmannbetriebe. Dort ist die Lösung meistens kleiner — und die Entlastung am grössten, weil sonst niemand da ist, der die Arbeit übernimmt. Ein kleiner Auftrag ist bei uns kein Gefallen, sondern ein Auftrag mit kleinerem Umfang.</div>
-      </details>
-      <details>
-        <summary>Kann ich meine bestehende Domain behalten?</summary>
-        <div class="antwort">Ja. Eingetragener Inhaber Ihrer Adresse bleiben Sie, auch wenn wir sie technisch verwalten. Die Verlängerung behalten wir im Auge, damit sie nicht unbemerkt abläuft. Vor dem Umschalten schreiben wir auf, welche Einträge Ihre Geschäftsmail braucht, und ändern nur, was die Website betrifft — so kommt am Umschalttag keine Mail abhanden. Haben Sie noch keine Adresse, prüfen wir Ihre Wunschadresse und registrieren erst nach Ihrer ausdrücklichen Bestätigung.</div>
-      </details>
-      <details>
-        <summary>Was geschieht nach dem Livegang?</summary>
-        <div class="antwort">Am Aufschalttag prüfen wir die Seite auf dem Livesystem und schalten die Überwachung ein. Sie bekommen Ihre Zugänge, den Weg für Meldungen und eine klare Liste, was ab jetzt überwacht wird: Erreichbarkeit, Ladezeit, Formulare, Zertifikat und Sicherungen. Danach betreiben wir die Seite weiter — Hosting in der Schweiz, technische Pflege, Sicherungen, Überwachung und der Betrieb Ihres digitalen Mitarbeiters. Dass sich eine Sicherung wirklich zurückspielen lässt, prüfen wir monatlich. Nach sechs und nach zwölf Monaten melden wir uns von uns aus — mit einem Blick auf Ihre Seite, nicht mit einem Serienbrief.</div>
-      </details>
-      <details>
-        <summary>Kann ich Inhalte selbst ändern?</summary>
-        <div class="antwort">Sie müssen nicht. Sie melden die Änderung, wir setzen sie um — zuerst auf einer Vorschau, die Sie vorher sehen. Live geht nichts von allein: jede Änderung wird von Hand freigegeben, auch die kleine. Neue Öffnungszeiten, ein anderes Foto, ein geänderter Preis sind in der laufenden Betreuung enthalten. Grösseres rechnen wir vorher aus und nennen Ihnen den Betrag, bevor Sie zusagen. Eine Anlage, die Sie selbst betreuen müssen, bekommen Sie nicht.</div>
-      </details>
-      <details>
-        <summary>Was kostet die laufende Betreuung?</summary>
-        <div class="antwort">Ein fester Betrag im Monat, monatlich kündbar, ohne Begründung — das steht im Vertrag, nicht nur im Verkaufsgespräch. Enthalten sind Hosting in der Schweiz, technische Pflege, Sicherungen, Überwachung, kleine Änderungen und der laufende Betrieb Ihres digitalen Mitarbeiters. Die Gebühren für Ihre Adresse weisen wir separat aus. Den Betrag für Ihren Betrieb nennen wir in der Offerte, bevor Sie zusagen.</div>
-      </details>
-      <details>
-        <summary>Ersetzt die künstliche Intelligenz den persönlichen Kontakt?</summary>
-        <div class="antwort">Nein. Ihre Ansprechpartner sind zwei Menschen aus der Region, am Telefon erreichbar. Der digitale Mitarbeiter übernimmt die Arbeit, die sonst liegen bleibt: die Anfrage um zehn Uhr abends, die immer gleiche Frage am Morgen. Er trägt sichtbar «KI», gibt sich nie als Mensch aus, auch nicht auf ausdrücklichen Wunsch, und was er nicht sicher weiss, beantwortet er nicht — er übergibt an einen Menschen und sagt das auch.</div>
-      </details>
-      <details>
-        <summary>Wo werden meine Daten gespeichert?</summary>
-        <div class="antwort">Ihre Website liegt bei einem Schweizer Anbieter mit ausgewiesenem Server- und Datenstandort Schweiz. Was über Ihre Formulare hereinkommt, wird auf unseren Servern in der Schweiz weiterverarbeitet. Für das Verstehen und Formulieren von Antworten arbeiten wir zusätzlich mit geprüften, vertraglich freigegebenen Dienstleistern. Welche Daten dabei verarbeitet werden, steht in Ihrer Datenschutzerklärung; was nicht nötig ist, wird gar nicht erst mitgeschickt. Die Gesprächsverläufe Ihres digitalen Mitarbeiters löschen wir nach neunzig Tagen.</div>
-      </details>
-      <details>
-        <summary>Was passiert, wenn etwas nicht funktioniert?</summary>
-        <div class="antwort">Die Überwachung meldet Ausfall, Fehler und lange Ladezeiten zuerst uns — meistens wissen wir von einer Störung, bevor Sie sie bemerken. Bei einem echten Ausfall setzen wir die Seite sofort auf den letzten funktionierenden Stand zurück. Abgeschlossen ist eine Störung erst, wenn die Ursache gefunden und die Massnahme dagegen geprüft ist. Fällt der digitale Mitarbeiter aus, bleibt Ihre Seite online, Formulare und Bestellungen laufen weiter.</div>
-      </details>
-    </div>
-
-    <p class="faq-fuss auf">Steht Ihre Frage nicht dabei:
-      <a href="#kontakt">Schreiben Sie uns zwei Sätze.</a></p>
-  </div>
-</section>
-
-<!-- ================= kontakt ================= -->
-<section id="kontakt">
-  <div class="wrap">
-    <span class="kicker auf">Kontakt</span>
-    <h2 class="h2 auf">Reden wir kurz.</h2>
-
-    <div class="kontakt-raster">
-      <div class="kontakt-info auf">
-        <p>Sagen Sie uns in zwei Sätzen, was Sie brauchen. Wir melden uns innerhalb von 24 Stunden, an Werktagen meist schneller.</p>
-        <div class="zeile"><span class="lbl">Telefon</span><a href="tel:+41000000000">Platzhalter</a></div>
-        <div class="zeile"><span class="lbl">Mail</span><a href="mailto:hallo@player-two.ch">hallo@player-two.ch</a></div>
-        <div class="zeile"><span class="lbl">Wo</span><span>Thurgau, für die ganze Ostschweiz</span></div>
-      </div>
-
-      <form id="anfrage" novalidate>
-        <div class="form-inhalt">
-          <div class="feld">
-            <label for="f-name">Ihr Name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="feld">
-            <label for="f-mail">E-Mail</label>
-            <input id="f-mail" name="email" type="email" autocomplete="email" required>
-          </div>
-          <div class="feld">
-            <label for="f-text">Worum geht es?</label>
-            <textarea id="f-text" name="message" required placeholder="Zum Beispiel: Malergeschäft, vier Mitarbeitende, wir haben noch keine Website."></textarea>
-          </div>
-          <div class="form-fuss">
-            <button class="btn btn-voll" type="submit">Anfrage senden</button>
-            <small>Ihre Angaben bleiben bei uns. Wir schreiben Ihnen nur zu dieser Anfrage.</small>
-          </div>
-        </div>
-        <div class="danke" id="danke">
-          <svg class="haken-gross" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25"/><path d="M17 29l7.5 7.5L40 20"/></svg>
-          <h3 style="font-size:24px;margin-bottom:8px">Angekommen.</h3>
-          <p style="color:#3A4553">Wir melden uns innerhalb von 24 Stunden.</p>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fuss-raster">
-      <div>
-        <div class="fuss-marke">
-          <img src="assets/marke.png" alt="" width="30" height="30">
-          <span>Player Two</span>
-        </div>
-        <p style="max-width:34ch;font-size:15px">Digitale Arbeit für Schweizer KMU.</p>
-        <p style="max-width:34ch;font-size:15px;margin-top:6px">Sie sind Player One. Wir spielen mit.</p>
-      </div>
-      <div class="fuss-links">
-        <a href="#stufen">Angebot</a>
-    <a href="loesungen.html">Fertige Lösungen</a>
-        <a href="#ablauf">Ablauf</a>
-        <a href="team.html">Team</a>
-        <a href="#kontakt">Kontakt</a>
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
-      </div>
-    </div>
-    <div class="fuss-klein">
-      <span>© <span id="jahr">2026</span> Player Two, Thurgau</span>
-      <span>Preise, Referenzen und Bilder sind in dieser Fassung Platzhalter.</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-(function(){
-'use strict';
-
-/* ---------- Kleinigkeiten ---------- */
-document.getElementById('jahr').textContent = new Date().getFullYear();
-
-var nav = document.getElementById('nav');
-addEventListener('scroll', function(){
-  if (scrollY > 40) nav.classList.add('fest'); else nav.classList.remove('fest');
-}, {passive:true});
-
-/* ---------- Auftritte ---------- */
-var auftritt = new IntersectionObserver(function(eintraege){
-  eintraege.forEach(function(e){
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in');
-    if (e.target.classList.contains('stufe')) {
-      setTimeout(function(){ e.target.classList.add('fertig'); }, 900);
-    }
-    auftritt.unobserve(e.target);
-  });
-}, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.auf,.stufe').forEach(function(el){ auftritt.observe(el); });
-
-/* Die Heute-nachher-Tabelle steht sofort. Nur die Haken warten, bis man
-   sie sieht - sonst sind sie durchgelaufen, bevor jemand hinschaut. */
-document.querySelectorAll('.gegen').forEach(function(el){
-  el.classList.add('taktbereit');
-  auftritt.observe(el);
-});
-
-/* ---------- Regal vorne: nur der Weg zur Branchenanimation ----------
-   Gefiltert wird im Katalog auf loesungen.html, nicht hier. */
-(function(){
-  var regal = document.getElementById('stuecke');
-  if (!regal) return;
-  regal.addEventListener('click', function(ev){
-    var k = ev.target.closest ? ev.target.closest('.tagschau') : null;
-    if (!k) return;
-    var ziel = document.getElementById('branchen');
-    if (!ziel) return;
-    if (typeof hartSpringen === 'function') hartSpringen(ziel);
-    else ziel.scrollIntoView();
-    var knopf = document.querySelector('#reiter [data-branche="' + k.getAttribute('data-branche') + '"]');
-    if (knopf) knopf.click();
-  });
-
-  /* Wer aus dem Katalog kommt, landet direkt auf seiner Branche. */
-  var mit = (location.search.match(/[?&]branche=([a-z]+)/) || [])[1];
-  if (mit) {
-    addEventListener('load', function(){
-      var knopf = document.querySelector('#reiter [data-branche="' + mit + '"]');
-      if (knopf) knopf.click();
-    });
-  }
-})();
-
-/* ---------- Die seitliche Strecke ---------- */
-(function(){
-  var quer = document.getElementById('quer');
-  var spur = document.getElementById('quer-spur');
-  if (!quer || !spur) return;
-  var tafeln = spur.querySelectorAll('.tafel');
-  var punkte = quer.querySelectorAll('.quer-punkt');
-  var aus = matchMedia('(max-width:1024px), (prefers-reduced-motion: reduce)');
-  var weg = 0, anzeige = -1;
-
-  /* Anderthalb Bildschirmbreiten Scrollweg pro Tafel: die Strecke läuft
-     langsamer durch und wirkt nicht gehetzt. */
-  var TEMPO = 1.5;
-  var strecke = 0;
-
-  function messen(){
-    if (aus.matches){ quer.style.height = ''; spur.style.transform = ''; weg = 0; return; }
-    var sicht = spur.parentElement.clientWidth;
-    weg = spur.scrollWidth - sicht;
-    strecke = weg * TEMPO;
-    quer.style.height = (window.innerHeight + strecke) + 'px';
-    schieben();
-  }
-
-  var kopf = quer.querySelector('.quer-kopf');
-  var kTitel = document.getElementById('k-titel');
-  var kSatz = document.getElementById('k-satz');
-  var kZaehler = document.getElementById('k-zaehler');
-  var KOEPFE = [["Website", "Damit Sie gefunden werden — und danach weniger Post haben."],
-                ["Webshop", "Wenn Sie etwas verkaufen, das man in einen Korb legen kann."],
-                ["Anwendung", "Für den einen Ablauf, den kein fertiges Werkzeug abbildet."]];
-
-  function schieben(){
-    if (aus.matches || weg <= 0) return;
-    var oben = quer.getBoundingClientRect().top;
-    var anteil = Math.min(1, Math.max(0, -oben / strecke));
-    spur.style.transform = 'translate3d(' + (-anteil * weg) + 'px,0,0)';
-    var jetzt = Math.min(tafeln.length - 1, Math.round(anteil * (tafeln.length - 1)));
-    if (jetzt !== anzeige){
-      anzeige = jetzt;
-      for (var i = 0; i < punkte.length; i++){
-        punkte[i].classList.toggle('an', i === jetzt);
-        punkte[i].setAttribute('aria-selected', i === jetzt ? 'true' : 'false');
-      }
-      /* Kurz ausblenden, Text tauschen, wieder einblenden. */
-      kopf.classList.add('wechselt');
-      setTimeout(function(){
-        kTitel.textContent = KOEPFE[anzeige][0];
-        kSatz.textContent = KOEPFE[anzeige][1];
-        kZaehler.textContent = (anzeige + 1) + ' von ' + tafeln.length;
-        kopf.classList.remove('wechselt');
-      }, 170);
-    }
-  }
-
-  for (var i = 0; i < punkte.length; i++){
-    punkte[i].addEventListener('click', function(){
-      var zu = +this.getAttribute('data-zu');
-      var ziel = quer.getBoundingClientRect().top + window.pageYOffset
-               + (strecke * zu / (tafeln.length - 1));
-      window.scrollTo({top: ziel, behavior: 'smooth'});
-    });
-  }
-
-  addEventListener('scroll', schieben, {passive:true});
-  addEventListener('resize', messen);
-  aus.addEventListener('change', messen);
-  messen();
-  /* Nochmals, wenn Schriften und Bilder die Breiten verschoben haben. */
-  addEventListener('load', messen);
-})();
-
-/* ---------- Sprungmarken ohne Durchfahrt ---------- */
-/* Wer aus dem Menü auf einen Abschnitt springt, will dort sein und nicht
-   unterwegs jedem Abschnitt beim Auftritt zusehen. Also hart springen und
-   alles Uebersprungene sofort fertig zeigen. */
-function fertigZeigen(bisY){
-  document.querySelectorAll('.auf,.stufe').forEach(function(el){
-    if (el.getBoundingClientRect().top + window.pageYOffset < bisY){
-      el.classList.add('in');
-      if (el.classList.contains('stufe')) el.classList.add('fertig');
-      auftritt.unobserve(el);
-    }
-  });
-}
-
-function hartSpringen(ziel){
-  var hoch = document.documentElement;
-  hoch.style.scrollBehavior = 'auto';
-  ziel.scrollIntoView();
-  fertigZeigen(window.pageYOffset);
-  setTimeout(function(){ hoch.style.scrollBehavior = ''; }, 80);
-}
-
-function markeFinden(marke){
-  if (!marke || marke.length < 2) return null;
-  try { return document.querySelector(marke); } catch (e) { return null; }
-}
-
-document.addEventListener('click', function(ev){
-  if (ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
-  var a = ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
-  if (!a) return;
-  var ziel = markeFinden(a.getAttribute('href'));
-  if (!ziel) return;
-  ev.preventDefault();
-  hartSpringen(ziel);
-  history.pushState(null, '', a.getAttribute('href'));
-});
-
-if (location.hash){
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  var ansteuern = function(){
-    var ziel = markeFinden(location.hash);
-    if (ziel) hartSpringen(ziel);
-  };
-  ansteuern();
-  /* Nochmals, sobald Bilder und Schriften die Höhen verschoben haben. */
-  window.addEventListener('load', ansteuern);
-}
-
-
-/* ---------- Die Erledigt-Liste, Signature ---------- */
-function listeSetzen(liste, wert){
-  var lis = liste.children, n = lis.length;
-  for (var i=0;i<n;i++){
-    var start = i / n * .55;
-    var e = Math.max(0, Math.min(1, (wert - start) / .45));
-    if (lis[i]._e !== e) { lis[i]._e = e; lis[i].style.setProperty('--e', e.toFixed(3)); }
-  }
-}
-
-/* ---------- Der Ablauf, Linie zeichnet sich ---------- */
-var schritte = document.getElementById('schritte');
-var schrittEls = schritte ? [].slice.call(schritte.querySelectorAll('.schritt')) : [];
-var zeichenWert = -1;
-function ablaufZeichnen(){
-  if (!schritte) return;
-  var r = schritte.getBoundingClientRect();
-  var h = innerHeight;
-  var p = (h * .78 - r.top) / (r.height + h * .2);
-  p = Math.max(0, Math.min(1, p));
-  if (Math.abs(p - zeichenWert) > .004) {
-    zeichenWert = p;
-    schritte.style.setProperty('--zeichnen', p.toFixed(3));
-    schrittEls.forEach(function(s, i){
-      var an = p > (i + .35) / schrittEls.length;
-      if (s._an !== an) { s._an = an; s.classList.toggle('erreicht', an); }
-    });
-  }
-}
-addEventListener('scroll', ablaufZeichnen, {passive:true});
-addEventListener('resize', ablaufZeichnen);
-ablaufZeichnen();
-
-/* ============================================================
-   Branchenschalter mit gespieltem Ablauf
-   ============================================================ */
-var BRANCHEN = [
-  {
-    id:'handwerk', reiter:'Maler und Handwerk', titel:'Malerbetrieb',
-    satz:'Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.',
-    womit:['Offerte','Termin','Rechnung','Nachfassen'],
-    schirm:'Anfrage von Frau Bauer, Wängi',
-    schritte:[
-      {zeit:'08:14', txt:'Anfrage über Ihre Website: Innenanstrich, 3.5 Zimmer'},
-      {zeit:'08:14', txt:'Rückfragen gestellt: Fläche, Zustand, Wunschtermin'},
-      {zeit:'08:31', txt:'Offerte erstellt, mit Ihren Positionen und Ihren Preisen: CHF 3\u2019935'},
-      {zeit:'wartet auf Sie', txt:'Passt das so?', typ:'entscheid', knopf:'Offerte freigeben'},
-      {zeit:'08:32', txt:'Offerte versendet und Besichtigung vorgeschlagen'},
-      {zeit:'08:32', txt:'Kundin im Kundenstamm erfasst, Nachfassen in fünf Tagen geplant'},
-      {zeit:'nach dem Auftrag', txt:'Rechnung geschrieben, Zahlungseingang überwacht, Erinnerung bei Verzug', typ:'geld'}
-    ]
-  },
-  {
-    id:'gastro', reiter:'Restaurant und Café', titel:'Restaurant',
-    satz:'Das Telefon klingelt während dem Service. Muss es nicht.',
-    womit:['Reservation','Erinnerung','Bewertung','Auswertung'],
-    schirm:'Reservation für Freitag',
-    schritte:[
-      {zeit:'19:02', txt:'Reservation über Ihre Website: 4 Personen, Freitag 19:30'},
-      {zeit:'19:02', txt:'Tischplan geprüft, sofort bestätigt, Gast hat die Bestätigung'},
-      {zeit:'Donnerstag', txt:'Erinnerung an den Gast, damit der Tisch nicht leer bleibt'},
-      {zeit:'wartet auf Sie', txt:'Gruppe von 12 mit Sonderwunsch, nehmen wir das an?', typ:'entscheid', knopf:'Gruppe bestätigen'},
-      {zeit:'Samstag', txt:'Freundliche Bitte um eine Google-Bewertung, nur an Gäste, die da waren'},
-      {zeit:'Monatsende', txt:'Sie sehen, welche Abende voll sind und welche nicht'},
-      {zeit:'laufend', txt:'Rechnungen für Bankette geschrieben und überwacht', typ:'geld'}
-    ]
-  },
-  {
-    id:'termin', reiter:'Coiffeur und Studio', titel:'Coiffeursalon',
-    satz:'Jeder Anruf während dem Schneiden kostet Sie Zeit und Nerven.',
-    womit:['Terminbuchung','Erinnerung','Nachrücken','Wiederkommen'],
-    schirm:'Terminkalender',
-    schritte:[
-      {zeit:'21:40', txt:'Kundin bucht online, sieht nur Zeiten, die wirklich frei sind'},
-      {zeit:'21:40', txt:'Bestätigung sofort, Eintrag im Kalender'},
-      {zeit:'Vortag', txt:'Erinnerung, damit niemand vergisst'},
-      {zeit:'wartet auf Sie', txt:'Neue Kundin möchte Farbe und Schnitt, Zeit reicht knapp. Annehmen?', typ:'entscheid', knopf:'Termin annehmen'},
-      {zeit:'bei Absage', txt:'Der frei gewordene Platz wird sofort anderen angeboten'},
-      {zeit:'nach acht Wochen', txt:'Freundliche Erinnerung, dass der nächste Termin ansteht'},
-      {zeit:'monatlich', txt:'Offene Beträge im Blick, Quittungen automatisch', typ:'geld'}
-    ]
-  },
-  {
-    id:'laden', reiter:'Bäckerei und Hofladen', titel:'Bäckerei und Hofladen',
-    satz:'Vorbestellungen auf Zetteln, und am Samstag weiss niemand mehr, was gilt.',
-    womit:['Vorbestellung','Abholzeit','Saison','Stammkunden'],
-    schirm:'Bestellungen für Samstag',
-    schritte:[
-      {zeit:'Mittwoch', txt:'Vorbestellung über Ihre Website: 2 Zöpfe, Samstag 8 Uhr'},
-      {zeit:'Mittwoch', txt:'Bestätigung mit Abholzeit, Bestellung auf der Liste für die Backstube'},
-      {zeit:'laufend', txt:'Was nicht mehr da ist, verschwindet von der Seite. Erdbeeren durch, Zwetschgen da'},
-      {zeit:'wartet auf Sie', txt:'Bestellung über 40 Stück für einen Anlass. Schaffen wir das?', typ:'entscheid', knopf:'Bestellung annehmen'},
-      {zeit:'Samstag', txt:'Bezahlt wird online oder im Laden, der Beleg entsteht von selbst', typ:'geld'},
-      {zeit:'zur Saison', txt:'Stammkunden erfahren als Erste, wenn es die neue Ware gibt'},
-      {zeit:'Monatsende', txt:'Sie sehen, was sich verkauft hat und was liegen blieb'}
-    ]
-  },
-  {
-    id:'immobilien', reiter:'Hausverwaltung', titel:'Hausverwaltung',
-    satz:'Zehn Mieter, zehn Anrufe, und alle fragen dasselbe: was ist der Stand?',
-    womit:['Schadensmeldung','Handwerker','Portal','Abrechnung'],
-    schirm:'Meldung Objekt Rosenweg 4',
-    schritte:[
-      {zeit:'07:50', txt:'Mieter meldet einen Wasserschaden über das Portal, mit Foto'},
-      {zeit:'07:50', txt:'Fall angelegt, Dringlichkeit eingeschätzt, Eigentümer informiert'},
-      {zeit:'07:58', txt:'Passender Handwerker angefragt, Termin mit dem Mieter abgestimmt'},
-      {zeit:'wartet auf Sie', txt:'Kostenvoranschlag CHF 1\u2019240, über Ihrer Freigabegrenze', typ:'entscheid', knopf:'Auftrag freigeben'},
-      {zeit:'laufend', txt:'Mieter und Eigentümer sehen den Stand, ohne anzurufen'},
-      {zeit:'nach der Arbeit', txt:'Rechnung dem richtigen Objekt zugeordnet und verbucht', typ:'geld'},
-      {zeit:'jährlich', txt:'Unterlagen für die Abrechnung liegen beisammen, nicht in Ordnern'}
-    ]
-  },
-  {
-    id:'buero', reiter:'Treuhand und Büro', titel:'Treuhandbüro',
-    satz:'Die Hälfte der Arbeit ist, den Unterlagen hinterherzulaufen.',
-    womit:['Unterlagen','Fristen','Freigabe','Honorar'],
-    schirm:'Mandat Muster AG',
-    schritte:[
-      {zeit:'Montag', txt:'Mandant lädt die Unterlagen über das Portal hoch'},
-      {zeit:'Montag', txt:'Was fehlt, wird freundlich nachgefragt, mit Frist'},
-      {zeit:'Dienstag', txt:'Eingang bestätigt, Ablage sortiert, nichts liegt im Mailfach'},
-      {zeit:'wartet auf Sie', txt:'Abschluss geprüft, bereit zum Versand', typ:'entscheid', knopf:'Freigeben und senden'},
-      {zeit:'sofort', txt:'Unterlagen versendet, Mandant hat die Bestätigung'},
-      {zeit:'gleichentags', txt:'Honorarrechnung erstellt, offene Posten im Blick', typ:'geld'},
-      {zeit:'vor der Frist', txt:'Alle Mandanten rechtzeitig erinnert, ohne dass Sie eine Liste führen'}
-    ]
-  }
-];
-
-(function branchenSchalter(){
-  var reiter = document.getElementById('reiter');
-  if (!reiter) return;
-  var liste = document.getElementById('fluss-schritte');
-  var titel = document.getElementById('fluss-titel');
-  var satz = document.getElementById('fluss-satz');
-  var womit = document.getElementById('fluss-womit');
-  var schirmTitel = document.getElementById('schirm-titel');
-  var laufTimer = [], aktiv = 0, sichtbar = false, schonGespielt = false;
-  var wenigerBewegung = matchMedia('(prefers-reduced-motion: reduce)');
-
-  function haken(){
-    return '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.4l3 3 6-6.4"/></svg>';
-  }
-
-  function stopp(){ laufTimer.forEach(clearTimeout); laufTimer = []; }
-
-  function zeichnen(i, sofort){
-    stopp();
-    aktiv = i;
-    var b = BRANCHEN[i];
-    titel.textContent = b.titel;
-    satz.textContent = b.satz;
-    schirmTitel.textContent = b.schirm;
-    womit.innerHTML = b.womit.map(function(w){ return '<span>' + w + '</span>'; }).join('');
-    [].forEach.call(reiter.children, function(k, n){
-      k.setAttribute('aria-selected', n === i ? 'true' : 'false');
-    });
-
-    liste.innerHTML = b.schritte.map(function(s, n){
-      var klasse = 'schritt-z' + (s.typ ? ' ' + s.typ : '');
-      if (s.typ === 'entscheid') {
-        return '<li class="' + klasse + '" data-n="' + n + '">' +
-               '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span>' +
-               '<button class="btn btn-voll entscheid-knopf" type="button" data-knopf="' + n + '">' + s.knopf + '</button></div></li>';
-      }
-      return '<li class="' + klasse + '" data-n="' + n + '">' + haken() +
-             '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span></div></li>';
-    }).join('');
-
-    var lis = [].slice.call(liste.children);
-    var entscheidIndex = b.schritte.findIndex(function(s){ return s.typ === 'entscheid'; });
-
-    if (sofort || wenigerBewegung.matches) {
-      lis.forEach(function(li){ li.classList.add('da'); });
-      var k0 = liste.querySelector('[data-knopf]');
-      if (k0) { k0.disabled = true; k0.textContent = 'Freigegeben'; }
-      return;
-    }
-
-    lis.forEach(function(li, n){
-      if (n > entscheidIndex) return;
-      laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 260 + n * 620));
-    });
-
-    var knopf = liste.querySelector('[data-knopf]');
-    if (knopf) {
-      knopf.addEventListener('click', function(){
-        knopf.disabled = true;
-        knopf.textContent = 'Freigegeben';
-        lis.forEach(function(li, n){
-          if (n <= entscheidIndex) return;
-          laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 180 + (n - entscheidIndex) * 620));
-        });
-      });
-    }
-  }
-
-  BRANCHEN.forEach(function(b, i){
-    var k = document.createElement('button');
-    k.type = 'button';
-    k.setAttribute('role', 'tab');
-    k.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    k.setAttribute('data-branche', b.id);
-    k.textContent = b.reiter;
-    k.addEventListener('click', function(){ zeichnen(i, false); });
-    reiter.appendChild(k);
-  });
-
-  zeichnen(0, true);
-
-  var beob = new IntersectionObserver(function(e){
-    if (e[0].isIntersecting && !schonGespielt) {
-      schonGespielt = true;
-      zeichnen(aktiv, false);
-    }
-    sichtbar = e[0].isIntersecting;
-  }, {threshold:.3});
-  beob.observe(document.getElementById('schirm'));
-
-  wenigerBewegung.addEventListener('change', function(e){ if (e.matches) zeichnen(aktiv, true); });
-})();
-
-/* ---------- Formular ---------- */
-var form = document.getElementById('anfrage');
-form.addEventListener('submit', function(ev){
-  ev.preventDefault();
-  var name = form.name.value.trim(), mail = form.email.value.trim(), text = form.message.value.trim();
-  if (!name || !mail || !text) { form.reportValidity(); return; }
-  /* Solange die Seite nicht am HQ hängt, geht die Anfrage per Mailprogramm raus.
-     Beim Anschluss ans HQ wird das ein POST auf /ingress/leads. */
-  var betreff = encodeURIComponent('Anfrage von ' + name);
-  var koerper = encodeURIComponent(text + '\n\n' + name + '\n' + mail);
-  window.location.href = 'mailto:hallo@player-two.ch?subject=' + betreff + '&body=' + koerper;
-  form.classList.add('gesendet');
-  document.getElementById('danke').classList.add('zeigen');
-});
-
-/* Bewegung reduzieren, live in beide Richtungen */
-matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function(e){
-  if (e.matches) {
-    if (schritte) { schritte.style.setProperty('--zeichnen', 1); schrittEls.forEach(function(s){ s.classList.add('erreicht'); }); }
-    document.querySelectorAll('.auf,.stufe').forEach(function(el){ el.classList.add('in','fertig'); });
-  } else {
-    zeichenWert = -1; ablaufZeichnen();
-  }
-});
-
-/* Laufende Animationen ruhen lassen, wenn der Tab weg ist */
-addEventListener('visibilitychange', function(){
-  document.body.classList.toggle('paused', document.hidden);
-});
-})();
-
-
-
-
-
-
-</script>
 
 </body>
 </html>
