@@ -1,0 +1,608 @@
+{
+ "hinweis": "Diese Datei ist die einzige Quelle fuer Teamseite und Stadt. Spaeter erzeugt das HQ sie automatisch. Die Zustaende sind bis dahin Platzhalter.",
+ "stand": "platzhalter",
+ "menschen": [
+  {
+   "name": "Kristian",
+   "rolle": "Gründer, Technik und Abläufe",
+   "aufgabe": "Baut das System, entscheidet Technik und Preise. 21 Jahre Handel, davon acht in der Führung einer Geschäftseinheit, dazu Softwareentwickler.",
+   "ort": "Thurgau",
+   "geschlecht": "m",
+   "bild": "assets/mitarbeiter/kristian.webp"
+  },
+  {
+   "name": "Kristina",
+   "rolle": "Gründerin, Verkauf und Marketing",
+   "aufgabe": "Führt Gespräche, entscheidet über Marke und Inhalte. Langjährige Handels- und Immobilienerfahrung, Verkaufs- und Social-Media-Profi.",
+   "ort": "Thurgau",
+   "geschlecht": "w",
+   "bild": "assets/mitarbeiter/kristina.webp"
+  }
+ ],
+ "abteilungen": [
+  {
+   "id": "leitung",
+   "name": "Leitung und Betrieb",
+   "satz": "Halten den Laden zusammen und entscheiden, was zu Kristian und Kristina hochgeht.",
+   "mitarbeitende": [
+    {
+     "name": "Mara",
+     "rolle": "Leitung",
+     "aufgabe": "Hält alles zusammen und legt Kristian und Kristina nur vor, was wirklich sie entscheiden müssen.",
+     "charakter": "ruhig, vorausschauend, verbindlich",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/mara.webp"
+    },
+    {
+     "name": "Lara",
+     "rolle": "Betriebsleitung",
+     "aufgabe": "Sorgt dafür, dass der Betrieb läuft, und löst Probleme dort, wo sie entstehen.",
+     "charakter": "pragmatisch, schnell, strukturiert",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/lara.webp"
+    },
+    {
+     "name": "Talia",
+     "rolle": "Leitung Kundenbetrieb",
+     "aufgabe": "Führt die laufende Betreuung der Kundenbetriebe.",
+     "charakter": "ruhig, serviceorientiert",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/talia.webp"
+    },
+    {
+     "name": "Dina",
+     "rolle": "Auftragsabwicklung",
+     "aufgabe": "Bringt jeden Auftrag von der Zusage bis zur Übergabe, termingerecht.",
+     "charakter": "verbindlich, terminsicher",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/dina.webp"
+    }
+   ]
+  },
+  {
+   "id": "wachstum",
+   "name": "Wachstum, Verkauf und Kunden",
+   "satz": "Sorgen dafür, dass Betriebe uns finden, und begleiten sie bis zur Offerte.",
+   "mitarbeitende": [
+    {
+     "name": "Lea",
+     "rolle": "Verkauf und Kundenstamm",
+     "aufgabe": "Nimmt Ihre Anfrage auf, klärt den Bedarf und macht die Offerte.",
+     "charakter": "direkt, fair, verkauft nie Unnötiges",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/lea.webp"
+    },
+    {
+     "name": "Turi",
+     "rolle": "Digitaler Empfang",
+     "aufgabe": "Begrüsst Besucher auf der Website und leitet weiter, wer etwas braucht.",
+     "charakter": "freundlich, unkompliziert",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/turi.webp"
+    },
+    {
+     "name": "Aria",
+     "rolle": "Anfragen und Nachfassen",
+     "aufgabe": "Antwortet schnell und hakt nach, damit keine Anfrage liegen bleibt.",
+     "charakter": "schnell, verbindlich",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/aria.webp"
+    },
+    {
+     "name": "Kairo",
+     "rolle": "Auffindbarkeit",
+     "aufgabe": "Sorgt dafür, dass Ihr Betrieb bei Google und in den neuen Antwortsystemen auftaucht.",
+     "charakter": "analytisch, geduldig, beweisorientiert",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/kairo.webp"
+    },
+    {
+     "name": "Mira",
+     "rolle": "Wachstum und Marke",
+     "aufgabe": "Plant, wie Player Two selbst gefunden und wiedererkannt wird.",
+     "charakter": "unternehmerisch, diszipliniert",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/mira.webp"
+    },
+    {
+     "name": "Sia",
+     "rolle": "Eigene Kanäle",
+     "aufgabe": "Macht Player Two auf Social Media sichtbar. Jeder Beitrag geht vorher über Kristian oder Kristina.",
+     "charakter": "dialogorientiert, markensensibel",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/sia.webp"
+    },
+    {
+     "name": "Scout",
+     "rolle": "Marktbeobachtung",
+     "aufgabe": "Beobachtet den Markt und meldet Chancen. Spricht nie jemanden selbst an.",
+     "charakter": "wach, hartnäckig, skeptisch",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/scout.webp"
+    },
+    {
+     "name": "Vera",
+     "rolle": "Erstkontakt",
+     "aufgabe": "Spricht neue Betriebe an, höflich und nur, wenn es erlaubt ist.",
+     "charakter": "höflich, selbstbewusst, nie lästig",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/vera.webp"
+    },
+    {
+     "name": "Cleo",
+     "rolle": "Kundendaten",
+     "aufgabe": "Hält den Kundenstamm sauber, damit niemand doppelt erfasst ist.",
+     "charakter": "ordentlich, genau",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/cleo.webp"
+    },
+    {
+     "name": "Tessa",
+     "rolle": "Termine",
+     "aufgabe": "Findet Termine, die allen passen, und schützt die Zeit der Gründer.",
+     "charakter": "pünktlich, vorausplanend",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/tessa.webp"
+    },
+    {
+     "name": "Iris",
+     "rolle": "Kundenverständnis",
+     "aufgabe": "Versteht, warum ein Betrieb kauft, und schärft daraufhin das Angebot.",
+     "charakter": "empathisch, neugierig",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/iris.webp"
+    },
+    {
+     "name": "Veda",
+     "rolle": "Positionierung",
+     "aufgabe": "Sorgt dafür, dass wir sagen, was uns unterscheidet, statt Floskeln.",
+     "charakter": "scharfsinnig, gegen Floskeln",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/veda.webp"
+    },
+    {
+     "name": "Nia",
+     "rolle": "Gesprächsnotizen",
+     "aufgabe": "Hält fest, was in Gesprächen abgemacht wurde, damit nichts verloren geht.",
+     "charakter": "ruhig, aufmerksam",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/nia.webp"
+    },
+    {
+     "name": "Ava",
+     "rolle": "Bezahlte Werbung",
+     "aufgabe": "Steuert Anzeigen im festgelegten Budget, keinen Franken darüber.",
+     "charakter": "zahlengetrieben, diszipliniert",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/ava.webp"
+    },
+    {
+     "name": "Riva",
+     "rolle": "Referenzen",
+     "aufgabe": "Pflegt die Referenzen und hält fest, was ein Projekt wirklich gebracht hat.",
+     "charakter": "dokumentarisch, detailverliebt",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/riva.webp"
+    }
+   ]
+  },
+  {
+   "id": "kreation",
+   "name": "Kreation, Website und Kundenmarketing",
+   "satz": "Bauen und bespielen das, was Ihre Kunden am Ende sehen.",
+   "mitarbeitende": [
+    {
+     "name": "Ferro",
+     "rolle": "Website-Produktion",
+     "aufgabe": "Baut Ihre Website technisch sauber, schnell und mobiltauglich.",
+     "charakter": "technisch, geduldig, perfektionistisch",
+     "status": "bereit",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/ferro.webp"
+    },
+    {
+     "name": "Mina",
+     "rolle": "Kreative Leitung",
+     "aufgabe": "Legt die Richtung fest, damit nichts austauschbar aussieht.",
+     "charakter": "mutig, bildhaft",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/mina.webp"
+    },
+    {
+     "name": "Liva",
+     "rolle": "Gestaltung",
+     "aufgabe": "Wacht über Layout, Typografie und die kleinen Details.",
+     "charakter": "ästhetisch, sauber",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/liva.webp"
+    },
+    {
+     "name": "Sora",
+     "rolle": "Texte",
+     "aufgabe": "Schreibt so, dass Besucher verstehen und anfragen.",
+     "charakter": "menschenorientiert, klar",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/sora.webp"
+    },
+    {
+     "name": "Nova",
+     "rolle": "Bilder und Grafik",
+     "aufgabe": "Macht die Bilder und Grafiken für Website und Social Media.",
+     "charakter": "konsistent, markentreu",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/nova.webp"
+    },
+    {
+     "name": "Vela",
+     "rolle": "Bildwelten",
+     "aufgabe": "Erzeugt Bildwelten nach freigegebener Richtung.",
+     "charakter": "cinematisch, experimentierfreudig",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/vela.webp"
+    },
+    {
+     "name": "Veo",
+     "rolle": "Video",
+     "aufgabe": "Macht die Filme und Bewegtbilder.",
+     "charakter": "technisch-kreativ, geduldig",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/veo.webp"
+    },
+    {
+     "name": "Luma",
+     "rolle": "Kundenmarketing",
+     "aufgabe": "Führt die laufende Marketingarbeit für Kundenbetriebe.",
+     "charakter": "kreativ, warm, markensensibel",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/luma.webp"
+    },
+    {
+     "name": "Mika",
+     "rolle": "Inhaltsplanung",
+     "aufgabe": "Plant, was wann erscheint, im Rahmen des Vereinbarten.",
+     "charakter": "organisiert, deadline-stark",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/mika.webp"
+    },
+    {
+     "name": "Pulse",
+     "rolle": "Veröffentlichung für Kunden",
+     "aufgabe": "Veröffentlicht Ihre Beiträge, aber erst nach Ihrer ausdrücklichen Freigabe.",
+     "charakter": "zuverlässig, vorsichtig, methodisch",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/pulse.webp"
+    },
+    {
+     "name": "Echo",
+     "rolle": "Kommentare und Bewertungen",
+     "aufgabe": "Antwortet freundlich auf Kommentare. Bei Kritik entscheiden immer die Gründer.",
+     "charakter": "freundlich, diplomatisch",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/echo.webp"
+    },
+    {
+     "name": "Aline",
+     "rolle": "Leistungsübersicht",
+     "aufgabe": "Passt auf, dass keine vereinbarte Leistung vergessen geht.",
+     "charakter": "systematisch, hartnäckig",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/aline.webp"
+    }
+   ]
+  },
+  {
+   "id": "kunden",
+   "name": "Kundenbetreuung, Marktplatz und Produkt",
+   "satz": "Bleiben nach dem Go-live an Ihrer Seite.",
+   "mitarbeitende": [
+    {
+     "name": "Mila",
+     "rolle": "Kundenbeziehung",
+     "aufgabe": "Bleibt nach dem Go-live an Ihrer Seite und merkt früh, wenn etwas nicht rund läuft.",
+     "charakter": "aufmerksam, warm, nicht verkäuferisch",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/mila.webp"
+    },
+    {
+     "name": "Nino",
+     "rolle": "Betrieb und Pflege",
+     "aufgabe": "Überwacht Ihre Website, macht Updates und Sicherungen.",
+     "charakter": "wachsam, stoisch, technisch",
+     "status": "bereit",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/nino.webp"
+    },
+    {
+     "name": "Raya",
+     "rolle": "Kundensignale",
+     "aufgabe": "Erkennt früh, wenn ein Betrieb mehr braucht oder unzufrieden ist.",
+     "charakter": "analytisch, taktvoll",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/raya.webp"
+    },
+    {
+     "name": "Rego",
+     "rolle": "Marktplatz",
+     "aufgabe": "Führt das Regal mit den fertig gebauten Websites.",
+     "charakter": "kaufmännisch, systematisch",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/rego.webp"
+    },
+    {
+     "name": "Pia",
+     "rolle": "Produkt",
+     "aufgabe": "Entscheidet, was am HQ und am Kundenportal als Nächstes gebaut wird.",
+     "charakter": "neugierig, marktnah",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/pia.webp"
+    }
+   ]
+  },
+  {
+   "id": "finanzen",
+   "name": "Kaufmännisches, Finanzen und Personal",
+   "satz": "Kümmern sich um Geld, Preise und darum, wie im Betrieb gearbeitet wird.",
+   "mitarbeitende": [
+    {
+     "name": "Flora",
+     "rolle": "Rechnungen",
+     "aufgabe": "Schreibt Ihre Rechnung und verfolgt den Zahlungseingang. Mahnt nie, was schon bezahlt ist.",
+     "charakter": "freundlich-formell, konsequent",
+     "status": "bereit",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/flora.webp"
+    },
+    {
+     "name": "Finja",
+     "rolle": "Finanzen",
+     "aufgabe": "Führt die Zahlen des Betriebs.",
+     "charakter": "konservativ, exakt",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/finja.webp"
+    },
+    {
+     "name": "Marc",
+     "rolle": "Preise",
+     "aufgabe": "Rechnet, was eine Leistung kosten darf, und vergleicht ehrlich mit dem Markt.",
+     "charakter": "marktnah, analytisch, fair",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/marc.webp"
+    },
+    {
+     "name": "Elia",
+     "rolle": "Personal und Kultur",
+     "aufgabe": "Kümmert sich darum, wie im Betrieb gearbeitet wird, und gibt Rückmeldung.",
+     "charakter": "fair, diskret, klar",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/elia.webp"
+    },
+    {
+     "name": "Jaro",
+     "rolle": "Rollenaufbau",
+     "aufgabe": "Entwirft eine neue Rolle, wenn eine Fähigkeit wirklich fehlt.",
+     "charakter": "strukturiert, eignungsorientiert",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/jaro.webp"
+    },
+    {
+     "name": "Nela",
+     "rolle": "Kundenteams",
+     "aufgabe": "Richtet für Kunden eigene digitale Teams ein und wieder ab.",
+     "charakter": "systematisch, kapazitätsbewusst",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/nela.webp"
+    },
+    {
+     "name": "Sera",
+     "rolle": "Strategie",
+     "aufgabe": "Denkt weiter als das laufende Jahr.",
+     "charakter": "analytisch, langfristig, kritisch",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/sera.webp"
+    }
+   ]
+  },
+  {
+   "id": "technik",
+   "name": "Technik, Qualität und Daten",
+   "satz": "Sorgen dafür, dass nichts ausfällt, nichts hinausgeht, was nicht geprüft ist, und dass Zahlen stimmen.",
+   "mitarbeitende": [
+    {
+     "name": "Viktor",
+     "rolle": "Qualität",
+     "aufgabe": "Prüft, ob geliefert wurde, was versprochen war. Sagt auch Nein.",
+     "charakter": "pedantisch, sachlich, evidenzorientiert",
+     "status": "bereit",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/viktor.webp"
+    },
+    {
+     "name": "Leon",
+     "rolle": "Technik und Sicherheit",
+     "aufgabe": "Sorgt dafür, dass nichts ausfällt und niemand hineinkommt, der nicht darf.",
+     "charakter": "vorsichtig, methodisch",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/leon.webp"
+    },
+    {
+     "name": "Dario",
+     "rolle": "Plattform",
+     "aufgabe": "Baut und wartet den technischen Unterbau.",
+     "charakter": "modular, architekturstreng",
+     "status": "bereit",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/dario.webp"
+    },
+    {
+     "name": "Nyra",
+     "rolle": "Zugriffe",
+     "aufgabe": "Vergibt Rechte und prüft, wer worauf zugreifen darf.",
+     "charakter": "skeptisch, präzise",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/nyra.webp"
+    },
+    {
+     "name": "Cara",
+     "rolle": "Datenschutz",
+     "aufgabe": "Achtet auf Ihre Daten und stoppt, wenn etwas unklar ist.",
+     "charakter": "gewissenhaft, stoppt bei Unklarheit",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/cara.webp"
+    },
+    {
+     "name": "Ivo",
+     "rolle": "Sicherheitsprüfung",
+     "aufgabe": "Versucht das eigene System zu knacken, bevor es jemand anders tut.",
+     "charakter": "adversarial, skeptisch",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/ivo.webp"
+    },
+    {
+     "name": "Piko",
+     "rolle": "Auswertungen",
+     "aufgabe": "Zeigt in Zahlen, was die Arbeit gebracht hat.",
+     "charakter": "nüchtern, verständlich, unbestechlich",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/piko.webp"
+    },
+    {
+     "name": "Kora",
+     "rolle": "Abläufe",
+     "aufgabe": "Findet heraus, warum etwas hakt, und schlägt Besseres vor.",
+     "charakter": "ursachenorientiert",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/kora.webp"
+    },
+    {
+     "name": "Ari",
+     "rolle": "Betrieb der digitalen Mitarbeitenden",
+     "aufgabe": "Hält die digitale Belegschaft am Laufen.",
+     "charakter": "technisch, versionsbewusst",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/ari.webp"
+    },
+    {
+     "name": "Orin",
+     "rolle": "Modelle und Kosten",
+     "aufgabe": "Wählt für jede Aufgabe das passende und günstigste Modell.",
+     "charakter": "zahlengetrieben, provider-neutral",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/orin.webp"
+    },
+    {
+     "name": "Lexi",
+     "rolle": "Firmenwissen",
+     "aufgabe": "Pflegt das Regelwerk der Firma, damit alle dasselbe wissen.",
+     "charakter": "präzise, versionsbewusst",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/lexi.webp"
+    },
+    {
+     "name": "Sophie",
+     "rolle": "Sekretariat",
+     "aufgabe": "Ordnet Post und Ablage der Geschäftsleitung.",
+     "charakter": "diskret, höflich, ordentlich",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/sophie.webp"
+    }
+   ]
+  },
+  {
+   "id": "aufsicht",
+   "name": "Aufsicht",
+   "satz": "Schauen von aussen darauf, dass die Firma sauber bleibt.",
+   "mitarbeitende": [
+    {
+     "name": "Aurelia",
+     "rolle": "Vorsitz",
+     "aufgabe": "Schaut unabhängig auf die langfristige Richtung.",
+     "charakter": "unabhängig, ruhig, kritisch",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/aurelia.webp"
+    },
+    {
+     "name": "Cassian",
+     "rolle": "Finanzen und Risiko",
+     "aufgabe": "Prüft Zahlen und Risiken aus der Distanz.",
+     "charakter": "zahlenorientiert, konservativ",
+     "status": "ausbildung",
+     "geschlecht": "m",
+     "bild": "assets/mitarbeiter/cassian.webp"
+    },
+    {
+     "name": "Noemi",
+     "rolle": "Kunden, Menschen und Ethik",
+     "aufgabe": "Achtet darauf, dass niemand unter die Räder kommt.",
+     "charakter": "empathisch, prinzipientreu",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/noemi.webp"
+    },
+    {
+     "name": "Clara",
+     "rolle": "Protokoll",
+     "aufgabe": "Hält Entscheide fest, neutral und genau.",
+     "charakter": "neutral, präzise",
+     "status": "ausbildung",
+     "geschlecht": "w",
+     "bild": "assets/mitarbeiter/clara.webp"
+    }
+   ]
+  }
+ ],
+ "anzahl_digital": 59,
+ "anzahl_menschen": 2,
+ "hinweis_geschlecht": "Geschaetzt nach Namensendung, damit Frauen lange und Maenner kurze Haare bekommen. Hier von Hand korrigierbar: w oder m.",
+ "hinweis_bilder": "Portraets, mit KI erzeugt. Vorlagen liegen in PLAYER TWO/Bilder Mitarbeiter."
+}

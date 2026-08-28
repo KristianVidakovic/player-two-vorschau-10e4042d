@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sechs Branchen, sechs Schmerzpunkte — Entwurf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F7; --canvas-2:#E8ECF2; --tief:#0B1220; --tief-voll:#050A14;
+  --akzent:#1E6CFF; --cyan:#00C6FF; --grau:#5B6779;
+  --linie:rgba(11,18,32,.12); --linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Sans 3',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--seite);margin:0 auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:16px}
+.h2{font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.lede{margin-top:16px;font-size:18px;color:#26313F;max-width:62ch}
+
+.kopfband{position:sticky;top:0;z-index:50;background:var(--tief);color:#EBF8FF;
+  padding:13px 0;box-shadow:0 6px 24px rgba(5,10,20,.25)}
+.kopfband .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.kopfband b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7FD4FF;font-weight:500}
+.kopfband a{color:#EBF8FF;text-decoration:none;font-size:14.5px;
+  border-bottom:1px solid rgba(235,248,255,.3);padding-bottom:1px}
+.kopfband a:hover{color:var(--cyan);border-color:var(--cyan)}
+.kopfband .weg{margin-left:auto;color:rgba(235,248,255,.6);font-size:13px}
+
+section.probe{padding:clamp(48px,7vh,86px) 0;border-bottom:1px solid var(--linie)}
+section.probe.dunkler{background:var(--canvas-2)}
+.urteil{margin-top:26px;padding:15px 19px;border-radius:12px;
+  background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
+  font-size:15px;line-height:1.6;max-width:82ch}
+.urteil b{color:var(--akzent)}
+.urteil.warn{background:rgba(200,120,20,.07);border-color:rgba(200,120,20,.25)}
+.urteil.warn b{color:#9A5B0E}
+
+/* ---------- Zwei Kaesten, sechs Branchen ---------- */
+.raum{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.6vw,36px);
+  margin-top:clamp(28px,4vh,46px)}
+.kasten{background:#fff;border:1px solid var(--linie);border-radius:18px;
+  padding:clamp(20px,2.6vh,28px);display:flex;flex-direction:column}
+.kasten.jetzt{background:var(--tief);color:#EBF8FF;border-color:transparent}
+.kasten-kopf{display:flex;justify-content:space-between;align-items:baseline;
+  gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau);
+  padding-bottom:14px;border-bottom:1px solid var(--linie);margin-bottom:4px}
+.kasten.jetzt .kasten-kopf{color:rgba(235,248,255,.55);
+  border-bottom-color:rgba(235,248,255,.16)}
+.kasten-kopf .zahl{color:var(--akzent)}
+.kasten.jetzt .kasten-kopf .zahl{color:var(--cyan)}
+
+.zeile{display:flex;gap:13px;align-items:flex-start;padding:14px 0;
+  border-bottom:1px solid var(--linie);font-size:15px;line-height:1.45}
+.kasten.jetzt .zeile{border-bottom-color:rgba(235,248,255,.12)}
+.zeile:last-of-type{border-bottom:0}
+.zeile .fach{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--grau);display:block;margin-bottom:3px}
+.kasten.jetzt .zeile .fach{color:rgba(235,248,255,.45)}
+.zeile i{width:16px;height:16px;border-radius:50%;margin-top:4px;flex:0 0 auto;
+  position:relative;border:1.5px solid var(--linie-stark)}
+
+/* Links: nichts erledigt, ein Punkt bleibt offen. */
+.kasten.heute .zeile i::after{content:"";position:absolute;left:50%;top:50%;
+  width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;
+  background:var(--linie-stark)}
+
+/* Rechts: haken nacheinander ab. */
+.kasten.jetzt .zeile i{border-color:rgba(235,248,255,.3)}
+.kasten.jetzt .zeile.ab i{border-color:#5BD98A;background:#5BD98A;
+  opacity:0;animation:hakenAuf .45s var(--ease) forwards}
+.kasten.jetzt .zeile.ab i::after{content:"";position:absolute;
+  left:4px;top:1.5px;width:5px;height:9px;border:solid var(--tief);
+  border-width:0 2px 2px 0;transform:rotate(42deg)}
+@keyframes hakenAuf{to{opacity:1}}
+.kasten.jetzt .zeile:nth-of-type(1).ab i{animation-delay:.55s}
+.kasten.jetzt .zeile:nth-of-type(2).ab i{animation-delay:1.05s}
+.kasten.jetzt .zeile:nth-of-type(3).ab i{animation-delay:1.55s}
+.kasten.jetzt .zeile:nth-of-type(4).ab i{animation-delay:2.05s}
+.kasten.jetzt .zeile:nth-of-type(5).ab i{animation-delay:2.55s}
+.kasten.jetzt .zeile:nth-of-type(6).ab i{animation-delay:3.05s}
+
+.kasten-fuss{margin-top:auto;padding-top:17px;border-top:1px solid var(--linie);
+  font-size:15px;line-height:1.55;color:var(--grau)}
+.kasten.jetzt .kasten-fuss{border-top-color:rgba(235,248,255,.16);
+  color:rgba(235,248,255,.72)}
+.kasten.jetzt .kasten-fuss b{color:#fff}
+.kasten.heute .kasten-fuss b{color:var(--tief)}
+
+.neu-marke{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:20px;
+  background:rgba(200,120,20,.15);color:#9A5B0E;font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;vertical-align:1px}
+.kasten.jetzt .neu-marke{background:rgba(255,190,90,.2);color:#FFCF8A}
+
+@media (max-width:900px){ .raum{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+  .kasten.jetzt .zeile.ab i{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="kopfband">
+  <div class="wrap">
+    <b>Entwurf</b>
+    <a href="#s">Sechs Branchen</a>
+    <a href="alltag-alle.html">← alle sechs Darstellungen</a>
+    <a href="alltag-b-varianten.html">← B in drei Varianten</a>
+    <span class="weg">Inhalt zum Korrigieren.</span>
+  </div>
+</div>
+
+<section class="probe" id="s">
+  <div class="wrap">
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Kommt Ihnen das bekannt vor?</h2>
+    <p class="lede">Sechs Betriebe, sechs Mal dieselbe Geschichte: Die Arbeit
+      kommt genau dann, wenn gerade niemand kann.</p>
+
+    <div class="raum">
+      <div class="kasten heute">
+        <div class="kasten-kopf"><span>Heute</span><span class="zahl">bleibt liegen</span></div>
+
+        <div class="zeile"><i></i><div><span class="fach">Malerbetrieb</span>
+          Jede Anfrage kostet zwei Telefonate, bevor Sie überhaupt rechnen können.</div></div>
+        <div class="zeile"><i></i><div><span class="fach">Physiotherapie</span>
+          Das Telefon klingelt, während Ihre Hände am Patienten sind.</div></div>
+        <div class="zeile"><i></i><div><span class="fach">Bäckerei</span>
+          Die Vorbestellung fürs Wochenende kommt, wenn die Schlange am längsten ist.</div></div>
+        <div class="zeile"><i></i><div><span class="fach">Garage</span>
+          Zehn Anrufe am Tag — die Hälfte fragt nur, ob das Auto fertig ist.</div></div>
+        <div class="zeile"><i></i><div><span class="fach">Hausverwaltung</span>
+          Ein Wasserschaden, zehn Anrufe. Alle fragen dasselbe.</div></div>
+        <div class="zeile"><i></i><div><span class="fach">Treuhandbüro</span>
+          Die halbe Arbeit ist, den Unterlagen hinterherzulaufen.</div></div>
+
+        <div class="kasten-fuss"><b>Keine davon ist schwierig.</b> Sie kommen nur
+          alle dann, wenn Sie gerade nicht können — und werden am Abend nachgeholt.</div>
+      </div>
+
+      <div class="kasten jetzt">
+        <div class="kasten-kopf"><span>Mit Player Two</span><span class="zahl">übernommen</span></div>
+
+        <div class="zeile ab"><i></i><div><span class="fach">Malerbetrieb</span>
+          Objekt, Fläche, Zustand und Fotos kommen vollständig herein. Die Offerte
+          liegt gerechnet zur Freigabe bereit.</div></div>
+        <div class="zeile ab"><i></i><div><span class="fach">Physiotherapie</span>
+          Termine buchen die Patientinnen selbst. Eine Absage wird nachbesetzt,
+          statt die Stunde leer zu lassen.</div></div>
+        <div class="zeile ab"><i></i><div><span class="fach">Bäckerei</span>
+          Die Bestellung kommt über die Seite — bestätigt, mit Menge und Abholzeit,
+          und steht auf der Liste für die Backstube.</div></div>
+        <div class="zeile ab"><i></i><div><span class="fach">Garage</span>
+          Wer nach dem Auto fragt, sieht den Stand ohne Anruf. Den Termin bucht
+          er selbst.</div></div>
+        <div class="zeile ab"><i></i><div><span class="fach">Hausverwaltung</span>
+          Die Meldung ist aufgenommen und dem Objekt zugeordnet. Wer nachfragt,
+          sieht den Stand.</div></div>
+        <div class="zeile ab"><i></i><div><span class="fach">Treuhandbüro</span>
+          Die Unterlagen werden eingesammelt. Was fehlt, wird nachgefragt — mit
+          Frist, in Ihrem Ton.</div></div>
+
+        <div class="kasten-fuss"><b>Bei Ihnen bleibt die Entscheidung.</b>
+          Freigeben, anpassen, ablehnen. Alles davor macht Ihr digitaler
+          Mitarbeiter.</div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Design unverändert</b> — dieselben zwei Kästen wie in
+      Entwurf E, links hell, rechts dunkel, die Haken laufen nacheinander durch.
+      Nur die Zeilen sind jetzt Branchen statt Uhrzeiten.</p>
+  </div>
+</section>
+
+<section class="probe dunkler">
+  <div class="wrap">
+    <span class="kicker">Zum Korrigieren</span>
+    <h2 class="h2">Wo ich mir nicht sicher bin.</h2>
+
+    <p class="lede"><b>1. Der Schmerz beim Maler.</b> Ich habe „zwei Telefonate,
+      bevor Sie rechnen können" genommen — also die unvollständige Anfrage. Der
+      andere Kandidat wäre „Die Offerte schreiben Sie um zehn Uhr abends". Was
+      trifft es bei euren Betrieben eher?</p>
+
+    <p class="lede"><b>2. Physiotherapie.</b> „Eine Absage wird nachbesetzt"
+      setzt eine Warteliste voraus. Können wir das, oder soll dort nur stehen,
+      dass Termine selbst gebucht werden?</p>
+
+    <p class="lede"><b>3. Garage.</b> „Sieht den Stand ohne Anruf" heisst, dass
+      der Betrieb den Status auch pflegt. Bei einer kleinen Garage kann das ein
+      Zusatzaufwand sein, den niemand macht. Realistisch?</p>
+
+    <p class="lede"><b>4. Die Reihenfolge.</b> Aktuell: Maler, Physio, Bäckerei,
+      Garage, Hausverwaltung, Treuhand. Der erste wird am meisten gelesen — soll
+      dort der Maler stehen (passt zum Bild im Hero) oder etwas anderes?</p>
+
+    <p class="urteil warn"><b>Was ich nicht belegen kann:</b> Bei Physiotherapie,
+      Garage und Hausverwaltung steckt jeweils drin, dass jemand <b>anruft</b> und
+      stattdessen etwas anderes bekommt. Telefon als Kanal gibt es im Masterfile
+      nicht — weder SMS noch Rückruf noch verpasster Anruf. Solange das nicht
+      entschieden ist, müssten diese drei Zeilen so formuliert sein, dass die
+      Lösung <b>auf der Website</b> passiert und nicht am Telefon.</p>
+  </div>
+</section>
+
+</body>
+</html>

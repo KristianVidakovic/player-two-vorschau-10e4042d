@@ -1,0 +1,153 @@
+"""Entwicklungsserver fuer die Player-Two-Website.
+
+Liefert die Dateien aus wie ein normaler Webserver und nimmt zusaetzlich
+Bildabzuege der Leinwand entgegen. Damit kann waehrend der Arbeit jederzeit
+geprueft werden, wie die Stadt tatsaechlich aussieht, ohne dass jemand
+manuell einen Bildschirmabzug macht.
+
+Nur fuer die Entwicklung. Geht nie auf einen echten Server.
+"""
+
+import base64
+import http.server
+import os
+import socketserver
+import sys
+
+WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ABZUEGE = os.path.join(WURZEL, "werkzeug", "abzuege")
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 5180
+
+
+class Griff(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *a, **kw):
+        super().__init__(*a, directory=WURZEL, **kw)
+
+    def do_POST(self):
+        if self.path == "/daten":
+            self._daten_speichern()
+            return
+        if self.path == "/hero":
+            self._hero_speichern()
+            return
+        if self.path != "/abzug":
+            self.send_error(404)
+            return
+        laenge = int(self.headers.get("Content-Length", 0))
+        rohdaten = self.rfile.read(laenge).decode("utf-8", "replace")
+        name, _, nutzdaten = rohdaten.partition("|")
+        if "," in nutzdaten:
+            nutzdaten = nutzdaten.split(",", 1)[1]
+        sicher = "".join(c for c in name if c.isalnum() or c in "-_")[:60] or "abzug"
+        os.makedirs(ABZUEGE, exist_ok=True)
+        ziel = os.path.join(ABZUEGE, sicher + ".png")
+        with open(ziel, "wb") as f:
+            f.write(base64.b64decode(nutzdaten))
+        antwort = ziel.encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(antwort)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(antwort)
+
+    def _daten_speichern(self):
+        """Nimmt eine JSON-Datei entgegen und legt sie unter data/ ab.
+
+        Erste Zeile ist der Dateiname, danach der Inhalt. Nur fuer die
+        Entwicklung, damit der Wegeditor speichern kann.
+        """
+        laenge = int(self.headers.get("Content-Length", 0))
+        rohdaten = self.rfile.read(laenge).decode("utf-8", "replace")
+        name, _, inhalt = rohdaten.partition("\n")
+        sicher = "".join(c for c in name.strip() if c.isalnum() or c in "-_")[:60]
+        if not sicher:
+            self.send_error(400, "kein Dateiname")
+            return
+        ordner = os.path.join(WURZEL, "data")
+        os.makedirs(ordner, exist_ok=True)
+        ziel = os.path.join(ordner, sicher + ".json")
+        with open(ziel, "w", encoding="utf-8") as f:
+            f.write(inhalt)
+        antwort = ziel.encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(antwort)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(antwort)
+
+    def _hero_speichern(self):
+        """Schreibt die Plaetze der drei Hero-Meldungen ins CSS.
+
+        Der Setzmodus schickt die Werte, die Kristian mit der Maus
+        gesetzt hat. Hier werden nur left und top der sechs Regeln
+        ersetzt; alles andere in den Regeln bleibt stehen.
+        """
+        import json
+        import re
+
+        laenge = int(self.headers.get("Content-Length", 0))
+        try:
+            daten = json.loads(self.rfile.read(laenge).decode("utf-8"))
+        except ValueError:
+            self.send_error(400, "kein gueltiges JSON")
+            return
+
+        ERLAUBT = {"index-vorschlag.html", "index.html"}
+        datei = daten.get("datei", "index-vorschlag.html")
+        if datei not in ERLAUBT:
+            self.send_error(400, "diese Datei nicht")
+            return
+
+        pfad = os.path.join(WURZEL, datei)
+        with open(pfad, encoding="utf-8") as f:
+            text = f.read()
+
+        with open(pfad + ".vor-setzen", "w", encoding="utf-8") as f:
+            f.write(text)
+
+        geaendert = 0
+        for regel in daten.get("regeln", []):
+            wahl, links, oben = regel["wahl"], regel["links"], regel["oben"]
+            muster = re.compile(
+                r"(" + re.escape(wahl) + r"\s*\{)([^}]*)(\})")
+
+            def ersetzen(m):
+                inhalt = m.group(2)
+                inhalt = re.sub(r"left:\s*[-\d.]+%", "left: %.2f%%" % links, inhalt)
+                inhalt = re.sub(r"top:\s*[-\d.]+%", "top: %.2f%%" % oben, inhalt)
+                return m.group(1) + inhalt + m.group(3)
+
+            text, n = muster.subn(ersetzen, text, count=1)
+            geaendert += n
+
+        with open(pfad, "w", encoding="utf-8") as f:
+            f.write(text)
+
+        antwort = ("%d Regeln geschrieben in %s" % (geaendert, datei)).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(antwort)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(antwort)
+
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
+    def log_message(self, form, *args):
+        if self.command == "POST":
+            super().log_message(form, *args)
+
+
+class Server(socketserver.ThreadingTCPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+
+if __name__ == "__main__":
+    with Server(("127.0.0.1", PORT), Griff) as s:
+        print("Website auf http://localhost:%d  (Abzuege nach %s)" % (PORT, ABZUEGE))
+        s.serve_forever()

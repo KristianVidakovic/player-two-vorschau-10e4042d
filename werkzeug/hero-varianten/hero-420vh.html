@@ -2,22 +2,23 @@
 <html lang="de-CH">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Player Two — Websites für Handwerk, Gewerbe und Praxen</title>
-<meta name="description" content="Websites, Webshops und Anwendungen für Betriebe in der Ostschweiz — in jeder arbeitet mindestens ein digitaler Mitarbeiter mit und nimmt den Papierkram ab. Player Two, Thurgau.">
+<title>Hero-Fassung C, Scrollweg 420vh — intern</title>
+<meta name="description" content="Fertig gebaute Websites, Webshops und Anwendungen für Betriebe in der Ostschweiz. Fixpreis ab CHF 1'490, dazu digitale Mitarbeitende, die den Papierkram übernehmen. Player Two, Thurgau.">
 <meta name="theme-color" content="#F2F4F7">
 <!-- DEPLOY STEP: og:url und og:image auf die Live-Adresse setzen -->
 <meta property="og:title" content="Player Two, Websites für Handwerk, Gewerbe und Praxen">
-<meta property="og:description" content="Websites, Webshops und Anwendungen für Schweizer KMU — in jeder arbeitet ein digitaler Mitarbeiter mit.">
+<meta property="og:description" content="Fertig gebaut, exklusiv vergeben, in zehn Arbeitstagen live.">
 <meta property="og:type" content="website">
-<link rel="icon" href="assets/marke.png" type="image/png">
+<link rel="icon" href="../../assets/marke.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <!-- Der Hero-Film. Absichtlich ohne defer im Kopf: die Datei entscheidet
      vor dem ersten Anstrich, ob der Film laeuft, sonst blitzt kurz der
      statische Hero auf. Neun Kilobyte, lokal. -->
-<script src="assets/hero-film.js"></script>
+<script src="../../assets/hero-film.js"></script>
 <style>
 /* ============================================================
    Player Two, öffentliche Website
@@ -203,7 +204,7 @@ img{max-width:100%;display:block}
 .hero-still{display:none;position:relative;z-index:1}
 .hero-still .bild{
   position:relative;min-height:min(86vh,720px);
-  background-image:url('assets/hero-ende.jpg');background-size:cover;background-position:58% center;
+  background-image:url('../../assets/hero-ende.jpg');background-size:cover;background-position:58% center;
   display:flex;align-items:flex-end;
 }
 .hero-still .bild::after{
@@ -276,7 +277,7 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
 .stufe-karte h3{font-size:clamp(24px,2.4vw,32px);margin:14px 0 12px}
 .stufe-karte .satz{font-size:17px;color:#3A4553;max-width:40ch}
 .stufe-karte.arbeitet .satz{color:rgba(235,248,255,.78)}
-.kann{list-style:none;margin:26px 0 auto;padding:0;display:grid;gap:11px}
+.kann{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:11px}
 .kann li{display:flex;gap:11px;align-items:flex-start;font-size:16.5px;color:#26313F}
 .stufe-karte.arbeitet .kann li{color:rgba(235,248,255,.9)}
 .kann li svg{flex:0 0 auto;width:19px;height:19px;margin-top:3px}
@@ -286,9 +287,7 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
 .stufe-preis .p{font-family:var(--mono);font-size:23px}
 .stufe-preis .lauf{font-size:15px;color:var(--grau);line-height:1.5;max-width:44ch}
 .stufe-karte.arbeitet .stufe-preis .lauf{color:rgba(235,248,255,.6)}
-.stufe-karte .btn{margin-top:22px;align-self:flex-end}
-.stufe-karte .btn-voll{background:linear-gradient(168deg,#0B1220,#082056);box-shadow:0 6px 20px rgba(8,32,86,.32)}
-.stufe-karte .btn-voll:hover{box-shadow:0 12px 30px rgba(8,32,86,.42)}
+.stufe-karte .btn{margin-top:22px;align-self:flex-start}
 .auch{
   margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
   font-size:16px;color:#3A4553;
@@ -401,13 +400,13 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
   .tafel-kopf{margin-bottom:20px}
 }
 
-/* Schaufenster */
-.schau-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.schau-mehr{margin-top:26px;font-size:16px}
-.schau-mehr a{color:var(--akzent);text-decoration:none;
+/* Regal */
+.regal-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.regal-mehr{margin-top:26px;font-size:16px}
+.regal-mehr a{color:var(--akzent);text-decoration:none;
   border-bottom:1px solid rgba(30,108,255,.35);padding-bottom:2px;
   transition:border-color .3s var(--ease)}
-.schau-mehr a:hover{border-bottom-color:var(--akzent)}
+.regal-mehr a:hover{border-bottom-color:var(--akzent)}
 
 /* ---------- Bewegte Vorschau ----------
    Eine Andeutung, kein falscher Bildschirmabzug. Sobald echte Vorschauen
@@ -588,9 +587,7 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
    Inhalt sitzt mittig. Die Strecke ist ausgenommen: ihre Höhe ist der
    Scrollweg. */
 @media (min-width:1025px){
-  /* #stufen und #warum sind Strecken: ihre Hoehe ist der Scrollweg, das
-     Zentrieren wuerde den klebenden Halt in die Mitte schieben. */
-  main > section:not(#stufen):not(#warum){
+  main > section:not(#stufen){
     min-height:100vh;display:flex;flex-direction:column;justify-content:center;
     padding-block:clamp(44px,5.2vh,84px);
   }
@@ -1235,13 +1232,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .preis-drei .zusatz{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:9px}
 .preis-drei p{font-size:clamp(14px,1.8vh,15.5px);color:#3A4553;line-height:1.55}
-.preis-drei .preis-ab{margin-top:8px;color:var(--grau)}
-.preis-drei .preis-ab b{font-family:var(--mono);font-weight:500;font-size:clamp(19px,2.6vh,24px);color:var(--tief);margin-left:6px}
 .preis-noch{margin-top:clamp(18px,2.4vh,28px);padding:clamp(15px,2vh,20px) clamp(16px,2vw,24px);
   border-radius:14px;background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
   font-size:clamp(14.5px,1.85vh,16px);line-height:1.6}
 .preis-drin{list-style:none;margin:clamp(18px,2.4vh,30px) 0 0;padding:0;
-  display:grid;grid-template-columns:1fr;gap:9px}
+  display:grid;grid-template-columns:repeat(2,1fr);gap:9px 26px}
 .preis-drin li{position:relative;padding-left:26px;font-size:clamp(14px,1.8vh,15.5px);
   line-height:1.55;color:#3A4553}
 .preis-drin li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;
@@ -1275,79 +1270,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   fill:none;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:720px){.signale li{font-size:13.5px}.signale ul{gap:8px 18px}}
 
-/* ---------- Die Strecke: Was wir nie tun ----------
-   Vier Regeln als seitliche Fahrt. Hell, weil das Teamband direkt danach
-   schon dunkel ist - zwei dunkle Baender nacheinander erdruecken sich.
-   Jede Regel wird beim Erreichen durchgestrichen: wir schreiben hin, was
-   wir nie tun, und streichen es durch. Unter 1025 Pixeln und bei
-   reduzierter Bewegung steht alles untereinander. */
-#warum{position:relative;background:var(--canvas-2);padding:0}
-.nie-halt{position:sticky;top:0;height:100vh;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center;padding:96px 0 64px}
-.nie-halt::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(70% 60% at 84% 10%,rgba(30,108,255,.07),transparent 62%)}
-.nie-kopf{flex:0 0 auto;position:relative;padding:0 max(4vw,24px);
-  margin-bottom:clamp(14px,2.2vh,26px)}
-.nie-kopf .k-innen{width:var(--seite);margin:0 auto}
-.nie-kopf .k-zeile{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
-.nie-kopf .kicker{margin-bottom:0}
-#warum h2{margin-top:clamp(7px,1.2vh,12px)}
-.nie-zaehler{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
-  color:var(--grau)}
-.nie-spur{display:flex;will-change:transform;position:relative}
-.nie-blatt{flex:0 0 100%;position:relative;padding:0 max(4vw,24px);
-  display:flex;align-items:center;min-height:clamp(300px,44vh,460px)}
-/* Grosses NIE links, Text rechts. */
-.nie-inhalt{position:relative;z-index:1;width:var(--seite);margin:0 auto;
-  display:grid;grid-template-columns:auto 1fr;align-items:center;
-  gap:clamp(28px,5vw,80px)}
-.nie-geist{pointer-events:none;user-select:none;
-  font-family:var(--display);font-weight:700;line-height:.9;letter-spacing:-.03em;
-  font-size:clamp(110px,15vw,230px);color:transparent;
-  -webkit-text-stroke:2.5px rgba(30,108,255,.28);
-  opacity:0;transform:translateX(-50px);
-  transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.nie-blatt.an .nie-geist{opacity:1;transform:none}
-.nie-nr{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--akzent);display:block;
-  margin-bottom:clamp(10px,1.8vh,18px);
-  opacity:0;transform:translateY(14px);
-  transition:opacity .6s var(--ease) .08s,transform .6s var(--ease) .08s}
-.nie-blatt h3{font-size:clamp(30px,4.2vw,58px);line-height:1.12;letter-spacing:-.022em;
-  color:var(--tief);
-  opacity:0;transform:translateY(20px);
-  transition:opacity .7s var(--ease) .16s,transform .7s var(--ease) .16s}
-.nie-inhalt p{margin-top:clamp(14px,2.4vh,26px);max-width:56ch;
-  font-size:clamp(15.5px,1.25vw,18.5px);line-height:1.65;color:#3A4553;
-  opacity:0;transform:translateY(20px);
-  transition:opacity .7s var(--ease) .28s,transform .7s var(--ease) .28s}
-.nie-blatt.an .nie-nr,.nie-blatt.an h3,.nie-blatt.an .nie-inhalt p{opacity:1;transform:none}
-.strich{position:relative;display:inline-block}
-/* Die ganze Schlagzeile ist in Streich-Stuecke geteilt. Erst steht die
-   Regel ungestrichen da - wer weiterscrollt, loest die Striche aus (.los),
-   und sie ziehen von selbst durch, Stueck fuer Stueck, von links. */
-.strich::after{content:"";position:absolute;left:-.06em;right:-.06em;top:.56em;height:.085em;
-  border-radius:99px;background:linear-gradient(90deg,var(--akzent),var(--cyan));
-  transform:scaleX(0) rotate(-1.2deg);transform-origin:left center;
-  transition:transform .4s cubic-bezier(.3,0,.2,1)}
-.nie-blatt.los .strich:nth-of-type(1)::after{transform:scaleX(1) rotate(-1.2deg)}
-.nie-blatt.los .strich:nth-of-type(2)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.18s}
-.nie-blatt.los .strich:nth-of-type(3)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.36s}
-.nie-blatt.los .strich:nth-of-type(4)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.54s}
-.nie-lauf{position:absolute;left:max(4vw,24px);right:max(4vw,24px);bottom:32px;height:2px;
-  border-radius:99px;background:rgba(11,18,32,.12);overflow:hidden}
-.nie-lauf i{position:absolute;inset:0;border-radius:99px;
-  background:linear-gradient(90deg,var(--akzent),var(--cyan));
-  transform:scaleX(0);transform-origin:left}
-@media (max-width:1024px),(prefers-reduced-motion:reduce){
-  .nie-halt{position:static;height:auto;overflow:visible;display:block;padding:64px 0 56px}
-  .nie-spur{display:block;transform:none!important}
-  .nie-blatt{margin-top:30px;min-height:0}
-  .nie-blatt h3{font-size:clamp(24px,6vw,34px)}
-  .nie-inhalt{grid-template-columns:1fr;gap:10px}
-  .nie-geist{font-size:clamp(64px,16vw,100px)}
-  .nie-lauf,.nie-zaehler{display:none}
-}
+/* ---------- Das Blatt: Warum Player Two ----------
+   Ein Dokument statt Karten. Auf der Seite gibt es schon Kartenraster,
+   Vorher-nachher-Kacheln, Tafeln, einen Zeitstrahl, Aufklapper und ein
+   laufendes Band - ein weisses Blatt mit Kopfleiste und Haarlinien kommt
+   nirgends vor. Genau darum steht es hier. */
+#warum{background:var(--canvas-2)}
 .blatt{margin-top:clamp(18px,2.8vh,36px);background:#fff;
   border:1px solid var(--linie);border-radius:16px;
   box-shadow:0 22px 50px rgba(11,18,32,.07);overflow:hidden}
@@ -1357,6 +1285,25 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--grau)}
 
+.nie-raster{display:grid;grid-template-columns:1fr 1fr}
+.nie-zelle{padding:clamp(15px,2.3vh,26px) clamp(20px,2.2vw,32px)}
+.nie-zelle:nth-child(1),.nie-zelle:nth-child(2){border-bottom:1px solid var(--linie)}
+.nie-zelle:nth-child(odd){border-right:1px solid var(--linie)}
+
+.nie-marke{font-family:var(--mono);font-weight:500;font-size:11.5px;
+  letter-spacing:.16em;color:var(--akzent);margin-right:10px}
+.nie-zelle h3{display:inline;font-family:var(--display);font-weight:600;
+  font-size:clamp(16px,2.1vh,20px);line-height:1.28;letter-spacing:-.01em;
+  color:var(--tief)}
+.nie-zelle p{margin-top:8px;font-size:clamp(14px,1.8vh,15.5px);
+  line-height:1.55;color:#3A4553}
+.nie-pruef{margin-top:clamp(9px,1.4vh,14px);padding-top:clamp(7px,1.1vh,11px);
+  border-top:1px solid var(--linie);
+  font-size:clamp(13px,1.65vh,14.5px);line-height:1.5;color:var(--grau)}
+.nie-pruef b{display:block;font-family:var(--mono);font-weight:500;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau);margin-bottom:4px}
+
 .blatt-fuss{border-top:1px solid var(--linie-stark);background:var(--canvas);
   display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;align-items:center;
   padding:clamp(12px,1.9vh,22px) clamp(20px,2.2vw,32px)}
@@ -1365,6 +1312,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   color:var(--grau);text-align:right}
 
 @media (max-width:900px){
+  .nie-raster{grid-template-columns:1fr}
+  .nie-zelle{border-right:0}
+  .nie-zelle:nth-child(3){border-bottom:1px solid var(--linie)}
+  .nie-zelle:last-child{border-bottom:0}
   .blatt-fuss{grid-template-columns:1fr}
   .blatt-fuss .leise{text-align:left}
   .blatt-kopf span:last-child{display:none}
@@ -1475,7 +1426,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
    svh nicht, faellt die zweite Zeile weg und die erste traegt. Ohne das
    waere calc(100svh + ...) ungueltig und der ganze Hero verloere seine
    Hoehe - stumm, ohne Fehlermeldung. */
-.pt-hero{--pt-weg:280vh;--pt-p:1}
+.pt-hero{--pt-weg:420vh;--pt-p:1}
 .pt-halt{position:relative;height:100%}
 html.pt-film-an .pt-hero{--pt-p:0;
   height:calc(100vh + var(--pt-weg));
@@ -1566,18 +1517,18 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 
 <nav class="nav" id="nav">
   <a class="marke" href="#top" aria-label="Player Two, Startseite">
-    <img src="assets/marke.png" srcset="assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
+    <img src="../../assets/marke.png" srcset="../../assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
     <span>Player Two</span>
   </a>
   <div class="nav-links">
     <a href="#stufen">Angebot</a>
-    <a href="loesungen.html">Schaufenster</a>
+    <a href="loesungen.html">Fertige Lösungen</a>
     <a href="#ablauf">Ablauf</a>
     <a href="#team">Über uns</a>
     <a href="team.html">Team</a>
     <a href="#kontakt">Kontakt</a>
   </div>
-  <a class="btn btn-voll" href="#kontakt" style="margin-left:22px">Termin vereinbaren</a>
+  <a class="btn btn-voll" href="#regal" style="margin-left:22px">Fertige Lösungen ansehen</a>
 </nav>
 
 <div id="top"></div>
@@ -1595,12 +1546,12 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
      von Anfang an, "was wichtig ist." kommt dazu, waehrend der
      Schreibtisch leer wird. Danach Untertext, Knoepfe, Abbinder. -->
 <header class="pt-hero" id="hero"
-  data-film="assets/hero-wandel.mp4"
-  data-plakat="assets/hero-wandel-start.jpg"
+  data-film="../../assets/hero-wandel.mp4"
+  data-plakat="../../assets/hero-wandel-start.jpg"
   aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
   <div class="pt-halt" data-halt>
     <div class="pt-stage" data-buehne>
-      <img class="pt-photo" src="assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
+      <img class="pt-photo" src="../../assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
         width="1920" height="1082" fetchpriority="high" decoding="async">
       <video class="pt-film" muted playsinline preload="none" aria-hidden="true"
         tabindex="-1" disablepictureinpicture disableremoteplayback
@@ -1615,15 +1566,15 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <h1><span class="pt-satz-a pt-stufe">Mehr Zeit für das</span><span
             class="pt-satz-b pt-stufe">, was wichtig ist.</span></h1>
           <p class="pt-subline pt-stufe">Player Two baut und betreibt Websites, Webshops
-            und übernimmt die wiederkehrenden Aufgaben in Ihrem Betrieb — digital,
-            zuverlässig und auf Ihr KMU zugeschnitten.</p>
+            und Anwendungen für Schweizer KMU — in jeder arbeitet mindestens ein
+            digitaler Mitarbeiter mit.</p>
           <div class="pt-actions pt-stufe">
             <a class="pt-button pt-primary" href="#stufen">Lösungen ansehen</a>
             <a class="pt-button pt-secondary" href="#kontakt">Projekt besprechen</a>
           </div>
           <div class="pt-closing pt-stufe">
             <span class="pt-check">✓</span>
-            <span>Fleissaufgaben, die niemand machen will — wir übernehmen sie.</span>
+            <span>Sie entscheiden. Der Rest läuft.</span>
           </div>
         </div>
       </div>
@@ -1648,9 +1599,10 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
      Endzustand beurteilt werden kann. Vor dem Livegang durch echte
      Betriebe ersetzen oder den Abschnitt leeren. -->
 <!-- ================= preise =================
-     Stand 2026-08-28: Kristian hat die Ab-Preise selbst festgelegt und
-     freigegeben (Website 149, Webshop 249, Anwendung 349). Die Sperre aus
-     Masterfile Teil 70.4 gilt fuer diese drei Zahlen nicht mehr. -->
+     ACHTUNG: Masterfile Teil 70.4 sperrt die Veroeffentlichung konkreter
+     Betraege, bis Kristian die Preisform entschieden hat. Die alten Zahlen
+     bilden die Vorlage OHNE digitalen Mitarbeiter ab. Dieser Abschnitt nennt
+     deshalb bewusst keine Zahl. -->
 <!-- ================= alltag =================
      ACHTUNG vor dem Livegang: Die zweite Zeile («Er bekommt sofort eine
      Nachricht») verspricht eine Rueckmeldung an einen Anrufer. Das ist im
@@ -1663,18 +1615,20 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
   <div class="wrap">
     <span class="kicker auf">Aus dem Alltag</span>
     <h2 class="h2 auf">Kommt Ihnen das bekannt vor?</h2>
+    <p class="lede auf">Sechs Sachen, die es in jedem Betrieb gibt. Links, wie
+      es heute läuft. Rechts, wie es mit Player Two läuft.</p>
 
     <div class="gegen">
       <div class="sp-kopf links">Heute</div>
       <div class="sp-kopf rechts">Mit Player Two</div>
 
-      <div class="z links"><i></i><div>Sie schreiben die Offerte am Abend oder einige Tage später. Weil tagsüber keine Zeit war.</div></div>
+      <div class="z links"><i></i><div>Sie schreiben die Offerte am Abend. Weil tagsüber keine Zeit war.</div></div>
       <div class="z rechts"><i></i><div>Die Offerte ist gerechnet, wenn Sie Feierabend machen. Sie schauen sie an und geben sie frei.</div></div>
 
-      <div class="z links"><i></i><div>Sie können gerade nicht ans Telefon und verpassen den Anruf.</div></div>
-      <div class="z rechts"><i></i><div>Ihr Kunde bekommt sofort eine Nachricht: dass Sie bei einem Kunden sind und wann Sie zurückrufen.</div></div>
+      <div class="z links"><i></i><div>Sie können gerade nicht ans Telefon. Der Anrufer hört es klingeln.</div></div>
+      <div class="z rechts"><i></i><div>Er bekommt sofort eine Nachricht: dass Sie bei einem Kunden sind und wann Sie zurückrufen.</div></div>
 
-      <div class="z links"><i></i><div>Für eine Terminvereinbarung telefonieren Sie zweimal hin und her.</div></div>
+      <div class="z links"><i></i><div>Für einen Termin telefonieren Sie zweimal hin und her.</div></div>
       <div class="z rechts"><i></i><div>Der Kunde bekommt drei freie Termine vorgeschlagen und wählt einen aus.</div></div>
 
       <div class="z links"><i></i><div>Zum vierzigsten Mal die Frage nach den Öffnungszeiten.</div></div>
@@ -1684,15 +1638,15 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       <div class="z rechts"><i></i><div>Die Antwort ist entworfen, in Ihrem Ton. Sie lesen sie kurz und schicken sie ab.</div></div>
 
       <div class="z links"><i></i><div>Die Rechnung ist offen. Mahnen mögen Sie nicht.</div></div>
-      <div class="z rechts"><i></i><div>Es wird freundlich erinnert. Kommt nichts zurück, fragen wir Sie, wie es weitergehen soll.</div></div>
+      <div class="z rechts"><i></i><div>Es wird freundlich erinnert. Kommt nichts zurück, fragt er Sie, wie es weitergehen soll.</div></div>
 
     </div>
 
     <div class="gegen-fuss auf">
-      <div><b>Keines dieser Beispiele ist schwierig.</b> Sie kommen nur alle
-        dann, wenn Sie gerade nicht können.</div>
-      <div><b>Die Entscheidung bleibt am Ende immer bei Ihnen.</b> Alles davor
-        bereitet Ihr digitaler Mitarbeiter für Sie vor.</div>
+      <div><b>Keine davon ist schwierig.</b> Sie kommen nur alle dann, wenn Sie
+        gerade nicht können.</div>
+      <div><b>Bei Ihnen bleibt die Entscheidung.</b> Alles davor macht Ihr
+        digitaler Mitarbeiter.</div>
     </div>
   </div>
 </section>
@@ -1701,38 +1655,38 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 <section id="was">
   <div class="wrap">
     <span class="kicker auf">Website, Webshop, Anwendung — immer mit digitalem Mitarbeiter</span>
-    <h2 class="h2 auf">Bei uns steht Ihre Website nicht nur da — sie arbeitet mit.</h2>
+    <h2 class="h2 auf">Bei uns steht die Seite nicht nur da. Sie arbeitet mit.</h2>
     <p class="lede auf">Zu jeder Website, zu jedem Webshop und zu jeder Anwendung
-      von Player Two gehört mindestens ein digitaler Mitarbeiter. Wir übernehmen
-      die Aufgabe, die heute jeden Tag bei Ihnen liegen bleibt.</p>
+      von Player Two gehört mindestens ein digitaler Mitarbeiter. Er übernimmt
+      eine Aufgabe, die heute jeden Tag bei Ihnen liegen bleibt.</p>
 
     <div class="dreisatz stufe">
       <article class="satz-karte">
         <span class="nr">1</span>
-        <h3>Wir übernehmen echte Arbeit</h3>
-        <p>Anfragen aufnehmen und beantworten, Termine planen und vorbereiten,
-          Unterlagen einsammeln, Antworten auf Bewertungen entwerfen und vieles
-          mehr — Arbeit, die sonst liegen bleibt.</p>
+        <h3>Sie übernimmt echte Arbeit</h3>
+        <p>Anfragen aufnehmen und beantworten, Termine vorbereiten, Unterlagen
+          einsammeln, Antworten auf Bewertungen entwerfen. Das ist kein
+          Kontaktformular und kein Chatfenster ohne Aufgabe — es ist die Arbeit,
+          die sonst niemand macht.</p>
       </article>
       <article class="satz-karte">
         <span class="nr">2</span>
         <h3>Mit Ihren Preisen, in Ihrem Ton</h3>
-        <p>Wir legen vorab fest, welche Aufgabe wir für Sie übernehmen und wo
-          wir an Sie übergeben. Für Ihren Betrieb ergänzen wir das dann mit
-          Ihren echten Preisen, Ihrem Fachwissen und Ihrer Art zu formulieren —
-          damit die Antworten klingen, als hätten Sie sie selbst geschrieben.</p>
+        <p>Vorbereitet ist die Lösung samt seiner Rolle: seine Aufgabe, seine
+          Grenzen, der Punkt, an dem er an Sie übergibt. Ihr Wissen und Ihre
+          Preise kommen dazu, wenn wir ihn auf Ihren Betrieb übertragen.</p>
       </article>
       <article class="satz-karte">
         <span class="nr">3</span>
         <h3>Sie behalten den Daumen drauf</h3>
-        <p>Was der digitale Mitarbeiter nicht sicher weiss, beantwortet er auch
-          nicht und übergibt an Sie.</p>
+        <p>Was sie nicht sicher weiss, beantwortet sie nicht — sie übergibt an
+          Sie und sagt das auch.</p>
       </article>
     </div>
 
     <p class="was-fuss auf"><b>Der Umfang richtet sich nach Ihrem Betrieb.</b>
       Das gilt für dreissig Mitarbeitende genauso wie für den Betrieb, der aus
-      einer Person besteht. Dort ist unser Aufgabengebiet kleiner — und die
+      einer Person besteht. Dort ist sein Aufgabengebiet kleiner — und die
       Entlastung am grössten.</p>
   </div>
 </section>
@@ -1764,15 +1718,15 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <article class="stufe-karte">
           <span class="stufe-nr">Was Sie bekommen</span>
           <h3>Die Seite</h3>
-          <p class="satz">Ihre Arbeit, wie sie ist: sauber gezeigt, schnell geladen — und auffindbar bei Google wie bei ChatGPT, Claude und Gemini.</p>
+          <p class="satz">Ihre Arbeit, wie sie ist: sauber gezeigt, schnell geladen — und auffindbar bei Google wie bei ChatGPT, Perplexity und Gemini.</p>
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ihre Arbeiten, Ihre Leistungen, Ihre Preise</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Einfach erklärt:</b> Ihre Seite ist technisch so gebaut, dass Google sie schnell und ohne Fehler lesen kann. Zusätzlich hinterlegen wir Ihre wichtigsten Angaben — Öffnungszeiten, Adresse, Leistungen, Preise — so, dass Suchmaschinen und KI-Assistenten sie direkt übernehmen können. Das Ergebnis: Sie werden besser gefunden und richtig angezeigt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Claude und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass diese Programme verstehen, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt. Dazu bereiten wir Ihre Seite auf MCP vor — den neuen Standard, über den KI-Assistenten bald nicht nur lesen, sondern direkt etwas erledigen können, zum Beispiel einen Termin anfragen.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <a class="btn btn-voll" href="#kontakt">Termin vereinbaren</a>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
@@ -1806,12 +1760,12 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung, Versand oder beides</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zahlung über die üblichen Schweizer Wege</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Einfach erklärt:</b> Ihre Seite ist technisch so gebaut, dass Google sie schnell und ohne Fehler lesen kann. Zusätzlich hinterlegen wir Ihre wichtigsten Angaben — Öffnungszeiten, Adresse, Leistungen, Preise — so, dass Suchmaschinen und KI-Assistenten sie direkt übernehmen können. Das Ergebnis: Sie werden besser gefunden und richtig angezeigt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Claude und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass diese Programme verstehen, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt. Dazu bereiten wir Ihre Seite auf MCP vor — den neuen Standard, über den KI-Assistenten bald nicht nur lesen, sondern direkt etwas erledigen können, zum Beispiel einen Termin anfragen.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <a class="btn btn-voll" href="#kontakt">Termin vereinbaren</a>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
@@ -1846,12 +1800,12 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Bereich für Ihre Leute, einer für Ihre Kundschaft</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft im Browser, nichts zu installieren</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Einfach erklärt:</b> Ihre Seite ist technisch so gebaut, dass Google sie schnell und ohne Fehler lesen kann. Zusätzlich hinterlegen wir Ihre wichtigsten Angaben — Öffnungszeiten, Adresse, Leistungen, Preise — so, dass Suchmaschinen und KI-Assistenten sie direkt übernehmen können. Das Ergebnis: Sie werden besser gefunden und richtig angezeigt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Claude und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass diese Programme verstehen, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt. Dazu bereiten wir Ihre Seite auf MCP vor — den neuen Standard, über den KI-Assistenten bald nicht nur lesen, sondern direkt etwas erledigen können, zum Beispiel einen Termin anfragen.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Schema-Markup.</b> Unsichtbare Angaben im Quelltext, die Google und den Antwortdiensten sagen, was auf der Seite steht: Öffnungszeiten, Adresse, Leistungen, Preise. Ohne das muss die Maschine raten.</span></button></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Perplexity und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass sie versteht, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt.</span></button></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
           </ul>
-          <a class="btn btn-voll" href="#kontakt">Termin vereinbaren</a>
+          <a class="btn btn-linie" href="#regal">Fertige Lösungen ansehen</a>
         </article>
 
         <article class="stufe-karte arbeitet">
@@ -1886,14 +1840,12 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 <section class="branchen" id="branchen">
   <div class="wrap">
     <span class="kicker auf">Was das für Sie heisst</span>
-    <h2 class="h2 auf">Beispiele aus verschiedenen Branchen</h2>
-    <p class="lede auf">Damit Sie sich besser vorstellen können, wie wir Sie
-      zukünftig unterstützen werden, hier einige Visualisierungen verschiedener
-      Lösungen.</p>
+    <h2 class="h2 auf">Suchen Sie Ihre Branche.</h2>
+    <p class="lede auf">Wir zeigen den Tag, wie er dann läuft. Jede Branche hat einen anderen Papierkram — hier sehen Sie, was ohne Sie läuft und wo Sie noch entscheiden.</p>
 
     <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
-    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Durchdacht ist es
-      für <a href="loesungen.html">über hundert Branchen</a> — von der
+    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Im Regal liegen
+      Lösungen für <a href="loesungen.html">über hundert Branchen</a> — von der
       Physiotherapie über die Garage bis zur Dachdeckerei.</p>
 
     <div class="fluss-raster">
@@ -1912,26 +1864,18 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
   </div>
 </section>
 
-<!-- ================= schaufenster =================
-     Hiess bis zum 26.08.2026 "Fertige Loesungen". Kristian hat das
-     Angebot geaendert: es gibt keine vorgebauten Stuecke mehr, die man
-     auswaehlt und uebernimmt. Der Abschnitt zeigt jetzt, was wir bauen,
-     und fuehrt zu einem Gespraech statt zu einem Produkt.
-
-     ACHTUNG: Der Text sagt bewusst nicht, dass die ueber hundert
-     Branchenstuecke fertig dastehen - sie sind durchdacht, nicht
-     gebaut. Wenn das je anders wird, gehoert der Satz angepasst. -->
-<section id="schaufenster">
+<!-- ================= regal ================= -->
+<section id="regal">
   <div class="wrap">
-    <div class="schau-kopf">
+    <div class="regal-kopf">
       <div>
-        <span class="kicker auf">Schaufenster</span>
-        <h2 class="h2 auf">Sehen Sie, wie es bei Ihnen aussehen könnte.</h2>
-        <p class="lede auf">Für über hundert Branchen ist durchdacht, was die Seite
-          können muss und wer darin mitarbeitet. Gebaut wird für Ihren Betrieb,
-          nach dem Gespräch.</p>
+        <span class="kicker auf">Fertige Lösungen</span>
+        <h2 class="h2 auf">Ihre Lösung steht schon im Regal.</h2>
+        <p class="lede auf">Wir bauen fertig vor. Sie schauen an, wählen aus, wir
+          übertragen es auf Ihren Betrieb. Jedes Stück wird genau einmal vergeben.
+          Drei Beispiele — im Regal liegt mehr.</p>
       </div>
-      <a class="btn btn-voll auf" href="loesungen.html">Ganzes Schaufenster ansehen</a>
+      <a class="btn btn-voll auf" href="loesungen.html">Ins Regal</a>
     </div>
 
     <div class="stuecke stufe" id="stuecke">
@@ -1950,6 +1894,10 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <span class="branche-marke">Website · Maler und Handwerk</span>
           <h3>Malerbetrieb</h3>
           <p class="meta">Eine Seite. Arbeiten, Leistungen, Offertanfrage.</p>
+          <div class="fuss">
+            <span class="preis">CHF 1'490 <em>statt 1'990</em></span>
+            <span class="frei">Frei</span>
+          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="shop">
@@ -1967,6 +1915,10 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <span class="branche-marke">Webshop · Bäckerei und Hofladen</span>
           <h3>Hofladen</h3>
           <p class="meta">Shop bis 50 Artikel. Abholung, Versand, TWINT.</p>
+          <div class="fuss">
+            <span class="preis">CHF 1'990 <em>statt 2'490</em></span>
+            <span class="frei">Frei</span>
+          </div>
         </div>
       </article>
       <article class="stueck" data-sorte="anwendung">
@@ -1984,10 +1936,17 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <h3>Tischreservation</h3>
           <p class="meta">Tischplan, Bestätigung, Erinnerung, Gruppenanfragen.</p>
           <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
+          <div class="fuss">
+            <span class="preis">CHF 2'900 <em>statt 3'900</em></span>
+            <span class="frei">Frei</span>
+          </div>
         </div>
       </article>
     </div>
 
+    <p class="regal-mehr auf">
+      <a href="loesungen.html">Alle Lösungen ansehen und nach Ihrer Branche filtern</a>
+    </p>
   </div>
 </section>
 
@@ -1997,27 +1956,34 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
   <div class="wrap">
     <span class="kicker auf">So läuft es ab</span>
     <h2 class="h2 auf">Vier Schritte, und Sie sind live.</h2>
+    <p class="lede auf">Die Tage daneben gelten für eine Seite, die gefunden werden
+      soll. Was mehr können muss, braucht mehr Vorlauf. Was das heisst, steht
+      darunter.</p>
 
     <div class="schritte" id="schritte">
       <article class="schritt">
         <div class="punkt">1</div>
         <h3>Wir reden kurz</h3>
         <p>Dreissig Minuten, bei Ihnen im Betrieb oder am Telefon. Wir schauen an, was Sie machen und wer Sie anfragen soll.</p>
+        <div class="dauer">Tag 1</div>
       </article>
       <article class="schritt">
         <div class="punkt">2</div>
         <h3>Sie liefern, was nur Sie haben</h3>
         <p>Fotos von Ihren Arbeiten, Ihre Preise, Ihre Referenzen. Wir sagen genau, was fehlt, und fragen nach, statt zu warten.</p>
+        <div class="dauer">Tag 1 bis 3</div>
       </article>
       <article class="schritt">
         <div class="punkt">3</div>
         <h3>Wir bauen, Sie schauen zu</h3>
         <p>Sie sehen die fertige Seite, bevor Sie etwas bezahlen. Eine Korrekturrunde ist inbegriffen.</p>
+        <div class="dauer">Tag 3 bis 9</div>
       </article>
       <article class="schritt">
         <div class="punkt">4</div>
-        <h3>Sie gehen live</h3>
+        <h3>Live, und dann geben wir acht</h3>
         <p>Sie geben frei, wir schalten auf. Die Rechnung kommt danach, in einem Betrag. Betrieb und Pflege laufen monatlich weiter und sind monatlich kündbar.</p>
+        <div class="dauer">Tag 10</div>
       </article>
     </div>
 
@@ -2037,96 +2003,88 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       <article>
         <h3>Website</h3>
         <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>149.–</b> im Monat</p>
+        <p>Er nimmt die Anfrage auf und legt Ihnen die Offerte zur
+          Freigabe hin.</p>
       </article>
       <article>
         <h3>Webshop</h3>
         <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>249.–</b> im Monat</p>
+        <p>Er nimmt Bestellungen auf, bestätigt die Abholzeit und hält
+          den Bestand aktuell.</p>
       </article>
       <article>
         <h3>Anwendung</h3>
         <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>349.–</b> im Monat</p>
+        <p>Er nimmt Meldungen auf, ordnet sie zu und hält alle
+          Beteiligten auf dem Laufenden.</p>
       </article>
     </div>
+
+    <div class="preis-noch auf"><b>Die Beträge rechnen wir gerade neu</b>, weil
+      der digitale Mitarbeiter neu im Preis enthalten ist. Wir stellen keine Zahl hin,
+      die wir nachher korrigieren müssen. Fragen Sie an, dann bekommen Sie den
+      Fixpreis für Ihren Fall — beide Zahlen stehen in Ihrer Offerte, bevor Sie
+      zusagen.</div>
 
     <h3 class="dauer-frage auf">Was im Preis enthalten ist</h3>
     <ul class="preis-drin stufe">
       <li>Die fertig gebaute Seite mit allen Funktionen, die auf ihrem Datenblatt stehen.</li>
-      <li>Der digitale Mitarbeiter, eingerichtet mit Ihren Preisen und Ihrem Ton — getestet, bevor er zum ersten Mal mit einem Kunden spricht.</li>
       <li>Die Übertragung auf Ihren Betrieb: Ihr Logo, Ihre Farben, Ihre Bilder, Ihre Texte.</li>
+      <li>Der digitale Mitarbeiter, eingerichtet mit Ihren Preisen und Ihrem Ton — getestet, bevor sie zum ersten Mal mit einem Kunden spricht.</li>
+      <li>Die Gebühren für Ihre Adresse weisen wir separat aus, damit Sie sehen, was davon uns gehört.</li>
     </ul>
 
-    <p class="was-fuss auf" style="max-width:none"><b>Wenn eine vorhandene
-      Standardlösung besser und günstiger ist, sagen wir das.</b> Wir bauen kein
-      grosses System, wenn eine kleine Lösung genügt.</p>
+    <p class="was-fuss auf"><b>Wenn eine vorhandene Standardlösung besser und
+      günstiger ist, sagen wir das.</b> Wir bauen kein grosses System, wenn eine
+      kleine Lösung genügt.</p>
   </div>
 </section>
 
 <!-- ================= warum =================
      Die vier Regeln stehen woertlich im Masterfile, Zeile 320 bis 330
      ("Wir tun nie"). Die vierte stuetzt sich zusaetzlich auf die
-     Effizienz-Dividende, Zeile 777. Nichts davon ist erfunden.
-     2026-08-28 auf Wunsch von Kristian: die vier "Woran Sie es merken"
-     und der Fuss ("Sie muessen uns nicht glauben ...") sind gestrichen,
-     der Abschnitt faehrt jetzt seitlich auf dunklem Grund. -->
+     Effizienz-Dividende, Zeile 777. Nichts davon ist erfunden. -->
 <section id="warum">
-  <div class="nie-halt">
-    <div class="nie-kopf">
-      <div class="k-innen">
-        <div class="k-zeile">
-          <span class="kicker">Woran Sie uns messen können</span>
-          <span class="nie-zaehler" id="nie-zaehler">01 / 04</span>
-        </div>
-        <h2 class="h2">Was wir nie tun.</h2>
+  <div class="wrap">
+    <span class="kicker auf">Woran Sie uns messen können</span>
+    <h2 class="h2 auf">Was wir nie tun.</h2>
+    <p class="lede auf">Was ein Anbieter kann, steht auf jeder Seite. Was er
+      sich selbst verbietet, steht fast nirgends. Diese vier Regeln stehen bei
+      uns aufgeschrieben — daneben, woran Sie merken, ob wir uns daran halten.</p>
+
+    <div class="blatt auf">
+      <div class="blatt-kopf">
+        <span>Aus unserem Regelwerk</span>
+        <span>Gilt für jeden Auftrag</span>
+      </div>
+      <div class="nie-raster stufe">
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Menschen wegrationalisieren, um Ihnen etwas zu verkaufen.</h3>
+        <p>Wir nehmen Aufgaben ab, keine Menschen. Die Zeit, die frei wird, gehört den Leuten in Ihrem Betrieb.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>In keiner Offerte von uns steht eine eingesparte Stelle.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Technik verkaufen, die Sie nicht brauchen.</h3>
+        <p>Findet sich bei Ihnen keine Arbeit, die ein digitaler Mitarbeiter wirklich abnimmt, sagen wir Ihnen das — auch wenn uns das den Auftrag kostet.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Im ersten Gespräch nennen wir die Aufgabe. Oder dass es keine gibt.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Knebelverträge, versteckte Kosten, Intransparenz.</h3>
+        <p>Ein Fixpreis für den Aufbau, ein fester Betrag im Monat, monatlich kündbar ohne Begründung. Fremdkosten weisen wir getrennt aus.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Beide Zahlen stehen in Ihrer Offerte, bevor Sie zusagen.</div>
+      </div>
+      <div class="nie-zelle">
+        <span class="nie-marke">NIE</span><h3>Den Vorteil behalten, wenn unsere Arbeit günstiger wird.</h3>
+        <p>Werden unsere Werkzeuge günstiger, prüfen wir einmal im Jahr, ob Ihr Preis sinken kann. Auch wenn Sie längst unterschrieben haben.</p>
+        <div class="nie-pruef"><b>Woran Sie es merken</b>Wir melden uns mit dem Ergebnis — auch wenn es Nein lautet.</div>
+      </div>
+      </div>
+      <div class="blatt-fuss">
+        <div class="stark">Sie müssen uns nicht glauben. Sie dürfen uns daran messen.</div>
+        <div class="leise">Diese Sätze stehen so in unserem Regelwerk — seit dem
+          ersten Tag, nicht seit dieser Seite.</div>
       </div>
     </div>
-
-    <div class="nie-spur" id="nie-spur">
-      <article class="nie-blatt">
-        <div class="nie-inhalt">
-          <span class="nie-geist" aria-hidden="true">NIE</span>
-          <div class="nie-text">
-            <span class="nie-nr">Regel 01</span>
-            <h3><span class="strich">Menschen wegrationalisieren,</span><br><span class="strich">um Ihnen etwas zu verkaufen.</span></h3>
-            <p>Wir nehmen Aufgaben ab, keine Menschen. Die Zeit, die frei wird, gehört den Leuten in Ihrem Betrieb.</p>
-          </div>
-        </div>
-      </article>
-      <article class="nie-blatt">
-        <div class="nie-inhalt">
-          <span class="nie-geist" aria-hidden="true">NIE</span>
-          <div class="nie-text">
-            <span class="nie-nr">Regel 02</span>
-            <h3><span class="strich">Technik verkaufen,</span><br><span class="strich">die Sie nicht brauchen.</span></h3>
-            <p>Findet sich bei Ihnen keine Arbeit, die ein digitaler Mitarbeiter wirklich abnimmt, sagen wir Ihnen das — auch wenn uns das den Auftrag kostet.</p>
-          </div>
-        </div>
-      </article>
-      <article class="nie-blatt">
-        <div class="nie-inhalt">
-          <span class="nie-geist" aria-hidden="true">NIE</span>
-          <div class="nie-text">
-            <span class="nie-nr">Regel 03</span>
-            <h3><span class="strich">Knebelverträge,</span><br><span class="strich">versteckte Kosten,</span><br><span class="strich">Intransparenz.</span></h3>
-            <p>Ein Fixpreis für den Aufbau, ein fester Betrag im Monat, monatlich kündbar ohne Begründung. Fremdkosten weisen wir getrennt aus.</p>
-          </div>
-        </div>
-      </article>
-      <article class="nie-blatt">
-        <div class="nie-inhalt">
-          <span class="nie-geist" aria-hidden="true">NIE</span>
-          <div class="nie-text">
-            <span class="nie-nr">Regel 04</span>
-            <h3><span class="strich">Den Vorteil behalten,</span><br><span class="strich">wenn unsere Arbeit</span><br><span class="strich">günstiger wird.</span></h3>
-            <p>Werden unsere Werkzeuge günstiger, prüfen wir einmal im Jahr, ob Ihr Preis sinken kann. Auch wenn Sie längst unterschrieben haben.</p>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="nie-lauf" aria-hidden="true"><i id="nie-balken"></i></div>
   </div>
 </section>
 
@@ -2146,12 +2104,12 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       <div class="team-schau auf">
         <div class="menschen-zwei">
           <figure>
-            <img src="assets/mitarbeiter/kristina.webp" alt="Kristina"
+            <img src="../../assets/mitarbeiter/kristina.webp" alt="Kristina"
               width="96" height="96" loading="lazy">
             <figcaption>Kristina</figcaption>
           </figure>
           <figure>
-            <img src="assets/mitarbeiter/kristian.webp" alt="Kristian"
+            <img src="../../assets/mitarbeiter/kristian.webp" alt="Kristian"
               width="96" height="96" loading="lazy">
             <figcaption>Kristian</figcaption>
           </figure>
@@ -2160,17 +2118,17 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <div class="digital-reihe">
           <span class="d-titel">Ihr digitales Team</span>
           <ul class="kreis-reihe">
-          <li class="k"><img src="assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
+          <li class="k"><img src="../../assets/mitarbeiter/lea.webp" alt="Lea, Verkauf und Kundenstamm"
             title="Lea, Verkauf und Kundenstamm" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
+          <li class="k"><img src="../../assets/mitarbeiter/ferro.webp" alt="Ferro, Website-Produktion"
             title="Ferro, Website-Produktion" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/sora.webp" alt="Sora, Texte"
+          <li class="k"><img src="../../assets/mitarbeiter/sora.webp" alt="Sora, Texte"
             title="Sora, Texte" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
+          <li class="k"><img src="../../assets/mitarbeiter/kairo.webp" alt="Kairo, Auffindbarkeit"
             title="Kairo, Auffindbarkeit" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
+          <li class="k"><img src="../../assets/mitarbeiter/flora.webp" alt="Flora, Rechnungen"
             title="Flora, Rechnungen" width="64" height="64" loading="lazy"></li>
-          <li class="k"><img src="assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
+          <li class="k"><img src="../../assets/mitarbeiter/leon.webp" alt="Leon, Technik und Sicherheit"
             title="Leon, Technik und Sicherheit" width="64" height="64" loading="lazy"></li>
             <li class="k mehr" id="team-rest">+53</li>
           </ul>
@@ -2418,7 +2376,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
     <div class="fuss-raster">
       <div>
         <div class="fuss-marke">
-          <img src="assets/marke.png" alt="" width="30" height="30">
+          <img src="../../assets/marke.png" alt="" width="30" height="30">
           <span>Player Two</span>
         </div>
         <p style="max-width:34ch;font-size:15px">Digitale Arbeit für Schweizer KMU.</p>
@@ -2426,7 +2384,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       </div>
       <div class="fuss-links">
         <a href="#stufen">Angebot</a>
-    <a href="loesungen.html">Schaufenster</a>
+    <a href="loesungen.html">Fertige Lösungen</a>
         <a href="#ablauf">Ablauf</a>
         <a href="team.html">Team</a>
         <a href="#kontakt">Kontakt</a>
@@ -2473,7 +2431,7 @@ document.querySelectorAll('.gegen').forEach(function(el){
   auftritt.observe(el);
 });
 
-/* ---------- Schaufenster vorne: nur der Weg zur Branchenanimation ----------
+/* ---------- Regal vorne: nur der Weg zur Branchenanimation ----------
    Gefiltert wird im Katalog auf loesungen.html, nicht hier. */
 (function(){
   var regal = document.getElementById('stuecke');
@@ -2568,116 +2526,6 @@ document.querySelectorAll('.gegen').forEach(function(el){
   aus.addEventListener('change', messen);
   messen();
   /* Nochmals, wenn Schriften und Bilder die Breiten verschoben haben. */
-  addEventListener('load', messen);
-})();
-
-/* ---------- Die dunkle Strecke: Was wir nie tun ---------- */
-/* Gleicher Mechanismus wie die Angebots-Strecke: der Ausschnitt bleibt
-   stehen, die Regeln fahren seitlich durch, kein Abfangen des Scrollrads.
-   Beim Erreichen einer Regel wird sie durchgestrichen. */
-(function(){
-  var band = document.getElementById('warum');
-  var spur = document.getElementById('nie-spur');
-  if (!band || !spur) return;
-  var blaetter = spur.querySelectorAll('.nie-blatt');
-  var zaehler = document.getElementById('nie-zaehler');
-  var balken = document.getElementById('nie-balken');
-  var aus = matchMedia('(max-width:1024px), (prefers-reduced-motion: reduce)');
-  var weg = 0, strecke = 0, anzeige = -1;
-  /* Deutlich kuerzer als die Angebots-Strecke: vier kurze Regeln
-     rechtfertigen keine 6000 Bildpunkte Scrollweg. */
-  var TEMPO = 0.55;
-
-  function zeigen(jetzt){
-    if (jetzt === anzeige) return;
-    anzeige = jetzt;
-    for (var i = 0; i < blaetter.length; i++){
-      blaetter[i].classList.toggle('an', i === jetzt);
-    }
-    zaehler.textContent = '0' + (jetzt + 1) + ' / 0' + blaetter.length;
-  }
-
-  /* Anteil jedes Viertels, in dem die Fahrt STEHT: die Regel erscheint,
-     die Striche ziehen von selbst durch, dann faehrt es weiter. */
-  var HALT = 0.55;
-
-  /* Weiche Fahrt: der Scrollweg liefert nur das Ziel, die Bewegung selbst
-     wird Bild fuer Bild nachgezogen - kein Springen bei jedem Radschritt. */
-  var zielX = 0, istX = 0, zielB = 0, istB = 0, laeuft = false;
-
-  function nachziehen(){
-    if (aus.matches){ laeuft = false; return; }
-    istX += (zielX - istX) * 0.11;
-    istB += (zielB - istB) * 0.11;
-    if (Math.abs(zielX - istX) < 0.3 && Math.abs(zielB - istB) < 0.002){
-      istX = zielX; istB = zielB; laeuft = false;
-    } else {
-      requestAnimationFrame(nachziehen);
-    }
-    spur.style.transform = 'translate3d(' + (-istX) + 'px,0,0)';
-    balken.style.transform = 'scaleX(' + istB + ')';
-  }
-
-  function anstossen(){
-    if (!laeuft){ laeuft = true; requestAnimationFrame(nachziehen); }
-  }
-
-  function schieben(){
-    if (aus.matches || weg <= 0) return;
-    var oben = band.getBoundingClientRect().top;
-    /* Im Anmarsch blendet Regel 1 schon ein, damit das Band nie leer
-       wirkt. Die Striche folgen von selbst, sobald die Regel steht. */
-    if (oben > window.innerHeight * 0.55){
-      if (anzeige !== -1){
-        anzeige = -1;
-        for (var i = 0; i < blaetter.length; i++){
-          blaetter[i].classList.remove('an');
-          blaetter[i].classList.remove('los');
-        }
-      }
-      return;
-    }
-    var anteil = Math.min(1, Math.max(0, -oben / strecke));
-    var n = blaetter.length;
-    var seg = Math.min(n - 1, Math.floor(anteil * n));
-    var u = anteil * n - seg;              /* 0 bis 1 innerhalb des Viertels */
-    var schritt = weg / (n - 1);           /* eine Tafelbreite */
-    /* Waehrend HALT steht die Tafel, danach faehrt sie weich weiter. */
-    var fahrt = (seg >= n - 1) ? 0 : (u <= HALT ? 0 : (u - HALT) / (1 - HALT));
-    fahrt = fahrt * fahrt * (3 - 2 * fahrt);
-    zielX = (seg + fahrt) * schritt;
-    zielB = anteil;
-    anstossen();
-    zeigen(seg);
-    /* Die Striche kommen erst, wenn nach der Ankunft der Regel weiter
-       gescrollt wird - und sind durch, bevor die Fahrt losgeht. */
-    for (var k = 0; k < blaetter.length; k++){
-      blaetter[k].classList.toggle('los', k === seg && u >= 0.22);
-    }
-  }
-
-  function messen(){
-    if (aus.matches){
-      band.style.height = ''; spur.style.transform = ''; weg = 0;
-      /* Untereinander: alle Regeln sofort zeigen und streichen. */
-      for (var i = 0; i < blaetter.length; i++){
-        blaetter[i].classList.add('an');
-        blaetter[i].classList.add('los');
-      }
-      return;
-    }
-    var sicht = spur.parentElement.clientWidth;
-    weg = spur.scrollWidth - sicht;
-    strecke = weg * TEMPO;
-    band.style.height = (window.innerHeight + strecke) + 'px';
-    anzeige = -1;
-    schieben();
-  }
-
-  addEventListener('scroll', schieben, {passive:true});
-  addEventListener('resize', messen);
-  aus.addEventListener('change', messen);
-  messen();
   addEventListener('load', messen);
 })();
 

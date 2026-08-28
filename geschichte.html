@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unsere Geschichte, Player Two</title>
+<meta name="description" content="Kristina und Kristian, Geschwister aus dem Thurgau. Wie aus zwei Kindern an einer Konsole Player Two wurde.">
+<meta name="theme-color" content="#F2F4F7">
+<link rel="icon" href="assets/marke.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F7;--canvas-2:#E8ECF2;--tief:#0B1220;--tief-voll:#050A14;--nacht:#082056;
+  --akzent:#1E6CFF;--cyan:#00C6FF;--grau:#5B6779;
+  --linie:rgba(11,18,32,.12);--linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;--body:'Source Sans 3',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);--ease-soft:cubic-bezier(.33,1,.68,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:clamp(16px,1.05vw,18px);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.06;letter-spacing:-.022em;margin:0}
+p{margin:0}a{color:inherit}img{max-width:100%;display:block}
+
+.umgebung{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(58vw 48vh at 14% 6%,rgba(30,108,255,.07),transparent 64%),
+             radial-gradient(50vw 42vh at 86% 74%,rgba(0,198,255,.06),transparent 68%);
+  animation:atmen 84s var(--ease-soft) infinite alternate -20s}
+@keyframes atmen{from{transform:translate3d(-1.2%,-1%,0) scale(1.02)}to{transform:translate3d(1.4%,1.6%,0) scale(1.07)}}
+.skip{position:absolute;left:-9999px;top:0;background:var(--tief);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:0}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:28px;
+  padding:14px max(4vw,24px);background:rgba(242,244,247,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--linie)}
+.marke{display:flex;align-items:center;gap:11px;text-decoration:none}
+.marke img{width:34px;height:34px;object-fit:contain}
+.marke span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{text-decoration:none;font-size:15px;opacity:.72;padding:4px 0;position:relative;transition:opacity .3s var(--ease)}
+.nav-links a:hover,.nav-links a[aria-current]{opacity:1}
+.nav-links a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--akzent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);
+  font-weight:600;font-size:16px;text-decoration:none;padding:13px 24px;border-radius:10px;
+  border:1px solid transparent;cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease)}
+.btn-voll{background:var(--akzent);color:#fff;box-shadow:0 6px 20px rgba(30,108,255,.28)}
+.btn-voll:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(30,108,255,.36)}
+.btn-linie{border-color:var(--linie-stark);background:rgba(255,255,255,.5)}
+.btn-linie:hover{transform:translateY(-2px);border-color:var(--tief);background:#fff}
+:focus-visible{outline:3px solid var(--akzent);outline-offset:3px;border-radius:4px}
+@media (pointer:coarse){.btn{min-height:44px}}
+
+main{position:relative;z-index:2}
+.wrap{width:var(--seite);margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--akzent);display:block;margin-bottom:16px}
+
+/* Alles auf einen Bildschirm: Bild, Text, Leiste und der Knopf zurueck
+   zum Team. Nur der Fuss liegt darunter. Die Masse rechnen deshalb mit
+   der Bildschirmhoehe. */
+.kopf{padding:calc(56px + 2vh) 0 clamp(8px,1.2vh,16px)}
+.kopf h1{font-size:clamp(28px,4.6vh,48px);max-width:20ch}
+.kopf .lede{margin-top:clamp(8px,1.2vh,14px);font-size:clamp(14.5px,1.9vh,18px);color:#26313F;max-width:60ch}
+
+/* Das Fotobuch */
+.buch{position:relative;margin:clamp(6px,1.2vh,16px) 0 clamp(8px,1.4vh,18px);background:#fff;border:1px solid var(--linie);border-radius:20px;
+  overflow:hidden;box-shadow:0 24px 56px rgba(11,18,32,.08)}
+.buch-bild{position:relative;height:clamp(240px,48vh,640px);background:linear-gradient(168deg,#0B1220,#082056);overflow:hidden}
+.buch-bild::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 84% 6%,rgba(30,108,255,.34),transparent 60%)}
+.buch-bild .folgt{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;
+  align-items:center;justify-content:center;color:rgba(235,248,255,.65)}
+.buch-bild .folgt b{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.buch-bild .folgt span{font-size:14.5px}
+.buch-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.buch-text{padding:clamp(10px,1.5vh,18px) clamp(22px,3vw,40px) clamp(10px,1.5vh,16px)}
+.buch-text .zaehler{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--akzent);
+  text-transform:uppercase;display:block;margin-bottom:clamp(4px,.8vh,8px)}
+.buch-text p{font-size:clamp(14px,1.7vh,16.5px);line-height:1.55;color:#26313F;
+  min-height:4.65em}
+.buch-seite{display:none}
+.buch-seite.an{display:block;animation:blatt .5s var(--ease)}
+@keyframes blatt{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+/* Pfeile und Punkte liegen IM Bild, damit das Foto den Platz bekommt. */
+.buch-leiste{position:absolute;top:0;left:0;right:0;height:clamp(240px,48vh,640px);
+  padding:0 14px;display:flex;align-items:center;justify-content:space-between;
+  pointer-events:none}
+.buch-leiste .punkte{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+  display:flex;gap:8px}
+.buch-leiste .punkte i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);
+  box-shadow:0 1px 6px rgba(5,10,20,.45);
+  transition:background .3s var(--ease),transform .3s var(--ease)}
+.buch-leiste .punkte i.an{background:#fff;transform:scale(1.3)}
+.pfeil{pointer-events:auto;width:44px;height:44px;border-radius:50%;border:0;
+  background:rgba(255,255,255,.85);box-shadow:0 4px 16px rgba(5,10,20,.35);
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  transition:transform .3s var(--ease),background .3s var(--ease),opacity .3s var(--ease)}
+.pfeil:hover{transform:translateY(-1px);background:#fff}
+.pfeil[disabled]{opacity:0;cursor:default;transform:none;pointer-events:none}
+.pfeil svg{width:18px;height:18px}
+.pfeil svg path{fill:none;stroke:var(--tief);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+.zurueck{margin:0 0 clamp(20px,3.5vh,48px);display:flex;justify-content:center}
+
+footer{position:relative;z-index:2;border-top:1px solid var(--linie);padding:34px 0 40px;background:var(--canvas-2)}
+.fuss-raster{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start}
+.fuss-marke{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.fuss-marke span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.fuss-links{display:flex;gap:22px;flex-wrap:wrap}
+.fuss-links a{text-decoration:none;font-size:15px;opacity:.72}
+.fuss-links a:hover{opacity:1}
+.fuss-klein{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  margin-top:26px;font-size:13.5px;color:var(--grau)}
+
+@media (max-width:760px){
+  .nav-links{display:none}
+  .buch-bild{height:auto;aspect-ratio:4/3}
+  /* Auf dem Handy wieder unter dem Bild - Finger brauchen Platz. */
+  .buch-leiste{position:static;height:auto;padding:8px 16px 12px;justify-content:center;gap:16px}
+  .buch-leiste .punkte{position:static;transform:none;margin-right:auto;order:-1}
+  .buch-leiste .punkte i{background:var(--linie-stark);box-shadow:none}
+  .buch-leiste .punkte i.an{background:var(--akzent)}
+  .pfeil{background:#fff;border:1px solid var(--linie-stark)}
+  .pfeil[disabled]{opacity:.3;pointer-events:none}
+}
+</style>
+</head>
+<body>
+<div class="umgebung" aria-hidden="true"></div>
+<a class="skip" href="#main">Direkt zum Inhalt</a>
+
+<nav class="nav">
+  <a class="marke" href="index.html" aria-label="Player Two, Startseite">
+    <img src="assets/marke.png" srcset="assets/marke.png 1x, assets/marke@2x.png 2x" alt="" width="34" height="34">
+    <span>Player Two</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#stufen">Angebot</a>
+    <a href="loesungen.html">Schaufenster</a>
+    <a href="index.html#ablauf">Ablauf</a>
+    <a href="index.html#team">Über uns</a>
+    <a href="team.html">Team</a>
+    <a href="index.html#kontakt">Kontakt</a>
+  </div>
+  <a class="btn btn-voll" href="index.html#kontakt" style="margin-left:22px">Termin vereinbaren</a>
+</nav>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <header class="kopf">
+      <span class="kicker">Über uns</span>
+      <h1>Unsere Geschichte</h1>
+      <p class="lede">Player Two, das sind wir: Kristina und Kristian. Blättern
+        Sie durch — Bild für Bild, vom Kinderzimmer bis heute.</p>
+    </header>
+
+    <section class="buch" aria-label="Unsere Geschichte zum Durchblättern">
+
+      <div class="buch-seite an" data-seite="1">
+        <div class="buch-bild">
+          <img src="assets/geschichte-1.webp" alt="Gezeichnete Illustration: zwei Geschwister bauen im Kinderzimmer gemeinsam ein Modellhaus" width="1536" height="1024">
+        </div>
+        <div class="buch-text">
+          <span class="zaehler">Seite 1 von 5</span>
+          <p>Player Two, das sind wir: Kristina und Kristian – Geschwister, die
+            schon als Kinder alles gemeinsam gemacht und vom eigenen Weg
+            geträumt haben.</p>
+        </div>
+      </div>
+
+      <div class="buch-seite" data-seite="2">
+        <div class="buch-bild">
+          <img src="assets/geschichte-2.webp" alt="Gezeichnete Illustration: die beiden Kinder sitzen vor dem Röhrenfernseher und spielen zusammen an der Konsole" width="1536" height="1024">
+        </div>
+        <div class="buch-text">
+          <span class="zaehler">Seite 2 von 5</span>
+          <p>Aufgewachsen mit Nintendo, hat uns vor allem ein Spiel geprägt:
+            The Legend of Zelda – Ocarina of Time. Mut, Fairness und Rücksicht
+            auf andere – und ganz nebenbei das Teilen: Wir haben uns an der
+            Konsole abgewechselt, lange bevor wir wussten, was Teamwork
+            bedeutet.</p>
+        </div>
+      </div>
+
+      <div class="buch-seite" data-seite="3">
+        <div class="buch-bild">
+          <img src="assets/geschichte-3.webp" alt="Gezeichnete Illustration: die Geschwister spielen abends in einer selbstgebauten Deckenhöhle" width="1536" height="1024">
+        </div>
+        <div class="buch-text">
+          <span class="zaehler">Seite 3 von 5</span>
+          <p>Für uns war das mehr als Zeitvertreib – es war unser Rückzugsort,
+            ein Ort, an dem wir kreativ sein und für eine Weile alles um uns
+            herum vergessen konnten.</p>
+        </div>
+      </div>
+
+      <div class="buch-seite" data-seite="4">
+        <div class="buch-bild">
+          <img src="assets/geschichte-4.webp" alt="Gezeichnete Illustration: Kristina und Kristian heute, vor dem Player-Two-Schriftzug im Büro" width="1536" height="1024" style="object-position:center top">
+        </div>
+        <div class="buch-text">
+          <span class="zaehler">Seite 4 von 5</span>
+          <p>Genau diese Erfahrung steckt bis heute in uns – und im Namen
+            Player Two. Denn das ist unser Ansatz: Sie sind Player One in Ihrem
+            Unternehmen. Wir sind Ihr Player Two – an Ihrer Seite, damit Sie
+            das Spiel nicht allein bestreiten müssen.</p>
+        </div>
+      </div>
+
+      <div class="buch-seite" data-seite="5">
+        <div class="buch-bild">
+          <img src="assets/geschichte-5.webp" alt="Gezeichnete Illustration: die beiden arbeiten gemeinsam am Tisch über einem Ablaufplan, mit Laptop und Tablet" width="1536" height="1024">
+        </div>
+        <div class="buch-text">
+          <span class="zaehler">Seite 5 von 5</span>
+          <p>Wir kennen den KMU-Alltag aber auch aus eigener beruflicher
+            Erfahrung. Kristina bringt langjährige Erfahrung aus Verkauf,
+            Kundenberatung und Marketing mit, Kristian die technische Tiefe aus
+            Prozessanalyse, Softwareentwicklung und KI. Zwei Perspektiven, ein
+            Ziel: Ihnen die Arbeit abnehmen, die Sie von Ihrem eigentlichen
+            Geschäft abhält.</p>
+        </div>
+      </div>
+
+      <div class="buch-leiste">
+        <div class="punkte" id="punkte" aria-hidden="true"></div>
+        <button type="button" class="pfeil" id="zurueck-blatt" aria-label="Vorherige Seite">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+        </button>
+        <button type="button" class="pfeil" id="weiter-blatt" aria-label="Nächste Seite">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>
+        </button>
+      </div>
+
+    </section>
+
+    <div class="zurueck">
+      <a class="btn btn-linie" href="team.html">Zurück zum Team</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <div class="fuss-marke">
+          <img src="assets/marke.png" alt="" width="30" height="30">
+          <span>Player Two</span>
+        </div>
+        <p style="max-width:34ch;font-size:15px">Digitale Arbeit für Schweizer KMU. Sie sind Player One. Wir spielen mit.</p>
+      </div>
+      <div class="fuss-links">
+        <a href="index.html#stufen">Angebot</a>
+        <a href="loesungen.html">Schaufenster</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#kontakt">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+    <div class="fuss-klein">
+      <span>© <span id="jahr">2026</span> Player Two, Thurgau</span>
+      <span>Die Bilder dieser Geschichte sind gezeichnet und erzeugt.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+var seiten = Array.prototype.slice.call(document.querySelectorAll('.buch-seite'));
+var punkte = document.getElementById('punkte');
+var zurueck = document.getElementById('zurueck-blatt');
+var weiter = document.getElementById('weiter-blatt');
+var aktiv = 0;
+
+seiten.forEach(function(_, i){
+  var p = document.createElement('i');
+  if (i === 0) p.className = 'an';
+  punkte.appendChild(p);
+});
+
+function zeige(n){
+  aktiv = Math.max(0, Math.min(seiten.length - 1, n));
+  seiten.forEach(function(s, i){ s.classList.toggle('an', i === aktiv); });
+  Array.prototype.forEach.call(punkte.children, function(p, i){
+    p.classList.toggle('an', i === aktiv);
+  });
+  zurueck.disabled = aktiv === 0;
+  weiter.disabled = aktiv === seiten.length - 1;
+}
+
+zurueck.addEventListener('click', function(){ zeige(aktiv - 1); });
+weiter.addEventListener('click', function(){ zeige(aktiv + 1); });
+document.addEventListener('keydown', function(e){
+  if (e.key === 'ArrowRight') zeige(aktiv + 1);
+  if (e.key === 'ArrowLeft') zeige(aktiv - 1);
+});
+zeige(0);
+})();
+</script>
+</body>
+</html>

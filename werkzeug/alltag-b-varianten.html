@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>B in drei Varianten — ohne Zettel, einfacher erklärt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F7; --canvas-2:#E8ECF2; --tief:#0B1220; --tief-voll:#050A14;
+  --akzent:#1E6CFF; --cyan:#00C6FF; --grau:#5B6779;
+  --linie:rgba(11,18,32,.12); --linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Sans 3',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--seite);margin:0 auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:16px}
+.h2{font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.lede{margin-top:16px;font-size:18px;color:#26313F;max-width:60ch}
+
+.kopfband{position:sticky;top:0;z-index:50;background:var(--tief);color:#EBF8FF;
+  padding:13px 0;box-shadow:0 6px 24px rgba(5,10,20,.25)}
+.kopfband .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.kopfband b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7FD4FF;font-weight:500}
+.kopfband a{color:#EBF8FF;text-decoration:none;font-size:14.5px;
+  border-bottom:1px solid rgba(235,248,255,.3);padding-bottom:1px}
+.kopfband a:hover{color:var(--cyan);border-color:var(--cyan)}
+.kopfband .weg{margin-left:auto;color:rgba(235,248,255,.6);font-size:13px}
+
+section.probe{padding:clamp(48px,7vh,86px) 0;border-bottom:1px solid var(--linie)}
+section.probe.dunkler{background:var(--canvas-2)}
+.marke{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau)}
+.marke i{width:28px;height:28px;border-radius:50%;background:var(--akzent);color:#fff;
+  display:grid;place-content:center;font-style:normal;font-size:12px;font-weight:500}
+.urteil{margin-top:26px;padding:15px 19px;border-radius:12px;
+  background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
+  font-size:15px;line-height:1.6;max-width:80ch}
+.urteil b{color:var(--akzent)}
+
+.raum{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);
+  align-items:center;margin-top:clamp(28px,4vh,46px)}
+.text h3{font-size:clamp(21px,2.4vw,29px);line-height:1.18}
+.text p{font-size:16.5px;line-height:1.6;color:#3A4553;margin:14px 0 0}
+.zwei{display:grid;gap:14px;margin-top:26px}
+.zwei div{padding-left:18px;border-left:2px solid var(--linie-stark)}
+.zwei b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau);margin-bottom:3px}
+.zwei .gut{border-left-color:#1E8A4C}
+.zwei .gut b{color:#1E8A4C}
+
+/* ==================================================================
+   B1 — Karten, die auflaufen. Kein Papier, keine Schraeglage.
+   ================================================================== */
+.auflauf{position:relative;height:330px}
+.karte{position:absolute;left:0;right:0;top:50%;
+  background:#fff;border:1px solid var(--linie);border-radius:14px;
+  padding:13px 17px;box-shadow:0 10px 26px rgba(11,18,32,.08);
+  display:flex;gap:13px;align-items:baseline;
+  animation:kartenLauf 11s var(--ease) infinite}
+.karte .wann{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  color:var(--grau);white-space:nowrap;min-width:96px}
+.karte .txt{font-size:15px;line-height:1.4}
+.karte:nth-child(1){--stapel:-96px;--reihe:-140px;animation-delay:0s}
+.karte:nth-child(2){--stapel:-56px;--reihe:-70px;animation-delay:.6s}
+.karte:nth-child(3){--stapel:-16px;--reihe:0px;animation-delay:1.2s}
+.karte:nth-child(4){--stapel:24px;--reihe:70px;animation-delay:1.8s}
+.karte:nth-child(5){--stapel:64px;--reihe:140px;animation-delay:2.4s}
+@keyframes kartenLauf{
+  0%   {opacity:0;transform:translate(38px,var(--stapel)) scale(.97)}
+  7%   {opacity:1;transform:translate(0,var(--stapel)) scale(.97)}
+  46%  {opacity:1;transform:translate(0,var(--stapel)) scale(.97)}
+  58%  {opacity:1;transform:translate(0,var(--reihe)) scale(1)}
+  93%  {opacity:1;transform:translate(0,var(--reihe)) scale(1)}
+  100% {opacity:0;transform:translate(0,var(--reihe)) scale(1)}
+}
+
+/* ==================================================================
+   B2 — Der Rückstau. Eine Spalte, die sich füllt.
+   ================================================================== */
+.stau{position:relative;height:340px;display:flex;flex-direction:column-reverse;
+  gap:8px;justify-content:flex-start;padding:18px;
+  background:#fff;border:1px solid var(--linie);border-radius:18px;
+  box-shadow:0 18px 44px rgba(11,18,32,.07)}
+.stau-linie{position:absolute;left:18px;right:18px;top:76px;height:1px;
+  background:repeating-linear-gradient(90deg,var(--linie-stark) 0 6px,transparent 6px 12px)}
+.stau-linie::after{content:"so viel geht an einem Abend";position:absolute;
+  right:0;top:-19px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--grau)}
+.riegel{border-radius:10px;padding:11px 15px;background:var(--canvas-2);
+  display:flex;gap:12px;align-items:baseline;
+  opacity:0;animation:riegelRein .5s var(--ease) forwards}
+.riegel .wann{font-family:var(--mono);font-size:11px;color:var(--grau);
+  white-space:nowrap;min-width:92px}
+.riegel .txt{font-size:14.5px;line-height:1.35}
+.riegel:nth-child(2){animation-delay:.5s}
+.riegel:nth-child(3){animation-delay:1.1s}
+.riegel:nth-child(4){animation-delay:1.7s}
+.riegel:nth-child(5){animation-delay:2.3s;background:rgba(30,108,255,.1)}
+.riegel:nth-child(6){animation-delay:2.9s;background:rgba(30,108,255,.14)}
+@keyframes riegelRein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ==================================================================
+   B3 — Die Stunde, die sich füllt. Ein Balken statt Dinge.
+   ================================================================== */
+.balken-raum{padding:clamp(22px,3vh,32px);background:#fff;
+  border:1px solid var(--linie);border-radius:18px;
+  box-shadow:0 18px 44px rgba(11,18,32,.07)}
+.balken-kopf{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau);margin-bottom:18px}
+.balken{height:34px;border-radius:10px;background:var(--canvas-2);
+  display:flex;overflow:hidden}
+.stueck{height:100%;background:var(--akzent);opacity:0;
+  border-right:2px solid #fff;
+  animation:stueckAuf .5s var(--ease) forwards}
+.stueck:nth-child(1){width:25%;animation-delay:.5s}
+.stueck:nth-child(2){width:31%;animation-delay:1.1s;background:#3D80FF}
+.stueck:nth-child(3){width:19%;animation-delay:1.7s;background:#5B94FF}
+.stueck:nth-child(4){width:25%;animation-delay:2.3s;background:#79A8FF;border-right:0}
+@keyframes stueckAuf{from{opacity:0}to{opacity:1}}
+.balken-liste{display:grid;gap:0;margin-top:20px}
+.b-zeile{display:grid;grid-template-columns:78px 1fr auto;gap:14px;
+  align-items:baseline;padding:11px 0;border-bottom:1px solid var(--linie);
+  opacity:0;animation:riegelRein .5s var(--ease) forwards}
+.b-zeile:last-child{border-bottom:0}
+.b-zeile:nth-child(1){animation-delay:.5s}
+.b-zeile:nth-child(2){animation-delay:1.1s}
+.b-zeile:nth-child(3){animation-delay:1.7s}
+.b-zeile:nth-child(4){animation-delay:2.3s}
+.b-zeile .wann{font-family:var(--mono);font-size:12px;color:var(--grau)}
+.b-zeile .txt{font-size:15px;line-height:1.4}
+.b-zeile .dauer{font-family:var(--mono);font-size:14px;white-space:nowrap}
+.b-summe{display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:18px;padding-top:16px;border-top:1px solid var(--linie-stark);
+  opacity:0;animation:riegelRein .6s var(--ease) 2.9s forwards}
+.b-summe span{font-family:var(--display);font-weight:600;font-size:17px}
+.b-summe b{font-family:var(--mono);font-size:24px;color:var(--akzent);font-weight:500}
+
+@media (max-width:900px){
+  .raum{grid-template-columns:1fr}
+  .auflauf{height:300px}
+}
+@media (prefers-reduced-motion:reduce){
+  .karte,.riegel,.stueck,.b-zeile,.b-summe{animation:none;opacity:1}
+  .karte{position:static;transform:none;margin-bottom:9px}
+  .auflauf{height:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="kopfband">
+  <div class="wrap">
+    <b>B in drei Varianten</b>
+    <a href="#b1">B1 — Karten laufen auf</a>
+    <a href="#b2">B2 — Der Rückstau</a>
+    <a href="#b3">B3 — Die Stunde füllt sich</a>
+    <a href="alltag-alle.html">← alle sechs</a>
+    <span class="weg">Ohne Zettel, Text vereinfacht.</span>
+  </div>
+</div>
+
+<!-- =========================================================== B1 -->
+<section class="probe" id="b1">
+  <div class="wrap">
+    <span class="marke"><i>B1</i> Karten laufen auf</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Was sich bis am Abend ansammelt.</h2>
+    <p class="lede">Was Sie tagsüber nicht annehmen können, bleibt liegen. Am
+      Abend liegt alles auf einmal da.</p>
+
+    <div class="raum">
+      <div class="auflauf" aria-hidden="true">
+        <div class="karte"><span class="wann">10:20 · Anruf</span>
+          <span class="txt">Nicht abgenommen</span></div>
+        <div class="karte"><span class="wann">11:45 · Website</span>
+          <span class="txt">Anfrage für 3½ Zimmer</span></div>
+        <div class="karte"><span class="wann">14:10 · Anruf</span>
+          <span class="txt">Frage nach den Öffnungszeiten</span></div>
+        <div class="karte"><span class="wann">16:05 · im Laden</span>
+          <span class="txt">Vorbestellung für Samstag</span></div>
+        <div class="karte"><span class="wann">17:50 · offen</span>
+          <span class="txt">Offerte nachfassen</span></div>
+      </div>
+
+      <div class="text">
+        <h3>Fünf Sachen. Und der Abend ist weg.</h3>
+        <p>Keine davon ist schwierig. Sie kommen nur alle dann, wenn Sie gerade
+          nicht können.</p>
+        <div class="zwei">
+          <div><b>Heute</b>Sie machen es nach dem Znacht. Bei der Hälfte wissen
+            Sie nicht mehr, worum es ging.</div>
+          <div class="gut"><b>Mit einem digitalen Mitarbeiter</b>Vier sind schon
+            erledigt. Übrig bleiben die zwei, die Sie entscheiden müssen.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Was anders ist als vorher:</b> keine Zettel, keine
+      Schräglage. Die Sachen laufen als saubere Karten von rechts ein, stapeln
+      sich versetzt und ordnen sich dann zur Liste. <b>Text:</b> «Was Sie
+      tagsüber nicht annehmen können, bleibt liegen» statt der Zettel-Erklärung.</p>
+  </div>
+</section>
+
+<!-- =========================================================== B2 -->
+<section class="probe dunkler" id="b2">
+  <div class="wrap">
+    <span class="marke"><i>B2</i> Der Rückstau</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Es staut sich den ganzen Tag.</h2>
+    <p class="lede">Jedes Mal, wenn Sie nicht können, kommt eine Sache dazu.
+      Nichts davon geht von selbst weg.</p>
+
+    <div class="raum">
+      <div class="stau" aria-hidden="true">
+        <div class="stau-linie"></div>
+        <div class="riegel"><span class="wann">10:20 · Anruf</span>
+          <span class="txt">Nicht abgenommen</span></div>
+        <div class="riegel"><span class="wann">11:45 · Website</span>
+          <span class="txt">Anfrage für 3½ Zimmer</span></div>
+        <div class="riegel"><span class="wann">14:10 · Anruf</span>
+          <span class="txt">Frage nach den Öffnungszeiten</span></div>
+        <div class="riegel"><span class="wann">16:05 · im Laden</span>
+          <span class="txt">Vorbestellung für Samstag</span></div>
+        <div class="riegel"><span class="wann">17:50 · offen</span>
+          <span class="txt">Offerte nachfassen</span></div>
+      </div>
+
+      <div class="text">
+        <h3>Zwei davon schaffen Sie am Abend.</h3>
+        <p>Der Rest wandert auf morgen. Und morgen kommt wieder gleich viel
+          dazu.</p>
+        <div class="zwei">
+          <div><b>Heute</b>Der Stau wächst schneller, als Sie ihn abbauen
+            können.</div>
+          <div class="gut"><b>Mit einem digitalen Mitarbeiter</b>Es staut sich
+            gar nicht erst. Was hereinkommt, wird gleich aufgenommen und
+            beantwortet.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Was anders ist:</b> Der Stapel wächst nach oben gegen
+      eine gestrichelte Linie — «so viel geht an einem Abend». Die zwei
+      obersten liegen darüber. Das zeigt ohne ein Wort, dass es nicht
+      aufgeht. <b>Risiko:</b> Die Linie braucht eine Erklärung, sonst ist sie
+      nur ein Strich.</p>
+  </div>
+</section>
+
+<!-- =========================================================== B3 -->
+<section class="probe" id="b3">
+  <div class="wrap">
+    <span class="marke"><i>B3</i> Die Stunde, die sich füllt</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Vier Unterbrechungen, ein verlorener Abend.</h2>
+    <p class="lede">Einzeln sind es Minuten. Zusammen ist es die Zeit, die Ihnen
+      am Abend fehlt.</p>
+
+    <div class="raum">
+      <div class="balken-raum">
+        <div class="balken-kopf"><span>Ihr Dienstag</span><span>bis 18:00</span></div>
+        <div class="balken" aria-hidden="true">
+          <div class="stueck"></div><div class="stueck"></div>
+          <div class="stueck"></div><div class="stueck"></div>
+        </div>
+        <div class="balken-liste">
+          <div class="b-zeile"><span class="wann">10:20</span>
+            <span class="txt">Anruf, nicht abgenommen</span><span class="dauer">20 Min</span></div>
+          <div class="b-zeile"><span class="wann">11:45</span>
+            <span class="txt">Anfrage über die Website</span><span class="dauer">25 Min</span></div>
+          <div class="b-zeile"><span class="wann">14:10</span>
+            <span class="txt">Frage nach den Öffnungszeiten</span><span class="dauer">15 Min</span></div>
+          <div class="b-zeile"><span class="wann">17:50</span>
+            <span class="txt">Offerte nachfassen</span><span class="dauer">20 Min</span></div>
+        </div>
+        <div class="b-summe"><span>Zusammen</span><b>1 Std 20</b></div>
+      </div>
+
+      <div class="text">
+        <h3>Jeden Tag dasselbe.</h3>
+        <p>Nicht die Arbeit ist das Problem. Es ist, dass sie immer dann kommt,
+          wenn Sie gerade nicht können.</p>
+        <div class="zwei">
+          <div><b>Heute</b>Sie holen es am Abend nach. Jeden Abend.</div>
+          <div class="gut"><b>Mit einem digitalen Mitarbeiter</b>Nichts davon
+            landet bei Ihnen. Ausser das, wo Sie entscheiden müssen.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Was anders ist:</b> keine Dinge, sondern Zeit. Ein
+      Balken füllt sich in vier Stücken, darunter steht, woraus er besteht.
+      <b>Achtung:</b> Die Minutenzahlen sind geschätzt — entweder wir belegen
+      sie oder wir lassen sie weg und zeigen nur die vier Stücke.</p>
+  </div>
+</section>
+
+<section class="probe dunkler">
+  <div class="wrap">
+    <span class="kicker">Zum Entscheiden</span>
+    <h2 class="h2">Was ich nehmen würde.</h2>
+    <p class="lede"><b>B1</b> ist am nächsten an dem, was dir gefallen hat — nur
+      ohne Papier. <b>B2</b> hat die stärkste Aussage, weil man sieht, dass es
+      nicht aufgeht. <b>B3</b> ist am einfachsten zu verstehen, braucht aber
+      Zahlen, die wir belegen müssten.</p>
+    <p class="urteil">Der neue Text ist in allen drei derselbe Gedanke, nur
+      kürzer: <b>«Was Sie tagsüber nicht annehmen können, bleibt liegen. Am
+      Abend liegt alles auf einmal da.»</b> — und rechts: <b>«Fünf Sachen. Und
+      der Abend ist weg. Keine davon ist schwierig. Sie kommen nur alle dann,
+      wenn Sie gerade nicht können.»</b>
+      <br><br>Das Wort «Zettel» kommt nirgends mehr vor, «Stapel» nur noch in B2
+      als Bild für den Rückstau.</p>
+  </div>
+</section>
+
+</body>
+</html>

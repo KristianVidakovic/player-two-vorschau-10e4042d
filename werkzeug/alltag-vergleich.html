@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Drei Darstellungen — Kommt Ihnen das bekannt vor?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Dieselben Farben und Schriften wie die Website, damit der Vergleich
+   ehrlich ist. Nichts hier ist fuer den Livegang gedacht. */
+:root{
+  --canvas:#F2F4F7; --canvas-2:#E8ECF2; --tief:#0B1220; --nacht:#082056;
+  --akzent:#1E6CFF; --cyan:#00C6FF; --grau:#5B6779;
+  --linie:rgba(11,18,32,.12); --linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Sans 3',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--seite);margin:0 auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:16px}
+.h2{font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.lede{margin-top:16px;font-size:18px;color:#26313F;max-width:62ch}
+
+/* ------------------------------------------------------------ Rahmen */
+.kopfband{position:sticky;top:0;z-index:50;background:var(--tief);color:#EBF8FF;
+  padding:13px 0;box-shadow:0 6px 24px rgba(5,10,20,.25)}
+.kopfband .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.kopfband b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7FD4FF;font-weight:500}
+.kopfband a{color:#EBF8FF;text-decoration:none;font-size:14.5px;
+  border-bottom:1px solid rgba(235,248,255,.3);padding-bottom:1px}
+.kopfband a:hover{color:var(--cyan);border-color:var(--cyan)}
+.kopfband .weg{margin-left:auto;color:rgba(235,248,255,.6);font-size:13px}
+
+section.probe{padding:clamp(48px,7vh,86px) 0;border-bottom:1px solid var(--linie)}
+section.probe:nth-of-type(even){background:var(--canvas-2)}
+.marke{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau)}
+.marke i{width:26px;height:26px;border-radius:50%;background:var(--akzent);color:#fff;
+  display:grid;place-content:center;font-style:normal;font-size:13px;font-weight:500}
+.urteil{margin-top:26px;padding:15px 19px;border-radius:12px;
+  background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
+  font-size:15px;line-height:1.6;max-width:78ch}
+.urteil b{color:var(--akzent)}
+
+/* ==================================================================
+   A — Der Arbeitstag als Zeitleiste
+   ================================================================== */
+.tag{margin-top:clamp(28px,4vh,46px)}
+.tag-leiste{position:relative;height:78px;margin:0 10px}
+.tag-linie{position:absolute;left:0;right:0;top:38px;height:2px;
+  background:linear-gradient(90deg,var(--linie-stark),var(--linie-stark))}
+.tag-fortschritt{position:absolute;left:0;top:38px;height:2px;width:0;
+  background:linear-gradient(90deg,var(--akzent),var(--cyan));
+  animation:tagLaeuft 9s var(--ease) infinite}
+@keyframes tagLaeuft{0%{width:0}70%{width:100%}100%{width:100%}}
+.tag-std{position:absolute;top:52px;transform:translateX(-50%);
+  font-family:var(--mono);font-size:11px;color:var(--grau)}
+
+.stoerung{position:absolute;top:26px;transform:translateX(-50%);
+  width:26px;height:26px;border-radius:50%;background:#fff;
+  border:2px solid var(--linie-stark);cursor:pointer;padding:0;
+  display:grid;place-content:center;transition:all .3s var(--ease)}
+.stoerung::after{content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--grau);transition:background .3s var(--ease)}
+.stoerung:hover,.stoerung:focus-visible,.tag-karten input:checked + .stoerung{
+  border-color:var(--akzent);transform:translateX(-50%) scale(1.18)}
+.stoerung:hover::after,.stoerung:focus-visible::after{background:var(--akzent)}
+
+.tag-felder{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.tag-feld{background:#fff;border:1px solid var(--linie);border-radius:16px;
+  padding:20px 22px 22px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.tag-feld:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(11,18,32,.09)}
+.tag-zeit{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--akzent)}
+.tag-feld h3{font-size:17px;line-height:1.25;margin:7px 0 0}
+.tag-was{margin-top:9px;font-size:14.5px;line-height:1.5;color:#5B6779}
+.tag-dann{margin-top:12px;padding-top:11px;border-top:1px solid var(--linie);
+  font-size:14.5px;line-height:1.5;color:var(--tief)}
+.tag-dann b{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#1E8A4C;margin-bottom:4px}
+
+/* ==================================================================
+   B — Der Stapel, der sich ordnet
+   ================================================================== */
+.stapel-raum{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);
+  align-items:center;margin-top:clamp(28px,4vh,46px)}
+.stapel{position:relative;height:340px}
+.zettel{position:absolute;left:50%;top:50%;width:min(310px,86%);
+  background:#fff;border:1px solid var(--linie);border-radius:12px;
+  padding:14px 17px;box-shadow:0 12px 30px rgba(11,18,32,.1);
+  animation:zettelFaellt 10s var(--ease) infinite}
+.zettel .z-zeit{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  color:var(--grau)}
+.zettel .z-text{margin-top:4px;font-size:14.5px;line-height:1.4}
+.zettel:nth-child(1){animation-delay:0s}
+.zettel:nth-child(2){animation-delay:.55s}
+.zettel:nth-child(3){animation-delay:1.1s}
+.zettel:nth-child(4){animation-delay:1.65s}
+.zettel:nth-child(5){animation-delay:2.2s}
+@keyframes zettelFaellt{
+  0%   {opacity:0;transform:translate(-50%,-50%) translateY(-40px) rotate(0deg)}
+  8%   {opacity:1;transform:translate(-50%,-50%) translateY(0) rotate(var(--dreh,-3deg))}
+  48%  {opacity:1;transform:translate(-50%,-50%) translateY(var(--hoch,0)) rotate(var(--dreh,-3deg))}
+  60%  {opacity:1;transform:translate(-50%,-50%) translateY(var(--ord,0)) rotate(0deg)}
+  92%  {opacity:1;transform:translate(-50%,-50%) translateY(var(--ord,0)) rotate(0deg)}
+  100% {opacity:0;transform:translate(-50%,-50%) translateY(var(--ord,0)) rotate(0deg)}
+}
+.zettel:nth-child(1){--dreh:-4deg;--hoch:-8px;--ord:-136px}
+.zettel:nth-child(2){--dreh:3deg;--hoch:-2px;--ord:-68px}
+.zettel:nth-child(3){--dreh:-2deg;--hoch:4px;--ord:0px}
+.zettel:nth-child(4){--dreh:4deg;--hoch:10px;--ord:68px}
+.zettel:nth-child(5){--dreh:-3deg;--hoch:16px;--ord:136px}
+.stapel-text h3{font-size:clamp(21px,2.4vw,28px);line-height:1.2}
+.stapel-text p{font-size:16.5px;line-height:1.6;color:#3A4553;margin:14px 0 0}
+.stapel-text .zwei{display:grid;gap:14px;margin-top:24px}
+.stapel-text .zwei div{padding-left:18px;border-left:2px solid var(--linie-stark)}
+.stapel-text .zwei b{display:block;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--grau);margin-bottom:3px}
+.stapel-text .zwei .gut{border-left-color:#1E8A4C}
+.stapel-text .zwei .gut b{color:#1E8A4C}
+
+/* ==================================================================
+   C — Was der Kunde sieht, was der Chef sieht
+   ================================================================== */
+.zwei-seiten{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,44px);
+  margin-top:clamp(28px,4vh,46px)}
+.seite-karte{background:#fff;border:1px solid var(--linie);border-radius:18px;
+  padding:clamp(20px,2.6vh,28px);display:flex;flex-direction:column}
+.seite-karte.chef{background:var(--tief);color:#EBF8FF;border-color:transparent}
+.seite-kopf{font-family:var(--mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--grau);margin-bottom:16px}
+.seite-karte.chef .seite-kopf{color:rgba(235,248,255,.55)}
+
+.gespraech{display:grid;gap:9px}
+.blase{max-width:86%;padding:11px 14px;border-radius:14px;font-size:14.5px;
+  line-height:1.45;opacity:0;animation:blaseAuf .5s var(--ease) forwards}
+.blase.rein{background:var(--canvas-2);border-bottom-left-radius:4px}
+.blase.raus{background:var(--akzent);color:#fff;justify-self:end;
+  border-bottom-right-radius:4px}
+.blase .zeit{display:block;margin-top:5px;font-family:var(--mono);font-size:10px;
+  opacity:.6}
+.gespraech .blase:nth-child(1){animation-delay:.3s}
+.gespraech .blase:nth-child(2){animation-delay:1.4s}
+.gespraech .blase:nth-child(3){animation-delay:2.6s}
+@keyframes blaseAuf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.chef-zeile{display:flex;gap:12px;align-items:flex-start;padding:13px 0;
+  border-bottom:1px solid rgba(235,248,255,.12);font-size:14.5px;line-height:1.45}
+.chef-zeile:last-of-type{border-bottom:0}
+.chef-zeile i{width:8px;height:8px;border-radius:50%;background:#5BD98A;
+  margin-top:7px;flex:0 0 auto}
+.chef-zeile.offen i{background:var(--cyan)}
+.chef-zeile .wann{display:block;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;color:rgba(235,248,255,.5);margin-bottom:2px}
+.chef-fuss{margin-top:auto;padding-top:18px;font-size:14.5px;line-height:1.55;
+  color:rgba(235,248,255,.72)}
+.chef-fuss b{color:#fff}
+
+@media (max-width:900px){
+  .tag-felder{grid-template-columns:1fr 1fr}
+  .stapel-raum,.zwei-seiten{grid-template-columns:1fr}
+  .stapel{height:300px}
+}
+@media (max-width:600px){ .tag-felder{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+  .tag-fortschritt,.zettel,.blase{animation:none}
+  .zettel{opacity:1}
+  .blase{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="kopfband">
+  <div class="wrap">
+    <b>Drei Darstellungen</b>
+    <a href="#a">A — Zeitleiste</a>
+    <a href="#b">B — Stapel</a>
+    <a href="#c">C — Zwei Seiten</a>
+    <span class="weg">Nur zum Vergleichen. Nicht Teil der Website.</span>
+  </div>
+</div>
+
+<!-- ============================================================ A -->
+<section class="probe" id="a">
+  <div class="wrap">
+    <span class="marke"><i>A</i> Der Arbeitstag als Zeitleiste</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">So sieht Ihr Dienstag aus.</h2>
+    <p class="lede">Vier Unterbrechungen an einem Tag. Jede kostet nicht die
+      zwei Minuten, die sie dauert, sondern die zwanzig, bis Sie wieder drin sind.</p>
+
+    <div class="tag">
+      <div class="tag-leiste">
+        <div class="tag-linie"></div>
+        <div class="tag-fortschritt"></div>
+        <button class="stoerung" style="left:14%" aria-label="10:20 Uhr"></button>
+        <button class="stoerung" style="left:38%" aria-label="11:45 Uhr"></button>
+        <button class="stoerung" style="left:63%" aria-label="14:10 Uhr"></button>
+        <button class="stoerung" style="left:88%" aria-label="17:50 Uhr"></button>
+        <span class="tag-std" style="left:0">07:00</span>
+        <span class="tag-std" style="left:50%">13:00</span>
+        <span class="tag-std" style="left:100%">19:00</span>
+      </div>
+
+      <div class="tag-felder">
+        <article class="tag-feld">
+          <span class="tag-zeit">10:20</span>
+          <h3>Sie stehen auf der Leiter</h3>
+          <p class="tag-was">Rolle in der einen Hand, Farbe an der anderen. Das
+            Telefon klingelt in der Hosentasche.</p>
+          <p class="tag-dann"><b>Was jetzt passiert</b>Der Anrufer bekommt
+            innert Sekunden eine Nachricht: dass Sie gerade arbeiten und wann
+            Sie zurückrufen.</p>
+        </article>
+        <article class="tag-feld">
+          <span class="tag-zeit">11:45</span>
+          <h3>Anfrage für 3½ Zimmer</h3>
+          <p class="tag-was">Über die Website, mit zwei Fotos. Sie sehen sie
+            frühestens am Abend.</p>
+          <p class="tag-dann"><b>Was jetzt passiert</b>Objekt, Umfang und
+            Wunschtermin sind aufgenommen, die Offerte liegt fertig zur Freigabe.</p>
+        </article>
+        <article class="tag-feld">
+          <span class="tag-zeit">14:10</span>
+          <h3>„Wann haben Sie offen?"</h3>
+          <p class="tag-was">Zum vierzigsten Mal diesen Monat. Sie sind gerade
+            auf der zweiten Baustelle.</p>
+          <p class="tag-dann"><b>Was jetzt passiert</b>Beantwortet, bevor Sie
+            das Telefon aus der Tasche haben.</p>
+        </article>
+        <article class="tag-feld">
+          <span class="tag-zeit">17:50</span>
+          <h3>Der Kunde von letzter Woche</h3>
+          <p class="tag-was">Er hat die Offerte nie beantwortet. Nachfassen
+            wollten Sie am Montag.</p>
+          <p class="tag-dann"><b>Was jetzt passiert</b>Ist am Montag
+            nachgefasst worden. Sie sehen nur die Antwort.</p>
+        </article>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Man sieht auf einen Blick, wie zerhackt so
+      ein Tag ist — das ist die eigentliche Botschaft, nicht die einzelne
+      Störung. <b>Schwäche:</b> Nur eine Branche pro Tag. Wer kein Maler ist,
+      muss übersetzen.</p>
+  </div>
+</section>
+
+<!-- ============================================================ B -->
+<section class="probe" id="b">
+  <div class="wrap">
+    <span class="marke"><i>B</i> Der Stapel, der sich ordnet</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Was sich bis am Abend ansammelt.</h2>
+    <p class="lede">Jede Unterbrechung legt einen Zettel auf den Stapel. Um
+      sechs ist der Stapel das, was Sie nach dem Znacht abarbeiten.</p>
+
+    <div class="stapel-raum">
+      <div class="stapel" aria-hidden="true">
+        <div class="zettel"><span class="z-zeit">10:20 · Anruf</span>
+          <div class="z-text">Nicht abgenommen. Nummer unbekannt.</div></div>
+        <div class="zettel"><span class="z-zeit">11:45 · Website</span>
+          <div class="z-text">Anfrage 3½ Zimmer, zwei Fotos</div></div>
+        <div class="zettel"><span class="z-zeit">14:10 · Anruf</span>
+          <div class="z-text">Frage nach den Öffnungszeiten</div></div>
+        <div class="zettel"><span class="z-zeit">16:05 · im Laden</span>
+          <div class="z-text">Vorbestellung für Samstag, auf einem Zettel</div></div>
+        <div class="zettel"><span class="z-zeit">17:50 · offen</span>
+          <div class="z-text">Offerte von letzter Woche nachfassen</div></div>
+      </div>
+
+      <div class="stapel-text">
+        <h3>Fünf Zettel. Zwei Stunden nach Feierabend.</h3>
+        <p>Keiner davon ist schwierig. Sie kommen nur alle dann, wenn Sie
+          gerade beide Hände voll haben.</p>
+        <div class="zwei">
+          <div>
+            <b>Heute</b>
+            Sie sortieren am Abend, was tagsüber hereingekommen ist — und
+            erinnern sich bei der Hälfte nicht mehr an den Zusammenhang.
+          </div>
+          <div class="gut">
+            <b>Mit einem digitalen Mitarbeiter</b>
+            Jeder Zettel ist schon aufgenommen, zugeordnet und beantwortet.
+            Übrig bleiben die zwei, die eine Entscheidung brauchen.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Der Besucher fühlt das Anwachsen, bevor er
+      die Lösung sieht — und die Zettel decken alle Kanäle ab: Anruf, Website,
+      jemand im Laden. <b>Schwäche:</b> Die Bewegung läuft in einer Schleife;
+      wer im falschen Moment hinschaut, sieht nur ein Durcheinander.</p>
+  </div>
+</section>
+
+<!-- ============================================================ C -->
+<section class="probe" id="c">
+  <div class="wrap">
+    <span class="marke"><i>C</i> Was der Kunde sieht, was Sie sehen</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Sie gehen nicht ans Telefon. Trotzdem ist der Kunde bedient.</h2>
+    <p class="lede">Links, was bei Ihrer Kundschaft ankommt. Rechts, was Sie
+      davon überhaupt mitbekommen.</p>
+
+    <div class="zwei-seiten">
+      <div class="seite-karte">
+        <div class="seite-kopf">Beim Anrufer, 10:20 Uhr</div>
+        <div class="gespraech">
+          <div class="blase rein">Anruf bei Malergeschäft Bürgler
+            <span class="zeit">klingelt viermal, niemand nimmt ab</span></div>
+          <div class="blase raus">Danke für Ihren Anruf. Ich bin gerade bei
+            einem Kunden und melde mich, sobald ich kann. Wenn es pressiert,
+            schreiben Sie mir kurz, worum es geht.
+            <span class="zeit">SMS · 10:20</span></div>
+          <div class="blase rein">Innenanstrich 3½ Zimmer, Weinfelden. Wann
+            hätten Sie Zeit für eine Besichtigung?
+            <span class="zeit">10:23</span></div>
+        </div>
+      </div>
+
+      <div class="seite-karte chef">
+        <div class="seite-kopf">Bei Ihnen, wenn Sie von der Leiter steigen</div>
+        <div class="chef-zeile"><i></i><div><span class="wann">10:20</span>
+          Anruf verpasst — Antwort ist raus</div></div>
+        <div class="chef-zeile"><i></i><div><span class="wann">10:23</span>
+          Er hat geschrieben: Innenanstrich 3½ Zimmer, Weinfelden</div></div>
+        <div class="chef-zeile offen"><i></i><div><span class="wann">10:24</span>
+          Drei Termine vorgeschlagen — <b>wartet auf Ihre Freigabe</b></div></div>
+        <p class="chef-fuss">Eine Zeile, wenn Sie das nächste Mal aufs Telefon
+          schauen. <b>Kein verpasster Anruf, kein Rückruf, den Sie sich merken
+          müssen.</b></p>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Zeigt beides — die Kundschaft wird bedient
+      und Sie bleiben ungestört. Der einzige Entwurf, der die SMS wirklich
+      sichtbar macht. <b>Schwäche:</b> Nur eine Situation statt vier. Und:
+      Telefon und SMS sind im Masterfile <b>nirgends geregelt</b> — das wäre
+      ein neuer Kanal, den es erst zu bauen gäbe.</p>
+  </div>
+</section>
+
+<section class="probe">
+  <div class="wrap">
+    <span class="marke"><i>?</i> Zum Entscheiden</span>
+    <h2 class="h2">Was mir auffällt.</h2>
+    <p class="lede"><b>A</b> hat die stärkste Botschaft, <b>B</b> das stärkste
+      Gefühl, <b>C</b> das stärkste Argument. Man könnte A als Gerüst nehmen und
+      die Nachricht aus C in das erste Feld setzen — dann hat man den zerhackten
+      Tag und die SMS, ohne zwei Abschnitte zu brauchen.</p>
+    <p class="urteil">Alle drei laufen <b>ohne JavaScript</b>. Bei
+      «Bewegung reduzieren» stehen sie still und bleiben lesbar.
+      <br><b>Offen:</b> Telefon und SMS gibt es im Masterfile nicht — weder SMS
+      noch «verpasster Anruf» noch WhatsApp kommen darin vor. Bevor das auf die
+      Seite darf, braucht es deinen Entscheid und einen Telefonanbieter.</p>
+  </div>
+</section>
+
+</body>
+</html>

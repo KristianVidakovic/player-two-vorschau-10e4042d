@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Player Two — Wegeditor</title>
+<style>
+  :root {
+    --grund: #1B2030; --feld: #232A3D; --linie: #39435C;
+    --text: #E6EAF2; --gedaempft: #97A3BA; --akzent: #1E6CFF; --warm: #E8C46A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    background: var(--grund); color: var(--text);
+    font: 14px/1.5 "Inter", system-ui, "Segoe UI", sans-serif;
+    display: flex;
+  }
+  #buehne { flex: 1 1 0; min-width: 0; display: block; cursor: crosshair; background: #14192A; }
+
+  aside {
+    width: 320px; min-width: 320px; flex: 0 0 320px;
+    border-left: 1px solid var(--linie);
+    background: var(--feld); display: flex; flex-direction: column;
+    overflow-y: auto;
+  }
+  aside h1 { margin: 0; padding: 14px 16px; font-size: 14px; font-weight: 650;
+    border-bottom: 1px solid var(--linie); letter-spacing: .01em; }
+
+  .modi { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px; }
+  .modi button {
+    padding: 9px 6px; border: 1px solid var(--linie); border-radius: 8px;
+    background: transparent; color: var(--text); font: inherit; cursor: pointer;
+    text-align: left; font-size: 13px;
+  }
+  .modi button b { display: block; font-size: 11px; color: var(--gedaempft); font-weight: 500; }
+  .modi button.an { background: var(--akzent); border-color: var(--akzent); }
+  .modi button.an b { color: rgba(255,255,255,.75); }
+
+  .feldreihe { padding: 0 12px 10px; display: flex; gap: 6px; align-items: center; }
+  .feldreihe label { font-size: 12px; color: var(--gedaempft); flex: none; }
+  .feldreihe select, .feldreihe input {
+    flex: 1; min-width: 0; padding: 6px 8px; border-radius: 7px;
+    border: 1px solid var(--linie); background: var(--grund); color: var(--text);
+    font: inherit; font-size: 13px;
+  }
+
+  .liste { flex: 1; overflow-y: auto; padding: 4px 12px 12px; }
+  .gruppe { margin-bottom: 12px; }
+  .gruppe > h2 {
+    margin: 8px 0 5px; font-size: 11px; text-transform: uppercase;
+    letter-spacing: .07em; color: var(--gedaempft); font-weight: 600;
+  }
+  .zeile {
+    display: flex; align-items: center; gap: 8px; padding: 4px 7px;
+    border-radius: 6px; font-size: 12.5px;
+  }
+  .zeile:hover { background: rgba(255,255,255,.05); }
+  .zeile span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .zeile small { color: var(--gedaempft); font-size: 11px; }
+  .zeile button {
+    border: none; background: none; color: var(--gedaempft); cursor: pointer;
+    font-size: 15px; line-height: 1; padding: 0 3px;
+  }
+  .zeile button:hover { color: #FF7A6B; }
+
+  footer { padding: 12px; border-top: 1px solid var(--linie); display: flex; gap: 8px; }
+  footer button {
+    flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--linie);
+    background: transparent; color: var(--text); font: inherit; cursor: pointer;
+  }
+  footer button.haupt { background: var(--akzent); border-color: var(--akzent); font-weight: 600; }
+
+  .hilfe { padding: 0 16px 12px; font-size: 11.5px; color: var(--gedaempft); line-height: 1.5; }
+  .hilfe kbd {
+    background: var(--grund); border: 1px solid var(--linie); border-radius: 4px;
+    padding: 1px 5px; font-family: inherit; font-size: 11px;
+  }
+  .rundgang {
+    padding: 13px 16px 15px; border-bottom: 1px solid var(--linie);
+    background: linear-gradient(180deg, rgba(30,108,255,.16), rgba(30,108,255,.04));
+  }
+  .rundgang .zaehler { font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--akzent); font-weight: 700; }
+  .rundgang { box-shadow: inset 3px 0 0 var(--akzent); }
+  .rundgang h3 { margin: 3px 0 4px; font-size: 16px; font-weight: 650; }
+  .rundgang p { margin: 0 0 11px; font-size: 12.5px; color: var(--gedaempft); line-height: 1.5; }
+  .rundgang .gesetzt { color: var(--akzent); font-weight: 600; }
+  .rundgang .knoepfe { display: flex; gap: 7px; }
+  .rundgang .knoepfe button {
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--linie);
+    background: transparent; color: var(--text); font: inherit; font-size: 13px; cursor: pointer;
+  }
+  .rundgang .knoepfe button.haupt {
+    flex: 1; background: var(--akzent); border-color: var(--akzent); font-weight: 620;
+  }
+
+  .richtung { display: flex; gap: 5px; padding: 0 12px 10px; }
+  .richtung button {
+    flex: 1; padding: 7px 0; border-radius: 7px; border: 1px solid var(--linie);
+    background: transparent; color: var(--text); font: inherit; font-size: 15px; cursor: pointer;
+  }
+  .richtung button.an { background: var(--akzent); border-color: var(--akzent); }
+
+  .anleitung {
+    border-bottom: 1px solid var(--linie); padding: 10px 16px 12px;
+    font-size: 12.5px; line-height: 1.55;
+  }
+  .anleitung > button {
+    width: 100%; text-align: left; background: none; border: none; padding: 0;
+    color: var(--text); font: inherit; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .anleitung ol { margin: 9px 0 0; padding-left: 19px; color: var(--gedaempft); }
+  .anleitung li { margin: 6px 0; }
+  .anleitung li b { color: var(--text); font-weight: 600; }
+  .anleitung.zu ol { display: none; }
+
+  #meldung {
+    position: fixed; left: 16px; bottom: 16px; padding: 9px 14px;
+    background: var(--feld); border: 1px solid var(--linie); border-radius: 9px;
+    font-size: 13px; opacity: 0; transition: opacity .25s; pointer-events: none;
+  }
+  #meldung.zeig { opacity: 1; }
+
+  #fertig {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 22px;
+    padding: 13px 26px; border-radius: 11px; border: none;
+    background: var(--akzent); color: #fff; font: inherit; font-weight: 650;
+    font-size: 15px; cursor: pointer; display: none;
+    box-shadow: 0 6px 22px rgba(0,0,0,.4);
+  }
+  #fertig.zeig { display: block; }
+</style>
+</head>
+<body>
+
+<canvas id="buehne"></canvas>
+
+<aside>
+  <h1>Player Two · Wegeditor</h1>
+
+  <div class="rundgang" id="rundgang">
+    <div class="zaehler" id="rgZaehler">Hier anfangen</div>
+    <h3 id="rgTitel">wird geladen</h3>
+    <p id="rgText"></p>
+    <div class="knoepfe">
+      <button id="rgZurueck" title="eine Aufgabe zurueck">&#8592;</button>
+      <button id="rgWeiter" class="haupt">Erledigt, weiter</button>
+    </div>
+  </div>
+
+  <div class="modi">
+    <button data-modus="weg" class="an">Weg<b>1 · Linie klicken</b></button>
+    <button data-modus="platz">Platz<b>2 · Punkt setzen</b></button>
+    <button data-modus="halt">Halt<b>3 · Ein- und Ausstieg</b></button>
+    <button data-modus="vorne">Vorne<b>4 · Fläche davor</b></button>
+  </div>
+
+  <div class="feldreihe" id="reiheArt">
+    <label>Art</label>
+    <select id="art">
+      <option value="schreibtisch">Schreibtisch</option>
+      <option value="bett">Bett</option>
+      <option value="esstisch">Esstisch</option>
+      <option value="bartresen">Bartresen</option>
+      <option value="schulbank">Schulbank</option>
+      <option value="liege">Liege</option>
+      <option value="becken">Schwimmbecken</option>
+      <option value="sportplatz">Sportplatz</option>
+      <option value="bank">Sitzbank</option>
+      <option value="stehen">Stehplatz</option>
+      <option value="posten">Posten (feste Person)</option>
+    </select>
+  </div>
+
+  <div class="feldreihe" id="reihePosten" style="display:none">
+    <label>Rolle</label>
+    <select id="rolle">
+      <option value="lehrer">Lehrer</option>
+      <option value="lehrerin">Lehrerin</option>
+      <option value="barman">Barman</option>
+      <option value="barfrau">Barfrau</option>
+      <option value="kellner">Kellner</option>
+      <option value="kellnerin">Kellnerin</option>
+      <option value="koch">Koch</option>
+      <option value="koechin">Köchin</option>
+      <option value="bademeister">Bademeister</option>
+      <option value="baderin">Bademeisterin</option>
+      <option value="rettungsschwimmer">Rettungsschwimmer</option>
+      <option value="rettungsschwimmerin">Rettungsschwimmerin</option>
+      <option value="waechter">Wächter</option>
+      <option value="empfang">Empfang</option>
+      <option value="hauswart">Hauswart</option>
+      <option value="verkaeuferin">Verkäuferin</option>
+    </select>
+  </div>
+
+  <div class="richtung" id="reiheRichtung">
+    <button data-r="nw" title="schaut nach hinten links">&#8598;</button>
+    <button data-r="no" class="an" title="schaut nach hinten rechts">&#8599;</button>
+    <button data-r="so" title="schaut nach vorne rechts">&#8600;</button>
+    <button data-r="sw" title="schaut nach vorne links">&#8601;</button>
+  </div>
+
+  <div class="feldreihe">
+    <label>Ort</label>
+    <input id="ort" value="hq" placeholder="hq, wohnhaus, restaurant …">
+  </div>
+
+  <div class="anleitung" id="anleitung">
+    <button id="anleitungKnopf">Anleitung <span>▾</span></button>
+    <ol>
+      <li><b>Taste 4 · Vorne.</b> Merksatz: <i>Was würde eine Person verdecken,
+        die dort steht?</i> Also die <b>Glasgeländer</b> vorne an jedem Bürogeschoss,
+        die <b>Hecken</b> und <b>Bäume</b> direkt an der Strasse, geparkte Autos.
+        Nicht den Boden, auf dem gelaufen wird.</li>
+      <li><b>Taste 1 · Weg.</b> Klicke die Laufwege. Im HQ pro Etage einen Gang
+        vom Lift der Front entlang. Draussen die Strassen und je einen Weg zu
+        Restaurant, Bar, Schwimmbad, Strand, Wohnhaus, Schule, Sportplatz.
+        Doppelklick oder der blaue Knopf schliesst ab.</li>
+      <li><b>Taste 2 · Platz.</b> Erst Art und Ort einstellen, dann die Punkte
+        anklicken: Schreibtische, Betten, Esstische, Hocker, Schulbänke, Liegen.</li>
+      <li><b>Taste 3 · Halt.</b> Ein- und Ausstiege. Die drei Liftstopps sind
+        gesetzt, prüfe sie und setze den Hauseingang an die Glastür.</li>
+      <li>Gesichert wird von selbst, nach jedem Klick.</li>
+    </ol>
+  </div>
+
+  <div class="liste" id="liste"></div>
+
+  <div class="hilfe">
+    <kbd>1</kbd>–<kbd>4</kbd> Modus · <kbd>Enter</kbd> Form abschliessen ·
+    <kbd>Rück</kbd> letzter Punkt weg · vorhandenen Punkt <b>ziehen</b> verschiebt ihn ·
+    <kbd>Alt</kbd>+Klick löscht ihn · <kbd>Leertaste</kbd>+Ziehen schiebt das Bild ·
+    Rad zoomt · <b>Doppelklick</b> schliesst eine Form ab · gesichert wird automatisch
+  </div>
+
+  <footer>
+    <button id="laden">Laden</button>
+    <button id="sichern" class="haupt">Sichern</button>
+  </footer>
+</aside>
+
+<div id="meldung"></div>
+<button id="fertig">Fläche fertig</button>
+
+<script>
+(function () {
+  'use strict'
+
+  var leinwand = document.getElementById('buehne')
+  var ctx = leinwand.getContext('2d')
+  var bild = new Image()
+  var bildBereit = false
+
+  var DATEI = 'stadt-wege'
+  var KULISSE = '../assets/stadt-kulisse.webp'
+
+  var daten = {
+    bild: 'assets/stadt-kulisse.webp',
+    breite: 0, hoehe: 0,
+    wege: [], plaetze: [], halte: [], vorne: []
+  }
+
+  var modus = 'weg'
+  var offen = null          /* die Form, an der gerade gebaut wird */
+  var kamera = { x: 0, y: 0, zoom: 0.5 }
+  var maus = { x: 0, y: 0 }
+  var schiebt = false, leertaste = false, letzteM = null
+  var zieht = null          /* der Punkt, der gerade verschoben wird */
+
+  /* ------------------------------------------------------------- Anzeige */
+  function groesse () {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2)
+    var leiste = document.querySelector('aside')
+    var b = Math.max(240, window.innerWidth - (leiste ? leiste.offsetWidth : 320))
+    var h = Math.max(240, window.innerHeight)
+    /* Anzeigegroesse in Bildschirmpunkten, Zeichengroesse in echten Punkten. */
+    leinwand.style.width = b + 'px'
+    leinwand.style.height = h + 'px'
+    leinwand.width = Math.round(b * dpr)
+    leinwand.height = Math.round(h * dpr)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    zeichnen()
+  }
+
+  function nachBild (px, py) {
+    var r = leinwand.getBoundingClientRect()
+    return {
+      x: (px - r.left - kamera.x) / kamera.zoom,
+      y: (py - r.top - kamera.y) / kamera.zoom
+    }
+  }
+
+  function zeichnen () {
+    var b = leinwand.clientWidth, h = leinwand.clientHeight
+    ctx.save()
+    ctx.setTransform(leinwand.width / b, 0, 0, leinwand.height / h, 0, 0)
+    ctx.fillStyle = '#14192A'
+    ctx.fillRect(0, 0, b, h)
+    ctx.translate(kamera.x, kamera.y)
+    ctx.scale(kamera.zoom, kamera.zoom)
+
+    if (bildBereit) ctx.drawImage(bild, 0, 0)
+
+    var s = 1 / kamera.zoom
+
+    /* Vordergrundflaechen */
+    daten.vorne.forEach(function (poly) { flaeche(poly, 'rgba(232,196,106,.28)', '#E8C46A', s) })
+    if (modus === 'vorne' && offen) flaeche(offen, 'rgba(232,196,106,.18)', '#E8C46A', s, true)
+
+    /* Wege */
+    daten.wege.forEach(function (w) { linie(w.punkte, '#1E6CFF', s) })
+    if (modus === 'weg' && offen) linie(offen, '#58A8FF', s, true)
+
+    /* Plaetze */
+    daten.plaetze.forEach(function (p) { punkt(p.x, p.y, '#6EEBFF', s, p.art.slice(0, 2)) })
+
+    /* Halte */
+    daten.halte.forEach(function (p) { punkt(p.x, p.y, '#E8C46A', s, '⬍', true) })
+
+    ctx.restore()
+  }
+
+  function linie (pkte, farbe, s, aktiv) {
+    if (!pkte.length) return
+    ctx.beginPath()
+    ctx.moveTo(pkte[0][0], pkte[0][1])
+    for (var i = 1; i < pkte.length; i++) ctx.lineTo(pkte[i][0], pkte[i][1])
+    if (aktiv) ctx.lineTo(maus.x, maus.y)
+    ctx.strokeStyle = farbe
+    ctx.lineWidth = 3 * s
+    ctx.lineJoin = ctx.lineCap = 'round'
+    ctx.stroke()
+    pkte.forEach(function (p) { punkt(p[0], p[1], farbe, s) })
+  }
+
+  function flaeche (poly, fuell, strich, s, aktiv) {
+    if (!poly.length) return
+    ctx.beginPath()
+    ctx.moveTo(poly[0][0], poly[0][1])
+    for (var i = 1; i < poly.length; i++) ctx.lineTo(poly[i][0], poly[i][1])
+    if (aktiv) ctx.lineTo(maus.x, maus.y)
+    ctx.closePath()
+    ctx.fillStyle = fuell
+    ctx.fill()
+    ctx.strokeStyle = strich
+    ctx.lineWidth = 2 * s
+    ctx.stroke()
+    poly.forEach(function (p) { punkt(p[0], p[1], strich, s) })
+  }
+
+  function punkt (x, y, farbe, s, text, gross) {
+    var r = (gross ? 9 : 6) * s
+    ctx.beginPath()
+    ctx.arc(x, y, r, 0, Math.PI * 2)
+    ctx.fillStyle = farbe
+    ctx.fill()
+    ctx.strokeStyle = 'rgba(20,25,42,.85)'
+    ctx.lineWidth = 2 * s
+    ctx.stroke()
+    if (text) {
+      ctx.fillStyle = '#14192A'
+      ctx.font = 'bold ' + (8 * s) + 'px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(text, x, y)
+    }
+  }
+
+  /* -------------------------------------------------------------- Liste */
+  function listeBauen () {
+    var l = document.getElementById('liste')
+    l.innerHTML = ''
+    gruppe(l, 'Wege', daten.wege, function (w, i) {
+      return { text: w.name || ('Weg ' + (i + 1)), rand: w.punkte.length + ' Punkte' }
+    })
+    gruppe(l, 'Plätze', daten.plaetze, function (p) {
+      return { text: p.art === 'posten' ? ('Posten: ' + (p.rolle || '?')) : p.art, rand: p.ort }
+    })
+    gruppe(l, 'Halte', daten.halte, function (p) {
+      return { text: p.name, rand: '' }
+    })
+    gruppe(l, 'Vordergrund', daten.vorne, function (poly, i) {
+      return { text: 'Fläche ' + (i + 1), rand: poly.length + ' Ecken' }
+    })
+  }
+
+  function gruppe (wurzel, titel, liste, beschriften) {
+    var g = document.createElement('div')
+    g.className = 'gruppe'
+    var h = document.createElement('h2')
+    h.textContent = titel + ' (' + liste.length + ')'
+    g.appendChild(h)
+    liste.forEach(function (eintrag, i) {
+      var b = beschriften(eintrag, i)
+      var z = document.createElement('div')
+      z.className = 'zeile'
+      var sp = document.createElement('span')
+      sp.textContent = b.text
+      var sm = document.createElement('small')
+      sm.textContent = b.rand
+      var kn = document.createElement('button')
+      kn.textContent = '×'
+      kn.title = 'löschen'
+      kn.onclick = function () { liste.splice(i, 1); geaendert() }
+      z.appendChild(sp); z.appendChild(sm); z.appendChild(kn)
+      g.appendChild(z)
+    })
+    wurzel.appendChild(g)
+  }
+
+  /* -------------------------------------------------------------- Modus */
+  function modusSetzen (m) {
+    if (offen) abschliessen()
+    modus = m
+    Array.prototype.forEach.call(document.querySelectorAll('.modi button'), function (b) {
+      b.classList.toggle('an', b.dataset.modus === m)
+    })
+    document.getElementById('reiheArt').style.display = m === 'platz' ? '' : 'none'
+    document.getElementById('reiheRichtung').style.display = m === 'platz' ? '' : 'none'
+    postenfeldZeigen()
+    zeichnen()
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.modi button'), function (b) {
+    b.onclick = function () { modusSetzen(b.dataset.modus) }
+  })
+
+  function abschliessen () {
+    if (!offen) return
+    if (modus === 'weg' && offen.length >= 2) {
+      var name = prompt('Name für diesen Weg', 'weg-' + (daten.wege.length + 1))
+      if (name) daten.wege.push({ name: name, punkte: offen })
+    } else if (modus === 'vorne' && offen.length >= 3) {
+      daten.vorne.push(offen)
+    }
+    offen = null
+    document.getElementById('fertig').classList.remove('zeig')
+    geaendert()
+  }
+
+  /* Sucht einen vorhandenen Punkt unter dem Zeiger. Damit lassen sich
+     gesetzte Punkte verschieben statt loeschen und neu setzen. */
+  function treffer (bx, by) {
+    var r = 11 / kamera.zoom
+    var i, j
+    for (i = 0; i < daten.plaetze.length; i++) {
+      var p = daten.plaetze[i]
+      if (Math.hypot(p.x - bx, p.y - by) < r) return { art: 'punkt', o: p, liste: daten.plaetze, i: i }
+    }
+    for (i = 0; i < daten.halte.length; i++) {
+      var h = daten.halte[i]
+      if (Math.hypot(h.x - bx, h.y - by) < r) return { art: 'punkt', o: h, liste: daten.halte, i: i }
+    }
+    for (i = 0; i < daten.wege.length; i++) {
+      for (j = 0; j < daten.wege[i].punkte.length; j++) {
+        var q = daten.wege[i].punkte[j]
+        if (Math.hypot(q[0] - bx, q[1] - by) < r) return { art: 'paar', o: q, liste: daten.wege[i].punkte, i: j }
+      }
+    }
+    for (i = 0; i < daten.vorne.length; i++) {
+      for (j = 0; j < daten.vorne[i].length; j++) {
+        var v = daten.vorne[i][j]
+        if (Math.hypot(v[0] - bx, v[1] - by) < r) return { art: 'paar', o: v, liste: daten.vorne[i], i: j }
+      }
+    }
+    return null
+  }
+
+  /* ------------------------------------------------------------ Eingabe */
+  leinwand.addEventListener('mousedown', function (e) {
+    if (e.button === 1 || leertaste || e.button === 2) {
+      schiebt = true; letzteM = { x: e.clientX, y: e.clientY }
+      e.preventDefault(); return
+    }
+    var p = nachBild(e.clientX, e.clientY)
+
+    /* Liegt schon ein Punkt hier? Dann verschieben, mit Alt loeschen. */
+    var tr = treffer(p.x, p.y)
+    if (tr && !offen) {
+      if (e.altKey) {
+        tr.liste.splice(tr.i, 1)
+        geaendert()
+      } else {
+        zieht = tr
+      }
+      return
+    }
+
+    if (modus === 'weg' || modus === 'vorne') {
+      if (!offen) offen = []
+      offen.push([Math.round(p.x), Math.round(p.y)])
+      var mindest = modus === 'vorne' ? 3 : 2
+      document.getElementById('fertig').classList.toggle('zeig', offen.length >= mindest)
+    } else if (modus === 'platz') {
+      var art = document.getElementById('art').value
+      var eintrag = {
+        x: Math.round(p.x), y: Math.round(p.y),
+        art: art,
+        ort: document.getElementById('ort').value.trim() || 'stadt',
+        richtung: richtung
+      }
+      /* Ein Posten ist eine feste Person mit einer Rolle. */
+      if (art === 'posten') eintrag.rolle = document.getElementById('rolle').value
+      daten.plaetze.push(eintrag)
+      geaendert()
+    } else if (modus === 'halt') {
+      var name = prompt('Name des Halts, z.B. hq-eingang oder hq-lift-2',
+        (document.getElementById('ort').value.trim() || 'ort') + '-halt')
+      if (name) { daten.halte.push({ name: name, x: Math.round(p.x), y: Math.round(p.y) }); geaendert() }
+    }
+    zeichnen()
+  })
+  leinwand.addEventListener('contextmenu', function (e) { e.preventDefault() })
+  leinwand.addEventListener('dblclick', function () { abschliessen() })
+  document.getElementById('fertig').onclick = function () { abschliessen() }
+
+  window.addEventListener('mousemove', function (e) {
+    if (zieht) {
+      var b = nachBild(e.clientX, e.clientY)
+      if (zieht.art === 'punkt') { zieht.o.x = Math.round(b.x); zieht.o.y = Math.round(b.y) }
+      else { zieht.o[0] = Math.round(b.x); zieht.o[1] = Math.round(b.y) }
+      zeichnen(); return
+    }
+    if (schiebt && letzteM) {
+      kamera.x += e.clientX - letzteM.x
+      kamera.y += e.clientY - letzteM.y
+      letzteM = { x: e.clientX, y: e.clientY }
+      zeichnen(); return
+    }
+    var p = nachBild(e.clientX, e.clientY)
+    maus.x = p.x; maus.y = p.y
+    if (offen) zeichnen()
+  })
+  window.addEventListener('mouseup', function () {
+    schiebt = false; letzteM = null
+    if (zieht) { zieht = null; geaendert() }
+  })
+
+  leinwand.addEventListener('wheel', function (e) {
+    e.preventDefault()
+    var vor = nachBild(e.clientX, e.clientY)
+    kamera.zoom = Math.max(0.08, Math.min(4, kamera.zoom * (e.deltaY < 0 ? 1.15 : 1 / 1.15)))
+    var nach = nachBild(e.clientX, e.clientY)
+    kamera.x += (nach.x - vor.x) * kamera.zoom
+    kamera.y += (nach.y - vor.y) * kamera.zoom
+    zeichnen()
+  }, { passive: false })
+
+  window.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return
+    if (e.key === ' ') { leertaste = true; e.preventDefault() }
+    else if (e.key === '1') modusSetzen('weg')
+    else if (e.key === '2') modusSetzen('platz')
+    else if (e.key === '3') modusSetzen('halt')
+    else if (e.key === '4') modusSetzen('vorne')
+    else if (e.key === 'Enter') abschliessen()
+    else if (e.key === 'Escape') { offen = null; zeichnen() }
+    else if (e.key === 'Backspace') {
+      if (offen && offen.length) { offen.pop(); zeichnen() }
+      e.preventDefault()
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+      e.preventDefault(); sichern()
+    }
+  })
+  window.addEventListener('keyup', function (e) { if (e.key === ' ') leertaste = false })
+
+  /* ------------------------------------------------------- Sichern/Laden */
+  function melden (text) {
+    var m = document.getElementById('meldung')
+    m.textContent = text
+    m.classList.add('zeig')
+    setTimeout(function () { m.classList.remove('zeig') }, 2600)
+  }
+
+  var sicherUhr = null
+  function geaendert () {
+    listeBauen()
+    zeichnen()
+    if (typeof aufgabeStandAktualisieren === 'function') aufgabeStandAktualisieren()
+    clearTimeout(sicherUhr)
+    sicherUhr = setTimeout(sichern, 700)
+  }
+
+  function sichern () {
+    daten.breite = bild.naturalWidth
+    daten.hoehe = bild.naturalHeight
+    fetch('/daten', { method: 'POST', body: DATEI + '\n' + JSON.stringify(daten, null, 1) })
+      .then(function (r) { return r.text() })
+      .then(function (pfad) { melden('Gesichert: ' + pfad.split('\\').pop()) })
+      .catch(function (e) { melden('Fehler beim Sichern: ' + e) })
+  }
+
+  function laden () {
+    fetch('../data/' + DATEI + '.json?t=' + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error('noch nichts gesichert'); return r.json() })
+      .then(function (d) {
+        daten.wege = d.wege || []
+        daten.plaetze = d.plaetze || []
+        daten.halte = d.halte || []
+        daten.vorne = d.vorne || []
+        listeBauen(); zeichnen()
+        aufgabeZeigen()
+        melden('Geladen: ' + daten.wege.length + ' Wege, ' + daten.plaetze.length + ' Plätze')
+      })
+      .catch(function (e) { melden(String(e.message || e)) })
+  }
+
+  /* ------------------------------------------------------------- Rundgang
+     Fuehrt Schritt fuer Schritt durch die Stadt. Werkzeug, Art und Ort werden
+     gesetzt, die Kamera fliegt zum richtigen Gebaeude. Damit kann man nicht
+     mehr das Falsche anklicken. */
+  var AUFGABEN = [
+    { ort: 'hq', art: 'schreibtisch', modus: 'platz',
+      titel: 'HQ \u00b7 Schreibtische',
+      text: 'Die Punkte sind schon gesetzt. Pr\u00fcfe sie: einen danebenliegenden Punkt auf den Stuhl ziehen, einen \u00fcberz\u00e4hligen mit Alt+Klick l\u00f6schen, einen fehlenden dazuklicken. Setze den Punkt jeweils auf den STUHL, nicht auf die Tischplatte.',
+      kasten: [520, 260, 1300, 1030] },
+    { ort: 'wohnhaus', art: 'bett', modus: 'platz',
+      titel: 'Wohnhaus \u00b7 Betten',
+      text: 'Klicke auf jedes Bett in den Zimmern.',
+      kasten: [1140, 40, 1640, 540] },
+    { ort: 'schule', art: 'schulbank', modus: 'platz',
+      titel: 'Schule \u00b7 Schulb\u00e4nke',
+      text: 'Klicke auf jeden Stuhl im Klassenzimmer.',
+      kasten: [1600, 20, 2090, 440] },
+    { ort: 'restaurant', art: 'esstisch', modus: 'platz',
+      titel: 'Restaurant \u00b7 Sitzpl\u00e4tze',
+      text: 'Klicke auf jeden Stuhl, drinnen und draussen auf der Terrasse.',
+      kasten: [1820, 450, 2320, 880] },
+    { ort: 'bar', art: 'bartresen', modus: 'platz',
+      titel: 'Bar \u00b7 Pl\u00e4tze',
+      text: 'Klicke auf die Hocker am Tresen und auf die St\u00fchle an den Tischen.',
+      kasten: [2160, 740, 2590, 1120] },
+    { ort: 'schwimmbad', art: 'liege', modus: 'platz',
+      titel: 'Schwimmbad \u00b7 Liegen',
+      text: 'Klicke auf jede Liege am Beckenrand.',
+      kasten: [1320, 880, 2090, 1320] },
+    { ort: 'schwimmbad', art: 'becken', modus: 'platz',
+      titel: 'Schwimmbad \u00b7 im Wasser',
+      text: 'Klicke drei- bis viermal mitten ins Becken. Dort wird geschwommen.',
+      kasten: [1320, 880, 2090, 1320] },
+    { ort: 'strand', art: 'liege', modus: 'platz',
+      titel: 'Strand \u00b7 Liegen',
+      text: 'Klicke auf jede Liege und jeden Sonnenschirm am Strand.',
+      kasten: [0, 0, 700, 1480] },
+    { ort: 'sport', art: 'sportplatz', modus: 'platz',
+      titel: 'Sportplatz',
+      text: 'Klicke vier- bis f\u00fcnfmal auf den Rasen, verteilt \u00fcber das Feld.',
+      kasten: [910, 1110, 1640, 1490] },
+    { ort: 'stadt', art: 'bank', modus: 'platz',
+      titel: 'B\u00e4nke in der Stadt',
+      text: 'Klicke auf die Sitzb\u00e4nke an den Strassen. Dort wird Pause gemacht.',
+      kasten: [0, 0, 2752, 1536] },
+    { ort: 'stadt', art: 'posten', modus: 'platz',
+      titel: 'Feste Posten',
+      text: 'Die Leute, die immer da sind. Stelle oben die Rolle ein und klicke die Stelle an: Lehrer vor der Wandtafel, Barman hinter dem Tresen, zwei bis drei Köche in der Küche, Kellner im Restaurant, Bademeister am Becken, zwei Rettungsschwimmer am Strand, ein Wächter beim HQ. Sie bewegen sich nie und gehören nicht zu den 59.',
+      kasten: [0, 0, 2752, 1536] },
+
+    { ort: 'eingang', art: 'stehen', modus: 'halt',
+      titel: 'Eing\u00e4nge',
+      text: 'Klicke auf jede Eingangst\u00fcr: Wohnhaus, Schule, Restaurant, Bar. Er fragt jeweils nach einem Namen.',
+      kasten: [0, 0, 2752, 1536] },
+    { ort: 'stadt', art: 'stehen', modus: 'weg',
+      titel: 'Wege',
+      text: 'Zum Schluss die Laufwege. Eine Strasse entlang klicken, dann Doppelklick, dann Name eingeben.',
+      kasten: [0, 0, 2752, 1536] }
+  ]
+
+  var aufgabe = 0
+
+  function kastenZeigen (k) {
+    var b = leinwand.clientWidth, h = leinwand.clientHeight
+    var kb = k[2] - k[0], kh = k[3] - k[1]
+    kamera.zoom = Math.min(b / kb, h / kh) * 0.88
+    kamera.x = b / 2 - (k[0] + kb / 2) * kamera.zoom
+    kamera.y = h / 2 - (k[1] + kh / 2) * kamera.zoom
+    zeichnen()
+  }
+
+  function anzahlFuer (a) {
+    return daten.plaetze.filter(function (p) {
+      return p.ort === a.ort && p.art === a.art
+    }).length
+  }
+
+  function aufgabeStandAktualisieren () {
+    var a = AUFGABEN[aufgabe]
+    if (!a || a.modus !== 'platz') return
+    var s = document.querySelector('#rgText .gesetzt')
+    if (s) s.textContent = 'Bisher ' + anzahlFuer(a) + ' gesetzt.'
+  }
+
+  function aufgabeZeigen () {
+    var a = AUFGABEN[aufgabe]
+    document.getElementById('rgZaehler').textContent =
+      (aufgabe === 0 ? 'Hier anfangen · ' : '') +
+      'Aufgabe ' + (aufgabe + 1) + ' von ' + AUFGABEN.length
+    document.getElementById('rgTitel').textContent = a.titel
+    document.getElementById('rgText').innerHTML = a.text +
+      (a.modus === 'platz' ? ' <span class="gesetzt">Bisher ' + anzahlFuer(a) + ' gesetzt.</span>' : '')
+    document.getElementById('art').value = a.art
+    document.getElementById('ort').value = a.ort
+    modusSetzen(a.modus)
+    kastenZeigen(a.kasten)
+    var knopf = document.getElementById('rgWeiter')
+    if (aufgabe === AUFGABEN.length - 1) knopf.textContent = 'Fertig'
+    else if (a.modus === 'platz' && anzahlFuer(a) === 0) knopf.textContent = 'Überspringen'
+    else knopf.textContent = 'Erledigt, weiter'
+  }
+
+  document.getElementById('rgWeiter').onclick = function () {
+    if (aufgabe < AUFGABEN.length - 1) { aufgabe++; aufgabeZeigen() }
+    else melden('Alles durch. Den Rest mache ich.')
+  }
+  document.getElementById('rgZurueck').onclick = function () {
+    if (aufgabe > 0) { aufgabe--; aufgabeZeigen() }
+  }
+
+  /* Blickrichtung: damit die Figur zum Tisch schaut und nicht mit dem
+     Ruecken dazu sitzt. */
+  var richtung = 'no'
+  Array.prototype.forEach.call(document.querySelectorAll('.richtung button'), function (b) {
+    b.onclick = function () {
+      richtung = b.dataset.r
+      Array.prototype.forEach.call(document.querySelectorAll('.richtung button'), function (x) {
+        x.classList.toggle('an', x === b)
+      })
+    }
+  })
+
+  function postenfeldZeigen () {
+    var an = modus === 'platz' && document.getElementById('art').value === 'posten'
+    document.getElementById('reihePosten').style.display = an ? '' : 'none'
+  }
+  document.getElementById('art').addEventListener('change', postenfeldZeigen)
+
+  document.getElementById('anleitungKnopf').onclick = function () {
+    var a = document.getElementById('anleitung')
+    a.classList.toggle('zu')
+    this.querySelector('span').textContent = a.classList.contains('zu') ? '▸' : '▾'
+  }
+
+  document.getElementById('sichern').onclick = sichern
+  document.getElementById('laden').onclick = laden
+
+  /* --------------------------------------------------------------- Start */
+  bild.onload = function () {
+    bildBereit = true
+    daten.breite = bild.naturalWidth
+    daten.hoehe = bild.naturalHeight
+    var b = leinwand.clientWidth, h = leinwand.clientHeight
+    kamera.zoom = Math.min(b / bild.naturalWidth, h / bild.naturalHeight) * 0.95
+    kamera.x = (b - bild.naturalWidth * kamera.zoom) / 2
+    kamera.y = (h - bild.naturalHeight * kamera.zoom) / 2
+    groesse()
+    laden()
+  }
+  bild.onerror = function () { melden('Kulisse nicht gefunden: ' + KULISSE) }
+  bild.src = KULISSE
+
+  window.addEventListener('resize', groesse)
+  document.getElementById('anleitung').classList.add('zu')
+  document.querySelector('#anleitungKnopf span').textContent = '\u25b8'
+  modusSetzen('platz')
+  groesse()
+})()
+</script>
+</body>
+</html>

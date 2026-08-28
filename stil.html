@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Player Two — die Stadt</title>
+<style>
+  :root {
+    --grund: #DFDFDF;
+    --text: #12182B;
+    --gedaempft: #5D6973;
+    --linie: #C6C0B8;
+    --akzent: #1E6CFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background: var(--grund);
+    color: var(--text);
+    font: 16px/1.55 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  #buehne { position: fixed; inset: 0; display: block; touch-action: none; cursor: grab; }
+  #buehne.zieht { cursor: grabbing; }
+
+  .kopf {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 5;
+    padding: 18px 22px 34px;
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    background: linear-gradient(to bottom, rgba(223,223,223,.95), rgba(223,223,223,0));
+    pointer-events: none;
+  }
+  .kopf h1 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.01em; }
+  .kopf p { margin: 0; font-size: 14px; color: var(--gedaempft); }
+
+  .tafel {
+    position: fixed; left: 22px; bottom: 22px; z-index: 5;
+    background: rgba(255,255,255,.9);
+    border: 1px solid var(--linie);
+    border-radius: 12px;
+    padding: 13px 16px;
+    max-width: 330px;
+    font-size: 13.5px; line-height: 1.5;
+    backdrop-filter: blur(6px);
+  }
+  .tafel strong {
+    display: block; font-size: 12px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--gedaempft); margin-bottom: 6px; font-weight: 600;
+  }
+  .tafel ul { margin: 9px 0 0; padding-left: 17px; color: var(--gedaempft); }
+  .tafel li { margin: 3px 0; }
+
+  .regler { position: fixed; right: 22px; bottom: 22px; z-index: 5; display: flex; gap: 8px; }
+  .regler button {
+    width: 44px; height: 44px;
+    border: 1px solid var(--linie);
+    background: rgba(255,255,255,.92);
+    border-radius: 11px;
+    font-size: 18px; color: var(--text);
+    cursor: pointer; font-family: inherit;
+  }
+  .regler button:hover { background: #fff; border-color: var(--akzent); }
+
+  @media (max-width: 760px) {
+    .tafel { left: 12px; right: 12px; bottom: 12px; max-width: none; font-size: 12.5px; }
+    .tafel ul { display: none; }
+    .regler { bottom: auto; top: 58px; right: 12px; }
+    .kopf { padding: 12px 14px 26px; }
+    .kopf p { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="buehne"></canvas>
+
+<div class="kopf">
+  <h1>Player Two — die Stadt</h1>
+  <p>Jedes Haus, jeder Baum, jeder Arbeitsplatz ist gerechnet. Kein fertiges Bild.</p>
+</div>
+
+<div class="tafel">
+  <strong>Was gerade gebaut wurde</strong>
+  <span id="lage">wird geladen …</span>
+  <ul>
+    <li>Grundriss und Räume entstehen aus den Abteilungen.</li>
+    <li>Ein Arbeitsplatz pro Person, automatisch gesetzt.</li>
+    <li>Das Wohnhaus wächst mit der Belegschaft.</li>
+    <li>Rechts die freien Parzellen für Kunden.</li>
+  </ul>
+</div>
+
+<div class="regler">
+  <button id="raus" title="kleiner">−</button>
+  <button id="rein" title="grösser">+</button>
+  <button id="hq" title="zum HQ">⌂</button>
+  <button id="welt" title="ganze Stadt">◇</button>
+</div>
+
+<script src="assets/iso.js"></script>
+<script src="assets/teile.js"></script>
+<script src="assets/gebaeude.js"></script>
+<script src="assets/welt.js"></script>
+<script>
+(function () {
+  'use strict'
+
+  var leinwand = document.getElementById('buehne')
+  var ctx = leinwand.getContext('2d')
+  var PAL = Iso.PAL
+
+  var kamera = { x: 0, y: 0, zoom: 0.5 }
+  var sicht = { b: 0, h: 0 }
+  var daten = null
+  var lage = null
+  var ersterAufbau = true
+
+  /* Die Stadt wird einmal in einen Zwischenspeicher gezeichnet. Danach wird
+     beim Schieben nur noch kopiert. Genau das, was ein Spielebaukasten mit
+     fertigen Bildern macht, nur dass unsere Bilder aus dem Code entstehen. */
+  var speicher = { leinwand: null, zoom: 0, x0: 0, y0: 0, b: 0, h: 0 }
+  var HOECHSTGROESSE = 13e6
+
+  function weltmasse () {
+    var W = Welt.WELT
+    var links = Iso.proj(0, W.t, 0).x
+    var rechts = Iso.proj(W.b, 0, 0).x
+    var oben = Iso.proj(0, 0, 0).y - 460
+    var unten = Iso.proj(W.b, W.t, 0).y + 40
+    return { x0: links - 40, y0: oben, b: rechts - links + 80, h: unten - oben }
+  }
+
+  function speicherFuellen (zoom) {
+    var m = weltmasse()
+    var b = Math.ceil(m.b * zoom)
+    var h = Math.ceil(m.h * zoom)
+    if (b * h > HOECHSTGROESSE) return false
+
+    var k = speicher.leinwand || document.createElement('canvas')
+    k.width = b
+    k.height = h
+    var kx = k.getContext('2d')
+    kx.clearRect(0, 0, b, h)
+    kx.setTransform(zoom, 0, 0, zoom, -m.x0 * zoom, -m.y0 * zoom)
+
+    var z = new Iso.Zeichner(kx)
+    z.strichbreite = 1.05 / zoom
+    var buehne = new Iso.Buehne()
+    lage = Welt.bauen(z, buehne, daten)
+    buehne.malen()
+
+    speicher.leinwand = k
+    speicher.zoom = zoom
+    speicher.x0 = m.x0
+    speicher.y0 = m.y0
+    speicher.b = m.b
+    speicher.h = m.h
+    return true
+  }
+
+  function direktZeichnen () {
+    ctx.save()
+    ctx.translate(sicht.b / 2 + kamera.x, sicht.h / 2 + kamera.y)
+    ctx.scale(kamera.zoom, kamera.zoom)
+    var z = new Iso.Zeichner(ctx)
+    z.strichbreite = 1.05 / kamera.zoom
+    var buehne = new Iso.Buehne()
+    lage = Welt.bauen(z, buehne, daten)
+    buehne.malen()
+    ctx.restore()
+  }
+
+  function zeichnen () {
+    if (!daten) return
+    ctx.save()
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.fillStyle = PAL.himmel
+    ctx.fillRect(0, 0, leinwand.width, leinwand.height)
+    ctx.restore()
+
+    var noetig = Math.max(0.35, Math.min(kamera.zoom, 1.25))
+    if (!speicher.leinwand || Math.abs(speicher.zoom - noetig) > 0.02) {
+      if (!speicherFuellen(noetig)) { direktZeichnen(); return }
+    }
+
+    var f = kamera.zoom / speicher.zoom
+    ctx.save()
+    ctx.translate(sicht.b / 2 + kamera.x, sicht.h / 2 + kamera.y)
+    ctx.scale(f, f)
+    ctx.imageSmoothingQuality = 'high'
+    ctx.drawImage(speicher.leinwand,
+      speicher.x0 * speicher.zoom, speicher.y0 * speicher.zoom)
+    ctx.restore()
+  }
+
+  /* ------------------------------------------------------------- Groesse */
+  function groesse () {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2)
+    var b = window.innerWidth || document.documentElement.clientWidth || 0
+    var h = window.innerHeight || document.documentElement.clientHeight || 0
+    if (b < 40 || h < 40) { b = 1440; h = 900 }
+    sicht.b = b; sicht.h = h
+    leinwand.width = Math.round(b * dpr)
+    leinwand.height = Math.round(h * dpr)
+    leinwand.style.width = b + 'px'
+    leinwand.style.height = h + 'px'
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    zeichnen()
+    if (ersterAufbau && lage) { ersterAufbau = false; ganzeStadt() }
+  }
+
+  /* --------------------------------------------------------- Kamerafuehrung */
+  function rahmen (x0, y0, x1, y1, rand, hoehe) {
+    rand = rand || 34
+    var oben = Iso.proj(x0, y0, hoehe === undefined ? 3.2 : hoehe).y
+    var unten = Iso.proj(x1, y1, 0).y
+    var links = Iso.proj(x0, y1, 0).x
+    var rechts = Iso.proj(x1, y0, 0).x
+    var b = rechts - links
+    var h = unten - oben
+    kamera.zoom = Math.max(0.2, Math.min((sicht.b - rand * 2) / b, (sicht.h - rand * 2 - 40) / h, 1.7))
+    kamera.x = -((links + rechts) / 2) * kamera.zoom
+    kamera.y = -((oben + unten) / 2) * kamera.zoom
+    zeichnen()
+  }
+
+  function ganzeStadt () {
+    var W = Welt.WELT
+    rahmen(0, 0, W.b, W.t, 24, 6)
+  }
+
+  function zumHQ () {
+    if (!lage) return
+    var q = lage.hq
+    rahmen(q.x - 4, q.y - 4, q.x + q.b + 4, q.y + q.t + 4, 30, (q.hoehe || 3.2) + 1.2)
+  }
+
+  var zieht = false, letzteX = 0, letzteY = 0, zeiger = {}, letzterAbstand = 0
+
+  leinwand.addEventListener('pointerdown', function (e) {
+    leinwand.setPointerCapture(e.pointerId)
+    zeiger[e.pointerId] = { x: e.clientX, y: e.clientY }
+    if (Object.keys(zeiger).length === 1) {
+      zieht = true; letzteX = e.clientX; letzteY = e.clientY
+      leinwand.classList.add('zieht')
+    }
+  })
+  leinwand.addEventListener('pointermove', function (e) {
+    if (!zeiger[e.pointerId]) return
+    zeiger[e.pointerId] = { x: e.clientX, y: e.clientY }
+    var ids = Object.keys(zeiger)
+    if (ids.length >= 2) {
+      var a = zeiger[ids[0]], b = zeiger[ids[1]]
+      var d = Math.hypot(a.x - b.x, a.y - b.y)
+      if (letzterAbstand) {
+        kamera.zoom = Math.max(0.18, Math.min(2.6, kamera.zoom * (d / letzterAbstand)))
+        zeichnen()
+      }
+      letzterAbstand = d
+      return
+    }
+    if (!zieht) return
+    kamera.x += e.clientX - letzteX
+    kamera.y += e.clientY - letzteY
+    letzteX = e.clientX; letzteY = e.clientY
+    zeichnen()
+  })
+  function loslassen (e) {
+    delete zeiger[e.pointerId]
+    if (Object.keys(zeiger).length < 2) letzterAbstand = 0
+    if (Object.keys(zeiger).length === 0) { zieht = false; leinwand.classList.remove('zieht') }
+  }
+  leinwand.addEventListener('pointerup', loslassen)
+  leinwand.addEventListener('pointercancel', loslassen)
+
+  leinwand.addEventListener('wheel', function (e) {
+    e.preventDefault()
+    kamera.zoom = Math.max(0.18, Math.min(2.6, kamera.zoom * (e.deltaY < 0 ? 1.12 : 1 / 1.12)))
+    zeichnen()
+  }, { passive: false })
+
+  document.getElementById('rein').onclick = function () {
+    kamera.zoom = Math.min(2.6, kamera.zoom * 1.3); zeichnen()
+  }
+  document.getElementById('raus').onclick = function () {
+    kamera.zoom = Math.max(0.18, kamera.zoom / 1.3); zeichnen()
+  }
+  document.getElementById('hq').onclick = zumHQ
+  document.getElementById('welt').onclick = ganzeStadt
+
+  window.addEventListener('resize', groesse)
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') groesse()
+  })
+
+  /* --------------------------------------------------------------- Start */
+  fetch('data/team.json')
+    .then(function (r) { return r.json() })
+    .then(function (d) {
+      daten = d
+      var t0 = performance.now()
+      groesse()
+      var dauer = Math.round(performance.now() - t0)
+      var lernende = 0
+      d.abteilungen.forEach(function (a) {
+        a.mitarbeitende.forEach(function (m) { if (m.status === 'ausbildung') lernende++ })
+      })
+      document.getElementById('lage').textContent =
+        d.abteilungen.length + ' Abteilungen auf ' + lage.hq.ebenen + ' Geschossen, ' +
+        d.anzahl_digital + ' Arbeitsplätze, HQ ' + lage.hq.b + ' × ' + lage.hq.t +
+        ' Felder, Wohnhaus ' + lage.geschosse + ' Geschosse, ' + lernende +
+        ' in Ausbildung. Aufgebaut in ' + dauer + ' ms.'
+    })
+    .catch(function (e) {
+      document.getElementById('lage').textContent = 'Teamdaten konnten nicht geladen werden: ' + e
+    })
+})()
+</script>
+</body>
+</html>

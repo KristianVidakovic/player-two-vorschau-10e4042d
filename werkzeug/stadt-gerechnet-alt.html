@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Die Werkstatt, Player Two</title>
+<meta name="description" content="Sehen Sie unserem Team bei der Arbeit zu. Wer arbeitet, arbeitet wirklich. Wer nichts zu tun hat, macht Feierabend.">
+<meta name="theme-color" content="#0B1220">
+<link rel="icon" href="assets/marke.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F7;--tief:#0B1220;--tief-voll:#050A14;--nacht:#082056;
+  --akzent:#1E6CFF;--cyan:#00C6FF;--grau:#5B6779;
+  --display:'Archivo',system-ui,sans-serif;--body:'Source Sans 3',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--tief-voll);
+  font-family:var(--body);color:#EBF8FF;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+
+#buehne{position:fixed;inset:0;touch-action:none;cursor:grab;display:block}
+#buehne.zieht{cursor:grabbing}
+
+/* Kopfleiste */
+.leiste{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:18px;
+  padding:14px max(3vw,16px);
+  background:linear-gradient(180deg,rgba(5,10,20,.86),rgba(5,10,20,0));
+  pointer-events:none}
+.leiste>*{pointer-events:auto}
+.zurueck{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+.zurueck img{width:30px;height:30px;object-fit:contain}
+.zurueck span{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.werte{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto;align-items:center;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.04em}
+.werte span{display:flex;align-items:center;gap:7px;color:rgba(235,248,255,.82)}
+.pkt{width:8px;height:8px;border-radius:50%;display:block}
+.pkt.a{background:#37D67A;box-shadow:0 0 10px rgba(55,214,122,.7)}
+.pkt.s{background:var(--cyan)}
+.pkt.f{background:rgba(235,248,255,.4)}
+.marke-vorf{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:#0B1220;background:var(--cyan);padding:5px 11px;border-radius:99px}
+
+/* Fussleiste */
+.fussleiste{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:flex-end;
+  justify-content:space-between;gap:16px;padding:16px max(3vw,16px);
+  background:linear-gradient(0deg,rgba(5,10,20,.88),rgba(5,10,20,0));pointer-events:none}
+.fussleiste>*{pointer-events:auto}
+.hinweis{font-size:14px;color:rgba(235,248,255,.7);max-width:46ch;line-height:1.5}
+.hinweis b{color:#fff;font-weight:600}
+.knoepfe{display:flex;gap:8px}
+.rundknopf{width:44px;height:44px;border-radius:50%;border:1px solid rgba(235,248,255,.22);
+  background:rgba(235,248,255,.08);color:#EBF8FF;font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s var(--ease),transform .3s var(--ease)}
+.rundknopf:hover{background:rgba(235,248,255,.16);transform:translateY(-2px)}
+
+/* Steckbrief */
+.steckbrief{position:fixed;z-index:30;right:max(3vw,16px);top:74px;width:min(330px,86vw);
+  background:rgba(11,18,32,.94);border:1px solid rgba(235,248,255,.18);border-radius:18px;
+  padding:22px 22px 20px;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.steckbrief.offen{opacity:1;transform:none;pointer-events:auto}
+.steckbrief .zu{position:absolute;right:12px;top:10px;background:none;border:0;color:rgba(235,248,255,.6);
+  font-size:22px;cursor:pointer;line-height:1;padding:4px 8px}
+.steckbrief .zu:hover{color:#fff}
+.sb-kopf{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.sb-kreis{width:56px;height:56px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;
+  justify-content:center;font-family:var(--display);font-weight:700;font-size:22px;color:#fff}
+.sb-kopf h2{font-size:21px}
+.sb-rolle{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cyan);margin-top:4px}
+.steckbrief p{margin:0;font-size:15px;color:rgba(235,248,255,.86);line-height:1.55}
+.sb-charakter{margin-top:10px;font-size:14px;color:rgba(235,248,255,.6);font-style:italic}
+.sb-zustand{margin-top:16px;padding-top:14px;border-top:1px solid rgba(235,248,255,.14);
+  display:flex;align-items:center;gap:9px;font-size:14.5px}
+.sb-abteilung{margin-top:8px;font-size:13px;color:rgba(235,248,255,.5)}
+
+/* Ladehinweis */
+.laedt{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;
+  background:var(--tief-voll);transition:opacity .6s var(--ease)}
+.laedt.weg{opacity:0;pointer-events:none}
+.laedt div{text-align:center}
+.laedt p{margin-top:14px;color:rgba(235,248,255,.6);font-size:15px}
+
+@media (max-width:720px){
+  .werte{font-size:11px;gap:11px;width:100%;margin-left:0;order:3}
+  .leiste{flex-wrap:wrap;gap:10px}
+  .hinweis{display:none}
+  .steckbrief{right:auto;left:max(3vw,12px);top:auto;bottom:78px;width:calc(100vw - 6vw - 24px)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="laedt" id="laedt"><div>
+  <img src="assets/marke.png" alt="" width="56" height="56" style="margin:0 auto">
+  <p>Die Werkstatt wird aufgebaut</p>
+</div></div>
+
+<canvas id="buehne"></canvas>
+
+<header class="leiste">
+  <a class="zurueck" href="team.html">
+    <img src="assets/marke.png" alt=""><span>Zurück zum Team</span>
+  </a>
+  <span class="marke-vorf" id="vorfuehrung" hidden>Vorführung</span>
+  <div class="werte">
+    <span><i class="pkt a"></i><b id="w-arbeit">0</b>&nbsp;arbeiten</span>
+    <span><i class="pkt s"></i><b id="w-schule">0</b>&nbsp;in der Schule</span>
+    <span><i class="pkt f"></i><b id="w-frei">0</b>&nbsp;Feierabend</span>
+    <span id="w-zeit"></span>
+  </div>
+</header>
+
+<footer class="fussleiste">
+  <p class="hinweis" id="hinweis">
+    <b>Ziehen</b> zum Bewegen, <b>Scrollen</b> zum Zoomen, <b>Antippen</b> für den Steckbrief.
+    Wer im HQ am Platz sitzt, arbeitet wirklich.
+  </p>
+  <div class="knoepfe">
+    <button class="rundknopf" id="k-plus" aria-label="Näher heran">+</button>
+    <button class="rundknopf" id="k-minus" aria-label="Weiter weg">−</button>
+    <button class="rundknopf" id="k-hq" aria-label="Zum HQ springen">⌂</button>
+  </div>
+</footer>
+
+<aside class="steckbrief" id="steckbrief" role="dialog" aria-label="Steckbrief">
+  <button class="zu" id="sb-zu" aria-label="Schliessen">×</button>
+  <div class="sb-kopf">
+    <div class="sb-kreis" id="sb-kreis">L</div>
+    <div><h2 id="sb-name">Name</h2><div class="sb-rolle" id="sb-rolle">Rolle</div></div>
+  </div>
+  <p id="sb-aufgabe"></p>
+  <div class="sb-charakter" id="sb-charakter"></div>
+  <div class="sb-zustand"><i class="pkt a" id="sb-pkt"></i><span id="sb-zustand"></span></div>
+  <div class="sb-abteilung" id="sb-abteilung"></div>
+</aside>
+
+<script src="assets/stadt.js"></script>
+<script>
+(function(){
+'use strict';
+var C = document.getElementById('buehne'), ctx = C.getContext('2d');
+var KW = Stadt.KW, KH = Stadt.KH, B = Stadt.BODEN;
+var kam = {x:0, y:0, z:1}, dpr = Math.min(devicePixelRatio || 1, 2);
+var boden = null, figuren = [], gewaehlt = null, kamGesetzt = false;
+var wenigerBewegung = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Projektion ---------- */
+function proj(gx, gy){ return {x:(gx - gy) * KW/2, y:(gx + gy) * KH/2}; }
+function unproj(wx, wy){
+  var a = wx / (KW/2), b2 = wy / (KH/2);
+  return {x:(b2 + a) / 2, y:(b2 - a) / 2};
+}
+function raute(p, w, h){
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y - h/2); ctx.lineTo(p.x + w/2, p.y);
+  ctx.lineTo(p.x, p.y + h/2); ctx.lineTo(p.x - w/2, p.y);
+  ctx.closePath();
+}
+
+/* ---------- Bodenebene, einmal gezeichnet ---------- */
+var FARBE = {};
+FARBE[B.WIESE]   = ['#A8BFA0','#9FB897'];
+FARBE[B.STRASSE] = ['#C9CFD8','#C2C9D3'];
+FARBE[B.WASSER]  = ['#4FA8C8','#489EBE'];
+FARBE[B.SAND]    = ['#E2D3AE','#DACaa4'.replace('a','A')];
+FARBE[B.PLATTE]  = ['#D8DDE5','#D1D7E0'];
+FARBE[B.PARZELLE]= ['#BDB59C','#B6AE95'];
+
+function bodenBauen(){
+  var karte = Stadt.karte();
+  var breiteW = (Stadt.BREITE + Stadt.HOEHE) * KW/2;
+  var hoeheW  = (Stadt.BREITE + Stadt.HOEHE) * KH/2 + 90;
+  var off = document.createElement('canvas');
+  off.width = breiteW; off.height = hoeheW;
+  var o = off.getContext('2d');
+  var versatz = {x: Stadt.HOEHE * KW/2, y: 40};
+  o.translate(versatz.x, versatz.y);
+
+  for (var gy = 0; gy < Stadt.HOEHE; gy++){
+    for (var gx = 0; gx < Stadt.BREITE; gx++){
+      var art = karte[gy * Stadt.BREITE + gx];
+      var p = proj(gx, gy);
+      var f = FARBE[art] || FARBE[B.WIESE];
+      o.fillStyle = f[(gx + gy) % 2];
+      o.beginPath();
+      o.moveTo(p.x, p.y - KH/2); o.lineTo(p.x + KW/2, p.y);
+      o.lineTo(p.x, p.y + KH/2); o.lineTo(p.x - KW/2, p.y);
+      o.closePath(); o.fill();
+    }
+  }
+  // Parzellenschilder
+  Stadt.PARZELLEN.forEach(function(pz){
+    var p = proj(pz.x + pz.b/2, pz.y + pz.h/2);
+    o.fillStyle = 'rgba(11,18,32,.55)';
+    o.strokeStyle = 'rgba(30,108,255,.9)'; o.lineWidth = 2;
+    o.beginPath(); o.roundRect(p.x - 78, p.y - 34, 156, 40, 8); o.fill(); o.stroke();
+    o.fillStyle = '#EBF8FF'; o.font = '600 13px Archivo, sans-serif'; o.textAlign = 'center';
+    o.fillText('Hier könnte Ihr', p.x, p.y - 18);
+    o.fillText('Betrieb stehen', p.x, p.y - 2);
+  });
+  boden = {bild: off, versatz: versatz};
+}
+
+/* ---------- Gebaeude ---------- */
+function gebaeudeZeichnen(){
+  Stadt.GEBAEUDE.forEach(function(g){
+    var hoehe = g.art === 'hq' ? 26 : (g.art === 'wohnen' ? 22 : 15);
+    // Wandband entlang des Umrisses
+    wandBand(g.x, g.y, g.x + g.b - 1, g.y, hoehe, g);              // Nordwand
+    wandBand(g.x, g.y, g.x, g.y + g.h - 1, hoehe, g);              // Westwand
+    wandBand(g.x, g.y + g.h - 1, g.x + g.b - 1, g.y + g.h - 1, Math.round(hoehe*0.42), g);
+    wandBand(g.x + g.b - 1, g.y, g.x + g.b - 1, g.y + g.h - 1, Math.round(hoehe*0.42), g);
+    // Schild
+    var p = proj(g.x + g.b/2, g.y + 0.4);
+    ctx.fillStyle = 'rgba(235,248,255,.92)';
+    ctx.font = '700 ' + (g.art === 'hq' ? 17 : 13) + 'px Archivo, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(g.name, p.x, p.y - hoehe - 12);
+  });
+}
+function wandBand(x1, y1, x2, y2, hoehe, g){
+  var a = proj(x1 - .5, y1 - .5), b = proj(x2 + .5, y2 + .5);
+  ctx.fillStyle = g.farbe;
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+  ctx.lineTo(b.x, b.y - hoehe); ctx.lineTo(a.x, a.y - hoehe);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = g.dach;
+  ctx.fillRect(Math.min(a.x,b.x), Math.min(a.y,b.y) - hoehe - 3, Math.abs(b.x-a.x) || 3, 3);
+}
+
+/* ---------- Figuren ---------- */
+function figurZeichnen(f){
+  var p = proj(f.pos.x, f.pos.y);
+  var hell = f.tun === 'arbeit';
+  // Schatten
+  ctx.fillStyle = 'rgba(11,18,32,.22)';
+  ctx.beginPath(); ctx.ellipse(p.x, p.y + 2, 8, 4, 0, 0, 6.284); ctx.fill();
+  // Koerper
+  var ton = 'hsl(' + f.ton + ',38%,' + (f.status === 'ausbildung' ? 62 : 48) + '%)';
+  ctx.fillStyle = ton;
+  ctx.beginPath(); ctx.roundRect(p.x - 5, p.y - 20, 10, 16, 4); ctx.fill();
+  // Kopf
+  ctx.fillStyle = '#F0E0CE';
+  ctx.beginPath(); ctx.arc(p.x, p.y - 24, 5, 0, 6.284); ctx.fill();
+  // Haar
+  ctx.fillStyle = 'hsl(' + ((f.ton * 3) % 360) + ',30%,28%)';
+  ctx.beginPath(); ctx.arc(p.x, p.y - 26, 5, Math.PI, 0); ctx.fill();
+  // Arbeitszeichen
+  if (hell) {
+    ctx.fillStyle = '#37D67A';
+    ctx.beginPath(); ctx.arc(p.x + 8, p.y - 28, 3.4, 0, 6.284); ctx.fill();
+  }
+  if (gewaehlt === f) {
+    ctx.strokeStyle = '#00C6FF'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(p.x, p.y + 2, 13, 7, 0, 0, 6.284); ctx.stroke();
+  }
+}
+
+/* ---------- Tag und Nacht ---------- */
+function nachtSchleier(){
+  var s = new Date().getHours() + new Date().getMinutes()/60;
+  var d;
+  if (s >= 7 && s < 18) d = 0;
+  else if (s >= 18 && s < 21) d = (s - 18) / 3 * .55;
+  else if (s >= 21 || s < 5) d = .55;
+  else d = (7 - s) / 2 * .55;
+  if (d <= 0) return;
+  ctx.save(); ctx.setTransform(1,0,0,1,0,0);
+  ctx.fillStyle = 'rgba(8,20,52,' + d.toFixed(2) + ')';
+  ctx.fillRect(0, 0, C.width, C.height);
+  ctx.restore();
+}
+
+/* ---------- Schleife ---------- */
+var letzte = 0;
+function bild(jetzt){
+  var dt = Math.min(120, jetzt - (letzte || jetzt)); letzte = jetzt;
+  if (C.width !== Math.round(innerWidth * dpr) || C.height !== Math.round(innerHeight * dpr)) {
+    if (innerWidth > 0) { groesse(); if (!kamGesetzt) { zumHQ(); kamGesetzt = true; } }
+  }
+  Stadt.tick(dt);
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#8FA98A';
+  ctx.fillRect(0, 0, C.width / dpr, C.height / dpr);
+  ctx.setTransform(dpr * kam.z, 0, 0, dpr * kam.z, kam.x * dpr, kam.y * dpr);
+
+  if (boden) ctx.drawImage(boden.bild, -boden.versatz.x, -boden.versatz.y);
+  gebaeudeZeichnen();
+
+  figuren = Stadt.figuren().slice().sort(function(a, b){
+    return (a.pos.x + a.pos.y) - (b.pos.x + b.pos.y);
+  });
+  for (var i = 0; i < figuren.length; i++) figurZeichnen(figuren[i]);
+
+  nachtSchleier();
+  werteSetzen();
+  requestAnimationFrame(bild);
+}
+
+var letzteWerte = '';
+function werteSetzen(){
+  var z = Stadt.zaehlen();
+  var s = z.arbeit + '|' + z.schule + '|' + (z.frei + z.unterwegs);
+  if (s === letzteWerte) return;
+  letzteWerte = s;
+  document.getElementById('w-arbeit').textContent = z.arbeit;
+  document.getElementById('w-schule').textContent = z.schule;
+  document.getElementById('w-frei').textContent = z.frei + z.unterwegs;
+  var d = new Date();
+  document.getElementById('w-zeit').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2) + ' Uhr';
+  if (gewaehlt) zustandSetzen(gewaehlt);
+}
+
+/* ---------- Kamera ---------- */
+function groesse(){
+  C.width = innerWidth * dpr; C.height = innerHeight * dpr;
+  C.style.width = innerWidth + 'px'; C.style.height = innerHeight + 'px';
+}
+function zumHQ(){
+  var g = Stadt.GEBAEUDE[0];
+  var p = proj(g.x + g.b/2, g.y + g.h/2);
+  kam.z = innerWidth < 720 ? .58 : .82;
+  kam.x = innerWidth/2 - p.x * kam.z;
+  kam.y = innerHeight/2 - p.y * kam.z;
+}
+function zoomAuf(faktor, mx, my){
+  var alt = kam.z;
+  kam.z = Math.max(.3, Math.min(2.2, kam.z * faktor));
+  kam.x = mx - (mx - kam.x) * (kam.z / alt);
+  kam.y = my - (my - kam.y) * (kam.z / alt);
+}
+
+var zieht = false, letzterP = null, zeiger = {}, startAbstand = 0;
+C.addEventListener('pointerdown', function(e){
+  C.setPointerCapture(e.pointerId);
+  zeiger[e.pointerId] = {x:e.clientX, y:e.clientY};
+  var n = Object.keys(zeiger);
+  if (n.length === 1) { zieht = true; letzterP = {x:e.clientX, y:e.clientY, zeit:Date.now(), sx:e.clientX, sy:e.clientY}; C.classList.add('zieht'); }
+  else if (n.length === 2) startAbstand = abstand();
+});
+C.addEventListener('pointermove', function(e){
+  if (!zeiger[e.pointerId]) return;
+  zeiger[e.pointerId] = {x:e.clientX, y:e.clientY};
+  var n = Object.keys(zeiger);
+  if (n.length === 2) {
+    var neu = abstand();
+    if (startAbstand > 0) {
+      var m = mitte();
+      zoomAuf(neu / startAbstand, m.x, m.y);
+      startAbstand = neu;
+    }
+    return;
+  }
+  if (zieht && letzterP) {
+    kam.x += e.clientX - letzterP.x;
+    kam.y += e.clientY - letzterP.y;
+    letzterP.x = e.clientX; letzterP.y = e.clientY;
+  }
+});
+function endeZeiger(e){
+  var war = letzterP;
+  delete zeiger[e.pointerId];
+  if (Object.keys(zeiger).length < 2) startAbstand = 0;
+  if (Object.keys(zeiger).length === 0) {
+    zieht = false; C.classList.remove('zieht');
+    if (war && Date.now() - war.zeit < 320 &&
+        Math.abs(e.clientX - war.sx) < 8 && Math.abs(e.clientY - war.sy) < 8) tippen(e.clientX, e.clientY);
+    letzterP = null;
+  }
+}
+C.addEventListener('pointerup', endeZeiger);
+C.addEventListener('pointercancel', endeZeiger);
+function abstand(){
+  var k = Object.keys(zeiger); if (k.length < 2) return 0;
+  var a = zeiger[k[0]], b = zeiger[k[1]];
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+function mitte(){
+  var k = Object.keys(zeiger); var a = zeiger[k[0]], b = zeiger[k[1]];
+  return {x:(a.x + b.x)/2, y:(a.y + b.y)/2};
+}
+C.addEventListener('wheel', function(e){
+  e.preventDefault();
+  zoomAuf(e.deltaY < 0 ? 1.12 : 0.89, e.clientX, e.clientY);
+}, {passive:false});
+
+document.getElementById('k-plus').onclick = function(){ zoomAuf(1.25, innerWidth/2, innerHeight/2); };
+document.getElementById('k-minus').onclick = function(){ zoomAuf(0.8, innerWidth/2, innerHeight/2); };
+document.getElementById('k-hq').onclick = zumHQ;
+addEventListener('resize', function(){ groesse(); });
+addEventListener('visibilitychange', function(){
+  if (!document.hidden && innerWidth > 0) { groesse(); if (!kamGesetzt) { zumHQ(); kamGesetzt = true; } }
+});
+
+/* ---------- Antippen ---------- */
+function tippen(sx, sy){
+  var wx = (sx - kam.x) / kam.z, wy = (sy - kam.y) / kam.z;
+  var naechste = null, besteEntfernung = 40;
+  Stadt.figuren().forEach(function(f){
+    var p = proj(f.pos.x, f.pos.y);
+    var d = Math.hypot(p.x - wx, p.y - wy + 14);
+    if (d < besteEntfernung) { besteEntfernung = d; naechste = f; }
+  });
+  if (naechste) zeigeSteckbrief(naechste); else schliesseSteckbrief();
+}
+var sb = document.getElementById('steckbrief');
+function zeigeSteckbrief(f){
+  gewaehlt = f;
+  document.getElementById('sb-name').textContent = f.name;
+  document.getElementById('sb-rolle').textContent = f.rolle;
+  document.getElementById('sb-aufgabe').textContent = f.aufgabe;
+  document.getElementById('sb-charakter').textContent = f.charakter || '';
+  document.getElementById('sb-abteilung').textContent = f.abteilung;
+  var kr = document.getElementById('sb-kreis');
+  kr.textContent = f.name.charAt(0);
+  kr.style.background = 'linear-gradient(150deg,hsl(' + f.ton + ',44%,32%),hsl(' + f.ton + ',52%,52%))';
+  zustandSetzen(f);
+  sb.classList.add('offen');
+}
+function zustandSetzen(f){
+  var t = {arbeit:'arbeitet gerade am Platz', schule:'ist in der Ausbildung', unterwegs:'ist unterwegs',
+           freizeit:'hat gerade nichts zu tun', zimmer:'ist zu Hause'}[f.tun] || 'ist bereit';
+  if (f.tun === 'freizeit' || f.tun === 'zimmer') {
+    var ortText = {zimmer:'zu Hause', restaurant:'im Restaurant', bar:'in der Bar', sport:'beim Sport',
+                   bad:'im Schwimmbad', strand:'am Strand', spaziergang:'draussen unterwegs'}[f.ort];
+    if (ortText) t = 'hat nichts zu tun und ist ' + ortText;
+  }
+  document.getElementById('sb-zustand').textContent = t;
+  var pkt = document.getElementById('sb-pkt');
+  pkt.className = 'pkt ' + (f.tun === 'arbeit' ? 'a' : (f.tun === 'schule' ? 's' : 'f'));
+}
+function schliesseSteckbrief(){ gewaehlt = null; sb.classList.remove('offen'); }
+document.getElementById('sb-zu').onclick = schliesseSteckbrief;
+addEventListener('keydown', function(e){ if (e.key === 'Escape') schliesseSteckbrief(); });
+
+/* ---------- Start ---------- */
+groesse();
+fetch('data/team.json').then(function(r){ return r.json(); }).then(function(daten){
+  Stadt.start(daten);
+  bodenBauen();
+  if (innerWidth > 0) { zumHQ(); kamGesetzt = true; }
+  Stadt.standLesen().then(function(){
+    document.getElementById('vorfuehrung').hidden = !Stadt.istVorfuehrung();
+    if (Stadt.istVorfuehrung()) {
+      document.getElementById('hinweis').innerHTML =
+        '<b>Vorführung.</b> Die Werkstatt ist noch nicht am System angeschlossen, darum sind die Arbeitseinsätze hier nachgestellt. ' +
+        'Sobald sie hängt, sitzt hier nur, wer wirklich arbeitet.';
+    }
+  });
+  setInterval(function(){ Stadt.standLesen(); }, 30000);
+  document.getElementById('laedt').classList.add('weg');
+  requestAnimationFrame(bild);
+}).catch(function(){
+  document.getElementById('laedt').innerHTML =
+    '<div><p>Die Werkstatt konnte nicht geladen werden. Bitte Seite neu laden.</p></div>';
+});
+})();
+</script>
+</body>
+</html>

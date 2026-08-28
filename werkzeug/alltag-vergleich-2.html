@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Drei weitere Darstellungen — Kommt Ihnen das bekannt vor?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Zweite Runde: D, E, F. Andere Richtungen als A, B und C -
+   nicht Varianten davon. Dieselben Farben und Schriften wie die Website.
+   Kein Skript, alles reines CSS. */
+:root{
+  --canvas:#F2F4F7; --canvas-2:#E8ECF2; --tief:#0B1220; --tief-voll:#050A14;
+  --nacht:#082056; --akzent:#1E6CFF; --cyan:#00C6FF; --grau:#5B6779;
+  --linie:rgba(11,18,32,.12); --linie-stark:rgba(11,18,32,.24);
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Sans 3',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --seite:min(1180px,92vw);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--tief);font-family:var(--body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--seite);margin:0 auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--akzent);display:block;margin-bottom:16px}
+.h2{font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.lede{margin-top:16px;font-size:18px;color:#26313F;max-width:62ch}
+
+.kopfband{position:sticky;top:0;z-index:50;background:var(--tief);color:#EBF8FF;
+  padding:13px 0;box-shadow:0 6px 24px rgba(5,10,20,.25)}
+.kopfband .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.kopfband b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:#7FD4FF;font-weight:500}
+.kopfband a{color:#EBF8FF;text-decoration:none;font-size:14.5px;
+  border-bottom:1px solid rgba(235,248,255,.3);padding-bottom:1px}
+.kopfband a:hover{color:var(--cyan);border-color:var(--cyan)}
+.kopfband .weg{margin-left:auto;color:rgba(235,248,255,.6);font-size:13px}
+
+section.probe{padding:clamp(48px,7vh,86px) 0;border-bottom:1px solid var(--linie)}
+.marke{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau)}
+.marke i{width:26px;height:26px;border-radius:50%;background:var(--akzent);color:#fff;
+  display:grid;place-content:center;font-style:normal;font-size:13px;font-weight:500}
+.urteil{margin-top:26px;padding:15px 19px;border-radius:12px;
+  background:rgba(30,108,255,.06);border:1px solid rgba(30,108,255,.18);
+  font-size:15px;line-height:1.6;max-width:80ch}
+.urteil b{color:var(--akzent)}
+
+/* ==================================================================
+   D — Die Rechnung. Nicht Geschichten, sondern was es kostet.
+   ================================================================== */
+.rechnung{display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(24px,4vw,60px);align-items:start;margin-top:clamp(28px,4vh,46px)}
+.beleg{background:#fff;border:1px solid var(--linie);border-radius:16px;
+  padding:clamp(20px,2.6vh,30px) clamp(22px,2.4vw,34px);
+  box-shadow:0 20px 46px rgba(11,18,32,.07)}
+.beleg-kopf{font-family:var(--mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--grau);padding-bottom:13px;
+  border-bottom:1px solid var(--linie);margin-bottom:4px}
+.posten{display:grid;grid-template-columns:64px 1fr auto;gap:14px;
+  align-items:baseline;padding:13px 0;border-bottom:1px solid var(--linie);
+  opacity:0;animation:postenAuf .5s var(--ease) forwards}
+.posten:nth-of-type(1){animation-delay:.35s}
+.posten:nth-of-type(2){animation-delay:.95s}
+.posten:nth-of-type(3){animation-delay:1.55s}
+.posten:nth-of-type(4){animation-delay:2.15s}
+@keyframes postenAuf{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.posten .uhr{font-family:var(--mono);font-size:13px;color:var(--grau)}
+.posten .was{font-size:15.5px;line-height:1.4}
+.posten .was small{display:block;color:var(--grau);font-size:13.5px;margin-top:2px}
+.posten .min{font-family:var(--mono);font-size:15px;color:var(--tief);white-space:nowrap}
+.summe{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:baseline;
+  padding-top:17px;opacity:0;animation:postenAuf .6s var(--ease) 2.85s forwards}
+.summe .was{font-family:var(--display);font-weight:600;font-size:17px}
+.summe .min{font-family:var(--mono);font-size:23px;color:var(--akzent)}
+
+.folge{padding-top:6px}
+.folge .gross{font-family:var(--display);font-weight:700;
+  font-size:clamp(46px,6.5vw,86px);line-height:.98;letter-spacing:-.035em;
+  color:var(--tief);opacity:0;animation:postenAuf .7s var(--ease) 3.4s forwards}
+.folge .gross span{color:var(--akzent)}
+.folge p{font-size:17px;line-height:1.6;color:#3A4553;margin:18px 0 0;
+  opacity:0;animation:postenAuf .7s var(--ease) 3.8s forwards}
+.folge .strich{width:56px;height:3px;background:var(--akzent);margin:22px 0 0;
+  border-radius:2px;transform-origin:left;transform:scaleX(0);
+  animation:strichAuf .6s var(--ease) 4.1s forwards}
+@keyframes strichAuf{to{transform:scaleX(1)}}
+.folge .danach{margin-top:20px;font-size:16.5px;line-height:1.6;
+  opacity:0;animation:postenAuf .7s var(--ease) 4.3s forwards}
+.folge .danach b{color:var(--tief)}
+
+/* ==================================================================
+   E — Die Liste, die sich leert.
+   ================================================================== */
+.liste-raum{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,44px);
+  margin-top:clamp(28px,4vh,46px)}
+.kasten{background:#fff;border:1px solid var(--linie);border-radius:18px;
+  padding:clamp(20px,2.6vh,28px)}
+.kasten.jetzt{background:var(--tief);color:#EBF8FF;border-color:transparent}
+.kasten-kopf{display:flex;justify-content:space-between;align-items:baseline;
+  gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau);margin-bottom:15px}
+.kasten.jetzt .kasten-kopf{color:rgba(235,248,255,.55)}
+.kasten-kopf .zahl{font-size:13px;color:var(--akzent)}
+.kasten.jetzt .kasten-kopf .zahl{color:var(--cyan)}
+
+.pos{display:flex;gap:12px;align-items:flex-start;padding:11px 0;
+  border-bottom:1px solid var(--linie);font-size:15px;line-height:1.45}
+.kasten.jetzt .pos{border-bottom-color:rgba(235,248,255,.12)}
+.pos:last-child{border-bottom:0}
+.pos .kanal{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--grau);display:block;margin-bottom:2px}
+.kasten.jetzt .pos .kanal{color:rgba(235,248,255,.45)}
+.pos i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--linie-stark);
+  margin-top:4px;flex:0 0 auto;position:relative}
+.kasten.jetzt .pos i{border-color:rgba(235,248,255,.3)}
+
+/* Im rechten Kasten haken die Punkte nacheinander ab. */
+.kasten.jetzt .pos.erledigt i{border-color:#5BD98A;background:#5BD98A;
+  animation:hakenAuf .4s var(--ease) forwards;opacity:0}
+.kasten.jetzt .pos.erledigt i::after{content:"";position:absolute;
+  left:4px;top:1.5px;width:5px;height:9px;border:solid var(--tief);
+  border-width:0 2px 2px 0;transform:rotate(42deg)}
+.kasten.jetzt .pos.erledigt .txt{animation:txtLeise .4s var(--ease) forwards;opacity:1}
+@keyframes hakenAuf{to{opacity:1}}
+@keyframes txtLeise{to{opacity:.45}}
+.kasten.jetzt .pos:nth-of-type(1).erledigt i,
+.kasten.jetzt .pos:nth-of-type(1).erledigt .txt{animation-delay:.6s}
+.kasten.jetzt .pos:nth-of-type(2).erledigt i,
+.kasten.jetzt .pos:nth-of-type(2).erledigt .txt{animation-delay:1.2s}
+.kasten.jetzt .pos:nth-of-type(3).erledigt i,
+.kasten.jetzt .pos:nth-of-type(3).erledigt .txt{animation-delay:1.8s}
+.kasten.jetzt .pos:nth-of-type(4).erledigt i,
+.kasten.jetzt .pos:nth-of-type(4).erledigt .txt{animation-delay:2.4s}
+.kasten.jetzt .pos.offen i{border-color:var(--cyan);
+  box-shadow:0 0 0 0 rgba(0,198,255,.45);animation:offenPuls 2.4s var(--ease) 3s infinite}
+@keyframes offenPuls{0%,100%{box-shadow:0 0 0 0 rgba(0,198,255,.45)}
+  60%{box-shadow:0 0 0 8px rgba(0,198,255,0)}}
+.kasten-fuss{margin-top:17px;padding-top:15px;border-top:1px solid var(--linie);
+  font-size:15px;line-height:1.55;color:var(--grau)}
+.kasten.jetzt .kasten-fuss{border-top-color:rgba(235,248,255,.16);
+  color:rgba(235,248,255,.72)}
+.kasten.jetzt .kasten-fuss b{color:#fff}
+
+/* ==================================================================
+   F — Ein Satz, gross. Zwei Fassungen desselben Abends.
+   ================================================================== */
+.satz-buehne{position:relative;margin-top:clamp(24px,3.6vh,44px);
+  min-height:clamp(280px,38vh,400px);
+  background:var(--tief-voll);border-radius:22px;overflow:hidden;
+  display:grid;place-items:center;padding:clamp(28px,5vh,60px) clamp(24px,4vw,60px)}
+.satz-buehne::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 20% 0%,rgba(30,108,255,.28),transparent 60%),
+             radial-gradient(90% 80% at 100% 100%,rgba(0,198,255,.16),transparent 60%)}
+.fassung{position:absolute;inset:auto;text-align:center;color:#EBF8FF;
+  font-family:var(--display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(26px,4.2vw,54px);line-height:1.16;max-width:20ch;
+  opacity:0;animation:fassungWechsel 9s var(--ease) infinite}
+.fassung .uhrzeit{display:block;font-family:var(--mono);font-weight:400;
+  font-size:clamp(13px,1.5vw,17px);letter-spacing:.18em;
+  color:var(--cyan);margin-bottom:18px}
+.fassung.heute{animation-delay:0s}
+.fassung.dann{animation-delay:4.5s}
+.fassung.dann em{font-style:normal;color:var(--cyan)}
+@keyframes fassungWechsel{
+  0%   {opacity:0;transform:translateY(14px)}
+  6%   {opacity:1;transform:none}
+  44%  {opacity:1;transform:none}
+  50%  {opacity:0;transform:translateY(-14px)}
+  100% {opacity:0;transform:translateY(-14px)}
+}
+.satz-unten{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,26px);margin-top:clamp(20px,2.8vh,32px)}
+.satz-unten div{padding-left:16px;border-left:2px solid var(--linie-stark);
+  font-size:15px;line-height:1.5;color:#3A4553}
+.satz-unten b{display:block;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--grau);margin-bottom:4px}
+
+@media (max-width:900px){
+  .rechnung,.liste-raum{grid-template-columns:1fr}
+  .satz-unten{grid-template-columns:1fr}
+  .posten,.summe{grid-template-columns:56px 1fr auto;gap:11px}
+}
+@media (prefers-reduced-motion:reduce){
+  .posten,.summe,.folge .gross,.folge p,.folge .danach,.fassung,
+  .kasten.jetzt .pos.erledigt i,.kasten.jetzt .pos.erledigt .txt{
+    animation:none;opacity:1}
+  .folge .strich{animation:none;transform:none}
+  .fassung.dann{position:static;margin-top:26px}
+  .fassung.heute{position:static}
+  .satz-buehne{grid-auto-flow:row;place-items:center}
+  .kasten.jetzt .pos.offen i{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="kopfband">
+  <div class="wrap">
+    <b>Zweite Runde</b>
+    <a href="#d">D — Die Rechnung</a>
+    <a href="#e">E — Die Liste, die sich leert</a>
+    <a href="#f">F — Ein Satz, gross</a>
+    <a href="alltag-vergleich.html">← A, B, C</a>
+    <span class="weg">Nur zum Vergleichen.</span>
+  </div>
+</div>
+
+<!-- ============================================================ D -->
+<section class="probe" id="d">
+  <div class="wrap">
+    <span class="marke"><i>D</i> Die Rechnung</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Vier Unterbrechungen. Kein grosses Ding.</h2>
+    <p class="lede">Jede einzelne dauert zwei Minuten. Was sie wirklich kostet,
+      ist die Zeit, bis Sie wieder drin sind.</p>
+
+    <div class="rechnung">
+      <div class="beleg">
+        <div class="beleg-kopf">Ihr Dienstag, mitgeschrieben</div>
+
+        <div class="posten">
+          <span class="uhr">10:20</span>
+          <span class="was">Anruf, nicht abgenommen<small>Sie stehen auf der Leiter</small></span>
+          <span class="min">+ 20 Min</span>
+        </div>
+        <div class="posten">
+          <span class="uhr">11:45</span>
+          <span class="was">Anfrage über die Website<small>Sie sehen sie am Abend</small></span>
+          <span class="min">+ 25 Min</span>
+        </div>
+        <div class="posten">
+          <span class="uhr">14:10</span>
+          <span class="was">„Wann haben Sie offen?"<small>zum vierzigsten Mal</small></span>
+          <span class="min">+ 15 Min</span>
+        </div>
+        <div class="posten">
+          <span class="uhr">17:50</span>
+          <span class="was">Offerte nachfassen<small>wollten Sie schon letzte Woche</small></span>
+          <span class="min">+ 20 Min</span>
+        </div>
+
+        <div class="summe">
+          <span class="uhr"></span>
+          <span class="was">An einem einzigen Tag</span>
+          <span class="min">1 Std 20</span>
+        </div>
+      </div>
+
+      <div class="folge">
+        <div class="gross">6 Stunden<br><span>pro Woche</span></div>
+        <p>Das ist kein Zeitproblem. Das ist ein Freitagnachmittag, den Sie
+          nicht auf der Baustelle sind.</p>
+        <div class="strich"></div>
+        <p class="danach"><b>Ein digitaler Mitarbeiter nimmt genau diese vier
+          Sachen entgegen.</b> Nicht damit Sie mehr arbeiten — damit Sie nicht
+          jedes Mal von vorne anfangen müssen.</p>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Rechnet in der Währung, die ein
+      Betriebsinhaber wirklich versteht. Keine Geschichte, kein Gefühl — eine
+      Zahl, die weh tut. <b>Schwäche:</b> Die 20 Minuten Wiedereinstieg sind
+      eine Annahme. Sie müsste entweder belegt oder weicher formuliert werden
+      („bis Sie wieder drin sind").</p>
+  </div>
+</section>
+
+<!-- ============================================================ E -->
+<section class="probe" id="e" style="background:var(--canvas-2)">
+  <div class="wrap">
+    <span class="marke"><i>E</i> Die Liste, die sich leert</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Was um 18 Uhr noch offen ist.</h2>
+    <p class="lede">Links Ihr heutiger Feierabend. Rechts derselbe Tag, wenn
+      jemand mitgearbeitet hat.</p>
+
+    <div class="liste-raum">
+      <div class="kasten">
+        <div class="kasten-kopf"><span>Heute, 18:00</span><span class="zahl">6 offen</span></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">Anruf · 10:20</span>Verpasst. Nummer unbekannt.</div></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">Website · 11:45</span>Anfrage 3½ Zimmer, zwei Fotos</div></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">Anruf · 14:10</span>Frage nach den Öffnungszeiten</div></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">im Laden · 16:05</span>Vorbestellung für Samstag, auf einem Zettel</div></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">offen seit Mi</span>Offerte Muster nachfassen</div></div>
+        <div class="pos"><i></i><div class="txt"><span class="kanal">Mail · 17:20</span>Rechnung 4021 ist noch nicht bezahlt</div></div>
+        <div class="kasten-fuss">Sechs Sachen, die Sie sich merken müssen —
+          und zwei davon fallen Ihnen erst um halb elf wieder ein.</div>
+      </div>
+
+      <div class="kasten jetzt">
+        <div class="kasten-kopf"><span>Derselbe Tag, mit Player Two</span><span class="zahl">2 für Sie</span></div>
+        <div class="pos erledigt"><i></i><div class="txt"><span class="kanal">Anruf · 10:20</span>Antwort ist raus, er hat geschrieben worum es geht</div></div>
+        <div class="pos erledigt"><i></i><div class="txt"><span class="kanal">Website · 11:45</span>Aufgenommen, Offerte liegt bereit</div></div>
+        <div class="pos erledigt"><i></i><div class="txt"><span class="kanal">Anruf · 14:10</span>Beantwortet</div></div>
+        <div class="pos erledigt"><i></i><div class="txt"><span class="kanal">im Laden · 16:05</span>Bestellung bestätigt, steht auf der Liste</div></div>
+        <div class="pos offen"><i></i><div class="txt"><span class="kanal">wartet auf Sie</span>Offerte Muster — freigeben oder anpassen</div></div>
+        <div class="pos offen"><i></i><div class="txt"><span class="kanal">wartet auf Sie</span>Rechnung 4021 — zweite Mahnung schicken?</div></div>
+        <div class="kasten-fuss"><b>Zwei Entscheidungen statt sechs Aufgaben.</b>
+          Beide brauchen Sie wirklich — die anderen vier nicht.</div>
+      </div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Zeigt Problem und Lösung in einem Bild,
+      ohne Text dazwischen. Die zwei offenen Punkte am Schluss sind ehrlich —
+      es bleibt etwas, aber nur das Richtige. <b>Schwäche:</b> Zwei Listen
+      nebeneinander sind viel Text auf einmal.</p>
+  </div>
+</section>
+
+<!-- ============================================================ F -->
+<section class="probe" id="f">
+  <div class="wrap">
+    <span class="marke"><i>F</i> Ein Satz, gross</span>
+    <span class="kicker">Aus dem Alltag</span>
+    <h2 class="h2">Kommt Ihnen das bekannt vor?</h2>
+    <p class="lede">Ein Bild, zwei Fassungen desselben Abends.</p>
+
+    <div class="satz-buehne">
+      <div class="fassung heute">
+        <span class="uhrzeit">Dienstag, 22:14</span>
+        Sie schreiben Offerten. Alle anderen schlafen.
+      </div>
+      <div class="fassung dann">
+        <span class="uhrzeit">Dienstag, 22:14</span>
+        Die Offerte ist um zehn nach acht rausgegangen. <em>Sie waren dabei nicht am Rechner.</em>
+      </div>
+    </div>
+
+    <div class="satz-unten">
+      <div><b>Was hereinkam</b>Ein Anruf, den Sie nicht annehmen konnten. Eine
+        Anfrage über die Website. Zwei Fragen nach den Öffnungszeiten.</div>
+      <div><b>Was Sie davon merkten</b>Drei Zeilen, als Sie das nächste Mal aufs
+        Telefon geschaut haben.</div>
+      <div><b>Was Sie entschieden haben</b>Eine Offerte freigeben. Das war alles,
+        wofür es Sie gebraucht hat.</div>
+    </div>
+
+    <p class="urteil"><b>Stärke:</b> Trifft sofort und braucht kein Lesen. Passt
+      zum Ton des Hero und zum Leitsatz «Mehr Zeit für das, was wichtig ist».
+      <b>Schwäche:</b> Zeigt nur eine Situation und keine Breite. Und ein
+      Wechsel alle viereinhalb Sekunden zwingt zum Warten — wer im falschen
+      Moment ankommt, sieht die Lösung vor dem Problem.</p>
+  </div>
+</section>
+
+<section class="probe" style="background:var(--canvas-2)">
+  <div class="wrap">
+    <span class="marke"><i>?</i> Zum Entscheiden</span>
+    <h2 class="h2">Wie die sechs zueinander stehen.</h2>
+    <p class="lede">A, B und C erzählen. D rechnet. E vergleicht. F behauptet.
+      Für die Stelle direkt nach dem Hero spricht viel für <b>E</b>: der
+      Besucher sieht Problem und Lösung nebeneinander, ohne einen Absatz zu
+      lesen — und die Kanäle sind alle drin, Anruf, Website, jemand im Laden.
+      <b>D</b> ist der stärkste Einzelmoment, hat aber eine Zahl drin, die wir
+      nicht belegen können.</p>
+    <p class="urteil">Alle drei laufen <b>ohne JavaScript</b> und stehen bei
+      «Bewegung reduzieren» still.
+      <br><b>Offen bleibt:</b> Telefon und SMS gibt es im Masterfile nicht —
+      weder «SMS» noch «verpasster Anruf» noch «WhatsApp» kommen darin vor. In
+      D, E und F steckt der verpasste Anruf jeweils drin. Bevor das auf die
+      Seite darf, braucht es deinen Entscheid.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -2,9 +2,6 @@
 <html lang="de-CH">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow">
-<!-- Vorschau, nicht die öffentliche Seite. Der Eintrag oben hält
-     Suchmaschinen fern und muss beim echten Livegang weg. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Das Team, Player Two</title>
 <meta name="description" content="Zwei Menschen aus dem Thurgau und ein Team digitaler Mitarbeitender. Wer was macht, und wer gerade arbeitet.">
@@ -384,18 +381,15 @@ footer a:hover{color:#fff}
       </article>
     </section>
 
+    <div style="margin:36px 0 6px">
+      <a class="btn btn-voll" href="geschichte.html" style="width:100%">Über uns – Unsere Geschichte</a>
+    </div>
+
     <div class="leiste" id="leiste">
       <span class="zaehler"><i class="punkt arbeitet"></i><b id="z-arbeitet">0</b> arbeiten gerade</span>
       <span class="zaehler"><i class="punkt bereit"></i><b id="z-bereit">0</b> bereit</span>
       <span class="zaehler"><i class="punkt ausbildung"></i><b id="z-ausbildung">0</b> in Ausbildung</span>
-      <span class="stand" id="stand">Platzhalter-Stand</span>
     </div>
-
-    <p class="erklaer">
-      Wir schalten eine Rolle erst frei, wenn ein echter Auftrag sie braucht. Was niemand braucht, läuft auch nicht mit,
-      und das hält Ihren Preis tief. Wer bereit ist und nichts zu tun hat, schläft. Auch das sehen Sie hier,
-      sobald die Anzeige am System hängt.
-    </p>
 
     <nav class="sprung" id="sprung" aria-label="Zu einer Abteilung springen"></nav>
 
@@ -560,8 +554,6 @@ function zeichnen(daten){
   document.getElementById('z-arbeitet').textContent = zaehler.arbeitet || 0;
   document.getElementById('z-bereit').textContent = zaehler.bereit || 0;
   document.getElementById('z-ausbildung').textContent = zaehler.ausbildung || 0;
-  document.getElementById('stand').textContent =
-    daten.stand === 'platzhalter' ? 'Platzhalter, noch nicht am System' : 'Stand ' + daten.stand;
 
   var beob = new IntersectionObserver(function(e){
     e.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('in'); beob.unobserve(x.target); } });
