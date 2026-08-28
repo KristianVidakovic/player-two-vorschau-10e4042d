@@ -1303,7 +1303,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   gap:clamp(28px,5vw,80px)}
 .nie-geist{pointer-events:none;user-select:none;
   font-family:var(--display);font-weight:700;line-height:.9;letter-spacing:-.03em;
-  font-size:clamp(110px,15vw,230px);color:transparent;
+  font-size:clamp(110px,14vw,200px);color:transparent;
   -webkit-text-stroke:2.5px rgba(30,108,255,.28);
   opacity:0;transform:translateX(-50px);
   transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -1313,7 +1313,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   margin-bottom:clamp(10px,1.8vh,18px);
   opacity:0;transform:translateY(14px);
   transition:opacity .6s var(--ease) .08s,transform .6s var(--ease) .08s}
-.nie-blatt h3{font-size:clamp(30px,4.2vw,58px);line-height:1.12;letter-spacing:-.022em;
+.nie-blatt h3{font-size:clamp(28px,3.9vw,50px);line-height:1.12;letter-spacing:-.022em;
   color:var(--tief);
   opacity:0;transform:translateY(20px);
   transition:opacity .7s var(--ease) .16s,transform .7s var(--ease) .16s}
@@ -1322,7 +1322,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   opacity:0;transform:translateY(20px);
   transition:opacity .7s var(--ease) .28s,transform .7s var(--ease) .28s}
 .nie-blatt.an .nie-nr,.nie-blatt.an h3,.nie-blatt.an .nie-inhalt p{opacity:1;transform:none}
-.strich{position:relative;display:inline-block}
+/* nowrap: eine Streich-Zeile darf nie intern umbrechen, sonst sitzt der
+   Strich neben dem Text (auf breiten Bildschirmen passiert genau das). */
+.strich{position:relative;display:inline-block;white-space:nowrap}
 /* Die ganze Schlagzeile ist in Streich-Stuecke geteilt. Erst steht die
    Regel ungestrichen da - wer weiterscrollt, loest die Striche aus (.los),
    und sie ziehen von selbst durch, Stueck fuer Stueck, von links. */
