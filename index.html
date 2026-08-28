@@ -1329,11 +1329,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .strich::after{content:"";position:absolute;left:-.06em;right:-.06em;top:.56em;height:.085em;
   border-radius:99px;background:linear-gradient(90deg,var(--akzent),var(--cyan));
   transform:scaleX(0) rotate(-1.2deg);transform-origin:left center;
-  transition:transform .4s cubic-bezier(.3,0,.2,1)}
+  transition:transform .35s cubic-bezier(.3,0,.2,1)}
 .nie-blatt.los .strich:nth-of-type(1)::after{transform:scaleX(1) rotate(-1.2deg)}
-.nie-blatt.los .strich:nth-of-type(2)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.18s}
-.nie-blatt.los .strich:nth-of-type(3)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.36s}
-.nie-blatt.los .strich:nth-of-type(4)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.54s}
+.nie-blatt.los .strich:nth-of-type(2)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.14s}
+.nie-blatt.los .strich:nth-of-type(3)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.28s}
+.nie-blatt.los .strich:nth-of-type(4)::after{transform:scaleX(1) rotate(-1.2deg);transition-delay:.42s}
 .nie-lauf{position:absolute;left:max(4vw,24px);right:max(4vw,24px);bottom:32px;height:2px;
   border-radius:99px;background:rgba(11,18,32,.12);overflow:hidden}
 .nie-lauf i{position:absolute;inset:0;border-radius:99px;
@@ -2650,9 +2650,15 @@ document.querySelectorAll('.gegen').forEach(function(el){
     anstossen();
     zeigen(seg);
     /* Die Striche kommen erst, wenn nach der Ankunft der Regel weiter
-       gescrollt wird - und sind durch, bevor die Fahrt losgeht. */
+       gescrollt wird. Einmal Gestrichenes bleibt gestrichen - egal wie
+       schnell gescrollt wird, keine Zeile bleibt halb. Zurueckgesetzt
+       wird erst, wenn das Band ganz verlassen ist. */
     for (var k = 0; k < blaetter.length; k++){
-      blaetter[k].classList.toggle('los', k === seg && u >= 0.22);
+      if (k < seg || (k === seg && u >= 0.15)){
+        blaetter[k].classList.add('los');
+      } else if (k > seg){
+        blaetter[k].classList.remove('los');
+      }
     }
   }
 
