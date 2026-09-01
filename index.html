@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Player Two — Websites für Handwerk, Gewerbe und Praxen</title>
-<meta name="description" content="Websites, Webshops und Anwendungen für Betriebe in der Ostschweiz — in jeder arbeitet mindestens ein digitaler Mitarbeiter mit und nimmt den Papierkram ab. Player Two, Thurgau.">
+<meta name="description" content="Websites, Webshops und Content für Betriebe in der Ostschweiz — in jedem Auftrag arbeitet ein digitaler Mitarbeiter mit, beim Content betreut er Ihren Kanal. Player Two, Thurgau.">
 <meta name="theme-color" content="#F2F4F7">
 <!-- DEPLOY STEP: og:url und og:image auf die Live-Adresse setzen -->
 <meta property="og:title" content="Player Two, Websites für Handwerk, Gewerbe und Praxen">
-<meta property="og:description" content="Websites, Webshops und Anwendungen für Schweizer KMU — in jeder arbeitet ein digitaler Mitarbeiter mit.">
+<meta property="og:description" content="Websites, Webshops und Content für Schweizer KMU — in jedem Auftrag arbeitet ein digitaler Mitarbeiter mit.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/marke.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -458,10 +458,27 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
 @keyframes erledigt{0%,22%{background:rgba(11,18,32,.2)}
   26%,86%{background:#1E8A4C}90%,100%{background:rgba(11,18,32,.2)}}
 
+/* Content: drei Beitragskacheln im Hochformat, die oberste wartet auf Freigabe */
+.schau-post .v-kacheln{display:flex;gap:8px;height:100%;align-items:flex-start}
+.schau-post .v-kachel{flex:1;aspect-ratio:9/16;max-height:100%;border-radius:6px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(130deg,rgba(30,108,255,.3),rgba(0,198,255,.2));
+  opacity:0;animation:auftauchen 9s var(--ease-soft) infinite;
+  animation-delay:calc(var(--n) * .34s)}
+.schau-post .v-kachel b{position:absolute;left:6px;right:6px;bottom:6px;height:6px;
+  border-radius:3px;background:rgba(11,18,32,.18)}
+.schau-post .v-kachel:first-child{
+  background:linear-gradient(130deg,rgba(30,108,255,.55),rgba(0,198,255,.38));
+  animation:auftauchen 9s var(--ease-soft) infinite, freigabe 9s var(--ease-soft) infinite}
+@keyframes freigabe{0%,20%{box-shadow:inset 0 0 0 0 rgba(30,108,255,0)}
+  36%,64%{box-shadow:inset 0 0 0 2px var(--akzent)}
+  80%,100%{box-shadow:inset 0 0 0 0 rgba(30,108,255,0)}}
+
 @media (prefers-reduced-motion:reduce){
   .schau *{animation:none!important}
   .schau-shop .v-raster b{opacity:1}
   .schau-shop .v-korb{opacity:1;transform:none}
+  .schau-post .v-kachel{opacity:1}
 }
 
 .stuecke{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
@@ -1599,7 +1616,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 <header class="pt-hero" id="hero"
   data-film="assets/hero-wandel.mp4"
   data-plakat="assets/hero-wandel-start.jpg"
-  aria-label="Player Two: Websites, Webshops und Anwendungen für Schweizer KMU">
+  aria-label="Player Two: Websites, Webshops und Content für Schweizer KMU">
   <div class="pt-halt" data-halt>
     <div class="pt-stage" data-buehne>
       <img class="pt-photo" src="assets/hero-wandel-ende.jpg" alt="" aria-hidden="true"
@@ -1650,9 +1667,19 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
      Endzustand beurteilt werden kann. Vor dem Livegang durch echte
      Betriebe ersetzen oder den Abschnitt leeren. -->
 <!-- ================= preise =================
-     Stand 2026-08-28: Kristian hat die Ab-Preise selbst festgelegt und
-     freigegeben (Website 149, Webshop 249, Anwendung 349). Die Sperre aus
-     Masterfile Teil 70.4 gilt fuer diese drei Zahlen nicht mehr. -->
+     Stand 2026-09-01, zweite Runde: Die drei Ab-Preise sind neu nach der
+     Regel "20 Prozent guenstiger als der Markt" gesetzt (Kristian, 2026-09-01).
+     Gerechnet auf 36-Monats-Gesamtkosten, also Aufbau plus Betrieb, weil der
+     Markt einmalig plus monatlich rechnet und wir auch. Grundlage:
+     Projektakte/04_BUSINESS_REFERENCE/Konkurrenzanalyse_Preise_2026-09-01.md.
+     Website 119 (statt 149), Webshop 219 (statt 249), Content 590 (neu).
+     Die 349.- waren ausdruecklich fuer "Anwendung" freigegeben und gelten
+     nur noch fuer den Bestand (Masterfile Teil 75.2). Aufbaupreise bleiben
+     unveraendert (Website 5-8 Seiten 2'490, Shop standalone 4'400) und
+     stehen weiterhin nicht auf der Seite. ACHTUNG: 119 und 219 liegen unter
+     den internen Monatspositionen der Preisliste (Pflege 129 + Hosting 25,
+     Shop-Betrieb 160). Das traegt nur, wenn die digitalen Mitarbeiter die
+     Arbeit tatsaechlich guenstiger erledigen. -->
 <!-- ================= alltag =================
      ACHTUNG vor dem Livegang: Die zweite Zeile («Er bekommt sofort eine
      Nachricht») verspricht eine Rueckmeldung an einen Anrufer. Das ist im
@@ -1702,9 +1729,9 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 <!-- ================= was ================= -->
 <section id="was">
   <div class="wrap">
-    <span class="kicker auf">Website, Webshop, Anwendung — immer mit digitalem Mitarbeiter</span>
+    <span class="kicker auf">Website, Webshop, Content — immer mit digitalem Mitarbeiter</span>
     <h2 class="h2 auf">Bei uns steht Ihre Website nicht nur da — sie arbeitet mit.</h2>
-    <p class="lede auf">Zu jeder Website, zu jedem Webshop und zu jeder Anwendung
+    <p class="lede auf">Zu jeder Website, zu jedem Webshop und zu jedem Content-Auftrag
       von Player Two gehört mindestens ein digitaler Mitarbeiter. Wir übernehmen
       die Aufgabe, die heute jeden Tag bei Ihnen liegen bleibt.</p>
 
@@ -1834,51 +1861,51 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
 
-      <section class="tafel" id="tafel-anwendung" aria-label="Anwendung">
+      <section class="tafel" id="tafel-content" aria-label="Content">
         <header class="tafel-kopf">
           <span class="tafel-nr">3 von 3</span>
-          <h3>Anwendung</h3>
-          <p>Für den einen Ablauf, den kein fertiges Werkzeug abbildet.</p>
+          <h3>Content</h3>
+          <p>Für die Bilder, Filme und Beiträge, die sonst nie entstehen.</p>
         </header>
         <div class="tafel-karten">
         <article class="stufe-karte">
           <span class="stufe-nr">Was Sie bekommen</span>
-          <h3>Die Anwendung</h3>
-          <p class="satz">Gebaut auf Ihren Ablauf, nicht auf den von jemand anderem. Was nach aussen zeigt, ist auffindbar bei Google wie bei ChatGPT.</p>
+          <h3>Der Content</h3>
+          <p class="satz">Was Ihren Betrieb ausmacht, wird Woche für Woche sichtbar — Ihre Arbeit, Ihre Leute, Ihre Handschrift, statt austauschbarer Bilder.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Bereich für Ihre Leute, einer für Ihre Kundschaft</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Läuft im Browser, nichts zu installieren</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Technisches SEO und Schema-Markup<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Einfach erklärt:</b> Ihre Seite ist technisch so gebaut, dass Google sie schnell und ohne Fehler lesen kann. Zusätzlich hinterlegen wir Ihre wichtigsten Angaben — Öffnungszeiten, Adresse, Leistungen, Preise — so, dass Suchmaschinen und KI-Assistenten sie direkt übernehmen können. Das Ergebnis: Sie werden besser gefunden und richtig angezeigt.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Freigabe der KI-Crawler<button type="button" class="info" aria-label="Was ist das?"><span aria-hidden="true">i</span><span class="info-blase" role="tooltip"><b>Freigabe der KI-Crawler.</b> ChatGPT, Claude und Gemini schicken eigene Leseprogramme über das Netz. Viele Seiten sperren sie aus — meist ohne es zu wissen. Wir lassen sie herein und richten die Seite so ein, dass diese Programme verstehen, was Ihr Betrieb macht. Sonst kann Sie niemand empfehlen, der dort fragt. Dazu bereiten wir Ihre Seite auf MCP vor — den neuen Standard, über den KI-Assistenten bald nicht nur lesen, sondern direkt etwas erledigen können, zum Beispiel einen Termin anfragen.</span></button></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Auf dem Handy so gut wie am Computer</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Impressum, Datenschutz und Google-Profil erledigt</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Auftakt, an dem wir aufnehmen, was Ihren Betrieb ausmacht: Ihre Arbeit, Ihre Räume, Ihre Leute.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Daraus ein Vorrat an Bildern und kurzen Filmen, der für Monate reicht — nicht für eine Woche.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Ein Redaktionsplan, der vor dem ersten Beitrag auf dem Tisch liegt: was wann erscheint.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Sechs Beiträge im Monat, geschnitten, betextet und mit Untertiteln — auch ohne Ton verständlich.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Jeder Beitrag führt zu Ihrer Seite zurück, damit die Arbeit nicht bei einem fremden Anbieter endet.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Wer erkennbar zu sehen ist, wird vorher gefragt — schriftlich, bevor irgendetwas entsteht.</li>
           </ul>
           <a class="btn btn-voll" href="#kontakt">Termin vereinbaren</a>
         </article>
 
         <article class="stufe-karte arbeitet">
           <span class="stufe-nr">Wer darin mitarbeitet</span>
-          <h3>Inklusive digitaler Mitarbeiter</h3>
-          <p class="satz">Umfang je nach Auftrag. Hausverwaltung. Ein Mieter meldet einen Schaden über das Portal. Die Meldung ist aufgenommen, dem Objekt zugeordnet und beim Handwerker — der Stand steht für alle sichtbar da.</p>
+          <h3>Inklusive digitaler Mitarbeiter für Ihren Kanal</h3>
+          <p class="satz">Umfang je nach Auftrag. Bäckerei mit zwei Filialen, sechs Mitarbeitende. Am Montag um 16:40 liegen die drei Beiträge der Woche zur Freigabe bereit — Bild, Text und Zeitpunkt. Sie tippen auf «passt». Am Mittwoch um 07:00 ist der erste draussen, während Sie im Backraum stehen.</p>
           <ul class="kann">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nimmt Meldungen auf und ordnet sie zu</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Hält alle Beteiligten auf dem Laufenden</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Erinnert an das, was liegen bleibt</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Fasst nach, ohne dass Sie eine Liste führen</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Was ein Urteil braucht, kommt zu Ihnen</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Er bereitet die Beiträge auf — Bild, Text, Untertitel.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Er hält den Redaktionsplan ein und legt jeden Beitrag rechtzeitig zur Freigabe vor.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Er stellt zur abgemachten Zeit ein, damit auch in einer vollen Woche nichts liegen bleibt.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Er meldet Ihnen Kommentare und Nachrichten, die eine Antwort von Ihnen brauchen.</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Nichts geht hinaus, bevor Sie es gesehen und freigegeben haben — jeder einzelne Beitrag.</li>
           </ul>
           <a class="btn btn-hell" href="#preise">Was das kostet</a>
         </article>
         </div>
 
-        <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
+        <p class="immer-dabei">Der abgemachte Umfang ist im Preis. Halbe Sachen bauen wir nicht. <b>Mehr Beiträge als abgemacht, das Beantworten von Kommentaren und bezahlte Anzeigen</b> sind nicht dabei — das sind eigene Aufträge mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
       </div>
 
       <div class="quer-leiste" role="tablist" aria-label="Zwischen den drei Angeboten wechseln">
         <button type="button" class="quer-punkt an" data-zu="0"><span class="vs">Website</span></button>
         <button type="button" class="quer-punkt" data-zu="1"><span class="vs">Webshop</span></button>
-        <button type="button" class="quer-punkt" data-zu="2"><span class="vs">Anwendung</span></button>
+        <button type="button" class="quer-punkt" data-zu="2"><span class="vs">Content</span></button>
       </div>
     </div>
   </div>
@@ -1971,21 +1998,24 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
           <p class="meta">Shop bis 50 Artikel. Abholung, Versand, TWINT.</p>
         </div>
       </article>
-      <article class="stueck" data-sorte="anwendung">
-        <div class="schau schau-app" aria-hidden="true">
+      <article class="stueck" data-sorte="content">
+        <div class="schau schau-post" aria-hidden="true">
               <div class="leiste"><i></i><i></i><i></i><span></span></div>
               <div class="blatt">
-                <div class="v-reihe" style="--n:0"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:1"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:2"><em></em><u></u></div>
-                <div class="v-reihe" style="--n:3"><em></em><u></u></div>
+                <div class="v-kacheln">
+                  <div class="v-kachel" style="--n:0"><b></b></div>
+                  <div class="v-kachel" style="--n:1"><b></b></div>
+                  <div class="v-kachel" style="--n:2"><b></b></div>
+                </div>
               </div>
             </div>
         <div class="inhalt">
-          <span class="branche-marke">Anwendung · Restaurant und Café</span>
-          <h3>Tischreservation</h3>
-          <p class="meta">Tischplan, Bestätigung, Erinnerung, Gruppenanfragen.</p>
-          <button type="button" class="tagschau" data-branche="gastro">Den Tag ansehen</button>
+          <span class="branche-marke">Content · Restaurant und Café</span>
+          <h3>Der Mittagstisch der Woche</h3>
+          <p class="meta">Jede Woche das Gericht, sechs Beiträge im Monat, Freigabe vom Handy aus.</p>
+          <!-- Knopf «Den Tag ansehen» entfernt: er sprang in die Reservationsgeschichte
+               der Branche gastro (Array BRANCHEN). Kommt zurueck, sobald dort eine
+               Content-Szene steht. -->
         </div>
       </article>
     </div>
@@ -2039,17 +2069,17 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       <article>
         <h3>Website</h3>
         <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>149.–</b> im Monat</p>
+        <p class="preis-ab">Preis ab <b>119.–</b> im Monat</p>
       </article>
       <article>
         <h3>Webshop</h3>
         <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>249.–</b> im Monat</p>
+        <p class="preis-ab">Preis ab <b>219.–</b> im Monat</p>
       </article>
       <article>
-        <h3>Anwendung</h3>
-        <span class="zusatz">inklusive digitaler Mitarbeiter</span>
-        <p class="preis-ab">Preis ab <b>349.–</b> im Monat</p>
+        <h3>Content</h3>
+        <span class="zusatz">inklusive Betreuung Ihres Social-Media-Kanals</span>
+        <p class="preis-ab">Preis ab <b>590.–</b> im Monat</p>
       </article>
     </div>
 
@@ -2531,7 +2561,7 @@ document.querySelectorAll('.gegen').forEach(function(el){
   var kZaehler = document.getElementById('k-zaehler');
   var KOEPFE = [["Website", "Damit Sie gefunden werden — und danach weniger Post haben."],
                 ["Webshop", "Wenn Sie etwas verkaufen, das man in einen Korb legen kann."],
-                ["Anwendung", "Für den einen Ablauf, den kein fertiges Werkzeug abbildet."]];
+                ["Content", "Für die Bilder, Filme und Beiträge, die sonst nie entstehen."]];
 
   function schieben(){
     if (aus.matches || weg <= 0) return;
