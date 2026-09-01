@@ -235,11 +235,49 @@ class _Stueck(io.RawIOBase):
 
 
 class Server(socketserver.ThreadingTCPServer):
-    allow_reuse_address = True
+    # Unter Windows erlaubt SO_REUSEADDR einem zweiten Server, denselben Port
+    # zu belegen, waehrend der erste noch daran haengt. Die Anfragen verteilen
+    # sich dann auf beide, und die Seite kommt halb, gar nicht, oder als nackte
+    # Dateiliste. Dort also aus: ein belegter Port soll ehrlich scheitern,
+    # damit _server_oeffnen ausweichen kann.
+    allow_reuse_address = os.name != "nt"
     daemon_threads = True
 
 
+def _server_oeffnen(port, versuche=10):
+    """Bindet den ersten freien Port ab `port`.
+
+    Nach einem Absturz haengt der alte Server oft noch am Port. Statt mit
+    einem Traceback abzubrechen, weicht der neue auf den naechsten aus.
+    Rueckgabe (None, None) heisst: alles belegt.
+    """
+    for kandidat in range(port, port + versuche):
+        try:
+            return Server(("127.0.0.1", kandidat), Griff), kandidat
+        except OSError:
+            print("Port %d ist belegt." % kandidat)
+    return None, None
+
+
 if __name__ == "__main__":
-    with Server(("127.0.0.1", PORT), Griff) as s:
-        print("Website auf http://localhost:%d  (Abzuege nach %s)" % (PORT, ABZUEGE))
-        s.serve_forever()
+    if not os.path.isfile(os.path.join(WURZEL, "index.html")):
+        print("ACHTUNG: index.html fehlt in %s." % WURZEL)
+        print("Der Browser zeigt dann nur eine Dateiliste statt der Website.")
+
+    server, port = _server_oeffnen(PORT)
+    if server is None:
+        print("")
+        print("Kein freier Port zwischen %d und %d." % (PORT, PORT + 9))
+        print("Wahrscheinlich laufen noch alte Server. Im Task-Manager alle")
+        print("python.exe beenden, dann die Vorschau neu starten.")
+        sys.exit(1)
+
+    with server as s:
+        print("Website auf http://localhost:%d  (Abzuege nach %s)" % (port, ABZUEGE))
+        if port != PORT:
+            print("Hinweis: %d war belegt, deshalb %d." % (PORT, port))
+        try:
+            s.serve_forever()
+        except KeyboardInterrupt:
+            print("")
+            print("Server beendet.")
