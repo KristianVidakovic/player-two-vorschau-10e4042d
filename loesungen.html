@@ -118,6 +118,8 @@ main{position:relative;z-index:2}
   transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .stueck:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(11,18,32,.11)}
 .stueck[hidden]{display:none}
+.stueck a.schaufenster{text-decoration:none;cursor:pointer}
+.stueck a.schaufenster:hover span{color:var(--akzent);border-color:var(--akzent)}
 .stueck .schaufenster{height:172px;position:relative;
   background:linear-gradient(150deg,var(--nacht),var(--tief-voll));
   display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -125,6 +127,10 @@ main{position:relative;z-index:2}
   letter-spacing:.16em;text-transform:uppercase;color:rgba(235,248,255,.72)}
 .stueck .inhalt{padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
 .stueck h3{font-size:21px}
+.zur-branche{align-self:flex-start;margin-top:2px;font-family:var(--mono);
+  font-size:12.5px;letter-spacing:.05em;color:var(--akzent);text-decoration:none;
+  border-bottom:1px solid rgba(30,108,255,.4)}
+.zur-branche:hover{border-bottom-color:var(--akzent)}
 .stueck .meta{font-size:15px;color:var(--grau)}
 .branche-marke{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--akzent)}
@@ -1095,12 +1101,13 @@ main{position:relative;z-index:2}
           <p class="meta">Bildpaare vorher und nachher, vier Beiträge im Monat, jeder vorher freigegeben.</p>
         </div>
       </article>
-<article class="stueck" data-sorte="content" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="content ferienwohnungen ferienhaeuser airbnb gastgeber beitraege film bilder social media objekt wohnung ferien gaeste">
-        <div class="schaufenster"><span>Vorschau</span></div>
+<article class="stueck" data-sorte="content" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="content ferienwohnungen ferienhaeuser airbnb gastgeber beitraege film bilder social media objekt wohnung ferien gaeste musterseite trotte seeruecken">
+        <a class="schaufenster" href="vorschau/trotte-seeruecken.html"><span>Musterseite ansehen</span></a>
         <div class="inhalt">
           <span class="branche-marke">Content · Ferienwohnungen &amp; Ferienhäuser</span>
           <h3>Ferienwohnung</h3>
           <p class="meta">Was das Objekt besonders macht, vier Beiträge im Monat.</p>
+          <a class="zur-branche" href="branche-ferienwohnung.html">Was so eine Seite kostet</a>
         </div>
       </article>
     </div>

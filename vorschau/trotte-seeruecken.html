@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Trotte am Seerücken — Musterbeispiel von Player Two</title>
+<meta name="description" content="Musterbeispiel: So sieht eine Website für eine besondere Ferienwohnung aus. Gebaut von Player Two. Diesen Betrieb gibt es nicht.">
+<meta name="theme-color" content="#F6F2EA">
+<link rel="icon" href="../assets/marke.png" type="image/png">
+<style>
+/* Eigene Handschrift, nicht die von Player Two: warme Erdtöne statt Blau,
+   Systemschriften statt geladener Schriften. Genau das ist der Punkt —
+   die Seite gehört dem Betrieb, nicht der Agentur. */
+:root{
+  --papier:#F6F2EA; --papier-2:#EDE6D9; --tinte:#241E17; --tinte-weich:#5A5045;
+  --reb:#6B4E2E; --see:#3E5C63; --gold:#B8862F;
+  --linie:rgba(36,30,23,.14);
+  --seite:min(1080px,90vw);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--tinte);font-family:var(--sans);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--seite);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.14;margin:0}
+h1{font-size:clamp(38px,6vw,72px);letter-spacing:-.015em}
+h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:18px}
+h3{font-size:21px;margin-bottom:8px}
+p{margin:0 0 16px}
+section{padding-block:clamp(56px,8vh,104px)}
+.kicker{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--reb);display:block;margin-bottom:14px;font-weight:600}
+
+/* ---------- Musterband ---------- */
+.muster{background:var(--tinte);color:#F6F2EA;font-size:13.5px;padding:9px 0;
+  font-family:var(--sans);position:relative;z-index:5}
+.muster .wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;text-align:center}
+.muster b{color:#F0C46A}
+.muster a{color:#F6F2EA;text-underline-offset:3px}
+
+/* ---------- Kopf ---------- */
+.kopfleiste{position:sticky;top:0;z-index:4;background:rgba(246,242,234,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--linie)}
+.kopfleiste .wrap{display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding-block:14px}
+.haus-marke{font-family:var(--serif);font-size:19px;letter-spacing:.01em;text-decoration:none;color:var(--tinte)}
+.haus-marke span{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--tinte-weich);margin-top:1px}
+.kopfleiste nav{display:flex;gap:22px;font-size:15px}
+.kopfleiste nav a{color:var(--tinte-weich);text-decoration:none}
+.kopfleiste nav a:hover{color:var(--reb)}
+.knopf{display:inline-block;background:var(--reb);color:#F6F2EA;text-decoration:none;
+  padding:11px 20px;border-radius:2px;font-size:15px;letter-spacing:.01em;
+  transition:background .25s var(--ease)}
+.knopf:hover{background:#543D24}
+.knopf.hell{background:transparent;color:var(--reb);border:1px solid var(--reb)}
+.knopf.hell:hover{background:rgba(107,78,46,.08)}
+@media (max-width:760px){.kopfleiste nav{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{padding-top:clamp(40px,7vh,80px);padding-bottom:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);align-items:end}
+.hero p.lede{font-size:clamp(18px,2vw,21px);color:var(--tinte-weich);max-width:38ch;margin-top:22px}
+.hero-tat{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}
+.hero-tat div{font-size:14.5px;color:var(--tinte-weich)}
+.hero-tat b{display:block;font-family:var(--serif);font-size:26px;color:var(--tinte);font-weight:400}
+.hero-knopf{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* Das Bild ist gezeichnet, nicht fotografiert: es gibt dieses Haus nicht,
+   also zeigen wir kein Foto, das etwas anderes behauptet. */
+.bild{aspect-ratio:4/5;border-radius:2px;position:relative;overflow:hidden;
+  background:linear-gradient(#B9C7C4 0%,#D6CFC0 44%,#C9B79A 44%,#A88A62 100%)}
+.bild .sonne{position:absolute;left:16%;top:13%;width:74px;height:74px;border-radius:50%;
+  background:radial-gradient(circle,#F3D9A0,#E8BE72)}
+.bild .see{position:absolute;left:0;right:0;top:30%;height:15%;
+  background:linear-gradient(#5E7F86,#48646B);opacity:.85}
+.bild .huegel{position:absolute;left:-6%;right:-6%;top:38%;height:24%;border-radius:50% 50% 0 0;
+  background:#7E8C6A}
+.bild .reben{position:absolute;left:0;right:0;bottom:0;height:44%;
+  background:repeating-linear-gradient(102deg,#8C7147 0 3px,transparent 3px 26px),#9C8358}
+.bild .haus{position:absolute;left:50%;transform:translateX(-50%);bottom:16%;width:31%}
+.bild .haus .dach{height:0;border-left:calc(50% - 0px) solid transparent;
+  border-right:calc(50% - 0px) solid transparent;border-bottom:44px solid #56402C;
+  width:100%;box-sizing:border-box}
+.bild .haus .mauer{height:78px;background:#E8DFCE;position:relative;
+  box-shadow:0 12px 34px rgba(36,30,23,.28)}
+.bild .haus .mauer i{position:absolute;width:15px;height:20px;background:#F0C46A;top:20px}
+.bild .haus .mauer i:nth-child(1){left:20%}
+.bild .haus .mauer i:nth-child(2){left:44%}
+.bild .haus .mauer i:nth-child(3){left:68%}
+.bild .haus .mauer u{position:absolute;left:38%;bottom:0;width:24%;height:34px;
+  background:#56402C;text-decoration:none}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .bild{aspect-ratio:16/11;margin-top:26px}
+  .bild .haus{width:20%}
+}
+
+/* ---------- Das Haus ---------- */
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,60px);align-items:start}
+@media (max-width:860px){.zwei{grid-template-columns:1fr}}
+.merkmale{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:0}
+.merkmale li{padding:13px 0;border-bottom:1px solid var(--linie);display:flex;
+  justify-content:space-between;gap:18px;font-size:16px}
+.merkmale li span{color:var(--tinte-weich)}
+.hell-flaeche{background:var(--papier-2)}
+
+/* ---------- Räume ---------- */
+.raeume{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+@media (max-width:860px){.raeume{grid-template-columns:1fr}}
+.raum{background:var(--papier);border:1px solid var(--linie);border-radius:2px;overflow:hidden}
+.raum .flaeche{height:150px;position:relative;overflow:hidden}
+.raum:nth-child(1) .flaeche{background:linear-gradient(150deg,#C9B79A,#A88A62)}
+.raum:nth-child(2) .flaeche{background:linear-gradient(150deg,#B9C7C4,#7E8C6A)}
+.raum:nth-child(3) .flaeche{background:linear-gradient(150deg,#E0D3BC,#8C7147)}
+.raum .flaeche::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;
+  background:linear-gradient(transparent,rgba(36,30,23,.22))}
+.raum .txt{padding:18px 20px 22px}
+.raum p{font-size:15.5px;color:var(--tinte-weich);margin:0}
+
+/* ---------- Preise ---------- */
+.preis-tafel{border:1px solid var(--linie);border-radius:2px;background:var(--papier);
+  padding:clamp(22px,3vw,34px);margin-top:30px}
+.preis-zeile{display:flex;justify-content:space-between;gap:20px;padding:14px 0;
+  border-bottom:1px solid var(--linie);font-size:16.5px}
+.preis-zeile:last-of-type{border-bottom:0}
+.preis-zeile b{font-family:var(--serif);font-size:20px;font-weight:400;white-space:nowrap}
+.preis-fuss{margin-top:16px;font-size:14.5px;color:var(--tinte-weich)}
+
+/* ---------- Anfrage ---------- */
+.anfrage-raster{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,52px);align-items:start}
+@media (max-width:860px){.anfrage-raster{grid-template-columns:1fr}}
+form label{display:block;font-size:13.5px;letter-spacing:.03em;color:var(--tinte-weich);
+  margin-bottom:6px;margin-top:16px}
+form input,form textarea{width:100%;padding:12px 14px;border:1px solid var(--linie);
+  border-radius:2px;background:var(--papier);font:inherit;font-size:16px;color:var(--tinte)}
+form input:focus,form textarea:focus{outline:2px solid var(--reb);outline-offset:1px;border-color:transparent}
+form textarea{min-height:96px;resize:vertical}
+.feld-zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form button{margin-top:22px;border:0;cursor:pointer;font:inherit}
+.hinweis{font-size:14px;color:var(--tinte-weich);margin-top:14px}
+
+/* ---------- Fuss ---------- */
+footer{background:var(--tinte);color:#D9D1C4;padding-block:44px;font-size:15px}
+footer a{color:#D9D1C4}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+footer .haus-marke{color:#F6F2EA}
+footer .haus-marke span{color:#A79C8C}
+.gebaut{font-size:13.5px;color:#A79C8C;margin-top:24px;padding-top:18px;
+  border-top:1px solid rgba(246,242,234,.16);width:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="muster">
+  <div class="wrap">
+    <span><b>Musterbeispiel.</b> Diesen Betrieb gibt es nicht — die Seite zeigt, wie eine Website für eine besondere Ferienwohnung aussehen kann.</span>
+    <a href="../branche-ferienwohnung.html">Zurück zu Player Two</a>
+  </div>
+</div>
+
+<header class="kopfleiste">
+  <div class="wrap">
+    <a class="haus-marke" href="#">Trotte am Seerücken<span>Ferienwohnung im Thurgau</span></a>
+    <nav>
+      <a href="#haus">Das Haus</a>
+      <a href="#raeume">Räume</a>
+      <a href="#umgebung">Umgebung</a>
+      <a href="#preise">Preise</a>
+    </nav>
+    <a class="knopf" href="#anfrage">Anfragen</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Seit 1874 · umgebaut 2021</span>
+      <h1>Ein Rebhaus,<br>zwei Zimmer,<br>und der See.</h1>
+      <p class="lede">Die alte Trotte steht am Hang über dem Untersee. Wo früher
+        gepresst wurde, wird heute geschlafen — mit dem Fenster nach Süden und
+        einem Weg, der direkt in die Reben führt.</p>
+      <div class="hero-tat">
+        <div><b>4</b>Gäste</div>
+        <div><b>2</b>Schlafzimmer</div>
+        <div><b>68</b>Quadratmeter</div>
+        <div><b>2 Min.</b>bis in die Reben</div>
+      </div>
+      <div class="hero-knopf">
+        <a class="knopf" href="#anfrage">Verfügbarkeit anfragen</a>
+        <a class="knopf hell" href="#haus">Das Haus ansehen</a>
+      </div>
+    </div>
+    <div class="bild" role="img" aria-label="Gezeichnete Ansicht: ein kleines Rebhaus am Hang, dahinter der See">
+      <div class="see"></div>
+      <div class="sonne"></div>
+      <div class="huegel"></div>
+      <div class="reben"></div>
+      <div class="haus"><div class="dach"></div><div class="mauer"><i></i><i></i><i></i><u></u></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="haus" class="hell-flaeche">
+  <div class="wrap zwei">
+    <div>
+      <span class="kicker">Das Haus</span>
+      <h2>Kein Hotelzimmer. Ein Haus mit Geschichte.</h2>
+      <p>Die Trotte gehörte zum Rebgut am Seerücken und stand vierzig Jahre leer.
+        Beim Umbau ist geblieben, was tragen konnte: die Balken, der Kalkputz, der
+        Steinboden im Erdgeschoss. Dazugekommen ist alles, was ein Haus heute
+        braucht — Fussbodenheizung, ein richtiges Bad, eine Küche, in der man
+        kochen kann und nicht nur Kaffee macht.</p>
+      <p>Was hier fehlt: eine Rezeption, ein Frühstücksbuffet und Nachbarn hinter
+        dünnen Wänden. Sie bekommen den Schlüssel und das Haus.</p>
+    </div>
+    <div>
+      <ul class="merkmale">
+        <li>Ganzes Haus für Sie allein <span>keine geteilten Räume</span></li>
+        <li>Küche voll eingerichtet <span>inkl. Backofen und Geschirrspüler</span></li>
+        <li>Holzofen im Wohnraum <span>Holz liegt bereit</span></li>
+        <li>Terrasse nach Süden <span>Blick auf den Untersee</span></li>
+        <li>Selbstständige Anreise <span>Schlüsselbox, Code kommt vorab</span></li>
+        <li>WLAN im ganzen Haus <span>Glasfaser</span></li>
+        <li>Parkplatz vor dem Haus <span>ein Fahrzeug</span></li>
+        <li>Haustiere <span>auf Anfrage möglich</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="raeume">
+  <div class="wrap">
+    <span class="kicker">Die Räume</span>
+    <h2>Unten gewohnt, oben geschlafen.</h2>
+    <div class="raeume">
+      <article class="raum">
+        <div class="flaeche"></div>
+        <div class="txt">
+          <h3>Wohnraum und Küche</h3>
+          <p>Der alte Trottenraum, 32 m². Ein Tisch für sechs, der Holzofen,
+            und die Tür zur Terrasse steht im Sommer den ganzen Tag offen.</p>
+        </div>
+      </article>
+      <article class="raum">
+        <div class="flaeche"></div>
+        <div class="txt">
+          <h3>Schlafzimmer Süd</h3>
+          <p>Doppelbett 180 cm, zwei Fenster in die Reben. Morgens ist es hier
+            zuerst hell — wer länger schlafen will, nimmt das andere.</p>
+        </div>
+      </article>
+      <article class="raum">
+        <div class="flaeche"></div>
+        <div class="txt">
+          <h3>Schlafzimmer Nord</h3>
+          <p>Zwei Einzelbetten, unter den alten Balken. Kühler im Sommer und
+            ruhig, weil zur Hangseite hin kein Weg vorbeiführt.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="umgebung" class="hell-flaeche">
+  <div class="wrap zwei">
+    <div>
+      <span class="kicker">Umgebung</span>
+      <h2>Was Sie zu Fuss erreichen.</h2>
+      <p>Der Rebweg beginnt hinter dem Haus und führt in einer Stunde hinunter an
+        den See. Wer lieber oben bleibt: der Seerücken ist ein Höhenweg mit Blick
+        auf beide Seiten — links der Untersee, rechts der Thurgau.</p>
+      <p>Im Dorf gibt es eine Bäckerei, die um halb sieben aufmacht, und eine
+        Beiz, die am Montag geschlossen ist. Alles andere ist in Steckborn,
+        zehn Minuten mit dem Auto.</p>
+    </div>
+    <div>
+      <ul class="merkmale">
+        <li>Rebweg <span>direkt ab Haus</span></li>
+        <li>Untersee, Badeplatz <span>50 Min. zu Fuss, 8 Min. mit dem Auto</span></li>
+        <li>Bäckerei im Dorf <span>4 Min. zu Fuss</span></li>
+        <li>Steckborn, Bahnhof <span>10 Min. mit dem Auto</span></li>
+        <li>Konstanz <span>25 Min. mit dem Auto</span></li>
+        <li>Nächster Winzer <span>Degustation nach Voranmeldung</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="preise">
+  <div class="wrap">
+    <span class="kicker">Preise</span>
+    <h2>Was eine Nacht kostet.</h2>
+    <div class="preis-tafel">
+      <div class="preis-zeile"><span>November bis März, ab 2 Nächten</span><b>CHF 165</b></div>
+      <div class="preis-zeile"><span>April, Mai, Oktober</span><b>CHF 195</b></div>
+      <div class="preis-zeile"><span>Juni bis September, ab 3 Nächten</span><b>CHF 235</b></div>
+      <div class="preis-zeile"><span>Endreinigung, einmalig</span><b>CHF 120</b></div>
+      <div class="preis-zeile"><span>Kurtaxe, pro Person und Nacht</span><b>CHF 3.50</b></div>
+      <p class="preis-fuss">Alle Preise für das ganze Haus, unabhängig von der
+        Personenzahl. Bettwäsche, Handtücher, Holz und WLAN sind inbegriffen.
+        Bei Buchung direkt über diese Seite entfällt die Gebühr der Portale —
+        deshalb ist es hier günstiger als dort.</p>
+    </div>
+  </div>
+</section>
+
+<section id="anfrage" class="hell-flaeche">
+  <div class="wrap anfrage-raster">
+    <div>
+      <span class="kicker">Anfragen</span>
+      <h2>Sagen Sie uns, wann.</h2>
+      <p>Sie schreiben, wir antworten — meist noch am selben Tag. Wenn die Daten
+        frei sind, bekommen Sie die Bestätigung und den Code für die Schlüsselbox.
+        Wenn nicht, schlagen wir Ihnen die nächsten freien Nächte vor.</p>
+      <p class="hinweis">Zahlung nach Bestätigung, per Rechnung oder TWINT.
+        Kostenlose Stornierung bis 14 Tage vor Anreise.</p>
+    </div>
+    <div>
+      <form onsubmit="event.preventDefault();this.querySelector('.antwort').hidden=false;">
+        <div class="feld-zwei">
+          <div>
+            <label for="von">Anreise</label>
+            <input id="von" type="date" required>
+          </div>
+          <div>
+            <label for="bis">Abreise</label>
+            <input id="bis" type="date" required>
+          </div>
+        </div>
+        <label for="wer">Name</label>
+        <input id="wer" type="text" autocomplete="name" required>
+        <label for="mail">E-Mail</label>
+        <input id="mail" type="email" autocomplete="email" required>
+        <label for="text">Ihre Nachricht</label>
+        <textarea id="text" placeholder="Wir kommen zu viert, ein Hund ist dabei."></textarea>
+        <button class="knopf" type="submit">Anfrage senden</button>
+        <p class="hinweis antwort" hidden><b>Musterformular.</b> Hier würde jetzt
+          die Anfrage aufgenommen und beantwortet.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="haus-marke" href="#">Trotte am Seerücken<span>Ferienwohnung im Thurgau</span></a>
+    <div>
+      <p style="margin:0">Der Ort und der Betrieb sind erfunden.<br>Kontaktangaben gibt es deshalb keine.</p>
+    </div>
+    <p class="gebaut">Musterbeispiel, gebaut von <a href="../index.html">Player Two</a> —
+      Websites, Webshops und Social Media für Schweizer KMU.
+      <a href="../branche-ferienwohnung.html">Was so eine Seite kostet</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
