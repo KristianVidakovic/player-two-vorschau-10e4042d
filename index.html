@@ -344,6 +344,10 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
    Bildschirm passt, auch auf einem flachen Notebook. */
 .quer .stufe-karte{padding:30px 30px 28px}
 .quer .stufe-karte h3{font-size:clamp(21px,1.9vw,27px);margin:11px 0 9px}
+/* Langer Kartentitel («Social Media & Content»): einzeilig halten, sonst waechst
+   die Karte ueber ihre Nachbarn hinaus. Gleiche Zeilenhoehe wie die kurzen Titel. */
+.quer .stufe-karte h3.lang{font-size:clamp(17px,1.45vw,22px);white-space:nowrap;
+  letter-spacing:-.01em;line-height:1.35}
 .quer .stufe-karte .satz{font-size:15.5px}
 .quer .kann{margin-top:18px;gap:8px}
 .quer .kann li{font-size:15px}
@@ -1758,7 +1762,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <div class="tafel-karten">
         <article class="stufe-karte">
           <span class="stufe-nr">Was Sie bekommen</span>
-          <h3>Der Content</h3>
+          <h3 class="lang">Social Media &amp; Content</h3>
           <p class="satz">Was Ihren Betrieb ausmacht, wird Woche für Woche sichtbar — auf Ihre Arbeit gemünzt und in Ihrem Ton, nicht auf irgendeinen Betrieb.</p>
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Vier Beiträge im Monat, fertig zum Erscheinen</li>
