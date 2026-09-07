@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Chalet Säntisblick — Musterbeispiel von Player Two</title>
-<meta name="description" content="Musterbeispiel: So sieht eine Website für ein besonderes Ferienchalet aus. Gebaut von Player Two. Diesen Betrieb gibt es nicht.">
+<meta name="description" content="Musterbeispiel: So sieht eine Website für ein besonderes Ferienchalet aus — jeder Raum, Grundriss, Preise, Verfügbarkeit. Gebaut von Player Two. Diesen Betrieb gibt es nicht.">
 <meta name="theme-color" content="#121110">
 <link rel="icon" href="../assets/marke.png" type="image/png">
 <link rel="preload" as="image" href="../assets/chalet/aussen.webp">
 <style>
-/* Eigene Handschrift: dunkel, warm, ruhig. Nichts davon ist Player Two. */
+/* Eigene Handschrift: dunkel, warm, ruhig. Systemschriften, keine Ladezeit fuer Fonts. */
 :root{
   --nacht:#121110; --kohle:#1C1A18; --stein:#2A2724; --rauch:#8C847A;
   --leinen:#EFE9DF; --sand:#D9CFC0; --messing:#B89A63;
@@ -29,142 +29,192 @@ img{display:block;max-width:100%;height:auto}
 h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;margin:0;letter-spacing:-.01em}
 h1{font-size:clamp(40px,7vw,92px)}
 h2{font-size:clamp(28px,3.8vw,48px);margin-bottom:20px}
-h3{font-size:22px;margin-bottom:8px}
+h3{font-size:clamp(22px,2.4vw,30px);margin-bottom:10px}
 p{margin:0 0 16px}
-section{padding-block:clamp(64px,9vh,120px)}
-.kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--messing);
-  display:block;margin-bottom:16px}
+section{padding-block:clamp(60px,9vh,120px)}
+.kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--messing);display:block;margin-bottom:16px}
 .lede{font-size:clamp(18px,2vw,21px);color:var(--sand);max-width:56ch}
-.knopf{display:inline-block;text-decoration:none;padding:14px 26px;font-size:14.5px;
-  letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--messing);
-  color:var(--leinen);transition:.3s var(--ease);background:transparent;cursor:pointer;font-family:var(--sans)}
+.gross{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);line-height:1.35}
+.knopf{display:inline-block;text-decoration:none;padding:14px 26px;font-size:14.5px;letter-spacing:.06em;
+  text-transform:uppercase;border:1px solid var(--messing);color:var(--leinen);background:transparent;
+  cursor:pointer;font-family:var(--sans);transition:.3s var(--ease)}
 .knopf:hover{background:var(--messing);color:var(--nacht)}
 .knopf.voll{background:var(--messing);color:var(--nacht)}
 .knopf.voll:hover{background:#CDB07A}
+.dunkler{background:var(--kohle)}
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:start}
+@media (max-width:860px){.zwei{grid-template-columns:1fr}}
 
-/* ---------- Musterband ---------- */
+/* Musterband */
 .muster{background:var(--messing);color:var(--nacht);font-size:13.5px;padding:9px 0;position:relative;z-index:6}
 .muster .wrap{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;text-align:center}
 .muster a{color:var(--nacht)}
 
-/* ---------- Kopf ---------- */
+/* Kopf */
 .kopf{position:absolute;top:38px;left:0;right:0;z-index:5}
 .kopf .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px}
 .marke{text-decoration:none;color:var(--leinen);font-family:var(--serif);font-size:20px;letter-spacing:.04em}
-.marke span{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--sand);opacity:.8;margin-top:2px}
-.kopf nav{display:flex;gap:26px;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase}
+.marke span{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);opacity:.8;margin-top:2px}
+.kopf nav{display:flex;gap:22px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
 .kopf nav a{color:var(--leinen);text-decoration:none;opacity:.85}
 .kopf nav a:hover{opacity:1;color:var(--messing)}
-@media (max-width:820px){.kopf nav{display:none}}
+@media (max-width:980px){.kopf nav{display:none}}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end;padding:0 0 clamp(40px,7vh,80px)}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(18,17,16,.35) 0%,rgba(18,17,16,0) 35%,rgba(18,17,16,.75) 100%)}
+/* Hero */
+.hero{position:relative;min-height:min(94vh,900px);display:flex;align-items:flex-end;padding:0 0 clamp(40px,7vh,80px)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.35) 0%,rgba(18,17,16,0) 35%,rgba(18,17,16,.78) 100%)}
 .hero .wrap{position:relative;z-index:2}
 .hero .kicker{color:var(--sand)}
 .hero h1{max-width:12ch}
 .hero .lede{margin-top:22px;color:var(--leinen)}
-.hero-tat{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap;border-top:1px solid var(--linie);padding-top:24px}
-.hero-tat div{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
-.hero-tat b{display:block;font-family:var(--serif);font-size:30px;letter-spacing:0;text-transform:none;
-  color:var(--leinen);font-weight:400;margin-bottom:2px}
+.hero-knopf{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
 
-/* ---------- Text ---------- */
-.zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:start}
-@media (max-width:860px){.zwei{grid-template-columns:1fr}}
-.gross{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);line-height:1.35;color:var(--leinen)}
+/* Auf einen Blick */
+.blick{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding-block:clamp(28px,4vh,44px)}
+.blick .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+@media (max-width:860px){.blick .wrap{grid-template-columns:repeat(3,1fr)}}
+.blick div{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+.blick b{display:block;font-family:var(--serif);font-size:30px;letter-spacing:0;text-transform:none;color:var(--leinen);font-weight:400;margin-bottom:4px}
 
-/* ---------- Bilder ---------- */
-.raster{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:40px}
-.raster figure{margin:0;position:relative;overflow:hidden;background:var(--kohle)}
-.raster figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;
-  transition:transform 1.4s var(--ease)}
-.raster figure:hover img{transform:scale(1.03)}
-.raster figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;
-  background:linear-gradient(transparent,rgba(18,17,16,.75));font-size:13px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--sand)}
-@media (max-width:860px){.raster{grid-template-columns:1fr}}
+/* Bildpaare */
+.paar{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:40px}
+.paar figure{margin:0;position:relative;overflow:hidden;background:var(--kohle)}
+.paar img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;transition:transform 1.4s var(--ease)}
+.paar figure:hover img{transform:scale(1.03)}
+figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;background:linear-gradient(transparent,rgba(18,17,16,.75));
+  font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sand)}
+@media (max-width:860px){.paar{grid-template-columns:1fr}}
 
-.raeume{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-@media (max-width:860px){.raeume{grid-template-columns:1fr}}
-.raum img{aspect-ratio:4/3;object-fit:cover;width:100%}
-.raum .txt{padding:22px 0 0}
-.raum p{color:var(--sand);font-size:16px;margin:0}
+/* Grundriss */
+.grundriss{background:var(--kohle);padding:clamp(20px,3vw,40px);margin-top:36px;border:1px solid var(--linie)}
+.grundriss img{width:100%;height:auto}
 
-/* ---------- Ausstattung ---------- */
-.dunkler{background:var(--kohle)}
-.liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
-@media (max-width:760px){.liste{grid-template-columns:1fr}}
-.liste li{padding:14px 0;border-bottom:1px solid var(--linie);display:flex;justify-content:space-between;
-  gap:20px;font-size:16px}
+/* Raeume */
+.raum{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,64px);align-items:center;
+  padding-block:clamp(36px,6vh,72px);border-top:1px solid var(--linie)}
+.raum:first-of-type{border-top:0}
+.raum:nth-of-type(even){grid-template-columns:.85fr 1.15fr}
+.raum:nth-of-type(even) .raum-bild{order:2}
+.raum-bild{display:grid;gap:12px}
+.raum-bild img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.raum-bild.zweifach{grid-template-columns:1fr 1fr}
+.raum-bild.zweifach img{aspect-ratio:1/1}
+.raum-txt .kicker{margin-bottom:10px}
+.raum-txt p{color:var(--sand)}
+.fakten{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;
+  letter-spacing:.04em;color:var(--sand)}
+.fakten li::before{content:"·";color:var(--messing);margin-right:8px}
+@media (max-width:860px){.raum,.raum:nth-of-type(even){grid-template-columns:1fr}.raum:nth-of-type(even) .raum-bild{order:0}}
+
+/* Ausstattung */
+.liste{list-style:none;margin:22px 0 0;padding:0}
+.liste li{padding:13px 0;border-bottom:1px solid var(--linie);display:flex;justify-content:space-between;gap:20px;font-size:16px}
 .liste li span{color:var(--rauch);font-size:14.5px;text-align:right}
 
-/* ---------- Preise ---------- */
-.preis-tafel{border:1px solid var(--linie);padding:clamp(24px,3.5vw,44px);margin-top:36px;
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px)}
-@media (max-width:860px){.preis-tafel{grid-template-columns:1fr}}
-.preis-zeile{display:flex;justify-content:space-between;gap:20px;padding:15px 0;
-  border-bottom:1px solid var(--linie);font-size:16px}
-.preis-zeile b{font-family:var(--serif);font-size:24px;font-weight:400;white-space:nowrap;color:var(--leinen)}
-.preis-zeile span{color:var(--sand)}
-.preis-fuss{font-size:14.5px;color:var(--rauch);margin-top:14px}
+/* Galerie */
+.galerie{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:36px}
+.galerie button{border:0;padding:0;background:var(--kohle);cursor:pointer;overflow:hidden}
+.galerie img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1s var(--ease)}
+.galerie button:hover img{transform:scale(1.04)}
+.galerie button:nth-child(1),.galerie button:nth-child(6),.galerie button:nth-child(11){grid-column:span 2;grid-row:span 2}
+.galerie button:nth-child(1) img,.galerie button:nth-child(6) img,.galerie button:nth-child(11) img{aspect-ratio:1/1}
+@media (max-width:860px){.galerie{grid-template-columns:repeat(2,1fr)}
+  .galerie button:nth-child(1),.galerie button:nth-child(6),.galerie button:nth-child(11){grid-column:span 2;grid-row:auto}}
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1500px);max-height:96vh}
+dialog::backdrop{background:rgba(18,17,16,.92)}
+dialog img{max-width:min(96vw,1500px);max-height:88vh;width:auto;height:auto;margin:0 auto}
+dialog p{color:var(--sand);text-align:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:12px 0 0}
+dialog .zu{position:fixed;top:18px;right:22px;color:var(--leinen);background:none;border:0;font-size:30px;cursor:pointer;line-height:1}
 
-/* ---------- Buchung ---------- */
+/* Lage */
+.lage-bild{margin-top:40px;position:relative;overflow:hidden}
+.lage-bild img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.lage-liste{list-style:none;margin:24px 0 0;padding:0}
+.lage-liste li{padding:12px 0;border-bottom:1px solid var(--linie);display:flex;justify-content:space-between;gap:20px}
+.lage-liste li span{color:var(--rauch);text-align:right}
+.saison{margin-top:26px}
+.saison h3{font-size:19px}
+
+/* Preise + Kalender */
+.preis-tafel{border:1px solid var(--linie);padding:clamp(24px,3.5vw,44px);margin-top:36px;display:grid;
+  grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px)}
+@media (max-width:860px){.preis-tafel{grid-template-columns:1fr}}
+.preis-zeile{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--linie);font-size:16px}
+.preis-zeile b{font-family:var(--serif);font-size:24px;font-weight:400;white-space:nowrap}
+.preis-zeile span{color:var(--sand)}
+.preis-zeile small{display:block;color:var(--rauch);font-size:13px}
+.preis-fuss{font-size:14.5px;color:var(--rauch);margin-top:14px}
+.kalender{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+@media (max-width:860px){.kalender{grid-template-columns:1fr}}
+.monat{border:1px solid var(--linie);padding:18px}
+.monat h3{font-size:16px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);color:var(--sand);margin-bottom:12px}
+.tage{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12.5px}
+.tage i{font-style:normal;color:var(--rauch);text-align:center;font-size:10.5px;letter-spacing:.06em}
+.tage b{font-weight:400;text-align:center;padding:6px 0;border:1px solid transparent;color:var(--leinen)}
+.tage b.leer{visibility:hidden}
+.tage b.belegt{color:var(--rauch);background:repeating-linear-gradient(135deg,transparent 0 3px,rgba(239,233,223,.08) 3px 5px)}
+.tage b.frei{border-color:rgba(184,154,99,.45)}
+.legende{display:flex;gap:22px;margin-top:14px;font-size:13px;color:var(--rauch)}
+.legende span::before{content:"";display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:8px;border:1px solid rgba(184,154,99,.45)}
+.legende span.b::before{border-color:transparent;background:repeating-linear-gradient(135deg,transparent 0 3px,rgba(239,233,223,.2) 3px 5px)}
+
+/* Buchung */
 .buchung{background:var(--leinen);color:var(--nacht)}
-.buchung h2,.buchung .gross{color:var(--nacht)}
+.buchung h2{color:var(--nacht)}
 .buchung .kicker{color:#8A6E3C}
 .buchung .lede{color:#4A4540}
-.buchung .kasten{background:#fff;padding:clamp(22px,3vw,36px);box-shadow:0 30px 70px rgba(18,17,16,.12)}
+.kasten{background:#fff;padding:clamp(22px,3vw,36px);box-shadow:0 30px 70px rgba(18,17,16,.12)}
 .felder{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:560px){.felder{grid-template-columns:1fr}}
-.feld label{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:#8A6E3C;margin-bottom:8px}
-.feld input,.feld select{width:100%;padding:14px 14px;border:1px solid rgba(18,17,16,.18);
-  background:#fff;font:inherit;font-size:16px;color:var(--nacht);border-radius:0}
+.feld label{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A6E3C;margin-bottom:8px}
+.feld input,.feld select{width:100%;padding:14px;border:1px solid rgba(18,17,16,.18);background:#fff;font:inherit;font-size:16px;color:var(--nacht);border-radius:0}
 .feld input:focus,.feld select:focus{outline:2px solid #8A6E3C;outline-offset:1px}
 .buchung .knopf{width:100%;margin-top:18px;border-color:var(--nacht);color:var(--nacht);text-align:center}
 .buchung .knopf:hover{background:var(--nacht);color:var(--leinen)}
-.frei{margin-top:18px;font-size:14px;color:#6E6760;display:flex;gap:10px;align-items:center}
-.frei i{width:9px;height:9px;border-radius:50%;background:#2F8F5B;display:inline-block;flex:0 0 auto}
-.buchung .hinweis{font-size:14px;color:#6E6760;margin-top:14px}
+.hinweis{font-size:14px;color:#6E6760;margin-top:14px}
 
-/* ---------- Lage ---------- */
-.lage-liste{list-style:none;margin:24px 0 0;padding:0}
-.lage-liste li{padding:12px 0;border-bottom:1px solid var(--linie);display:flex;justify-content:space-between;gap:20px}
-.lage-liste li span{color:var(--rauch)}
+/* Gut zu wissen */
+.wissen{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,4vw,56px);margin-top:36px}
+@media (max-width:860px){.wissen{grid-template-columns:1fr}}
+.wissen h3{font-size:19px;color:var(--messing);font-family:var(--sans);letter-spacing:.06em;text-transform:uppercase;font-size:12.5px;margin-bottom:12px}
+.wissen p{color:var(--sand);font-size:16px}
 
-/* ---------- Fuss ---------- */
+/* FAQ */
+details{border-bottom:1px solid var(--linie)}
+summary{cursor:pointer;padding:18px 0;font-family:var(--serif);font-size:20px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--messing);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+details .antwort{padding-bottom:20px;color:var(--sand);max-width:72ch}
+
+/* Mobile Leiste */
+.leiste{display:none;position:fixed;left:0;right:0;bottom:0;z-index:7;background:var(--nacht);border-top:1px solid var(--linie);padding:12px 16px}
+.leiste .knopf{width:100%;text-align:center}
+@media (max-width:860px){.leiste{display:block}body{padding-bottom:70px}}
+
+/* Fuss */
 footer{padding-block:48px;border-top:1px solid var(--linie);font-size:14.5px;color:var(--rauch)}
 footer .wrap{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
 footer a{color:var(--sand)}
 .gebaut{width:100%;margin-top:28px;padding-top:20px;border-top:1px solid var(--linie);font-size:13.5px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.raster figure img{transition:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}img{transition:none!important}}
 </style>
 </head>
 <body>
 
-<div class="muster">
-  <div class="wrap">
-    <span><b>Musterbeispiel.</b> Diesen Betrieb gibt es nicht — die Seite zeigt, wie eine Website für ein besonderes Ferienchalet aussehen kann.</span>
-    <a href="../ferienwohnung.html">Zurück zu Player Two</a>
-  </div>
-</div>
+<div class="muster"><div class="wrap">
+  <span><b>Musterbeispiel.</b> Diesen Betrieb gibt es nicht — die Seite zeigt, wie eine Website für ein besonderes Ferienchalet aussehen kann.</span>
+  <a href="../ferienwohnung.html">Zurück zu Player Two</a>
+</div></div>
 
-<header class="kopf">
-  <div class="wrap">
-    <a class="marke" href="#">Chalet Säntisblick<span>Toggenburg · 1'240 m</span></a>
-    <nav>
-      <a href="#haus">Das Haus</a>
-      <a href="#raeume">Räume</a>
-      <a href="#ausstattung">Ausstattung</a>
-      <a href="#preise">Preise</a>
-      <a href="#buchung">Buchen</a>
-    </nav>
-  </div>
-</header>
+<header class="kopf"><div class="wrap">
+  <a class="marke" href="#">Chalet Säntisblick<span>Toggenburg · 1'240 m</span></a>
+  <nav>
+    <a href="#haus">Das Haus</a><a href="#grundriss">Grundriss</a><a href="#raeume">Räume</a>
+    <a href="#galerie">Galerie</a><a href="#lage">Lage</a><a href="#preise">Preise</a><a href="#buchung">Buchen</a>
+  </nav>
+</div></header>
 
 <main>
 
@@ -173,128 +223,296 @@ footer a{color:var(--sand)}
   <div class="wrap">
     <span class="kicker">Ein Haus für acht · Alpstein</span>
     <h1>Oben ist es still.</h1>
-    <p class="lede">Ein Chalet aus altem Lärchenholz und Stein, allein am Hang,
-      mit dem Fenster zum Säntis. Nächster Nachbar: keiner.</p>
-    <div class="hero-tat">
-      <div><b>8</b>Gäste</div>
-      <div><b>4</b>Schlafzimmer</div>
-      <div><b>210</b>m²</div>
-      <div><b>1'240</b>Meter</div>
+    <p class="lede">Ein Chalet aus altem Lärchenholz und Stein, allein am Hang, mit dem Fenster zum Säntis. Nächster Nachbar: keiner.</p>
+    <div class="hero-knopf">
+      <a class="knopf voll" href="#buchung">Verfügbarkeit prüfen</a>
+      <a class="knopf" href="#haus">Das Haus</a>
     </div>
   </div>
 </section>
+
+<div class="blick"><div class="wrap">
+  <div><b>8</b>Gäste</div><div><b>4</b>Schlafzimmer</div><div><b>4</b>Bäder</div>
+  <div><b>210</b>m²</div><div><b>1'240</b>Meter</div><div><b>Sauna</b>und Bottich</div>
+</div></div>
 
 <section id="haus">
   <div class="wrap zwei">
+    <div><span class="kicker">Das Haus</span><h2>Gebaut, um wegzubleiben.</h2></div>
     <div>
-      <span class="kicker">Das Haus</span>
-      <h2>Gebaut, um wegzubleiben.</h2>
-    </div>
-    <div>
-      <p class="gross">Das Chalet steht dort, wo die Strasse aufhört. Im Winter kommt
-        man die letzten dreihundert Meter mit dem Schneemobil, das für Sie
-        bereitsteht. Im Sommer zu Fuss, durch die Weide.</p>
-      <p class="lede">Zwei Geschosse, ein durchgehender Wohnraum mit sechs Metern
-        Höhe, vier Schlafzimmer mit eigenem Bad. Eine Sauna mit Blick in den Wald,
-        ein Holzbottich auf der Terrasse. Und keine Rezeption, kein Frühstücksbuffet,
-        kein Personal, das an die Tür klopft — es sei denn, Sie bestellen es.</p>
+      <p class="gross">Das Chalet steht dort, wo die Strasse aufhört. Im Winter kommt man die letzten dreihundert Meter mit dem Schneemobil, das für Sie bereitsteht. Im Sommer zu Fuss, durch die Weide.</p>
+      <p class="lede">Gebaut 2019 auf dem Fundament einer alten Alphütte: Trockensteinsockel, dunkel gealterte Lärche, ein tiefes Dach. Innen alte Eichenbalken aus einem Abbruch im Toggenburg, weisser Kalkputz, Stein aus dem Tal. Zwei Geschosse, ein Wohnraum mit sechs Metern Höhe, vier Schlafzimmer mit eigenem Bad.</p>
+      <p class="lede">Was fehlt: eine Rezeption, ein Frühstücksbuffet, Personal, das an die Tür klopft — es sei denn, Sie bestellen es.</p>
     </div>
   </div>
-  <div class="wrap raster">
-    <figure>
-      <img src="../assets/chalet/wohnraum.webp" width="1600" height="1040" loading="lazy" alt="Wohnraum mit Cheminée, alten Balken und Panoramafenster auf verschneite Berge">
-      <figcaption>Wohnraum · Cheminée · Panoramafenster</figcaption>
-    </figure>
-    <figure>
-      <img src="../assets/chalet/kueche.webp" width="1400" height="1031" loading="lazy" alt="Küche mit Steininsel und langem Eichentisch für acht">
-      <figcaption>Küche · Tisch für acht</figcaption>
-    </figure>
+  <div class="wrap paar">
+    <figure><img src="../assets/chalet/aussen-tag.webp" width="1920" height="1071" loading="lazy" alt="Das Chalet an einem klaren Wintertag, vom Anfahrtsweg aus gesehen, mit Schneemobilspur im Schnee"><figcaption>Die Anfahrt, im Winter</figcaption></figure>
+    <figure><img src="../assets/chalet/skiraum.webp" width="1400" height="1031" loading="lazy" alt="Eingang mit Skihaltern aus schwarzem Stahl, Steinboden und Eichenbank"><figcaption>Eingang und Skiraum</figcaption></figure>
   </div>
 </section>
 
-<section id="raeume" class="dunkler">
+<section id="grundriss" class="dunkler">
+  <div class="wrap">
+    <span class="kicker">Grundriss</span>
+    <h2>Zwei Geschosse, 210 Quadratmeter.</h2>
+    <p class="lede">Unten wird gewohnt, gekocht und gebadet. Oben wird geschlafen — jedes Zimmer mit eigenem Bad und eigenem Fenster nach draussen.</p>
+    <div class="grundriss"><img src="../assets/chalet/grundriss.svg" width="1200" height="640" loading="lazy" alt="Grundriss beider Geschosse mit Raumbezeichnungen und Flächen"></div>
+  </div>
+</section>
+
+<section id="raeume">
   <div class="wrap">
     <span class="kicker">Die Räume</span>
-    <h2>Vier Zimmer. Jedes mit Blick.</h2>
-    <p class="lede">Alle Schlafzimmer liegen im Obergeschoss, jedes mit eigenem Bad
-      und einem Fenster, das auf die Berge geht statt auf den Nachbarn.</p>
-    <div class="raeume">
-      <article class="raum">
-        <img src="../assets/chalet/schlafen.webp" width="1400" height="1031" loading="lazy" alt="Schlafzimmer mit Leinenbettwäsche, Morgenlicht und Bergblick">
-        <div class="txt">
-          <h3>Schlafzimmer Säntis</h3>
-          <p>Das grösste der vier, mit Bett 200 cm, freistehender Wanne und dem
-            Fenster, nach dem das Haus benannt ist.</p>
-        </div>
-      </article>
-      <article class="raum">
+    <h2>Neun Räume. Jeder ein Grund.</h2>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
+        <img src="../assets/chalet/wohnraum.webp" width="1600" height="1040" loading="lazy" alt="Wohnraum mit Cheminée, Schaffell auf dem Sofa und Panoramafenster">
+        <img src="../assets/chalet/wohnraum-galerie.webp" width="1600" height="1040" loading="lazy" alt="Der Wohnraum von der Treppe aus, mit Galerie und offenem Dachstuhl">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Erdgeschoss</span>
+        <h3>Wohnraum</h3>
+        <p>Sechs Meter bis zu den Balken. Das Cheminée aus schwarzem Stahl ist am Abend das einzige Licht, das man braucht. Die Glasfront geht nach Süden, auf den Säntis — im Winter steht er ab drei Uhr im Gegenlicht.</p>
+        <p>Die Treppe führt auf die Galerie mit der Lesenische. Von dort sieht man auf das Feuer hinunter und durch das Fenster hinaus.</p>
+        <ul class="fakten"><li>54 m²</li><li>Cheminée</li><li>Galerie</li><li>Sonos und Plattenspieler</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
+        <img src="../assets/chalet/kueche.webp" width="1400" height="1031" loading="lazy" alt="Küche mit Steininsel, schwarzen Fronten und langem Eichentisch">
+        <img src="../assets/chalet/kueche-detail.webp" width="1400" height="1031" loading="lazy" alt="Die Steininsel im Detail, mit Messinghahn und Holzbrett">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Erdgeschoss</span>
+        <h3>Küche und Essen</h3>
+        <p>Eine Insel aus einem einzigen Block Toggenburger Stein, dahinter schwarze Fronten, davor der Tisch: drei Meter Eiche für acht Leute. Gekocht wird auf Induktion, gebacken im Dampfgarer, gekühlt im Weinschrank.</p>
+        <p>Wer nicht kochen will: Auf Wunsch kommt ein Koch aus dem Tal, am Anreiseabend oder jeden Abend.</p>
+        <ul class="fakten"><li>32 m²</li><li>Tisch für 8</li><li>Weinschrank</li><li>Koch auf Wunsch</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
+        <img src="../assets/chalet/schlafen.webp" width="1400" height="1031" loading="lazy" alt="Schlafzimmer Säntis: Bett mit Leinen, Morgenlicht, Blick auf die Berge">
+        <img src="../assets/chalet/bad-saentis.webp" width="1400" height="1031" loading="lazy" alt="Bad Säntis mit freistehender Steinwanne vor dem Fenster">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Obergeschoss</span>
+        <h3>Säntis</h3>
+        <p>Das grösste der vier Zimmer, mit dem Fenster, nach dem das Haus benannt ist. Bett 200 cm, Leinen, sonst nichts an den Wänden — das Fenster ist das Bild.</p>
+        <p>Das Bad hat eine Wanne aus einem Steinblock, direkt vor dem Fenster. Morgens ist es hier zuerst hell.</p>
+        <ul class="fakten"><li>28 m²</li><li>Bett 200</li><li>Bad mit Wanne</li><li>Blick Säntis</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild"><img src="../assets/chalet/laerche.webp" width="1400" height="1031" loading="lazy" alt="Schlafzimmer Lärche mit Wand aus altem Lärchenholz und Blick in den Winterwald"></div>
+      <div class="raum-txt">
+        <span class="kicker">Obergeschoss</span>
+        <h3>Lärche</h3>
+        <p>Die Wand hinter dem Bett ist aus derselben Lärche wie die Fassade — nur innen, wo sie nie nass wird. Das Fenster geht nach Westen, in den Wald. Das ruhigste Zimmer im Haus.</p>
+        <ul class="fakten"><li>16 m²</li><li>Bett 180</li><li>Bad mit Dusche</li><li>Blick Wald</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild"><img src="../assets/chalet/alpstein.webp" width="1400" height="1031" loading="lazy" alt="Schlafzimmer Alpstein, das Bett mit Blick auf die Felszacken"></div>
+      <div class="raum-txt">
+        <span class="kicker">Obergeschoss</span>
+        <h3>Alpstein</h3>
+        <p>Das Bett steht so, dass man beim Aufwachen die Felszacken sieht und sonst nichts. Kalkputz, Eiche, eine schwarze Leuchte, eine Wolldecke. Wer hier morgens nicht liegen bleibt, ist selber schuld.</p>
+        <ul class="fakten"><li>16 m²</li><li>Bett 180</li><li>Bad mit Dusche</li><li>Blick Alpstein</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
+        <img src="../assets/chalet/kammer.webp" width="1400" height="1031" loading="lazy" alt="Die Kammer unter dem Dach mit zwei Einzelbetten und kleinem Fenster">
+        <img src="../assets/chalet/bad2.webp" width="1400" height="1031" loading="lazy" alt="Bad mit Steindusche, Eichenwaschtisch und Messingarmatur">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Obergeschoss</span>
+        <h3>Kammer</h3>
+        <p>Unter dem Dach, zwischen den alten Balken, zwei Einzelbetten und ein kleines Fenster, hinter dem morgens der Berg auftaucht. Das Zimmer, um das sich Kinder streiten — und Erwachsene auch.</p>
+        <p>Das Bad daneben: eine Dusche, ganz in Stein, mit einem Hocker aus Eiche.</p>
+        <ul class="fakten"><li>14 m²</li><li>2 Einzelbetten</li><li>Bad mit Steindusche</li><li>Dachschräge</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
         <img src="../assets/chalet/sauna.webp" width="1400" height="1031" loading="lazy" alt="Sauna aus hellem Holz mit Glasfront und Blick in den verschneiten Wald">
-        <div class="txt">
-          <h3>Sauna</h3>
-          <p>Finnisch, aus Hemlock, mit Glasfront zum Wald. Vorgeheizt, wenn Sie
-            es wünschen — sagen Sie bei der Buchung, wann.</p>
-        </div>
-      </article>
-      <article class="raum">
-        <img src="../assets/chalet/terrasse.webp" width="1600" height="1040" loading="lazy" alt="Terrasse mit dampfendem Holzbottich in der Abenddämmerung, dahinter das Tal">
-        <div class="txt">
-          <h3>Terrasse</h3>
-          <p>Nach Südwesten, mit dem Holzbottich. Das Wasser ist um 18 Uhr bei
-            39 Grad. Der Rest ist Ihre Sache.</p>
-        </div>
-      </article>
-    </div>
+        <img src="../assets/chalet/ruheraum.webp" width="1600" height="1040" loading="lazy" alt="Ruheraum mit zwei Liegen, Messinglampe und Fenster in den Winterwald">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Erdgeschoss</span>
+        <h3>Spa</h3>
+        <p>Eine finnische Sauna aus Hemlock, mit Glasfront in den Wald. Davor der Ruheraum: zwei Liegen, Wolldecken, eine Lampe, dieselbe Aussicht. Auf Wunsch ist die Sauna bei Ihrer Ankunft vorgeheizt.</p>
+        <ul class="fakten"><li>30 m²</li><li>Sauna finnisch</li><li>Ruheraum</li><li>Bad und WC</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild zweifach">
+        <img src="../assets/chalet/terrasse.webp" width="1600" height="1040" loading="lazy" alt="Terrasse in der Dämmerung mit dampfendem Holzbottich und Blick ins Tal">
+        <img src="../assets/chalet/terrasse-tag.webp" width="1600" height="1040" loading="lazy" alt="Dieselbe Terrasse am Tag, mit Liegen und Bergpanorama">
+      </div>
+      <div class="raum-txt">
+        <span class="kicker">Aussen</span>
+        <h3>Terrasse</h3>
+        <p>Nach Südwesten, über dem Tal. Der Holzbottich ist um sechs Uhr abends bei 39 Grad — im Winter mit Schnee auf dem Rand. Zwei Liegen für die Stunden, in denen die Sonne noch da ist.</p>
+        <ul class="fakten"><li>48 m²</li><li>Holzbottich</li><li>Liegen</li><li>Südwesten</li></ul>
+      </div>
+    </article>
+
+    <article class="raum">
+      <div class="raum-bild"><img src="../assets/chalet/skiraum.webp" width="1400" height="1031" loading="lazy" alt="Skiraum mit beheizten Skihaltern, Schuhtrockner und Eichenbank"></div>
+      <div class="raum-txt">
+        <span class="kicker">Erdgeschoss</span>
+        <h3>Skiraum</h3>
+        <p>Beheizt, mit Skihaltern aus schwarzem Stahl, Schuhtrockner und einer Bank zum Anziehen. Am Morgen sind die Schuhe warm. Das ist keine Kleinigkeit, wenn draussen minus zwölf sind.</p>
+        <ul class="fakten"><li>16 m²</li><li>beheizt</li><li>Schuhtrockner</li><li>Platz für 8 Paar</li></ul>
+      </div>
+    </article>
   </div>
 </section>
 
-<section id="ausstattung">
+<section id="ausstattung" class="dunkler">
   <div class="wrap zwei">
     <div>
       <span class="kicker">Ausstattung</span>
       <h2>Was da ist.</h2>
-      <p class="lede">Und was auf Wunsch dazukommt: Koch, Massage, Skilehrer,
-        Kinderbetreuung. Alles über eine Nachricht an uns, nichts über eine App.</p>
+      <p class="lede">Und was auf Wunsch dazukommt — alles über eine Nachricht an uns, nichts über eine App.</p>
+      <ul class="liste">
+        <li>Vier Schlafzimmer <span>je eigenes Bad</span></li>
+        <li>Wohnraum <span>6 m Höhe, Cheminée, Galerie</span></li>
+        <li>Küche <span>Induktion, Dampfgarer, Weinschrank</span></li>
+        <li>Sauna und Ruheraum <span>finnisch, mit Waldblick</span></li>
+        <li>Holzbottich <span>auf der Terrasse</span></li>
+        <li>Skiraum <span>beheizt, Schuhtrockner</span></li>
+        <li>Schneemobil <span>im Winter, für die Zufahrt</span></li>
+        <li>WLAN <span>Glasfaser, im ganzen Haus</span></li>
+        <li>Wäsche <span>Leinen, Wechsel nach 4 Nächten</span></li>
+        <li>Endreinigung und Kurtaxe <span>inbegriffen</span></li>
+      </ul>
     </div>
-    <ul class="liste">
-      <li>Vier Schlafzimmer <span>je eigenes Bad</span></li>
-      <li>Wohnraum <span>6 m Höhe, Cheminée</span></li>
-      <li>Küche <span>voll eingerichtet, Weinschrank</span></li>
-      <li>Sauna <span>finnisch, mit Waldblick</span></li>
-      <li>Holzbottich <span>auf der Terrasse</span></li>
-      <li>Skiraum <span>beheizt, mit Schuhtrockner</span></li>
-      <li>Schneemobil <span>im Winter, für die Zufahrt</span></li>
-      <li>WLAN <span>Glasfaser, im ganzen Haus</span></li>
-      <li>Bettwäsche und Handtücher <span>gestellt, Wechsel nach 4 Nächten</span></li>
-      <li>Endreinigung <span>inbegriffen</span></li>
-      <li>Haustiere <span>nicht möglich</span></li>
-      <li>Rauchen <span>nur auf der Terrasse</span></li>
-    </ul>
+    <div>
+      <span class="kicker">Auf Wunsch</span>
+      <h2>Was dazukommt.</h2>
+      <ul class="liste">
+        <li>Koch <span>am Anreiseabend oder täglich</span></li>
+        <li>Vorräte <span>der Kühlschrank ist voll, wenn Sie kommen</span></li>
+        <li>Massage <span>im Ruheraum</span></li>
+        <li>Skilehrer <span>privat, ab Haus</span></li>
+        <li>Kinderbetreuung <span>halbe oder ganze Tage</span></li>
+        <li>Transfer <span>ab Bahnhof oder Flughafen</span></li>
+        <li>Haustiere <span>nicht möglich</span></li>
+        <li>Rauchen <span>nur auf der Terrasse</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section id="preise" class="dunkler">
+<section id="galerie">
   <div class="wrap">
-    <span class="kicker">Preise</span>
-    <h2>Das ganze Haus. Ein Preis.</h2>
-    <p class="lede">Unabhängig davon, ob Sie zu zweit oder zu acht kommen.
-      Kurtaxe und Endreinigung sind inbegriffen — der Preis, den Sie sehen, ist
-      der Preis, den Sie zahlen.</p>
-    <div class="preis-tafel">
-      <div>
-        <div class="preis-zeile"><span>Winter, Dezember bis März<br><small>Mindestens 4 Nächte</small></span><b>CHF 1'450</b></div>
-        <div class="preis-zeile"><span>Frühling und Herbst<br><small>Mindestens 3 Nächte</small></span><b>CHF 980</b></div>
-        <div class="preis-zeile"><span>Sommer, Juni bis September<br><small>Mindestens 3 Nächte</small></span><b>CHF 1'180</b></div>
-        <div class="preis-zeile"><span>Weihnachten und Neujahr<br><small>7 Nächte, Samstag bis Samstag</small></span><b>CHF 1'950</b></div>
-      </div>
-      <div>
-        <p class="lede" style="font-size:16px">Alle Preise pro Nacht für das ganze Haus.
-          Bei Buchung direkt über diese Seite ohne Portalgebühr — deshalb ist es
-          hier günstiger als dort, bei gleicher Leistung.</p>
-        <p class="preis-fuss">Zahlung: 30 Prozent bei Buchung, der Rest 30 Tage vor
-          Anreise. Kostenlose Stornierung bis 60 Tage vor Anreise, danach 50 Prozent.
-          Rechnung, TWINT oder Kreditkarte.</p>
+    <span class="kicker">Galerie</span>
+    <h2>Alles, was Sie sehen wollen.</h2>
+    <div class="galerie" id="galerie-raster">
+      <button type="button" data-bild="aussen" data-name="Aussen, blaue Stunde"><img src="../assets/chalet/aussen.webp" loading="lazy" alt="Aussenansicht zur blauen Stunde"></button>
+      <button type="button" data-bild="aussen-tag" data-name="Die Anfahrt im Winter"><img src="../assets/chalet/aussen-tag.webp" loading="lazy" alt="Das Chalet am Tag, vom Anfahrtsweg aus"></button>
+      <button type="button" data-bild="wohnraum" data-name="Wohnraum"><img src="../assets/chalet/wohnraum.webp" loading="lazy" alt="Wohnraum"></button>
+      <button type="button" data-bild="wohnraum-galerie" data-name="Wohnraum, Galerie"><img src="../assets/chalet/wohnraum-galerie.webp" loading="lazy" alt="Wohnraum mit Galerie"></button>
+      <button type="button" data-bild="kueche" data-name="Küche und Essen"><img src="../assets/chalet/kueche.webp" loading="lazy" alt="Küche"></button>
+      <button type="button" data-bild="kueche-detail" data-name="Küche, Insel"><img src="../assets/chalet/kueche-detail.webp" loading="lazy" alt="Steininsel"></button>
+      <button type="button" data-bild="schlafen" data-name="Säntis"><img src="../assets/chalet/schlafen.webp" loading="lazy" alt="Schlafzimmer Säntis"></button>
+      <button type="button" data-bild="bad-saentis" data-name="Bad Säntis"><img src="../assets/chalet/bad-saentis.webp" loading="lazy" alt="Bad Säntis"></button>
+      <button type="button" data-bild="laerche" data-name="Lärche"><img src="../assets/chalet/laerche.webp" loading="lazy" alt="Schlafzimmer Lärche"></button>
+      <button type="button" data-bild="alpstein" data-name="Alpstein"><img src="../assets/chalet/alpstein.webp" loading="lazy" alt="Schlafzimmer Alpstein"></button>
+      <button type="button" data-bild="kammer" data-name="Kammer"><img src="../assets/chalet/kammer.webp" loading="lazy" alt="Kammer"></button>
+      <button type="button" data-bild="terrasse" data-name="Terrasse, Dämmerung"><img src="../assets/chalet/terrasse.webp" loading="lazy" alt="Terrasse in der Dämmerung"></button>
+      <button type="button" data-bild="bad2" data-name="Bad mit Steindusche"><img src="../assets/chalet/bad2.webp" loading="lazy" alt="Bad mit Steindusche"></button>
+      <button type="button" data-bild="sauna" data-name="Sauna"><img src="../assets/chalet/sauna.webp" loading="lazy" alt="Sauna"></button>
+      <button type="button" data-bild="ruheraum" data-name="Ruheraum"><img src="../assets/chalet/ruheraum.webp" loading="lazy" alt="Ruheraum"></button>
+      <button type="button" data-bild="terrasse-tag" data-name="Terrasse am Tag"><img src="../assets/chalet/terrasse-tag.webp" loading="lazy" alt="Terrasse am Tag"></button>
+      <button type="button" data-bild="skiraum" data-name="Skiraum"><img src="../assets/chalet/skiraum.webp" loading="lazy" alt="Skiraum"></button>
+      <button type="button" data-bild="fensterblick" data-name="Der Säntis am Morgen"><img src="../assets/chalet/fensterblick.webp" loading="lazy" alt="Blick durch das Fenster auf den Säntis im Morgenlicht"></button>
+    </div>
+  </div>
+  <dialog id="licht"><button class="zu" type="button" aria-label="Schliessen">×</button><img id="licht-bild" src="" alt=""><p id="licht-name"></p></dialog>
+</section>
+
+<section id="lage" class="dunkler">
+  <div class="wrap zwei">
+    <div>
+      <span class="kicker">Lage</span>
+      <h2>Am Ende der Strasse, am Anfang vom Berg.</h2>
+      <p class="lede">Toggenburg, 1'240 Meter, Blick auf den Alpstein. Im Winter Skigebiet vor der Tür, im Sommer der Höhenweg. Und in anderthalb Stunden am Flughafen Zürich — was hier oben niemand glaubt.</p>
+      <div class="saison">
+        <h3>Winter</h3>
+        <p class="lede" style="font-size:16px">Skifahren ab Haus, Winterwandern, Schlitteln, Schneeschuhtouren mit Führer. Die Sauna und der Bottich sind nie so gut wie nach einem Tag draussen.</p>
+        <h3>Sommer</h3>
+        <p class="lede" style="font-size:16px">Der Höhenweg beginnt hinter dem Haus. Wandern, Trailrunning, Klettern im Alpstein. Abends auf der Terrasse, bis es dunkel wird — das dauert im Juni lange.</p>
       </div>
     </div>
+    <ul class="lage-liste">
+      <li>Skilift <span>4 Min. mit dem Schneemobil</span></li>
+      <li>Höhenweg Alpstein <span>ab Haus</span></li>
+      <li>Dorf, Restaurant, Laden <span>12 Min. mit dem Auto</span></li>
+      <li>Bahnhof <span>25 Min., Abholung möglich</span></li>
+      <li>St. Gallen <span>55 Min.</span></li>
+      <li>Zürich <span>1 h 20</span></li>
+      <li>Flughafen Zürich <span>1 h 30</span></li>
+    </ul>
+  </div>
+  <div class="wrap lage-bild"><img src="../assets/chalet/fensterblick.webp" width="1600" height="1040" loading="lazy" alt="Der Säntis im ersten Morgenlicht, gesehen durch das Fenster des Chalets"></div>
+</section>
+
+<section id="preise">
+  <div class="wrap">
+    <span class="kicker">Preise und Verfügbarkeit</span>
+    <h2>Das ganze Haus. Ein Preis.</h2>
+    <p class="lede">Unabhängig davon, ob Sie zu zweit oder zu acht kommen. Kurtaxe und Endreinigung sind inbegriffen — der Preis, den Sie sehen, ist der Preis, den Sie zahlen.</p>
+    <div class="preis-tafel">
+      <div>
+        <div class="preis-zeile"><span>Winter, Dezember bis März<small>mindestens 4 Nächte</small></span><b>CHF 1'450</b></div>
+        <div class="preis-zeile"><span>Frühling und Herbst<small>mindestens 3 Nächte</small></span><b>CHF 980</b></div>
+        <div class="preis-zeile"><span>Sommer, Juni bis September<small>mindestens 3 Nächte</small></span><b>CHF 1'180</b></div>
+        <div class="preis-zeile"><span>Weihnachten und Neujahr<small>7 Nächte, Samstag bis Samstag</small></span><b>CHF 1'950</b></div>
+      </div>
+      <div>
+        <p class="lede" style="font-size:16px">Alle Preise pro Nacht für das ganze Haus. Bei Buchung direkt über diese Seite ohne Portalgebühr — deshalb ist es hier günstiger als dort, bei gleicher Leistung.</p>
+        <p class="preis-fuss">Zahlung: 30 Prozent bei Buchung, der Rest 30 Tage vor Anreise. Kostenlose Stornierung bis 60 Tage vor Anreise, danach 50 Prozent. Rechnung, TWINT oder Kreditkarte.</p>
+      </div>
+    </div>
+
+    <div class="kalender" aria-label="Belegung der nächsten drei Monate">
+      <div class="monat"><h3>Februar 2027</h3><div class="tage">
+        <i>Mo</i><i>Di</i><i>Mi</i><i>Do</i><i>Fr</i><i>Sa</i><i>So</i>
+        <b class="belegt">1</b><b class="belegt">2</b><b class="belegt">3</b><b class="belegt">4</b><b class="belegt">5</b><b class="belegt">6</b><b class="belegt">7</b>
+        <b class="belegt">8</b><b class="belegt">9</b><b class="belegt">10</b><b class="belegt">11</b><b class="belegt">12</b><b class="belegt">13</b><b class="frei">14</b>
+        <b class="frei">15</b><b class="frei">16</b><b class="frei">17</b><b class="frei">18</b><b class="frei">19</b><b class="frei">20</b><b class="frei">21</b>
+        <b class="belegt">22</b><b class="belegt">23</b><b class="belegt">24</b><b class="belegt">25</b><b class="belegt">26</b><b class="belegt">27</b><b class="belegt">28</b>
+      </div></div>
+      <div class="monat"><h3>März 2027</h3><div class="tage">
+        <i>Mo</i><i>Di</i><i>Mi</i><i>Do</i><i>Fr</i><i>Sa</i><i>So</i>
+        <b class="belegt">1</b><b class="belegt">2</b><b class="belegt">3</b><b class="belegt">4</b><b class="belegt">5</b><b class="belegt">6</b><b class="belegt">7</b>
+        <b class="frei">8</b><b class="frei">9</b><b class="frei">10</b><b class="frei">11</b><b class="frei">12</b><b class="frei">13</b><b class="frei">14</b>
+        <b class="frei">15</b><b class="frei">16</b><b class="frei">17</b><b class="frei">18</b><b class="frei">19</b><b class="frei">20</b><b class="frei">21</b>
+        <b class="belegt">22</b><b class="belegt">23</b><b class="belegt">24</b><b class="belegt">25</b><b class="belegt">26</b><b class="belegt">27</b><b class="belegt">28</b>
+        <b class="frei">29</b><b class="frei">30</b><b class="frei">31</b><b class="leer">·</b><b class="leer">·</b><b class="leer">·</b><b class="leer">·</b>
+      </div></div>
+      <div class="monat"><h3>April 2027</h3><div class="tage">
+        <i>Mo</i><i>Di</i><i>Mi</i><i>Do</i><i>Fr</i><i>Sa</i><i>So</i>
+        <b class="leer">·</b><b class="leer">·</b><b class="leer">·</b><b class="frei">1</b><b class="frei">2</b><b class="frei">3</b><b class="frei">4</b>
+        <b class="frei">5</b><b class="frei">6</b><b class="frei">7</b><b class="frei">8</b><b class="frei">9</b><b class="frei">10</b><b class="frei">11</b>
+        <b class="belegt">12</b><b class="belegt">13</b><b class="belegt">14</b><b class="belegt">15</b><b class="belegt">16</b><b class="belegt">17</b><b class="belegt">18</b>
+        <b class="frei">19</b><b class="frei">20</b><b class="frei">21</b><b class="frei">22</b><b class="frei">23</b><b class="frei">24</b><b class="frei">25</b>
+        <b class="frei">26</b><b class="frei">27</b><b class="frei">28</b><b class="frei">29</b><b class="frei">30</b><b class="leer">·</b><b class="leer">·</b>
+      </div></div>
+    </div>
+    <div class="legende"><span>frei</span><span class="b">belegt</span></div>
   </div>
 </section>
 
@@ -303,61 +521,85 @@ footer a{color:var(--sand)}
     <div>
       <span class="kicker">Buchen</span>
       <h2>Wann?</h2>
-      <p class="lede">Prüfen Sie die freien Nächte, wir bestätigen innert eines
-        Tages. Fragen vorab beantworten wir jederzeit — auch abends, auch am
-        Sonntag.</p>
-      <p class="hinweis">Die Anfrage ist unverbindlich. Sie bekommen die
-        Bestätigung, den Vertrag und den Zugangscode erst, wenn Sie zusagen.</p>
+      <p class="lede">Prüfen Sie die freien Nächte, wir bestätigen innert eines Tages. Fragen vorab beantworten wir jederzeit — auch abends, auch am Sonntag.</p>
+      <p class="hinweis">Die Anfrage ist unverbindlich. Sie bekommen die Bestätigung, den Vertrag und den Zugangscode erst, wenn Sie zusagen.</p>
     </div>
     <div class="kasten">
       <form onsubmit="event.preventDefault();">
         <div class="felder">
           <div class="feld"><label for="an">Anreise</label><input id="an" type="date"></div>
           <div class="feld"><label for="ab">Abreise</label><input id="ab" type="date"></div>
-          <div class="feld"><label for="g">Gäste</label>
-            <select id="g"><option>2</option><option>4</option><option>6</option><option selected>8</option></select></div>
-          <div class="feld"><label for="w">Wünsche</label>
-            <select id="w"><option>Keine</option><option>Koch am Anreiseabend</option><option>Sauna vorgeheizt</option><option>Skilehrer</option><option>Massage</option></select></div>
+          <div class="feld"><label for="g">Gäste</label><select id="g"><option>2</option><option>4</option><option>6</option><option selected>8</option></select></div>
+          <div class="feld"><label for="w">Wünsche</label><select id="w"><option>Keine</option><option>Koch am Anreiseabend</option><option>Vorräte</option><option>Sauna vorgeheizt</option><option>Skilehrer</option><option>Massage</option><option>Transfer</option></select></div>
         </div>
         <button class="knopf" type="submit">Verfügbarkeit prüfen</button>
-        <p class="frei"><i></i>Nächste freie Zeit: 14. bis 21. Februar</p>
       </form>
     </div>
   </div>
 </section>
 
-<section id="lage">
-  <div class="wrap zwei">
-    <div>
-      <span class="kicker">Lage</span>
-      <h2>Am Ende der Strasse, am Anfang vom Berg.</h2>
-      <p class="lede">Toggenburg, auf 1'240 Metern, mit Blick auf den Alpstein.
-        Im Winter Skigebiet vor der Tür, im Sommer der Höhenweg. Und in
-        anderthalb Stunden am Flughafen Zürich — was hier oben niemand glaubt.</p>
+<section id="wissen" class="dunkler">
+  <div class="wrap">
+    <span class="kicker">Gut zu wissen</span>
+    <h2>Bevor Sie kommen.</h2>
+    <div class="wissen">
+      <div><h3>Anreise</h3><p>Mit dem Auto bis zum Parkplatz am Ende der Strasse, 300 Meter unterhalb des Hauses. Im Winter holen wir Sie dort mit dem Schneemobil ab — oder Sie fahren es selbst, wir zeigen es Ihnen. Im Sommer sind es sieben Minuten zu Fuss, das Gepäck bringen wir hoch.</p></div>
+      <div><h3>Check-in und Check-out</h3><p>Ab 16 Uhr können Sie kommen, bis 10 Uhr sollten Sie gehen. Beides lässt sich verschieben, wenn niemand direkt anschliesst — fragen Sie einfach.</p></div>
+      <div><h3>Hausregeln</h3><p>Keine Haustiere, Rauchen nur auf der Terrasse, Ruhe ab 22 Uhr auf der Terrasse — nicht wegen Nachbarn, die gibt es nicht, sondern wegen der Tiere. Im Haus gilt: Schuhe aus, Hausschuhe liegen bereit.</p></div>
+      <div><h3>Zahlung und Storno</h3><p>30 Prozent bei Buchung, der Rest 30 Tage vor Anreise. Bis 60 Tage vor Anreise kostenlos stornierbar, danach 50 Prozent. Rechnung, TWINT oder Kreditkarte.</p></div>
+      <div><h3>Wenn etwas nicht stimmt</h3><p>Eine Nachricht, und wir sind innert einer Stunde erreichbar — im Winter rund um die Uhr. Wenn etwas kaputt ist, das Sie nicht verursacht haben, ist es unser Problem, nicht Ihres.</p></div>
+      <div><h3>Versorgung</h3><p>Der nächste Laden ist zwölf Minuten entfernt. Auf Wunsch ist der Kühlschrank bei Ankunft voll — Sie schicken uns die Liste, wir kaufen ein. Brot kommt jeden Morgen, wenn Sie wollen.</p></div>
     </div>
-    <ul class="lage-liste">
-      <li>Skilift <span>4 Min. mit dem Schneemobil</span></li>
-      <li>Höhenweg Alpstein <span>ab Haus</span></li>
-      <li>Dorf, Restaurant, Laden <span>12 Min. mit dem Auto</span></li>
-      <li>Bahnhof <span>25 Min. mit dem Auto, Abholung möglich</span></li>
-      <li>St. Gallen <span>55 Min.</span></li>
-      <li>Flughafen Zürich <span>1 h 30</span></li>
-    </ul>
+  </div>
+</section>
+
+<section id="gastgeber">
+  <div class="wrap zwei">
+    <div><span class="kicker">Gastgeber</span><h2>Wer dahintersteht.</h2></div>
+    <div>
+      <p class="lede">Wir haben das Chalet gebaut, weil wir selber eines gesucht haben und keines gefunden: eines, das oben ist, allein, und trotzdem nichts vermissen lässt. Wir wohnen im Tal, zwölf Minuten entfernt, und kennen jeden Weg, jede Beiz und jeden Skilehrer zwischen hier und dem Säntis.</p>
+      <p class="lede">Wir sind da, wenn Sie uns brauchen, und weg, wenn nicht. Das ist das ganze Konzept.</p>
+    </div>
+  </div>
+</section>
+
+<section id="fragen" class="dunkler">
+  <div class="wrap">
+    <span class="kicker">Fragen</span>
+    <h2>Was Gäste vor der Buchung wissen wollen.</h2>
+    <div style="margin-top:26px;max-width:80ch">
+      <details><summary>Kommen wir im Winter mit dem Auto hoch?</summary><div class="antwort">Bis zum Parkplatz ja, der wird geräumt. Die letzten 300 Meter fahren Sie mit dem Schneemobil — wir holen Sie ab oder zeigen es Ihnen. Bei starkem Schneefall kann es einmal eine Stunde dauern, bis der Weg frei ist; dann sagen wir Ihnen vorher Bescheid.</div></details>
+      <details><summary>Ist das Haus für Kinder geeignet?</summary><div class="antwort">Ja, ab etwa vier Jahren. Die Kammer mit den zwei Einzelbetten ist ihr Zimmer. Die Galerie hat ein Geländer, die Treppe ist offen — wer mit Kleinkindern kommt, sagt es uns, dann sichern wir die Treppe.</div></details>
+      <details><summary>Dürfen wir unseren Hund mitbringen?</summary><div class="antwort">Leider nein. Das Haus liegt in einem Wildschutzgebiet, und die Wolldecken und Schaffelle danken es uns.</div></details>
+      <details><summary>Wie ist die Wäsche geregelt?</summary><div class="antwort">Bettwäsche aus Leinen und Handtücher liegen bereit und werden nach vier Nächten gewechselt. Eine Waschmaschine gibt es im Skiraum. Bademäntel und Saunatücher sind da.</div></details>
+      <details><summary>Wo kaufen wir ein?</summary><div class="antwort">Im Dorf, zwölf Minuten mit dem Auto. Oder Sie schicken uns eine Liste, und der Kühlschrank ist bei Ankunft voll. Brot und Zeitung kommen auf Wunsch jeden Morgen.</div></details>
+      <details><summary>Funktioniert das WLAN wirklich?</summary><div class="antwort">Ja — Glasfaser bis ins Haus, in jedem Raum. Wer arbeiten muss, kann es. Wer nicht will, schaltet den Router aus, der Schalter ist im Skiraum.</div></details>
+      <details><summary>Darf im Haus geraucht werden?</summary><div class="antwort">Nur auf der Terrasse. Aschenbecher stehen bereit.</div></details>
+      <details><summary>Gibt es einen Mindestaufenthalt?</summary><div class="antwort">Im Winter vier Nächte, sonst drei. Über Weihnachten und Neujahr eine Woche, Samstag bis Samstag.</div></details>
+    </div>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <a class="marke" href="#">Chalet Säntisblick<span>Toggenburg · 1'240 m</span></a>
-    <p style="margin:0;max-width:40ch">Der Ort und der Betrieb sind erfunden. Kontaktangaben gibt es deshalb keine.
-      Die Bilder sind erzeugt und zeigen kein bestehendes Haus.</p>
-    <p class="gebaut">Musterbeispiel, gebaut von <a href="../index.html">Player Two</a> —
-      Websites, Webshops und Social Media für Schweizer KMU.
-      <a href="../ferienwohnung.html">Was so eine Seite kostet</a></p>
-  </div>
-</footer>
+<div class="leiste"><a class="knopf voll" href="#buchung">Verfügbarkeit prüfen</a></div>
 
+<footer><div class="wrap">
+  <a class="marke" href="#">Chalet Säntisblick<span>Toggenburg · 1'240 m</span></a>
+  <p style="margin:0;max-width:40ch">Der Ort, der Betrieb und die Bilder sind erfunden. Kontaktangaben gibt es deshalb keine.</p>
+  <p class="gebaut">Musterbeispiel, gebaut von <a href="../index.html">Player Two</a> — Websites, Webshops und Social Media für Schweizer KMU. <a href="../ferienwohnung.html">Was so eine Seite kostet</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var d=document.getElementById('licht'),b=document.getElementById('licht-bild'),n=document.getElementById('licht-name');
+  document.getElementById('galerie-raster').addEventListener('click',function(e){
+    var k=e.target.closest('button');if(!k)return;
+    b.src='../assets/chalet/'+k.dataset.bild+'.webp';b.alt=k.dataset.name;n.textContent=k.dataset.name;d.showModal();
+  });
+  d.querySelector('.zu').addEventListener('click',function(){d.close()});
+  d.addEventListener('click',function(e){if(e.target===d)d.close()});
+})();
+</script>
 </body>
 </html>
