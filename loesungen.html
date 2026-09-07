@@ -120,10 +120,10 @@ main{position:relative;z-index:2}
 .stueck[hidden]{display:none}
 .stueck a.schaufenster{text-decoration:none;cursor:pointer}
 .stueck .schaufenster img{position:absolute;left:0;top:0;width:100%;height:auto;
-  animation:vorschau-rollen 18s var(--ease-soft) infinite}
-@keyframes vorschau-rollen{0%,14%{transform:translateY(0)}
-  50%,62%{transform:translateY(calc(-100% + 172px))}94%,100%{transform:translateY(0)}}
-@media (prefers-reduced-motion:reduce){.stueck .schaufenster img{animation:none}}
+  transition:transform 1.1s var(--ease)}
+.stueck a.schaufenster:hover img,.stueck a.schaufenster:focus-visible img{
+  transform:translateY(calc(-100% + 172px));transition:transform 9s linear}
+@media (prefers-reduced-motion:reduce){.stueck .schaufenster img{transition:none}}
 .stueck .schaufenster img+span{background:rgba(5,10,20,.58);padding:7px 11px;border-radius:3px;color:#EBF8FF}
 .stueck a.schaufenster:hover span{color:var(--akzent);border-color:var(--akzent)}
 .stueck .schaufenster{height:172px;position:relative;
@@ -451,12 +451,13 @@ main{position:relative;z-index:2}
           <p class="meta">Sechs Seiten. Arbeiten nach Jahreszeit, Pflanzenliste.</p>
         </div>
       </article>
-<article class="stueck" data-sorte="website" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="website ferienwohnungen ferienhaeuser ferienwohnung eine seite pro objekt bilder preise besichtigung ferien vermieten wohnung feriengast airbnb">
-        <div class="schaufenster"><span>Vorschau</span></div>
+<article class="stueck" data-sorte="website" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="website ferienwohnungen ferienhaeuser ferienwohnung eine seite pro objekt bilder preise besichtigung ferien vermieten wohnung feriengast airbnb musterseite chalet saentisblick">
+        <a class="schaufenster" href="vorschau/chalet-saentisblick.html"><img src="assets/schaufenster/ferienwohnung.webp?v=2" width="760" height="1679" loading="lazy" alt="Vorschau der Musterseite Chalet Säntisblick"><span>Musterseite ansehen</span></a>
         <div class="inhalt">
           <span class="branche-marke">Website · Ferienwohnungen & Ferienhäuser</span>
           <h3>Ferienwohnung</h3>
-          <p class="meta">Eine Seite pro Objekt. Bilder, Preise, Besichtigung.</p>
+          <p class="meta">Eine Seite pro Objekt. Räume, Preise, Anfrage.</p>
+          <a class="zur-branche" href="ferienwohnung.html">Was so eine Seite kostet</a>
         </div>
       </article>
 <article class="stueck" data-sorte="website" data-zweig="vereins-dorfanlaesse" data-suche="website vereins dorfanlaesse dorfanlass eine seite programm anmeldung helfersuche dorffest verein turnfest jubilaeum helfer">
@@ -1108,12 +1109,12 @@ main{position:relative;z-index:2}
         </div>
       </article>
 <article class="stueck" data-sorte="content" data-zweig="ferienwohnungen-ferienhaeuser" data-suche="content ferienwohnungen ferienhaeuser airbnb gastgeber beitraege film bilder social media objekt wohnung ferien gaeste musterseite chalet saentisblick luxus">
-        <a class="schaufenster" href="vorschau/chalet-saentisblick.html"><img src="assets/schaufenster/ferienwohnung.webp?v=2" width="760" height="1679" loading="lazy" alt="Vorschau der Musterseite Chalet Säntisblick"><span>Musterseite ansehen</span></a>
+        <div class="schaufenster"><span>Vorschau</span></div>
         <div class="inhalt">
           <span class="branche-marke">Content · Ferienwohnungen &amp; Ferienhäuser</span>
-          <h3>Ferienwohnung</h3>
+          <h3>Der Beitrag der Woche</h3>
           <p class="meta">Was das Objekt besonders macht, vier Beiträge im Monat.</p>
-          <a class="zur-branche" href="ferienwohnung.html">Was so eine Seite kostet</a>
+          <a class="zur-branche" href="ferienwohnung.html#preise">Was das kostet</a>
         </div>
       </article>
     </div>

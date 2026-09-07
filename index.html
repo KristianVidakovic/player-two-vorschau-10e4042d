@@ -463,11 +463,12 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
    Attrappe, sobald es zu einer Karte eine gebaute Seite gibt. */
 .schau-bild{text-decoration:none}
 .schau-bild .rahmen{flex:1;min-height:0;border-radius:9px 9px 0 0;overflow:hidden;position:relative}
+/* In Ruhe steht das Startbild. Faehrt die Maus darueber, rollt die Seite langsam
+   nach unten; geht sie weg, kommt das Startbild in einer Sekunde zurueck. */
 .schau-bild img{display:block;width:100%;height:auto;
-  animation:vorschau-rollen 18s var(--ease-soft) infinite}
-/* Wie die Website-Attrappe daneben: langsam bis ans Ende rollen, kurz bleiben, zurueck. */
-@keyframes vorschau-rollen{0%,14%{transform:translateY(0)}
-  50%,62%{transform:translateY(calc(-100% + 164px))}94%,100%{transform:translateY(0)}}
+  transition:transform 1.1s var(--ease)}
+.schau-bild:hover img,.schau-bild:focus-visible img{transform:translateY(calc(-100% + 164px));
+  transition:transform 9s linear}
 .schau-post .v-kacheln{display:flex;gap:8px;height:100%;align-items:flex-start}
 .schau-post .v-kachel{flex:1;aspect-ratio:9/16;max-height:100%;border-radius:6px;
   position:relative;overflow:hidden;
@@ -1824,20 +1825,16 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
 
     <div class="stuecke stufe" id="stuecke">
       <article class="stueck" data-sorte="website">
-        <div class="schau schau-web" aria-hidden="true">
+        <a class="schau schau-bild" href="vorschau/chalet-saentisblick.html" aria-label="Musterseite Chalet Säntisblick öffnen">
               <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="blatt"><div class="rollt">
-                <div class="v-kopf"></div><div class="v-bild"></div>
-                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
-                <div class="v-knopf"></div>
-                <div class="v-zwei"><span></span><span></span></div>
-                <div class="v-zeile"></div><div class="v-zeile kurz"></div>
-              </div></div>
-            </div>
+              <div class="rahmen"><img src="assets/schaufenster/ferienwohnung.webp?v=2" width="760" height="1679" loading="lazy"
+                   alt="Vorschau der Musterseite: das Chalet zur blauen Stunde mit der Zeile «Oben ist es still.»"></div>
+            </a>
         <div class="inhalt">
-          <span class="branche-marke">Website · Maler und Handwerk</span>
-          <h3>Malerbetrieb</h3>
-          <p class="meta">Eine Seite. Arbeiten, Leistungen, Offertanfrage.</p>
+          <span class="branche-marke">Website · Ferienwohnungen</span>
+          <h3>Ferienwohnung</h3>
+          <p class="meta">Eine Seite pro Objekt. Räume, Preise, Anfrage.</p>
+          <a class="zur-branche" href="ferienwohnung.html">Musterseite und Preise</a>
         </div>
       </article>
       <article class="stueck" data-sorte="shop">
@@ -1858,16 +1855,23 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         </div>
       </article>
       <article class="stueck" data-sorte="content">
-        <a class="schau schau-bild" href="vorschau/chalet-saentisblick.html" aria-label="Musterseite Chalet Säntisblick öffnen">
+        <!-- Platz fuer das Content-Video zum selben Chalet. Bis es steht, die
+             Beitrags-Attrappe. Konzept und drei Vorschlaege: .claude/KONZEPT-content-video.md -->
+        <div class="schau schau-post" aria-hidden="true">
               <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="rahmen"><img src="assets/schaufenster/ferienwohnung.webp?v=2" width="760" height="1679" loading="lazy"
-                   alt="Vorschau der Musterseite: das Chalet zur blauen Stunde mit der Zeile «Oben ist es still.»"></div>
-            </a>
+              <div class="blatt">
+                <div class="v-kacheln">
+                  <div class="v-kachel" style="--n:0"><b></b></div>
+                  <div class="v-kachel" style="--n:1"><b></b></div>
+                  <div class="v-kachel" style="--n:2"><b></b></div>
+                </div>
+              </div>
+            </div>
         <div class="inhalt">
           <span class="branche-marke">Content · Ferienwohnungen</span>
-          <h3>Ferienwohnung</h3>
+          <h3>Der Beitrag der Woche</h3>
           <p class="meta">Vier Beiträge im Monat, Freigabe vom Handy aus.</p>
-          <a class="zur-branche" href="ferienwohnung.html">Musterseite und Preise</a>
+          <a class="zur-branche" href="ferienwohnung.html#preise">Was das kostet</a>
         </div>
       </article>
     </div>
