@@ -15,6 +15,12 @@ Haus, mit Terrasse, Wohnraum-Galerie und dem alten Aussenbild als Referenz für 
 und Berge. Lehre: **Die Referenz-Aussenansicht muss als Erstes und nach der Hausbibel
 entstehen** — sie legt fest, was alle anderen Bilder zeigen dürfen.
 
+**Zweite Korrektur (Kristian):** Die zwei neuen Aussenansichten zeigten zwei verschiedene
+Baukörper — beide gleichzeitig erzeugt, jede mit den Innenräumen als Referenz, aber ohne
+einander. Das Tagbild neu abgeleitet aus dem Bild der blauen Stunde («exakt dieses
+Gebäude, anderes Licht»). Regel: **Von einem Objekt gibt es genau ein Stammbild. Jede
+weitere Ansicht wird aus dem Stammbild abgeleitet, nie parallel dazu erzeugt.**
+
 ## 1. Was die Besten machen — und was daraus für uns folgt
 
 Direktbuchungsseiten für Ferienobjekte gewinnen 2026 mit vier Dingen, die sich durch alle
