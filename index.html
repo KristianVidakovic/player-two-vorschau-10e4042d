@@ -487,13 +487,6 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
   text-transform:uppercase;color:var(--akzent)}
 .preis em{font-style:normal;font-size:14px;color:var(--grau);text-decoration:line-through;
   margin-left:5px;letter-spacing:0}
-.tagschau{
-  align-self:flex-start;margin-top:4px;border:0;background:none;padding:0;cursor:pointer;
-  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--akzent);
-  border-bottom:1px solid rgba(30,108,255,.4);transition:border-color .3s var(--ease);
-}
-.tagschau:hover{border-bottom-color:var(--akzent)}
-@media (pointer:coarse){.tagschau{min-height:44px}}
 .stueck{
   background:#fff;border:1px solid var(--linie);border-radius:16px;overflow:hidden;
   display:flex;flex-direction:column;
@@ -612,7 +605,7 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
     padding-block:clamp(44px,5.2vh,84px);
   }
   main > section:not(#stufen) > .wrap{width:var(--seite);margin:0 auto}
-  #branchen,#ablauf{padding-block:clamp(36px,4.2vh,68px)}
+  #ablauf{padding-block:clamp(36px,4.2vh,68px)}
   #was .h2{font-size:clamp(26px,min(3.4vw,4.6vh),44px)}
   #was .lede{margin-top:clamp(12px,1.8vh,20px);font-size:clamp(16px,2vh,19px)}
   #was .dreisatz{margin-top:clamp(22px,3.6vh,44px)}
@@ -643,132 +636,6 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
 .was-fuss{margin-top:28px;font-size:16.5px;color:#3A4553;max-width:66ch;line-height:1.62}
 .was-fuss b{color:var(--tief)}
 @media (max-width:900px){.dreisatz{grid-template-columns:1fr}}
-
-/* Branchenschalter */
-.branchen{background:var(--canvas);color:var(--tief);position:relative;overflow:hidden}
-.branchen::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(64% 62% at 22% 0%,rgba(30,108,255,.13),transparent 62%),
-             radial-gradient(50% 50% at 92% 84%,rgba(0,198,255,.09),transparent 64%);
-}
-.branchen .wrap{position:relative}
-.branchen .kicker{color:var(--akzent)}
-.branchen .h2{color:var(--tief)}
-.branchen .lede{color:#3A4553}
-.mehr-branchen{margin-top:22px;font-size:15.5px;color:var(--grau)}
-.mehr-branchen a{color:var(--akzent);text-decoration:none;
-  border-bottom:1px solid rgba(30,108,255,.4);transition:border-color .3s var(--ease)}
-.mehr-branchen a:hover{border-bottom-color:var(--akzent)}
-
-.reiter{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
-.reiter button{
-  font-family:var(--body);font-size:16px;font-weight:600;color:#3A4553;
-  background:#fff;border:1px solid var(--linie-stark);
-  padding:12px 20px;border-radius:99px;cursor:pointer;
-  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
-}
-.reiter button:hover{color:var(--akzent);border-color:var(--akzent);transform:translateY(-2px)}
-.reiter button[aria-selected="true"]{background:var(--akzent);border-color:var(--akzent);color:#fff;
-  box-shadow:0 6px 18px rgba(30,108,255,.26)}
-@media (pointer:coarse){.reiter button{min-height:44px}}
-
-.fluss-raster{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;margin-top:38px;align-items:start}
-.fluss-kopf h3{font-size:clamp(23px,2.3vw,30px);color:var(--tief);margin-bottom:12px}
-.fluss-kopf p{color:#3A4553;max-width:42ch;font-size:17px}
-.fluss-kopf .womit{margin-top:24px;display:flex;gap:9px;flex-wrap:wrap}
-.fluss-kopf .womit span{
-  font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:7px 12px;border-radius:99px;
-  border:1px solid var(--linie-stark);color:var(--grau);background:#fff;
-}
-
-/* Der Bildschirm in der Mitte ist dunkel - dort läuft die Animation, dort
-   trägt der Kontrast. Der Abschnitt darum bleibt hell. */
-.schirm{
-  background:linear-gradient(168deg,#0B1220,var(--nacht));
-  border:1px solid rgba(30,108,255,.28);border-radius:18px;
-  padding:26px 24px 24px;min-height:430px;position:relative;overflow:hidden;
-  box-shadow:0 26px 60px rgba(8,32,86,.28);
-  display:flex;flex-direction:column;
-}
-.schirm::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(72% 58% at 82% 4%,rgba(30,108,255,.34),transparent 62%);
-}
-.schirm > *{position:relative}
-.schirm-kopf{
-  display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:6px;
-  border-bottom:1px solid rgba(235,248,255,.14);
-  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(235,248,255,.55);
-}
-.schirm-kopf i{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:block;
-  box-shadow:0 0 0 4px rgba(0,198,255,.16)}
-
-.schritte-liste{list-style:none;margin:0;padding:0;display:grid;gap:2px;flex:1}
-.schritte-liste li{
-  display:grid;grid-template-columns:22px 1fr;gap:13px;align-items:start;padding:11px 0;
-  opacity:0;transform:translateY(8px);
-  transition:opacity .5s var(--ease),transform .5s var(--ease);
-}
-.schritte-liste li.da{opacity:1;transform:none}
-.schritte-liste li .mark{width:22px;height:22px;margin-top:1px}
-.schritte-liste li .mark circle{fill:none;stroke:var(--cyan);stroke-width:2;opacity:.32}
-.schritte-liste li .mark path{
-  fill:none;stroke:var(--cyan);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:22;stroke-dashoffset:22;transition:stroke-dashoffset .5s var(--ease) .12s;
-}
-.schritte-liste li.da .mark path{stroke-dashoffset:0}
-.schritte-liste li .txt{font-size:16.5px;color:rgba(235,248,255,.92);line-height:1.5}
-.schritte-liste li .zeit{
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:rgba(235,248,255,.45);
-  display:block;margin-bottom:3px;
-}
-.schritte-liste li.geld .mark circle,.schritte-liste li.geld .mark path{stroke:#7DDE9A}
-.schritte-liste li.entscheid{
-  background:rgba(30,108,255,.2);border:1px solid rgba(30,108,255,.46);border-radius:12px;
-  padding:14px 15px;margin:8px 0;grid-template-columns:1fr;
-}
-.schritte-liste li.entscheid .txt{color:#fff;font-weight:600}
-.schritte-liste li.entscheid .zeit{color:var(--cyan)}
-.entscheid-knopf{margin-top:12px;width:100%}
-.entscheid-knopf[disabled]{opacity:.5;cursor:default;transform:none;box-shadow:none}
-.fluss-fuss{
-  margin-top:18px;padding-top:16px;border-top:1px solid rgba(235,248,255,.14);
-  font-size:14.5px;color:rgba(235,248,255,.6);
-}
-@media (max-width:1024px){.fluss-raster{grid-template-columns:1fr;gap:28px}.schirm{min-height:0}}
-
-@media (min-width:1025px){
-  /* Branchen: sieben Schritte müssen mit dem Kopf zusammen auf einen
-     Bildschirm. Die Uhrzeit rückt dafür neben den Text. */
-  .branchen .h2{font-size:clamp(24px,min(3vw,4.2vh),38px)}
-  .branchen .lede{margin-top:clamp(8px,1.3vh,18px);font-size:clamp(14.5px,1.8vh,17px)}
-  .branchen .reiter{margin-top:clamp(14px,2.4vh,38px);gap:8px}
-  .branchen .reiter button{padding:clamp(8px,1.3vh,12px) clamp(14px,1.3vw,20px);
-    font-size:clamp(14px,1.8vh,16px)}
-  .branchen .mehr-branchen{margin-top:clamp(8px,1.2vh,18px);font-size:14px}
-  .fluss-raster{margin-top:clamp(12px,2vh,32px);gap:clamp(24px,2.6vw,40px)}
-  .schirm{min-height:0;padding:clamp(16px,2.2vh,26px) clamp(18px,1.8vw,24px)}
-  .schirm-kopf{padding-bottom:clamp(9px,1.4vh,16px);margin-bottom:2px}
-  .fluss-kopf h3{font-size:clamp(19px,2.6vh,30px);margin-bottom:8px}
-  .fluss-kopf p{font-size:clamp(14.5px,1.8vh,17px)}
-  .fluss-kopf .womit{margin-top:clamp(10px,2vh,24px);gap:7px}
-  .fluss-kopf .womit span{padding:5px 10px;font-size:11.5px}
-  .schritte-liste{gap:0}
-  .schritte-liste li{padding:clamp(5px,0.9vh,11px) 0;gap:10px}
-  .schritte-liste li .mark{width:19px;height:19px}
-  .schritte-liste li{grid-template-columns:19px 1fr}
-  .schritte-liste li .txt{font-size:clamp(14px,1.75vh,16.5px);line-height:1.45}
-  /* Uhrzeit vorne im selben Satz statt auf eigener Zeile. */
-  .schritte-liste li .zeit{display:inline;margin:0 8px 0 0;font-size:11px}
-  .schritte-liste li.entscheid{padding:clamp(9px,1.4vh,14px) 14px;margin:5px 0}
-  .entscheid-knopf{margin-top:9px;padding-top:10px;padding-bottom:10px}
-  .fluss-fuss{margin-top:clamp(8px,1.4vh,18px);padding-top:clamp(8px,1.2vh,16px);
-    font-size:13px}
-  .branchen .lede{max-width:64ch}
-  .schritte-liste li .txt{font-size:clamp(13.5px,1.7vh,16px)}
-  .schritte-liste li{padding:clamp(4px,0.8vh,10px) 0}
-}
 
 /* Herkunft */
 .herkunft-raster{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-top:20px}
@@ -976,8 +843,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   #team .punkt-live{margin-top:clamp(20px,3vh,30px);font-size:14px}
   #team .cta-reihe{margin-top:clamp(26px,4vh,40px)!important}
 
-  /* Branchen: die letzten Pixel, damit die Animation ganz auf den Schirm passt. */
-  #branchen{padding-block:clamp(32px,3.8vh,60px)}
 }
 
 
@@ -1840,7 +1705,7 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <article class="stufe-karte">
           <span class="stufe-nr">Was Sie bekommen</span>
           <h3>Der Shop</h3>
-          <p class="satz">Ein Shop mit genau den Artikeln, die Ihren Umsatz machen — gepflegt in Minuten statt Stunden, gefunden bei Google wie bei ChatGPT.</p>
+          <p class="satz">Ein Shop mit genau den Artikeln, die Ihren Umsatz machen — gepflegt in Minuten statt Stunden, gefunden bei Google wie bei ChatGPT, Claude und Gemini.</p>
           <ul class="kann">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Abholung, Versand oder beides</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6l5 5 11-11.4"/></svg>Zahlung über die üblichen Schweizer Wege</li>
@@ -1870,10 +1735,10 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         <p class="immer-dabei">Alles davon ist im Preis. Halbe Sachen bauen wir nicht. <b>Anzeigen bei Google</b> sind nicht dabei — das ist ein eigener Auftrag mit eigenem Budget, und wir sagen Ihnen ehrlich, ob sich das für Sie lohnt.</p>
       </section>
 
-      <section class="tafel" id="tafel-content" aria-label="Content">
+      <section class="tafel" id="tafel-content" aria-label="Social Media und Content">
         <header class="tafel-kopf">
           <span class="tafel-nr">3 von 3</span>
-          <h3>Content</h3>
+          <h3>Social Media &amp; Content</h3>
           <p>Für die Bilder, Filme und Beiträge, die sonst nie entstehen.</p>
         </header>
         <div class="tafel-karten">
@@ -1920,35 +1785,6 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
   </div>
 </section>
 
-<!-- ================= branchen ================= -->
-<section class="branchen" id="branchen">
-  <div class="wrap">
-    <span class="kicker auf">Was das für Sie heisst</span>
-    <h2 class="h2 auf">Beispiele aus verschiedenen Branchen</h2>
-    <p class="lede auf">Damit Sie sich besser vorstellen können, wie wir Sie
-      zukünftig unterstützen werden, hier einige Visualisierungen verschiedener
-      Lösungen.</p>
-
-    <div class="reiter auf" role="tablist" aria-label="Branche wählen" id="reiter"></div>
-    <p class="mehr-branchen auf">Sechs Abläufe zum Anschauen. Durchdacht ist es
-      für <a href="loesungen.html">über hundert Branchen</a> — von der
-      Physiotherapie über die Garage bis zur Dachdeckerei.</p>
-
-    <div class="fluss-raster">
-      <div class="fluss-kopf auf">
-        <h3 id="fluss-titel">Malerbetrieb</h3>
-        <p id="fluss-satz">Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.</p>
-        <div class="womit" id="fluss-womit"></div>
-      </div>
-
-      <div class="schirm auf" id="schirm">
-        <div class="schirm-kopf"><i></i><span id="schirm-titel">Ihr Tag</span></div>
-        <ul class="schritte-liste" id="fluss-schritte" aria-live="polite"></ul>
-        <div class="fluss-fuss">Alles, was hier steht, passiert erst nach Ihrer Freigabe. Sie behalten den Daumen drauf.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================= schaufenster =================
      Hiess bis zum 26.08.2026 "Fertige Loesungen". Kristian hat das
@@ -2019,12 +1855,9 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
               </div>
             </div>
         <div class="inhalt">
-          <span class="branche-marke">Content · Restaurant und Café</span>
-          <h3>Der Mittagstisch der Woche</h3>
-          <p class="meta">Jede Woche das Gericht, vier Beiträge im Monat, Freigabe vom Handy aus.</p>
-          <!-- Knopf «Den Tag ansehen» entfernt: er sprang in die Reservationsgeschichte
-               der Branche gastro (Array BRANCHEN). Kommt zurueck, sobald dort eine
-               Content-Szene steht. -->
+          <span class="branche-marke">Content · Ferienwohnungen</span>
+          <h3>Ferienwohnung</h3>
+          <p class="meta">Vier Beiträge im Monat, Freigabe vom Handy aus.</p>
         </div>
       </article>
     </div>
@@ -2514,32 +2347,6 @@ document.querySelectorAll('.gegen').forEach(function(el){
   auftritt.observe(el);
 });
 
-/* ---------- Schaufenster vorne: nur der Weg zur Branchenanimation ----------
-   Gefiltert wird im Katalog auf loesungen.html, nicht hier. */
-(function(){
-  var regal = document.getElementById('stuecke');
-  if (!regal) return;
-  regal.addEventListener('click', function(ev){
-    var k = ev.target.closest ? ev.target.closest('.tagschau') : null;
-    if (!k) return;
-    var ziel = document.getElementById('branchen');
-    if (!ziel) return;
-    if (typeof hartSpringen === 'function') hartSpringen(ziel);
-    else ziel.scrollIntoView();
-    var knopf = document.querySelector('#reiter [data-branche="' + k.getAttribute('data-branche') + '"]');
-    if (knopf) knopf.click();
-  });
-
-  /* Wer aus dem Katalog kommt, landet direkt auf seiner Branche. */
-  var mit = (location.search.match(/[?&]branche=([a-z]+)/) || [])[1];
-  if (mit) {
-    addEventListener('load', function(){
-      var knopf = document.querySelector('#reiter [data-branche="' + mit + '"]');
-      if (knopf) knopf.click();
-    });
-  }
-})();
-
 /* ---------- Die seitliche Strecke ---------- */
 (function(){
   var quer = document.getElementById('quer');
@@ -2570,7 +2377,7 @@ document.querySelectorAll('.gegen').forEach(function(el){
   var kZaehler = document.getElementById('k-zaehler');
   var KOEPFE = [["Website", "Damit Sie gefunden werden — und danach weniger Post haben."],
                 ["Webshop", "Wenn Sie etwas verkaufen, das man in einen Korb legen kann."],
-                ["Content", "Für die Bilder, Filme und Beiträge, die sonst nie entstehen."]];
+                ["Social Media & Content", "Für die Bilder, Filme und Beiträge, die sonst nie entstehen."]];
 
   function schieben(){
     if (aus.matches || weg <= 0) return;
@@ -2811,194 +2618,6 @@ addEventListener('scroll', ablaufZeichnen, {passive:true});
 addEventListener('resize', ablaufZeichnen);
 ablaufZeichnen();
 
-/* ============================================================
-   Branchenschalter mit gespieltem Ablauf
-   ============================================================ */
-var BRANCHEN = [
-  {
-    id:'handwerk', reiter:'Maler und Handwerk', titel:'Malerbetrieb',
-    satz:'Sie sind auf der Baustelle. Die Anfrage kommt trotzdem.',
-    womit:['Offerte','Termin','Rechnung','Nachfassen'],
-    schirm:'Anfrage von Frau Bauer, Wängi',
-    schritte:[
-      {zeit:'08:14', txt:'Anfrage über Ihre Website: Innenanstrich, 3.5 Zimmer'},
-      {zeit:'08:14', txt:'Rückfragen gestellt: Fläche, Zustand, Wunschtermin'},
-      {zeit:'08:31', txt:'Offerte erstellt, mit Ihren Positionen und Ihren Preisen: CHF 3\u2019935'},
-      {zeit:'wartet auf Sie', txt:'Passt das so?', typ:'entscheid', knopf:'Offerte freigeben'},
-      {zeit:'08:32', txt:'Offerte versendet und Besichtigung vorgeschlagen'},
-      {zeit:'08:32', txt:'Kundin im Kundenstamm erfasst, Nachfassen in fünf Tagen geplant'},
-      {zeit:'nach dem Auftrag', txt:'Rechnung geschrieben, Zahlungseingang überwacht, Erinnerung bei Verzug', typ:'geld'}
-    ]
-  },
-  {
-    id:'gastro', reiter:'Restaurant und Café', titel:'Restaurant',
-    satz:'Das Telefon klingelt während dem Service. Muss es nicht.',
-    womit:['Reservation','Erinnerung','Bewertung','Auswertung'],
-    schirm:'Reservation für Freitag',
-    schritte:[
-      {zeit:'19:02', txt:'Reservation über Ihre Website: 4 Personen, Freitag 19:30'},
-      {zeit:'19:02', txt:'Tischplan geprüft, sofort bestätigt, Gast hat die Bestätigung'},
-      {zeit:'Donnerstag', txt:'Erinnerung an den Gast, damit der Tisch nicht leer bleibt'},
-      {zeit:'wartet auf Sie', txt:'Gruppe von 12 mit Sonderwunsch, nehmen wir das an?', typ:'entscheid', knopf:'Gruppe bestätigen'},
-      {zeit:'Samstag', txt:'Freundliche Bitte um eine Google-Bewertung, nur an Gäste, die da waren'},
-      {zeit:'Monatsende', txt:'Sie sehen, welche Abende voll sind und welche nicht'},
-      {zeit:'laufend', txt:'Rechnungen für Bankette geschrieben und überwacht', typ:'geld'}
-    ]
-  },
-  {
-    id:'termin', reiter:'Coiffeur und Studio', titel:'Coiffeursalon',
-    satz:'Jeder Anruf während dem Schneiden kostet Sie Zeit und Nerven.',
-    womit:['Terminbuchung','Erinnerung','Nachrücken','Wiederkommen'],
-    schirm:'Terminkalender',
-    schritte:[
-      {zeit:'21:40', txt:'Kundin bucht online, sieht nur Zeiten, die wirklich frei sind'},
-      {zeit:'21:40', txt:'Bestätigung sofort, Eintrag im Kalender'},
-      {zeit:'Vortag', txt:'Erinnerung, damit niemand vergisst'},
-      {zeit:'wartet auf Sie', txt:'Neue Kundin möchte Farbe und Schnitt, Zeit reicht knapp. Annehmen?', typ:'entscheid', knopf:'Termin annehmen'},
-      {zeit:'bei Absage', txt:'Der frei gewordene Platz wird sofort anderen angeboten'},
-      {zeit:'nach acht Wochen', txt:'Freundliche Erinnerung, dass der nächste Termin ansteht'},
-      {zeit:'monatlich', txt:'Offene Beträge im Blick, Quittungen automatisch', typ:'geld'}
-    ]
-  },
-  {
-    id:'laden', reiter:'Bäckerei und Hofladen', titel:'Bäckerei und Hofladen',
-    satz:'Vorbestellungen auf Zetteln, und am Samstag weiss niemand mehr, was gilt.',
-    womit:['Vorbestellung','Abholzeit','Saison','Stammkunden'],
-    schirm:'Bestellungen für Samstag',
-    schritte:[
-      {zeit:'Mittwoch', txt:'Vorbestellung über Ihre Website: 2 Zöpfe, Samstag 8 Uhr'},
-      {zeit:'Mittwoch', txt:'Bestätigung mit Abholzeit, Bestellung auf der Liste für die Backstube'},
-      {zeit:'laufend', txt:'Was nicht mehr da ist, verschwindet von der Seite. Erdbeeren durch, Zwetschgen da'},
-      {zeit:'wartet auf Sie', txt:'Bestellung über 40 Stück für einen Anlass. Schaffen wir das?', typ:'entscheid', knopf:'Bestellung annehmen'},
-      {zeit:'Samstag', txt:'Bezahlt wird online oder im Laden, der Beleg entsteht von selbst', typ:'geld'},
-      {zeit:'zur Saison', txt:'Stammkunden erfahren als Erste, wenn es die neue Ware gibt'},
-      {zeit:'Monatsende', txt:'Sie sehen, was sich verkauft hat und was liegen blieb'}
-    ]
-  },
-  {
-    id:'immobilien', reiter:'Hausverwaltung', titel:'Hausverwaltung',
-    satz:'Zehn Mieter, zehn Anrufe, und alle fragen dasselbe: was ist der Stand?',
-    womit:['Schadensmeldung','Handwerker','Portal','Abrechnung'],
-    schirm:'Meldung Objekt Rosenweg 4',
-    schritte:[
-      {zeit:'07:50', txt:'Mieter meldet einen Wasserschaden über das Portal, mit Foto'},
-      {zeit:'07:50', txt:'Fall angelegt, Dringlichkeit eingeschätzt, Eigentümer informiert'},
-      {zeit:'07:58', txt:'Passender Handwerker angefragt, Termin mit dem Mieter abgestimmt'},
-      {zeit:'wartet auf Sie', txt:'Kostenvoranschlag CHF 1\u2019240, über Ihrer Freigabegrenze', typ:'entscheid', knopf:'Auftrag freigeben'},
-      {zeit:'laufend', txt:'Mieter und Eigentümer sehen den Stand, ohne anzurufen'},
-      {zeit:'nach der Arbeit', txt:'Rechnung dem richtigen Objekt zugeordnet und verbucht', typ:'geld'},
-      {zeit:'jährlich', txt:'Unterlagen für die Abrechnung liegen beisammen, nicht in Ordnern'}
-    ]
-  },
-  {
-    id:'buero', reiter:'Treuhand und Büro', titel:'Treuhandbüro',
-    satz:'Die Hälfte der Arbeit ist, den Unterlagen hinterherzulaufen.',
-    womit:['Unterlagen','Fristen','Freigabe','Honorar'],
-    schirm:'Mandat Muster AG',
-    schritte:[
-      {zeit:'Montag', txt:'Mandant lädt die Unterlagen über das Portal hoch'},
-      {zeit:'Montag', txt:'Was fehlt, wird freundlich nachgefragt, mit Frist'},
-      {zeit:'Dienstag', txt:'Eingang bestätigt, Ablage sortiert, nichts liegt im Mailfach'},
-      {zeit:'wartet auf Sie', txt:'Abschluss geprüft, bereit zum Versand', typ:'entscheid', knopf:'Freigeben und senden'},
-      {zeit:'sofort', txt:'Unterlagen versendet, Mandant hat die Bestätigung'},
-      {zeit:'gleichentags', txt:'Honorarrechnung erstellt, offene Posten im Blick', typ:'geld'},
-      {zeit:'vor der Frist', txt:'Alle Mandanten rechtzeitig erinnert, ohne dass Sie eine Liste führen'}
-    ]
-  }
-];
-
-(function branchenSchalter(){
-  var reiter = document.getElementById('reiter');
-  if (!reiter) return;
-  var liste = document.getElementById('fluss-schritte');
-  var titel = document.getElementById('fluss-titel');
-  var satz = document.getElementById('fluss-satz');
-  var womit = document.getElementById('fluss-womit');
-  var schirmTitel = document.getElementById('schirm-titel');
-  var laufTimer = [], aktiv = 0, sichtbar = false, schonGespielt = false;
-  var wenigerBewegung = matchMedia('(prefers-reduced-motion: reduce)');
-
-  function haken(){
-    return '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.4l3 3 6-6.4"/></svg>';
-  }
-
-  function stopp(){ laufTimer.forEach(clearTimeout); laufTimer = []; }
-
-  function zeichnen(i, sofort){
-    stopp();
-    aktiv = i;
-    var b = BRANCHEN[i];
-    titel.textContent = b.titel;
-    satz.textContent = b.satz;
-    schirmTitel.textContent = b.schirm;
-    womit.innerHTML = b.womit.map(function(w){ return '<span>' + w + '</span>'; }).join('');
-    [].forEach.call(reiter.children, function(k, n){
-      k.setAttribute('aria-selected', n === i ? 'true' : 'false');
-    });
-
-    liste.innerHTML = b.schritte.map(function(s, n){
-      var klasse = 'schritt-z' + (s.typ ? ' ' + s.typ : '');
-      if (s.typ === 'entscheid') {
-        return '<li class="' + klasse + '" data-n="' + n + '">' +
-               '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span>' +
-               '<button class="btn btn-voll entscheid-knopf" type="button" data-knopf="' + n + '">' + s.knopf + '</button></div></li>';
-      }
-      return '<li class="' + klasse + '" data-n="' + n + '">' + haken() +
-             '<div><span class="zeit">' + s.zeit + '</span><span class="txt">' + s.txt + '</span></div></li>';
-    }).join('');
-
-    var lis = [].slice.call(liste.children);
-    var entscheidIndex = b.schritte.findIndex(function(s){ return s.typ === 'entscheid'; });
-
-    if (sofort || wenigerBewegung.matches) {
-      lis.forEach(function(li){ li.classList.add('da'); });
-      var k0 = liste.querySelector('[data-knopf]');
-      if (k0) { k0.disabled = true; k0.textContent = 'Freigegeben'; }
-      return;
-    }
-
-    lis.forEach(function(li, n){
-      if (n > entscheidIndex) return;
-      laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 260 + n * 620));
-    });
-
-    var knopf = liste.querySelector('[data-knopf]');
-    if (knopf) {
-      knopf.addEventListener('click', function(){
-        knopf.disabled = true;
-        knopf.textContent = 'Freigegeben';
-        lis.forEach(function(li, n){
-          if (n <= entscheidIndex) return;
-          laufTimer.push(setTimeout(function(){ li.classList.add('da'); }, 180 + (n - entscheidIndex) * 620));
-        });
-      });
-    }
-  }
-
-  BRANCHEN.forEach(function(b, i){
-    var k = document.createElement('button');
-    k.type = 'button';
-    k.setAttribute('role', 'tab');
-    k.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    k.setAttribute('data-branche', b.id);
-    k.textContent = b.reiter;
-    k.addEventListener('click', function(){ zeichnen(i, false); });
-    reiter.appendChild(k);
-  });
-
-  zeichnen(0, true);
-
-  var beob = new IntersectionObserver(function(e){
-    if (e[0].isIntersecting && !schonGespielt) {
-      schonGespielt = true;
-      zeichnen(aktiv, false);
-    }
-    sichtbar = e[0].isIntersecting;
-  }, {threshold:.3});
-  beob.observe(document.getElementById('schirm'));
-
-  wenigerBewegung.addEventListener('change', function(e){ if (e.matches) zeichnen(aktiv, true); });
-})();
 
 /* ---------- Formular ---------- */
 var form = document.getElementById('anfrage');
