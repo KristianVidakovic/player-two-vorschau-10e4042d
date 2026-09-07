@@ -462,9 +462,12 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
 /* Echte Vorschau: ein Screenshot der Musterseite im Browser-Rahmen. Ersetzt die
    Attrappe, sobald es zu einer Karte eine gebaute Seite gibt. */
 .schau-bild{text-decoration:none}
-.schau-bild img{flex:1;width:100%;min-height:0;object-fit:cover;object-position:top;
-  border-radius:9px 9px 0 0;transition:transform .8s var(--ease)}
-.schau-bild:hover img{transform:scale(1.03)}
+.schau-bild .rahmen{flex:1;min-height:0;border-radius:9px 9px 0 0;overflow:hidden;position:relative}
+.schau-bild img{display:block;width:100%;height:auto;
+  animation:vorschau-rollen 18s var(--ease-soft) infinite}
+/* Wie die Website-Attrappe daneben: langsam bis ans Ende rollen, kurz bleiben, zurueck. */
+@keyframes vorschau-rollen{0%,14%{transform:translateY(0)}
+  50%,62%{transform:translateY(calc(-100% + 164px))}94%,100%{transform:translateY(0)}}
 .schau-post .v-kacheln{display:flex;gap:8px;height:100%;align-items:flex-start}
 .schau-post .v-kachel{flex:1;aspect-ratio:9/16;max-height:100%;border-radius:6px;
   position:relative;overflow:hidden;
@@ -1857,8 +1860,8 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
       <article class="stueck" data-sorte="content">
         <a class="schau schau-bild" href="vorschau/chalet-saentisblick.html" aria-label="Musterseite Chalet Säntisblick öffnen">
               <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <img src="assets/schaufenster/ferienwohnung.webp" width="760" height="430" loading="lazy"
-                   alt="Vorschau der Musterseite: das Chalet zur blauen Stunde mit der Zeile «Oben ist es still.»">
+              <div class="rahmen"><img src="assets/schaufenster/ferienwohnung.webp" width="760" height="1679" loading="lazy"
+                   alt="Vorschau der Musterseite: das Chalet zur blauen Stunde mit der Zeile «Oben ist es still.»"></div>
             </a>
         <div class="inhalt">
           <span class="branche-marke">Content · Ferienwohnungen</span>
