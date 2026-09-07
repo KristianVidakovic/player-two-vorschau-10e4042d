@@ -459,6 +459,12 @@ section{padding:clamp(72px,9vw,124px) 0;position:relative}
   26%,86%{background:#1E8A4C}90%,100%{background:rgba(11,18,32,.2)}}
 
 /* Content: drei Beitragskacheln im Hochformat, die oberste wartet auf Freigabe */
+/* Echte Vorschau: ein Screenshot der Musterseite im Browser-Rahmen. Ersetzt die
+   Attrappe, sobald es zu einer Karte eine gebaute Seite gibt. */
+.schau-bild{text-decoration:none}
+.schau-bild img{flex:1;width:100%;min-height:0;object-fit:cover;object-position:top;
+  border-radius:9px 9px 0 0;transition:transform .8s var(--ease)}
+.schau-bild:hover img{transform:scale(1.03)}
 .schau-post .v-kacheln{display:flex;gap:8px;height:100%;align-items:flex-start}
 .schau-post .v-kachel{flex:1;aspect-ratio:9/16;max-height:100%;border-radius:6px;
   position:relative;overflow:hidden;
@@ -1849,16 +1855,11 @@ html.pt-film-an .pt-closing{--k:clamp(0,(var(--pt-p) - .52) * 4.7,1)}
         </div>
       </article>
       <article class="stueck" data-sorte="content">
-        <div class="schau schau-post" aria-hidden="true">
+        <a class="schau schau-bild" href="vorschau/chalet-saentisblick.html" aria-label="Musterseite Chalet Säntisblick öffnen">
               <div class="leiste"><i></i><i></i><i></i><span></span></div>
-              <div class="blatt">
-                <div class="v-kacheln">
-                  <div class="v-kachel" style="--n:0"><b></b></div>
-                  <div class="v-kachel" style="--n:1"><b></b></div>
-                  <div class="v-kachel" style="--n:2"><b></b></div>
-                </div>
-              </div>
-            </div>
+              <img src="assets/schaufenster/ferienwohnung.webp" width="760" height="430" loading="lazy"
+                   alt="Vorschau der Musterseite: das Chalet zur blauen Stunde mit der Zeile «Oben ist es still.»">
+            </a>
         <div class="inhalt">
           <span class="branche-marke">Content · Ferienwohnungen</span>
           <h3>Ferienwohnung</h3>
