@@ -7,6 +7,14 @@ Stand 7. September 2026. Definition vor dem Bau. Gebaut wird erst nach Freigabe.
 Bild 2 (Aussen bei Tag) scheiterte zuerst an fehlendem Guthaben und wurde nach dem Aufladen
 nachgeholt. Kein Nachlauf nötig — kein einziges Bild musste wiederholt werden.
 
+**Korrektur, gleicher Tag (Kristian):** Das Haus von aussen hatte nur ein Geschoss — die
+erste Aussenansicht war vor der Hausbibel entstanden, ohne «zwei Geschosse» im Prompt, und
+alle Innenräume wurden daran verankert. Innen stimmte alles (sechs Meter, Galerie, vier
+Zimmer oben), aussen nicht. Beide Aussenbilder neu erzeugt als echtes zweigeschossiges
+Haus, mit Terrasse, Wohnraum-Galerie und dem alten Aussenbild als Referenz für Material
+und Berge. Lehre: **Die Referenz-Aussenansicht muss als Erstes und nach der Hausbibel
+entstehen** — sie legt fest, was alle anderen Bilder zeigen dürfen.
+
 ## 1. Was die Besten machen — und was daraus für uns folgt
 
 Direktbuchungsseiten für Ferienobjekte gewinnen 2026 mit vier Dingen, die sich durch alle
